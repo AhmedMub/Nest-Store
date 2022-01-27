@@ -49,7 +49,7 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/admin/web.php'));
+                ->group(base_path('routes/admin/adminRoutes.php'));
 
             /*
                 * FrontEnd routes
@@ -61,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/frontend/web.php'));
+                ->group(base_path('routes/frontend/frontendRoutes.php'));
         });
     }
 

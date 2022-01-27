@@ -4,17 +4,15 @@ const mix = require('laravel-mix');
  |--------------------------------------------------------------------------
  | Mix Asset Management
  |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
+
+ |By default, Laravel Mix and Webpack will find example.png, copy it to your public/images folder, and then rewrite the url() within your generated stylesheet. As such, your compiled CSS will be.
+
+|As useful as this feature may be, it's possible that your existing folder structure is already configured in a way you like. If this is the case, you may disable url() rewriting like so:
  |
  */
 
-mix.sass('resources/sass/vendors_css.scss', 'public/backend/css/test.css')
-    // .sass('resources/sass/style.scss', 'public/backend/css/style.css')
-    // .sass('resources/sass/style_rtl.scss', 'public/backend/css/style_rtl.css')
-    // .sass('resources/sass/color_theme.scss', 'public/backend/css/color_theme.css')
+mix.js('resources/admin/js/custom.js', 'public/backend/js/custom.js')
+    .sass('resources/frontend/sass/custom.scss', 'public/frontend/css/custom.css')
     .sourceMaps();
 
 if (mix.inProduction()) {

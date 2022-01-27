@@ -7,3 +7,6 @@
 {{-- theme Admin App --}}
 <script src=" {{asset('backend/js/template.js')}} "></script>
 <script src=" {{asset('backend/js/pages/dashboard.js')}} "></script>
+
+{{-- Custom Js --}}
+<script src=" {{asset('backend/js/custom.js')}} "></script>

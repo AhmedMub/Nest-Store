@@ -10,7 +10,7 @@
     <title>@yield('title', 'Admin')</title>
 
     {{-- Essentials styles --}}
-    @include('admin.layouts.styles')
+    @include('admin.layouts.essentials.styles')
 
 
     @stack('styles')
@@ -27,28 +27,28 @@
         {{-- Essintals --}}
 
         {{-- main header --}}
-        @include('admin.layouts.header')
+        @include('admin.layouts.essentials.header')
 
         {{-- Left side column. contains the logo and sidebar --}}
-        @include('admin.layouts.aside')
+        @include('admin.layouts.essentials.left-aside')
 
         {{-- Content Wrapper. Contains page content --}}
-        <div class="content-wrappe">
+        <div class="content-wrapper">
             <div class="container-full">
 
                 {{-- Main content --}}
-                <section class="content">
+                <div class="content">
                     @yield('content')
-                </section>
+                </div>
             </div>
         </div>
 
         {{-- Footer --}}
-        @include('admin.layouts.footer')
+        @include('admin.layouts.essentials.footer')
 
 
         {{-- Control Sidebar --}}
-        @include('admin.layouts.ctrl-aside')
+        @include('admin.layouts.essentials.ctrl-aside')
 
         {{-- Add the sidebar's background. This div must be placed immediately after the control sidebar --}}
         <div class="control-sidebar-bg"></div>
@@ -57,7 +57,7 @@
     @livewireScripts
 
     {{-- Vendor JS --}}
-    @include('admin.layouts.scripts')
+    @include('admin.layouts.essentials.scripts')
 
     {{-- Added scripts --}}
     @stack('scripts')

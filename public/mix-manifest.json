@@ -1,1 +1,4 @@
-{}
+{
+    "/backend/js/custom.js": "/backend/js/custom.js",
+    "/frontend/css/custom.css": "/frontend/css/custom.css"
+}
