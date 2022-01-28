@@ -19,14 +19,14 @@ eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset
 
 /***/ }),
 
-/***/ "./resources/frontend/sass/custom.scss":
-/*!*********************************************!*\
-  !*** ./resources/frontend/sass/custom.scss ***!
-  \*********************************************/
+/***/ "./resources/admin/sass/custom.scss":
+/*!******************************************!*\
+  !*** ./resources/admin/sass/custom.scss ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvZnJvbnRlbmQvc2Fzcy9jdXN0b20uc2Nzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvZnJvbnRlbmQvc2Fzcy9jdXN0b20uc2Nzcz9jMTExIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/frontend/sass/custom.scss\n");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvYWRtaW4vc2Fzcy9jdXN0b20uc2Nzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvYWRtaW4vc2Fzcy9jdXN0b20uc2Nzcz8wMWRjIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/admin/sass/custom.scss\n");
 
 /***/ })
 
@@ -117,7 +117,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/backend/js/custom": 0,
-/******/ 			"frontend/css/custom": 0
+/******/ 			"backend/css/custom": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -167,8 +167,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["frontend/css/custom"], () => (__webpack_require__("./resources/admin/js/custom.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["frontend/css/custom"], () => (__webpack_require__("./resources/frontend/sass/custom.scss")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/custom"], () => (__webpack_require__("./resources/admin/js/custom.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["backend/css/custom"], () => (__webpack_require__("./resources/admin/sass/custom.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

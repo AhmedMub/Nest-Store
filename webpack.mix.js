@@ -12,9 +12,11 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/admin/js/custom.js', 'public/backend/js/custom.js')
-    .sass('resources/frontend/sass/custom.scss', 'public/frontend/css/custom.css')
+    .sass('resources/admin/sass/custom.scss', 'public/backend/css/custom.css')
     .sourceMaps();
 
 if (mix.inProduction()) {
     mix.version();
 }
+
+mix.disableNotifications();

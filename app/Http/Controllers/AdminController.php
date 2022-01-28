@@ -10,7 +10,7 @@ use App\Actions\Fortify\AttemptToAuthenticate;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
-use App\Http\Responses\Admin\AdminLogoutResponse;
+use App\Actions\Fortify\AdminLogoutResponse;
 use App\Http\Responses\LoginResponse;
 use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Features;
@@ -102,7 +102,6 @@ class AdminController extends Controller
      * Destroy an authenticated session.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Laravel\Fortify\Contracts\AdminLogoutResponse
      */
     public function destroy(Request $request): AdminLogoutResponse
     {

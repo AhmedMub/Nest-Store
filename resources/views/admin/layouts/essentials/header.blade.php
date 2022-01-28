@@ -123,7 +123,7 @@
                             <div class="dropdown-divider"></div>
                             {!! Form::open(['route'=>['admin.logout']]) !!}
                             {{ FORM::button('<i class="ti-lock text-muted mr-2"></i>
-                            Logout',['class'=>'dropdown-item','type'=>'submit']) }}
+                            Logout',['class'=>'dropdown-item btn-fix-width','type'=>'submit']) }}
                             {!! Form::close() !!}
                         </li>
                     </ul>

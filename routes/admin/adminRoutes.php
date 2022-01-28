@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Public Routes
-Route::post('/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+Route::post('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
 
 Route::prefix('admin/')->middleware('admin:admin')->name('admin.')->group(function () {
