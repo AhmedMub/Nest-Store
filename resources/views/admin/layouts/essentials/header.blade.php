@@ -238,9 +238,13 @@
                                     <a class="dropdown-item" href="lockscreen.html">
                                         <i class="dropdown-icon fe fe-lock"></i> Lockscreen
                                     </a>
-                                    <a class="dropdown-item" href="login.html">
+                                    {!! Form::open([ 'method'=>'POST', 'id'=>'SignOutForm', 'route'=>['admin.logout']])
+                                    !!}
+                                    <a class="dropdown-item" href="javascript:{}"
+                                        onclick="document.getElementById('SignOutForm').submit();">
                                         <i class="dropdown-icon fe fe-alert-circle"></i> Sign out
                                     </a>
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>
