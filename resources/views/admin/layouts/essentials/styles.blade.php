@@ -1,15 +1,17 @@
-{{-- Fonts --}}
-<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+{{-- FAVICON --}}
+<link rel="shortcut icon" type="image/x-icon" href=" {{asset('backend/default-images/brand/favicon.ico')}} " />
 
-{{-- Icone --}}
-<link rel="icon" href=" {{asset('backend/default-images/favicon.ico')}} ">
+{{-- BOOTSTRAP CSS --}}
+<link id="style" href=" {{asset('backend/assets/plugins/bootstrap/css/bootstrap.min.css')}} " rel="stylesheet" />
 
-{{-- Vendors Style --}}
-<link rel="stylesheet" href=" {{asset('backend/css/vendors_css.css')}} ">
+{{-- STYLE CSS --}}
+<link href="{{asset('backend/css/style.css')}}" rel="stylesheet" />
+<link href="{{asset('backend/css/dark-style.css')}}" rel="stylesheet" />
+<link href="{{asset('backend/css/transparent-style.css')}}" rel="stylesheet">
+<link href="{{asset('backend/css/skin-modes.css')}}" rel="stylesheet" />
 
-{{-- Styles --}}
-<link rel="stylesheet" href="{{asset('backend/css/style.css')}} ">
-<link rel="stylesheet" href="{{asset('backend/css/skin_color.css')}} ">
+{{-- FONT-ICONS CSS --}}
+<link href="{{asset('backend/css/icons.css')}}" rel="stylesheet" />
 
-{{-- Custom Css --}}
-<link rel="stylesheet" href="{{asset('backend/css/custom.css')}} ">
+{{-- COLOR SKIN CSS --}}
+<link id="theme" rel="stylesheet" type="text/css" media="all" href=" {{asset('backend/assets/colors/color1.css')}}" />

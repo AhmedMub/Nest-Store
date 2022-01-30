@@ -1,13 +1,11 @@
-<footer class="main-footer">
-    <div class="pull-right d-none d-sm-inline-block">
-        <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">FAQ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Purchase Now</a>
-            </li>
-        </ul>
+<footer class="footer">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-md-12 col-sm-12 text-center">
+                Copyright © 2022 <a href="javascript:void(0)">Sash</a>. Designed with <span
+                    class="fa fa-heart text-danger"></span> by <a href="javascript:void(0)"> Spruko </a> All rights
+                reserved.
+            </div>
+        </div>
     </div>
-    &copy; 2020 <a href="#">Psd to Html Expert</a>. All Rights Reserved.
 </footer>

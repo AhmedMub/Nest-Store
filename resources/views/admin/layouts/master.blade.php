@@ -2,9 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- META DATA --}}
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', 'Admin')</title>
@@ -19,39 +23,53 @@
 
 </head>
 
-<body class="hold-transition dark-skin sidebar-mini theme-primary fixed">
+<body class="app sidebar-mini ltr light-mode">
+
+    {{-- GLOBAL-LOADER --}}
+    <x-admin.layouts.global-loader />
 
     {{-- Main Wrapper --}}
-    <div class="wrapper">
+    <div class="page">
+        {{-- page content --}}
+        <div class="page-main">
 
-        {{-- Essintals --}}
+            {{-- Essentials --}}
+            {{-- app-Header --}}
+            @include('admin.layouts.essentials.header')
 
-        {{-- main header --}}
-        @include('admin.layouts.essentials.header')
+            {{-- APP-LEFT-SIDEBAR --}}
+            @include('admin.layouts.essentials.left-sidebar')
 
-        {{-- Left side column. contains the logo and sidebar --}}
-        @include('admin.layouts.essentials.left-aside')
+            {{-- app-content --}}
+            <div class="main-content app-content mt-0">
+                <div class="side-app">
+                    {{-- CONTAINER --}}
+                    <div class="main-container container-fluid">
 
-        {{-- Content Wrapper. Contains page content --}}
-        <div class="content-wrapper">
-            <div class="container-full">
+                        {{-- PAGE-HEADER --}}
+                        <x-admin.layouts.page-header />
 
-                {{-- Main content --}}
-                <div class="content">
-                    @yield('content')
+                        {{-- main-content --}}
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </div>
 
+        {{-- Sidebar-right --}}
+        @include('admin.layouts.essentials.right-sidebar')
+
+        {{-- Theme Features --}}
+        {{-- Country-selector moda --}}
+        @include('admin.layouts.themefeatures.country-selector')
+
+
+        {{-- Essentials --}}
         {{-- Footer --}}
         @include('admin.layouts.essentials.footer')
 
-
-        {{-- Control Sidebar --}}
-        @include('admin.layouts.essentials.ctrl-aside')
-
-        {{-- Add the sidebar's background. This div must be placed immediately after the control sidebar --}}
-        <div class="control-sidebar-bg"></div>
+        {{-- BACK-TO-TOP --}}
+        <x-admin.layouts.to-top-button />
     </div>
 
     @livewireScripts
