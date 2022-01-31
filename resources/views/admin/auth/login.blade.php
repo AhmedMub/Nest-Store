@@ -14,7 +14,7 @@
             </div>
             @endif
 
-            <form method="POST" action="{{ isset($guard)? url($guard.'/login') : route('login') }}">
+            <form method="POST" action="{{ route('admin.store') }}">
                 @csrf
                 <div class="mb-3">
                     <x-jet-label value="{{ __('Email') }}" />
@@ -58,7 +58,6 @@
         </div>
     </x-jet-authentication-card>
 </x-guest-layout> --}}
-
 @extends('admin.layouts.master')
 
 @push('child-styles')
@@ -95,7 +94,8 @@
 
             <div class="container-login100">
                 <div class="wrap-login100 p-6 fix-padding">
-                    <form class="login100-form validate-form" method="POST" action="{{route('admin.store')}}">
+                    <form id="AdminLoginForm" class="login100-form validate-form" method="POST"
+                        action="{{route('admin.store')}}">
                         @csrf
                         <span class="login100-form-title pb-5">
                             Login
@@ -113,7 +113,7 @@
                             <div class="panel-body tabs-menu-body p-0 pt-5">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab5">
-                                        <div class="wrap-input100 validate-input input-group"
+                                        <div class="wrap-input100 mb-3 validate-input input-group"
                                             data-bs-validate="Valid email is required: ex@abc.xyz">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
@@ -122,8 +122,10 @@
                                                 class="{{ $errors->has('email') ? 'nput100 border-start-0 form-control ms-0 is-invalid' : 'nput100 border-start-0 form-control ms-0' }}"
                                                 type="email" placeholder="Email" name="email" :value="old('email')"
                                                 required />
-                                            <x-jet-input-error for="email"></x-jet-input-error>
+                                            <span class="">error testing</span>
+                                            {{-- <x-jet-input-error for="email"></x-jet-input-error> --}}
                                         </div>
+
                                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
@@ -135,38 +137,26 @@
                                             <x-jet-input-error for="password"></x-jet-input-error>
                                         </div>
                                         <div class="text-end pt-4">
-                                            <p class="mb-0"><a href="forgot-password.html"
-                                                    class="text-primary ms-1">Forgot Password?</a></p>
+                                            <p class="mb-0">
+                                                @if (Route::has('password.request'))
+                                                <a href="forgot-password.html" class="text-primary ms-1">Forgot
+                                                    Password?
+                                                </a>
+                                                @endif
+                                            </p>
                                         </div>
                                         <div class="container-login100-form-btn">
-                                            <a href="index.html" class="login100-form-btn btn-primary">
+                                            <a href="javascript:void(0)"
+                                                onclick="document.getElementById('AdminLoginForm').submit();"
+                                                class="login100-form-btn btn-primary">
                                                 Login
                                             </a>
                                         </div>
                                         <div class="text-center pt-3">
-                                            <p class="text-dark mb-0">Not a member?<a href="register.html"
-                                                    class="text-primary ms-1">Sign UP</a></p>
-                                        </div>
-                                        <label class="login-social-icon"><span>Login with Social</span></label>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="javascript:void(0)">
-                                                <div class="social-login me-4 text-center">
-                                                    <i class="fa fa-google"></i>
-                                                </div>
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <div class="social-login me-4 text-center">
-                                                    <i class="fa fa-facebook"></i>
-                                                </div>
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <div class="social-login text-center">
-                                                    <i class="fa fa-twitter"></i>
-                                                </div>
-                                            </a>
+                                            <p class="text-dark mb-0">Not a member?<a href="javascript:void(0)"
+                                                    class="text-primary ms-1">Refer To Your Admin</a></p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
