@@ -17,7 +17,7 @@
     @include('admin.layouts.essentials.styles')
 
 
-    @stack('styles')
+    @stack('child-styles')
 
     @livewireStyles
 
@@ -25,9 +25,14 @@
 
 <body class="app sidebar-mini ltr light-mode">
 
+    @guest
+    @yield('guest-content')
+    @endguest
+
+
+    @auth
     {{-- GLOBAL-LOADER --}}
     <x-admin.layouts.global-loader />
-
     {{-- Main Wrapper --}}
     <div class="page">
         {{-- page content --}}
@@ -71,14 +76,12 @@
         {{-- BACK-TO-TOP --}}
         <x-admin.layouts.to-top-button />
     </div>
-
+    @endauth
     @livewireScripts
 
     {{-- Vendor JS --}}
     @include('admin.layouts.essentials.scripts')
 
-    {{-- Added scripts --}}
-    @stack('scripts')
 </body>
 
 </html>

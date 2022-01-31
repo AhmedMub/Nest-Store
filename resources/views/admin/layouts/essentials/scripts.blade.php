@@ -5,6 +5,7 @@
 <script src="{{asset('backend/assets/plugins/bootstrap/js/popper.min.js')}}"></script>
 <script src="{{asset('backend/assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 
+@auth
 {{-- SPARKLINE JS--}}
 <script src="{{asset('backend/js/jquery.sparkline.min.js')}}"></script>
 
@@ -65,9 +66,14 @@
 
 {{-- INTERNAL INDEX JS --}}
 <script src="{{asset('backend/js/index1.js')}}"></script>
+@endauth
 
+{{-- Added scripts --}}
+@stack('child-scripts')
 {{-- Color Theme js --}}
 <script src="{{asset('backend/js/themeColors.js')}}"></script>
 
 {{-- CUSTOM JS --}}
 <script src="{{asset('backend/js/custom.js')}}"></script>
+
+<script src="{{asset('backend/js/override.js')}}"></script>

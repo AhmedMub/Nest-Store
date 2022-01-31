@@ -1,0 +1,11 @@
+.dropdown-item {
+  margin: 4px 0;
+}
+
+.btn-fix-width {
+  width: 100% !important;
+}
+
+.p-6 {
+  padding: 4rem !important;
+}

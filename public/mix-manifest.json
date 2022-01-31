@@ -1,4 +1,4 @@
 {
-    "/backend/js/custom.js": "/backend/js/custom.js",
-    "/backend/css/custom.css": "/backend/css/custom.css"
+    "/backend/js/override.js": "/backend/js/override.js",
+    "/backend/css/override.css": "/backend/css/override.css"
 }

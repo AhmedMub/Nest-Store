@@ -11,8 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/admin/js/custom.js', 'public/backend/js/custom.js')
-    .sass('resources/admin/sass/custom.scss', 'public/backend/css/custom.css')
+mix.js('resources/admin/js/override.js', 'public/backend/js/override.js')
+    .sass('resources/admin/sass/override.scss', 'public/backend/css/override.css')
     .sourceMaps();
 
 if (mix.inProduction()) {
