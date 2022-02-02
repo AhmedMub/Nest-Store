@@ -94,7 +94,7 @@
 
             <div class="container-login100">
                 <div class="wrap-login100 p-6 fix-padding">
-                    <form id="AdminLoginForm" class="login100-form validate-form" method="POST"
+                    <form id="AdminLoginForm" class="login100-form validate-form" style="width:17rem;" method="POST"
                         action="{{route('admin.store')}}">
                         @csrf
                         <span class="login100-form-title pb-5">
@@ -113,29 +113,27 @@
                             <div class="panel-body tabs-menu-body p-0 pt-5">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab5">
-                                        <div class="wrap-input100 mb-3 validate-input input-group"
-                                            data-bs-validate="Valid email is required: ex@abc.xyz">
+                                        <div class="wrap-input100 validate-input input-group mb-1">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
                                             </a>
                                             <x-jet-input
-                                                class="{{ $errors->has('email') ? 'nput100 border-start-0 form-control ms-0 is-invalid' : 'nput100 border-start-0 form-control ms-0' }}"
-                                                type="email" placeholder="Email" name="email" :value="old('email')"
-                                                required />
-                                            <span class="">error testing</span>
-                                            {{-- <x-jet-input-error for="email"></x-jet-input-error> --}}
+                                                class="form-control {{ $errors->has('email') ? 'validate-inputs input100 border-start-0 ms-0 is-invalid' : 'input100 border-start-0 ms-0' }}"
+                                                type="email" placeholder="Email" name="email" :value="old('email')" />
                                         </div>
+                                        <x-defaults.input-error class="mb-2" for="email" />
 
-                                        <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                        <div class="mb-1 wrap-input100 validate-input input-group" id="Password-toggle">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                                             </a>
                                             <x-jet-input
-                                                class="form-control{{ $errors->has('password') ? ' input100 border-start-0 form-control ms-0 is-invalid' : 'input100 border-start-0 form-control ms-0' }}"
+                                                class="form-control {{ $errors->has('password') ? 'validate-inputs input100 border-start-0 ms-0 is-invalid' : 'input100 border-start-0 ms-0' }}"
                                                 type="password" name="password" placeholder="Password" required
                                                 autocomplete="current-password" />
-                                            <x-jet-input-error for="password"></x-jet-input-error>
                                         </div>
+                                        <x-defaults.input-error for="password" />
+
                                         <div class="text-end pt-4">
                                             <p class="mb-0">
                                                 @if (Route::has('password.request'))
@@ -151,10 +149,6 @@
                                                 class="login100-form-btn btn-primary">
                                                 Login
                                             </a>
-                                        </div>
-                                        <div class="text-center pt-3">
-                                            <p class="text-dark mb-0">Not a member?<a href="javascript:void(0)"
-                                                    class="text-primary ms-1">Refer To Your Admin</a></p>
                                         </div>
                                     </div>
                                 </div>

@@ -9,3 +9,12 @@
 .p-6 {
     padding: 4rem !important;
 }
+
+.is-invalid-loginFix {
+    border-top-color: #e23e3d;
+    border-left-color: #e23e3d;
+    border-bottom-color: #e23e3d;
+}
+.invalid-feedback-fix {
+    display: block !important;
+}
