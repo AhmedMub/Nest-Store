@@ -11,10 +11,6 @@
                     alt="logo">
             </a>
             {{-- LOGO --}}
-            <div class="main-header-center ms-3 d-none d-lg-block">
-                <input class="form-control" placeholder="Search for results..." type="search">
-                <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
-            </div>
             <div class="d-flex order-lg-2 ms-auto header-right-icons">
                 <div class="dropdown d-none">
                     <a href="javascript:void(0)" class="nav-link icon" data-bs-toggle="dropdown">
@@ -50,13 +46,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            {{-- COUNTRY --}}
-                            <div class="d-flex country">
-                                <a class="nav-link icon text-center" data-bs-target="#country-selector"
-                                    data-bs-toggle="modal">
-                                    <i class="fe fe-globe"></i><span class="fs-16 ms-2 d-none d-xl-block">English</span>
-                                </a>
                             </div>
                             {{-- SEARCH --}}
                             <div class="dropdown  d-flex">
@@ -228,7 +217,7 @@
                                         </div>
                                     </div>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a class="dropdown-item" href="profile.html">
+                                    <a class="dropdown-item" href=" {{route('admin.profile')}} ">
                                         <i class="dropdown-icon fe fe-user"></i> Profile
                                     </a>
                                     <a class="dropdown-item" href="email-inbox.html">

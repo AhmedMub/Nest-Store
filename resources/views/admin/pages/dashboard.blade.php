@@ -2228,5 +2228,10 @@
     </div>
 </div>
 {{-- ROW-4 END --}}
-
+@auth
+@push('child-scripts')
+{{-- INTERNAL INDEX JS --}}
+<script src="{{asset('backend/js/index1.js')}}"></script>
+@endpush
+@endauth
 @endsection

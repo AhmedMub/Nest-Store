@@ -64,8 +64,6 @@
 {{-- SIDE-MENU JS--}}
 <script src="{{asset('backend/assets/plugins/sidemenu/sidemenu.js')}}"></script>
 
-{{-- INTERNAL INDEX JS --}}
-<script src="{{asset('backend/js/index1.js')}}"></script>
 @endauth
 
 {{-- Added scripts --}}

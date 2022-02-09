@@ -15,5 +15,6 @@
 
 {{-- COLOR SKIN CSS --}}
 <link id="theme" rel="stylesheet" type="text/css" media="all" href=" {{asset('backend/assets/colors/color1.css')}}" />
+@stack('child-styles')
 
 <link href="{{asset('backend/css/override.css')}}" rel="stylesheet" />

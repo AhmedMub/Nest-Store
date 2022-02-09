@@ -17,10 +17,7 @@
     @include('admin.layouts.essentials.styles')
 
 
-    @stack('child-styles')
-
     @livewireStyles
-
 </head>
 
 <body class="app sidebar-mini ltr light-mode">
@@ -64,11 +61,6 @@
         {{-- Sidebar-right --}}
         @include('admin.layouts.essentials.right-sidebar')
 
-        {{-- Theme Features --}}
-        {{-- Country-selector moda --}}
-        @include('admin.layouts.themefeatures.country-selector')
-
-
         {{-- Essentials --}}
         {{-- Footer --}}
         @include('admin.layouts.essentials.footer')
@@ -77,11 +69,10 @@
         <x-admin.layouts.to-top-button />
     </div>
     @endauth
-    @livewireScripts
-
     {{-- Vendor JS --}}
     @include('admin.layouts.essentials.scripts')
 
+    @livewireScripts
 </body>
 
 </html>
