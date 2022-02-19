@@ -1,90 +1,47 @@
-<x-defaults.form-section submit="updateProfileInformation">
-    <x-slot name="title">
-        {{ __('Profile Information') }}
-    </x-slot>
-
-    <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
-    </x-slot>
-
-    <x-slot name="form">
-
-        <x-defaults.action-message on="saved">
-            {{ __('Saved.') }}
-        </x-defaults.action-message>
-
-        <!-- Profile Photo -->
-        {{-- @if (Laravel\Jetstream\Jetstream::managesProfilePhotos()) --}}
-        <div class="mb-3" x-data="{photoName: null, photoPreview: null}">
-            <!-- Profile Photo File Input -->
-            <input type="file" hidden wire:model="photo" x-ref="photo" x-on:change="
-                                    photoName = $refs.photo.files[0].name;
-                                    const reader = new FileReader();
-                                    reader.onload = (e) => {
-                                        photoPreview = e.target.result;
-                                    };
-                                    reader.readAsDataURL($refs.photo.files[0]);
-                            " />
-
-            <x-defaults.label for="photo" value="{{ __('Photo') }}" />
-
-            <!-- Current Profile Photo -->
-            <div class="mt-2" x-show="! photoPreview">
-                <img src="{{ $this->user->profile_photo_url }}" class="rounded-circle" height="80px" width="80px">
-            </div>
-
-            <!-- New Profile Photo Preview -->
-            <div class="mt-2" x-show="photoPreview">
-                <img x-bind:src="photoPreview" class="rounded-circle" width="80px" height="80px">
-            </div>
-
-            <x-defaults.secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                {{ __('Select A New Photo') }}
-            </x-defaults.secondary-button>
-
-            @if ($this->user->profile_photo_path)
-            <x-defaults.secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                <div wire:loading wire:target="deleteProfilePhoto" class="spinner-border spinner-border-sm"
-                    role="status">
-                    <span class="visually-hidden">Loading...</span>
+<div class="card">
+    {!! Form::open(["wire:submit.prevent='update'", 'id'=>'UpdateAdmin']) !!}
+    <div class="card-header">
+        <h3 class="card-title">Edit Profile</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    {!! Form::label('first_name', 'First Name') !!}
+                    {!! Form::text('first_name', null, ['class'=>($errors->has('first_name')?'form-control
+                    is-invalid':'form-control'),'placeholder'=>'First Name', "wire:model.defer='first_name'"])
+                    !!}
+                    <x-defaults.input-error for="first_name" />
                 </div>
 
-                {{ __('Remove Photo') }}
-            </x-defaults.secondary-button>
-            @endif
-
-            <x-defaults.input-error for="photo" class="mt-2" />
-        </div>
-        {{-- @endif --}}
-
-        <div class="w-md-75">
-            <!-- Name -->
-            <div class="mb-3">
-                <x-defaults.label for="name" value="{{ __('Name') }}" />
-                <x-defaults.input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
-                    wire:model.defer="state.name" autocomplete="name" />
-                <x-defaults.input-error for="name" />
             </div>
-
-            <!-- Email -->
-            <div class="mb-3">
-                <x-defaults.label for="email" value="{{ __('Email') }}" />
-                <x-defaults.input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
-                    wire:model.defer="state.email" />
-                <x-defaults.input-error for="email" />
-            </div>
-        </div>
-    </x-slot>
-
-    <x-slot name="actions">
-        <div class="d-flex align-items-baseline">
-            <x-defaults.button>
-                <div wire:loading class="spinner-border spinner-border-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    {!! Form::label('second_name', 'Second Name') !!}
+                    {!! Form::text('second_name', null, ['class'=>($errors->has('second_name')?'form-control
+                    is-invalid':'form-control'), 'placeholder'=>'Second Name',
+                    "wire:model.defer='second_name'"])
+                    !!}
+                    <x-defaults.input-error for="second_name" />
                 </div>
-
-                {{ __('Save') }}
-            </x-defaults.button>
+            </div>
         </div>
-    </x-slot>
-</x-defaults.form-section>
+        <div class="form-group">
+            {!! Form::label('email', 'Email') !!}
+            {!! Form::email('email', null, ['class'=>($errors->has('email')?'form-control
+            is-invalid':'form-control'), 'placeholder'=>'Email', "wire:model.defer='email'"]) !!}
+            <x-defaults.input-error for="email" />
+        </div>
+        <div class="form-group">
+            {!! Form::label('phone_number', 'Phone Number') !!}
+            {!! Form::text('phone_number', null, ['class'=>($errors->has('phone_number')?'form-control
+            is-invalid':'form-control'), 'placeholder'=>'Phone Number', "wire:model.defer='phone_number'"])
+            !!}
+            <x-defaults.input-error for="phone_number" />
+        </div>
+    </div>
+    <div class="card-footer text-end">
+        {!! Form::submit('Save', ['class'=>'btn btn-success my-1']) !!}
+    </div>
+    {!! Form::close() !!}
+</div>

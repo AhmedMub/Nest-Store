@@ -2,14 +2,18 @@
 @section('title','Profile')
 @section('page-title', 'Edit Profile')
 @section('content')
-{{--
-<livewire:admin.profile :admin="$admin" /> --}}
+<div class="row">
+    <div class="col-xl-4">
+        <livewire:admin.profile.update-avatar :admin="$admin" />
+        <livewire:admin.profile.update-password :admin="$admin" />
+    </div>
+    <div class="col-xl-8">
+        <livewire:admin.profile.update-profile-information :admin="$admin" />
+        <livewire:admin.profile.delete-admin-user :admin="$admin" />
+    </div>
+</div>
 
-@if (Laravel\Fortify\Features::canUpdateProfileInformation())
-<livewire:admin.profile.update-profile-information :user="$user" />
 
-<x-jet-section-border />
-@endif
 @endsection
 
 @push('child-styles')
