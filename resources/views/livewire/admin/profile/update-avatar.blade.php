@@ -6,7 +6,7 @@
         <div class="text-center chat-image mb-0">
             <div class="avatar avatar-xxl chat-profile mb-3 brround">
                 <a class="" href="javascript:void(0)">
-                    <img alt="avatar" src="{{$avatarPath}}" class="brround admin-avatar">
+                    <img alt="avatar" src=" {{$avatarPath}} " class="brround admin-avatar">
                 </a>
             </div>
             <div class="main-chat-msg-name">
@@ -22,8 +22,7 @@
             @csrf
             <button class="btn btn-primary" type="submit">Save</button>
             <label class="custom-file-upload btn btn-primary">Select New Photo
-                <input type="file" id="profile_photo_path" wire:model.defer='profile_photo_path' class="d-none"
-                    onchange="readURL(this);">
+                <input type="file" id="profilePhoto" wire:model.defer='profile_photo_path' class="d-none">
             </label>
         </form>
         <x-defaults.input-error for="profile_photo_path" />

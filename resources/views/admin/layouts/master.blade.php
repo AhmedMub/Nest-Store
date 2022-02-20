@@ -18,6 +18,9 @@
 
 
     @livewireStyles
+
+    {{-- Alerts Taostr css--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body class="app sidebar-mini ltr light-mode">
@@ -73,6 +76,18 @@
     @include('admin.layouts.essentials.scripts')
 
     @livewireScripts
+
+    {{-- Alerts Taostr js --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        window.addEventListener('alert', event => {
+                     toastr[event.detail.type](event.detail.message,
+                     event.detail.title ?? ''), toastr.options = {
+                            "closeButton": true,
+                            "progressBar": false,
+                        }
+                    });
+    </script>
 </body>
 
 </html>
