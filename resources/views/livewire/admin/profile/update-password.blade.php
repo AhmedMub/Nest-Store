@@ -1,5 +1,5 @@
 <div class="card">
-    {!! Form::open() !!}
+    {!! Form::open(["wire:submit.prevent='update'"]) !!}
 
     <div class="card-header fix-p">
         <div class="card-title">Edit Password</div>
@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="card-footer text-end">
-        <a href="javascript:void(0)" class="btn btn-primary">Update</a>
+        {!! Form::submit('Update', ['class'=>'btn btn-primary',"wire:loading.attr='disabled'"]) !!}
     </div>
     {!! Form::close() !!}
 </div>

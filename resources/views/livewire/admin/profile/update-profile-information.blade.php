@@ -1,3 +1,4 @@
+{{-- // TODO all inputs must be get required and autcomplet must be true --}}
 <div class="card">
     {!! Form::open(["wire:submit.prevent='update'", 'id'=>'UpdateAdmin']) !!}
     <div class="card-header">
@@ -41,7 +42,9 @@
         </div>
     </div>
     <div class="card-footer text-end">
-        {!! Form::submit('Save', ['class'=>'btn btn-success my-1']) !!}
+
+        {!! Form::submit('Save', ['class'=>'btn btn-success my-1',"wire:loading.attr='disabled'"]) !!}
     </div>
     {!! Form::close() !!}
+
 </div>

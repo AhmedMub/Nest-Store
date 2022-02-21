@@ -9,11 +9,11 @@ use Livewire\Component;
 
 class UpdateProfileInformation extends Component
 {
-    public $admin,
-        $first_name,
-        $second_name,
-        $email,
-        $phone_number;
+    public $admin;
+    public  $first_name;
+    public $second_name;
+    public $email;
+    public $phone_number;
 
     public function mount($admin)
     {
@@ -26,10 +26,20 @@ class UpdateProfileInformation extends Component
 
     //form validation
     protected $rules = [
-        'first_name' => ['required'],
-        'second_name' => ['required'],
-        'email' => ['required'],
-        'phone_number' => ['required'],
+        'first_name' => ['required', 'string', 'max:8', 'min:3'],
+        'second_name' => ['required', 'string', 'max:8', 'min:3'],
+        'email' => ['required', 'string', 'email', 'string'],
+        'phone_number' => ['required', 'integer'],
+        //TODO add security regex
+    ];
+
+    protected $messages = [
+        'first_name.string' => 'Must Be Characters Only',
+        'second_name.string' => 'Must Be Characters Only',
+        'email.email' => 'Must Be Valid Email Address',
+        'phone_number.integer' => 'Must Be Integers Only',
+        //TODO add more messages for above rules
+
     ];
 
     public function update()
@@ -42,6 +52,11 @@ class UpdateProfileInformation extends Component
             'phone_number' => $this->phone_number,
         ]);
         $this->emit('profileInfoUpdated');
+
+        $this->dispatchBrowserEvent('alert', [
+            'type' => 'success',
+            'message' => 'Profile Updated Successfully'
+        ]);
     }
     public function render()
     {

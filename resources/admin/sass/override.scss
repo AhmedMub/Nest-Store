@@ -31,3 +31,10 @@
 .m-avatar-error {
     margin-left: 1.5rem;
 }
+
+.btn-success.disabled,
+.btn-success:disabled {
+    color: #fff;
+    background-color: #14917e !important;
+    cursor: not-allowed;
+}
