@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-xl-4">
         <livewire:admin.profile.update-avatar :admin="$admin" />
-        <livewire:admin.profile.update-password :admin="$admin" />
+        <livewire:admin.profile.update-password />
     </div>
     <div class="col-xl-8">
         <livewire:admin.profile.update-profile-information :admin="$admin" />

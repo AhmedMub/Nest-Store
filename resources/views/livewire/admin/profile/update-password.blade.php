@@ -1,6 +1,5 @@
 <div class="card">
-    {!! Form::open(["wire:submit.prevent='update'"]) !!}
-
+    {!! Form::open(["wire:submit.prevent='changePassword'"]) !!}
     <div class="card-header fix-p">
         <div class="card-title">Edit Password</div>
     </div>
@@ -14,7 +13,7 @@
                 </a>
                 {!! Form::password('current_password',['class'=>($errors->has('current_password')?'input100
                 form-control is-invalid':'input100 form-control'),
-                'placeholder'=>'Current Password'])
+                'placeholder'=>'Current Password',"wire:model.defer='admin.current_password'"])
                 !!}
                 <x-defaults.input-error for="current_password" />
             </div>
@@ -26,7 +25,8 @@
                     <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                 </a>
                 {!! Form::password('password', ['class'=>($errors->has('password')?'input100 form-control
-                is-invalid':'input100 form-control'), 'placeholder'=>'New Password'])
+                is-invalid':'input100 form-control'), 'placeholder'=>'New Password',
+                "wire:model.defer='admin.password'"])
                 !!}
                 <x-defaults.input-error for="password" />
             </div>
@@ -38,9 +38,9 @@
                     <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                 </a>
                 {!! Form::password('password_confirmation', ['class'=>'input100 form-control',
-                'placeholder'=>'Confirm Password'])
+                'placeholder'=>'Confirm Password', "wire:model.defer='admin.password_confirmation'"])
                 !!}
-                <x-defaults.input-error for="password_confirmation" />
+
             </div>
         </div>
     </div>
