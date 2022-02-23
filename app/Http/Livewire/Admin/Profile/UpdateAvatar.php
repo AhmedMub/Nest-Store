@@ -16,6 +16,9 @@ class UpdateAvatar extends Component
     public $profile_photo_path;
     public $removeBtn;
     public $avatarPath;
+    public $name;
+
+    protected $listeners = ['profileInfoUpdated' => 'infoChanged'];
 
     public function mount()
     {
@@ -26,6 +29,8 @@ class UpdateAvatar extends Component
             $this->avatarPath = asset('storage/admin/' . $this->admin->profile_photo_path);
             $this->removeBtn = "true";
         }
+
+        $this->name = $this->admin->first_name . ' ' . $this->admin->second_name;
     }
 
     protected $rules = [
@@ -39,6 +44,9 @@ class UpdateAvatar extends Component
         'profile_photo_path.dimensions' => 'File Must Be Height Between 100:550, Width Between 100:550',
     ];
 
+    /*
+        / //FIXME if you didn't figure out how disable saving file upon selecting you must use ajax instead of livewire component because its obviously a security concern
+    */
     public function update()
     {
         $this->validate();
@@ -52,6 +60,10 @@ class UpdateAvatar extends Component
         Admin::whereId($this->admin->id)->update([
             'profile_photo_path' => $avatar
         ]);
+
+        //to refresh avatar in header component
+        $this->emit('avatarChanged');
+
         if ($this->removeBtn == "false") {
 
             $this->removeBtn = "true";
@@ -62,6 +74,12 @@ class UpdateAvatar extends Component
             'type'      => 'success',
             'message'   => 'Photo added successfully'
         ]);
+    }
+
+    public function infoChanged()
+    {
+
+        $this->name = $this->admin->first_name . ' ' . $this->admin->second_name;
     }
 
 
@@ -92,6 +110,8 @@ class UpdateAvatar extends Component
         Admin::whereId($this->admin->id)->update([
             'profile_photo_path' => null
         ]);
+
+        $this->emit('avatarChanged');
 
         $this->dispatchBrowserEvent('alert', [
             'type'  => 'success',

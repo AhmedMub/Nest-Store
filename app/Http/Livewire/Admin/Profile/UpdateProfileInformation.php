@@ -26,8 +26,8 @@ class UpdateProfileInformation extends Component
 
     //form validation
     protected $rules = [
-        'first_name' => ['required', 'string', 'max:8', 'min:3'],
-        'second_name' => ['required', 'string', 'max:8', 'min:3'],
+        'first_name' => ['required', 'string', 'max:15', 'min:3'],
+        'second_name' => ['required', 'string', 'max:15', 'min:3'],
         'email' => ['required', 'string', 'email', 'string'],
         'phone_number' => ['required', 'integer'],
         //TODO add security regex
@@ -44,6 +44,7 @@ class UpdateProfileInformation extends Component
 
     public function update()
     {
+
         $this->validate();
         Admin::whereId($this->admin->id)->update([
             'first_name' => $this->first_name,
@@ -51,6 +52,7 @@ class UpdateProfileInformation extends Component
             'email' => $this->email,
             'phone_number' => $this->phone_number,
         ]);
+
         $this->emit('profileInfoUpdated');
 
         $this->dispatchBrowserEvent('alert', [
@@ -58,6 +60,7 @@ class UpdateProfileInformation extends Component
             'message' => 'Profile Updated Successfully'
         ]);
     }
+
     public function render()
     {
         return view('livewire.admin.profile.update-profile-information');

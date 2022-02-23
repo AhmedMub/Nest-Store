@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="main-chat-msg-name">
-                <h5 class="mb-1 text-dark fw-semibold">Percy Kewshun</h5>
+                <h5 class="mb-1 text-dark fw-semibold"> {{$name}} </h5>
                 <p class="text-muted mt-0 mb-0 pt-0 fs-13">Web Designer</p>
             </div>
         </div>
