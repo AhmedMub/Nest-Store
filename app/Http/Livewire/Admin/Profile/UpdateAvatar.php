@@ -44,9 +44,7 @@ class UpdateAvatar extends Component
         'profile_photo_path.dimensions' => 'File Must Be Height Between 100:550, Width Between 100:550',
     ];
 
-    /*
-        / //FIXME if you didn't figure out how disable saving file upon selecting you must use ajax instead of livewire component because its obviously a security concern
-    */
+
     public function update()
     {
         $this->validate();
