@@ -19,39 +19,64 @@
                                 <div class="padding_eight_all bg-white">
                                     <div class="heading_s1">
                                         <h1 class="mb-5">Create an Account</h1>
-                                        <p class="mb-30">Already have an account? <a href="page-login.html">Login</a>
+                                        <p class="mb-30">Already have an account? <a
+                                                href="{{route('register')}}">Login</a>
                                         </p>
                                     </div>
-                                    <form method="post">
+                                    <form method="POST" action="{{ route('register') }}">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="text" required="" name="username" placeholder="Username" />
+                                            <input
+                                                class="{{ $errors->has('first_name') ? 'form-control is-invalid' : '' }}"
+                                                type="text" name="first_name" placeholder="First Name *"
+                                                :value="old('first_name')" autocomplete="first_name" />
+                                            <x-defaults.input-error for="first_name" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" required="" name="email" placeholder="Email" />
+                                            <input
+                                                class="{{ $errors->has('second_name') ? 'form-control is-invalid' : '' }}"
+                                                type="text" name="second_name" placeholder="Second Name *"
+                                                :value="old('second_name')" autocomplete="second_name" />
+                                            <x-defaults.input-error for="second_name" />
                                         </div>
                                         <div class="form-group">
-                                            <input required="" type="password" name="password" placeholder="Password" />
+                                            <input class="{{ $errors->has('email') ? 'form-control is-invalid' : '' }}"
+                                                type="email" name="email" placeholder="Email *" :value="old('email')"
+                                                autocomplete="email" />
+                                            <x-defaults.input-error for="email" />
                                         </div>
                                         <div class="form-group">
-                                            <input required="" type="password" name="password"
-                                                placeholder="Confirm password" />
+                                            <input placeholder="Password"
+                                                class="{{ $errors->has('password') ? 'form-control is-invalid' : '' }}"
+                                                type="password" name="password" autocomplete="new-password" />
+                                            <x-defaults.input-error for="password" />
                                         </div>
+                                        <div class="form-group">
+                                            <input placeholder="Confirm password" type="password"
+                                                name="password_confirmation" autocomplete="new-password" />
+                                        </div>
+                                        @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                                         <div class="login_footer form-group mb-50">
                                             <div class="chek-form">
                                                 <div class="custome-checkbox">
-                                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                                        id="exampleCheckbox12" value="" />
-                                                    <label class="form-check-label" for="exampleCheckbox12"><span>I
-                                                            agree to terms &amp; Policy.</span></label>
+                                                    <input id="terms" name="terms" class="form-check-input"
+                                                        type="checkbox" />
+                                                    <label class="form-check-label" for="terms">
+                                                        <span>
+                                                            Iagree to terms &amp; Policy.
+                                                        </span>
+                                                    </label>
                                                 </div>
                                             </div>
-                                            <a href="page-privacy-policy.html"><i
-                                                    class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
+                                            <a href="  "><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
                                         </div>
+
+                                        @endif
                                         <div class="form-group mb-30">
                                             <button type="submit"
-                                                class="btn btn-fill-out btn-block hover-up font-weight-bold"
-                                                name="login">Submit &amp; Register</button>
+                                                class="btn btn-fill-out btn-block hover-up font-weight-bold">Submit
+                                                &amp; Register</button>
+                                            <x-defaults.input-error for="terms" />
                                         </div>
                                         <p class="font-xs text-muted"><strong>Note:</strong>Your personal data will be
                                             used to support your experience throughout this website, to manage access to
