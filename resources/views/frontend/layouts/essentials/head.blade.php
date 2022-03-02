@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="{{asset('frontend/css/main.css?v=4.0')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/override.css')}}" />
     @livewireStyles
-
+    <style>
+        .newsletter .newsletter-inner {
+            background: url("{{asset('frontend/assets/imgs/banner/banner-10.png')}}") no-repeat center;
+        }
+    </style>
     @stack('added-head')
 </head>

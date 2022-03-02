@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index']);
 
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');

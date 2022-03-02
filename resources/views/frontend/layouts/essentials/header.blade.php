@@ -187,6 +187,7 @@
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-user.svg")}} />
                                 </a>
                                 <a href="page-account.html"><span class="lable ml-0">Account</span></a>
+                                @auth
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
                                         <li>
@@ -210,11 +211,29 @@
                                                     class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                         </li>
                                         <li>
-                                            <a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>Sign
-                                                out</a>
+                                            {{-- <a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>Sign
+                                                out</a> --}}
+                                            <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                                                @csrf
+                                                <button type="submit">Sign out</button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>
+                                @endauth
+                                @guest
+                                <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
+                                    <ul>
+                                        <li>
+                                            <a href="{{route('register')}}"><i
+                                                    class="fi fi-rs-user-add mr-10"></i>Register</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('login')}}"><i class="fi fi-rs-user mr-10"></i>Login</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                @endguest
                             </div>
                         </div>
                     </div>

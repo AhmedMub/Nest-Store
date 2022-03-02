@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 */
+//TODO: must add forget-password functionality for Admin
 
 // Public Routes
 Route::post('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');

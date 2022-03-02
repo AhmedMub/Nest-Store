@@ -5,16 +5,18 @@
 @include('frontend.layouts.essentials.head')
 {{-- End Head --}}
 
-<body class="font-sans antialiased bg-light">
+<body>
 
     {{-- Start Header --}}
     @include('frontend.layouts.essentials.header')
     @include('frontend.layouts.essentials.mobileHeader')
     {{-- End Header --}}
 
-    <div class="main">
+    {{-- Start Main Content --}}
+    <div>
         @yield('content')
     </div>
+    {{-- End Main Content --}}
 
     @include('frontend.layouts.essentials.footer')
 
