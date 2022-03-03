@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Livewire\Admin\Profile;
 use Illuminate\Support\Facades\Route;
 

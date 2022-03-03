@@ -1,6 +1,7 @@
 <header class="header-area header-style-1 header-style-5 header-height-2">
     <div class="mobile-promotion">
-        <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
+        <span>{{__('Grand opening')}}, <strong>{{__('up to 15%')}}</strong> {{__('off all items. Only')}} <strong>
+                {{__('3 days')}} </strong> {{__('left')}} </span>
     </div>
     <div class="header-top header-top-ptb-1 d-none d-lg-block">
         <div class="container">
@@ -191,7 +192,7 @@
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
                                         <li>
-                                            <a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>My
+                                            <a href=" {{route('user.profile')}} "><i class="fi fi-rs-user mr-10"></i>My
                                                 Account</a>
                                         </li>
                                         <li>

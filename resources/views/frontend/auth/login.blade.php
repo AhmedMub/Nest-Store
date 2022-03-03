@@ -7,8 +7,8 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> Profile <span></span> Login
+                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i> {{__('Home')}} </a>
+                <span></span> {{__('Profile')}} <span></span> {{__('Login')}}
             </div>
         </div>
     </div>
@@ -25,9 +25,10 @@
                             <div class="login_wrap widget-taber-content background-white">
                                 <div class="padding_eight_all bg-white">
                                     <div class="heading_s1">
-                                        <h1 class="mb-5">Login</h1>
-                                        <p class="mb-30">Don't have an account? <a href="{{route('register')}}">Create
-                                                here</a></p>
+                                        <h1 class="mb-5"> {{__('Login')}} </h1>
+                                        <p class="mb-30"> {{__('Do not have an account?')}} <a
+                                                href="{{route('register')}}"> {{__('Create
+                                                here')}} </a></p>
                                     </div>
                                     <form method="POST" action="{{ route('login')}}">
                                         @csrf
