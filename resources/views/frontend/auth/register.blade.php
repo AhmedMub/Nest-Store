@@ -63,7 +63,7 @@
                                                         type="checkbox" />
                                                     <label class="form-check-label" for="terms">
                                                         <span>
-                                                            {{__('I agree to terms &amp; Policy.')}}
+                                                            {{__('I agree to terms & Policy.')}}
                                                         </span>
                                                     </label>
                                                 </div>
@@ -75,8 +75,8 @@
                                         @endif
                                         <div class="form-group mb-30">
                                             <button type="submit"
-                                                class="btn btn-fill-out btn-block hover-up font-weight-bold">{{__('Submit
-                                                &amp; Register')}}</button>
+                                                class="btn btn-fill-out btn-block hover-up font-weight-bold">{{__('Submit')}}
+                                                &amp; {{__('Register')}}</button>
                                             <x-defaults.input-error for="terms" />
                                         </div>
                                         <p class="font-xs text-muted"><strong>{{__('Note:')}}</strong> {{__('Your

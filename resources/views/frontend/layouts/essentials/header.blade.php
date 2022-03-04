@@ -187,8 +187,10 @@
                                     <img class="svgInject" alt="Nest"
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-user.svg")}} />
                                 </a>
-                                <a href="page-account.html"><span class="lable ml-0">Account</span></a>
                                 @auth
+                                <a href="javascript:void(0)"><span class="lable ml-0 text-capitalize">
+                                        {{Auth::user()->first_name}}
+                                    </span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
                                         <li>
@@ -212,17 +214,21 @@
                                                     class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                         </li>
                                         <li>
-                                            {{-- <a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>Sign
-                                                out</a> --}}
-                                            <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                                            <form method="POST" id="logoutForm" action="{{ route('logout') }}">
                                                 @csrf
-                                                <button type="submit">Sign out</button>
+                                                <a href="javascript:void(0)"
+                                                    onclick="document.getElementById('logoutForm').submit();"><i
+                                                        class="fi fi-rs-sign-out mr-10"></i>Sign
+                                                    out</a>
                                             </form>
                                         </li>
                                     </ul>
                                 </div>
                                 @endauth
                                 @guest
+                                <a href="javascript:void(0)"><span class="lable ml-0 text-capitalize">
+                                        {{__('Account')}}
+                                    </span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
                                         <li>
