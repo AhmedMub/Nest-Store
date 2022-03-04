@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="{{asset('frontend/css/plugins/animate.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/main.css?v=4.0')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/override.css')}}" />
+    <link rel="stylesheet" href=" {{asset('frontend/css/toastr.min.css')}} ">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     @livewireStyles
     <style>
         .newsletter .newsletter-inner {

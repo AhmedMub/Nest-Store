@@ -188,9 +188,7 @@
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-user.svg")}} />
                                 </a>
                                 @auth
-                                <a href="javascript:void(0)"><span class="lable ml-0 text-capitalize">
-                                        {{Auth::user()->first_name}}
-                                    </span></a>
+                                <livewire:frontend.user.header-user-name />
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
                                         <li>

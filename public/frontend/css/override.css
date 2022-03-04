@@ -1,3 +1,8 @@
 .required {
   color: red;
+  font-size: 1rem;
+}
+
+.fix-size {
+  font-size: 1.1rem !important;
 }

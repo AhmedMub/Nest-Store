@@ -47,6 +47,12 @@
                                             details')}}</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" id="change-password" data-bs-toggle="tab"
+                                            href="#account-password" role="tab" aria-controls="account-password"
+                                            aria-selected="true"><i class="fi-rs-password mr-10"></i>{{__('Change
+                                            Password')}}</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <form method="POST" id="logoutAccount" action="{{ route('logout') }}">
                                             @csrf
                                             <a class="nav-link" href="javascript:void(0)"
@@ -62,17 +68,15 @@
                                 <div class="tab-pane fade active show" id="dashboard" role="tabpanel"
                                     aria-labelledby="dashboard-tab">
                                     <div class="card">
-                                        <div class="card-header">
-                                            <h3 class="mb-0 text-capitalize"> Hi {{Auth::user()->first_name}} </h3>
-                                        </div>
-                                        <div class="card-body">
-                                            <p>
-                                                From your account dashboard. you can easily check &amp; view your <a
-                                                    href="#">recent orders</a>,<br />
-                                                manage your <a href="#">shipping and billing addresses</a> and <a
-                                                    href="#">edit your password and account details.</a>
-                                            </p>
-                                        </div>
+                                        <livewire:frontend.user.updated-name-profile>
+                                            <div class="card-body">
+                                                <p class="fix-size">
+                                                    From your account dashboard. you can easily check &amp; view your <a
+                                                        href="#">recent orders</a>,<br />
+                                                    manage your <a href="#">shipping and billing addresses</a> and <a
+                                                        href="#">edit your password and account details.</a>
+                                                </p>
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
@@ -193,9 +197,18 @@
                                     aria-labelledby="account-detail-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Account Details</h5>
+                                            <h3> {{__('Account Details')}} </h3>
                                         </div>
                                         <livewire:frontend.user.edit-profile-info>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="account-password" role="tabpanel"
+                                    aria-labelledby="change-password">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3>{{__('Change Account Password')}}</h3>
+                                        </div>
+                                        <livewire:frontend.user.update-password>
                                     </div>
                                 </div>
                             </div>
