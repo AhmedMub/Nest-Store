@@ -34,7 +34,8 @@
                                         @csrf
                                         <div class="form-group">
                                             <input class="{{ $errors->has('email') ? 'form-control is-invalid' : '' }}"
-                                                type="email" name="email" placeholder="Email *" :value="old('email')" />
+                                                type="email" name="email" placeholder="Email *" value="{{old('email')}}"
+                                                required />
                                             <x-defaults.input-error for="email" />
                                         </div>
                                         <div class="form-group">

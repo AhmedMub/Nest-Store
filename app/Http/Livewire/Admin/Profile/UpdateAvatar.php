@@ -44,7 +44,7 @@ class UpdateAvatar extends Component
         'profile_photo_path.dimensions' => 'File Must Be Height Between 100:550, Width Between 100:550',
     ];
 
-
+    //TODO use Intervention package for admin photo
     public function update()
     {
         $this->validate();
