@@ -43,7 +43,7 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin.auth.reset-password');
+        return view('admin.auth.reset-password', ['request' => $request]);
         // return app(ResetPasswordViewResponse::class);
     }
 
@@ -86,8 +86,8 @@ class NewPasswordController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\PasswordBroker
      */
-    protected function broker(): PasswordBroker
+    protected function broker()
     {
-        return Password::broker(config('fortify.passwords'));
+        return Password::broker('admins');
     }
 }

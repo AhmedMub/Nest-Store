@@ -34,7 +34,7 @@
             <div class="container-login100">
                 <div class="wrap-login100 p-6 fix-padding">
                     <form id="AdminLoginForm" class="login100-form validate-form" style="width:17rem;" method="POST"
-                        action="/forgot-password">
+                        action=" {{route('admin.password.email')}} ">
                         @csrf
                         <span class=" login100-form-title pb-5">
                             Forgot Password
@@ -47,8 +47,10 @@
                             </a>
                             <input
                                 class="form-control {{ $errors->has('email') ? 'validate-inputs input100 border-start-0 ms-0 is-invalid' : 'input100 border-start-0 ms-0' }}"
-                                type="email" placeholder="Email" name="email" :value=" {{old('email')}} " />
+                                type="email" placeholder="Email" name="email" :value="old('email', $request->email)" />
+
                         </div>
+                        <x-defaults.input-error for="email" />
                         <div class="container-login100-form-btn">
                             <a href="javascript:void(0)" onclick="document.getElementById('AdminLoginForm').submit();"
                                 class="login100-form-btn btn-primary">

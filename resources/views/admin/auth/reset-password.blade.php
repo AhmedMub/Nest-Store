@@ -15,7 +15,7 @@
 @endpush
 @section('guest-content')
 <div class="login-img">
-
+    {{-- //TODO must add required to all fields --}}
     {{-- GLOBAL-LOADER --}}
     <x-admin.layouts.global-loader />
 
@@ -34,7 +34,7 @@
             <div class="container-login100">
                 <div class="wrap-login100 p-6 fix-padding">
                     <form id="AdminLoginForm" class="login100-form validate-form" style="width:17rem;" method="POST"
-                        action="/reset-password">
+                        action=" {{route('admin.password.update')}} ">
                         @csrf
                         <input type="hidden" name="token" value="{{ $request->route('token') }}">
                         <span class=" login100-form-title pb-5">Enter New Password</span>
@@ -45,7 +45,9 @@
                             </a>
                             <input
                                 class="form-control {{ $errors->has('email') ? 'validate-inputs input100 border-start-0 ms-0 is-invalid' : 'input100 border-start-0 ms-0' }}"
-                                type="email" placeholder="Write Your Email" name="email" :value=" {{old('email')}} " />
+                                type="email" placeholder="Write Your Email" name="email"
+                                :value="old('email', $request->email)" autofocus " />
+                                <div class=" form-group">
                         </div>
                         <x-defaults.input-error for="email" />
                         {{-- End Email --}}

@@ -53,8 +53,8 @@ class PasswordResetLinkController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\PasswordBroker
      */
-    protected function broker(): PasswordBroker
+    protected function broker()
     {
-        return Password::broker(config('fortify.passwords'));
+        return Password::broker('admins');
     }
 }

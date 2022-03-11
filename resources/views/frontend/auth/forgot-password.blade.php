@@ -21,8 +21,8 @@
                         <form method="POST" action="/forgot-password">
                             @csrf
                             <div class="form-group">
-                                <input placeholder="Write Your Email" type="email" name="email" :value="old('email')"
-                                    autofocus />
+                                <input placeholder="Write Your Email" type="email" name="email"
+                                    :value="old('email', $request->email)" autofocus />
                                 <x-defaults.input-error for="email" />
                             </div>
                             <div class="form-group">
