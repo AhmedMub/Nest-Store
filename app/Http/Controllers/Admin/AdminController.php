@@ -42,9 +42,9 @@ class AdminController extends Controller
      * To return admin login view
      *
      */
-    public function adminLogin()
+    public function adminLogin(Request $request)
     {
-        return view('admin.auth.login', ['guard' => 'admin']);
+        return view('admin.auth.login', ['request' => $request]);
     }
 
 

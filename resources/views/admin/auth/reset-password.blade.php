@@ -39,45 +39,46 @@
                         <input type="hidden" name="token" value="{{ $request->route('token') }}">
                         <span class=" login100-form-title pb-5">Enter New Password</span>
                         {{-- Start Email --}}
-                        <div class="wrap-input100 validate-input input-group">
+                        <div class="mb-1 wrap-input100 validate-input input-group">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                             </a>
                             <input
                                 class="form-control {{ $errors->has('email') ? 'validate-inputs input100 border-start-0 ms-0 is-invalid' : 'input100 border-start-0 ms-0' }}"
                                 type="email" placeholder="Write Your Email" name="email"
-                                :value="old('email', $request->email)" autofocus " />
-                                <div class=" form-group">
+                                value=" {{old('email', $request->email)}} " autofocus " />
+
                         </div>
-                        <x-defaults.input-error for="email" />
-                        {{-- End Email --}}
-                        {{-- Start New Password --}}
-                        <div class="mb-1 wrap-input100 validate-input input-group" id="Password-toggle">
-                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
-                            </a>
-                            <input
-                                class="form-control {{ $errors->has('password') ? 'validate-inputs input100 border-start-0 ms-0 is-invalid' : 'input100 border-start-0 ms-0' }}"
-                                type="password" name="password" placeholder="Write New Password"
-                                autocomplete="new-password" />
-                        </div>
-                        <x-defaults.input-error for="password" />
-                        {{-- End New Password --}}
-                        {{-- Start Password Confirm--}}
-                        <div class="mb-1 wrap-input100 validate-input input-group" id="Password-toggle">
-                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
-                            </a>
-                            <input class="form-control input100 border-start-0 ms-0" type="password"
-                                name="password_confirmation" placeholder="Password Confirm" />
-                        </div>
-                        {{-- End Password Confirm--}}
-                        <div class="container-login100-form-btn">
-                            <a href="javascript:void(0)" onclick="document.getElementById('AdminLoginForm').submit();"
-                                class="login100-form-btn btn-primary">
-                                Reset
-                            </a>
-                        </div>
+                        <x-defaults.input-error for=" email" />
+                            {{-- End Email --}}
+                            {{-- Start New Password --}}
+                            <div class="mb-1 wrap-input100 validate-input input-group" id="Password-toggle">
+                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                    <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
+                                </a>
+                                <input
+                                    class="form-control {{ $errors->has('password') ? 'validate-inputs input100 border-start-0 ms-0 is-invalid' : 'input100 border-start-0 ms-0' }}"
+                                    type="password" name="password" placeholder="Write New Password"
+                                    autocomplete="new-password" />
+                            </div>
+                            <x-defaults.input-error for="password" />
+                            {{-- End New Password --}}
+                            {{-- Start Password Confirm--}}
+                            <div class="mb-1 wrap-input100 validate-input input-group" id="Password-toggle">
+                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                    <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
+                                </a>
+                                <input class="form-control input100 border-start-0 ms-0" type="password"
+                                    name="password_confirmation" placeholder="Password Confirm" />
+                            </div>
+                            {{-- End Password Confirm--}}
+                            <div class="container-login100-form-btn">
+                                <a href="javascript:void(0)"
+                                    onclick="document.getElementById('AdminLoginForm').submit();"
+                                    class="login100-form-btn btn-primary">
+                                    Reset
+                                </a>
+                            </div>
                     </form>
                 </div>
             </div>

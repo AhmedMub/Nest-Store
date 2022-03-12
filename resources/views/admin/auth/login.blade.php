@@ -37,6 +37,15 @@
                     <form id="AdminLoginForm" class="login100-form validate-form" style="width:17rem;" method="POST"
                         action="{{route('admin.store')}}">
                         @csrf
+                        @if (session('status'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+                            <span class="alert-inner--text"><strong>Success! </strong>{{ session('status') }}</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        @endif
                         <span class="login100-form-title pb-5">
                             Login
                         </span>
@@ -59,7 +68,8 @@
                                             </a>
                                             <input
                                                 class="form-control {{ $errors->has('email') ? 'validate-inputs input100 border-start-0 ms-0 is-invalid' : 'input100 border-start-0 ms-0' }}"
-                                                type="email" placeholder="Email" name="email" :value="old('email')" />
+                                                type="email" placeholder="Email" name="email"
+                                                value=" {{old('email', $request->email)}} " />
                                         </div>
                                         <x-defaults.input-error class="mb-2" for="email" />
 
