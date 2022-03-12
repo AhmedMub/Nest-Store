@@ -51,7 +51,7 @@ Route::prefix('admin/')->middleware('admin:admin')->name('admin.')->group(functi
 // })->name('admin.dashboard');
 
 //Admin Routes ONLY
-Route::prefix('admin/')->middleware(['auth:sanctum,admin', 'verified'])->name('admin.')->group(function () {
+Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->name('admin.')->group(function () {
 
     Route::get('dashboard', function () {
         return view('admin.pages.dashboard');
