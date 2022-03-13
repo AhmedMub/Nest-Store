@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Admin\Profile;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class HeaderAdminNameAvatar extends Component
 {
+    public $admin;
     public $avatar;
     public $name;
 
@@ -18,26 +19,26 @@ class HeaderAdminNameAvatar extends Component
 
     public function mount()
     {
-        $this->name = Auth::user()->first_name . ' ' . Auth::user()->second_name;
+        $this->name = $this->admin->first_name . ' ' . $this->admin->second_name;
 
-        if (Auth::user()->profile_photo_path == null) {
+        if ($this->admin->profile_photo_path == null) {
             $this->avatar = asset('backend/default-images/user.png');
         } else {
-            $this->avatar = asset('storage/admin/' . Auth::user()->profile_photo_path);
+            $this->avatar = asset('storage/admin/' . $this->admin->profile_photo_path);
         }
     }
 
     public function adminInfoChanged()
     {
-        $this->name = Auth::user()->first_name . ' ' . Auth::user()->second_name;
+        $this->name = $this->admin->first_name . ' ' . $this->admin->second_name;
     }
 
     public function refreshAvatar()
     {
-        if (Auth::user()->profile_photo_path == null) {
+        if ($this->admin->profile_photo_path == null) {
             $this->avatar = asset('backend/default-images/user.png');
         } else {
-            $this->avatar = asset('storage/admin/' . Auth::user()->profile_photo_path);
+            $this->avatar = asset('storage/admin/' . $this->admin->profile_photo_path);
         }
     }
 

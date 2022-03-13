@@ -197,7 +197,7 @@
                                 </a>
                             </div>
                             {{-- SIDE-MENU --}}
-                            <livewire:admin.profile.header-admin-name-avatar>
+                            <livewire:admin.profile.header-admin-name-avatar :admin="Auth::user()" />
                         </div>
                     </div>
                 </div>

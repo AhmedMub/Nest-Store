@@ -9,7 +9,9 @@
     </div>
     <div class="col-xl-8">
         <livewire:admin.profile.update-profile-information :admin="$admin" />
+        @if ($allAdmins !== 1)
         <livewire:admin.profile.delete-admin-user :admin="$admin" />
+        @endif
     </div>
 </div>
 
