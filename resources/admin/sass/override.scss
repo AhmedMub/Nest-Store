@@ -18,3 +18,23 @@
 .invalid-feedback-fix {
     display: block !important;
 }
+
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+.fix-p {
+    padding-bottom: 12px;
+}
+
+.m-avatar-error {
+    margin-left: 1.5rem;
+}
+
+.btn-success.disabled,
+.btn-success:disabled {
+    color: #fff;
+    background-color: #14917e !important;
+    cursor: not-allowed;
+}

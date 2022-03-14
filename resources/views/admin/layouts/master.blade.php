@@ -17,10 +17,10 @@
     @include('admin.layouts.essentials.styles')
 
 
-    @stack('child-styles')
-
     @livewireStyles
 
+    {{-- Alerts Taostr css--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body class="app sidebar-mini ltr light-mode">
@@ -28,8 +28,6 @@
     @guest
     @yield('guest-content')
     @endguest
-
-
     @auth
     {{-- GLOBAL-LOADER --}}
     <x-admin.layouts.global-loader />
@@ -64,24 +62,41 @@
         {{-- Sidebar-right --}}
         @include('admin.layouts.essentials.right-sidebar')
 
-        {{-- Theme Features --}}
-        {{-- Country-selector moda --}}
-        @include('admin.layouts.themefeatures.country-selector')
-
-
         {{-- Essentials --}}
         {{-- Footer --}}
         @include('admin.layouts.essentials.footer')
 
         {{-- BACK-TO-TOP --}}
         <x-admin.layouts.to-top-button />
+
+        {{--
+        <x-admin.layouts.loading /> --}}
+        {{-- //COMMENT 1-Enhancments to do is to add global loader, becuase the above needs fixing --}}
     </div>
     @endauth
-    @livewireScripts
-
     {{-- Vendor JS --}}
     @include('admin.layouts.essentials.scripts')
 
+    @livewireScripts
+
+    {{-- Alerts Taostr js --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        window.addEventListener('alert', event => {
+                    toastr.options = {
+                            "closeButton": true,
+                            "progressBar": false,
+                            "positionClass": "toast-bottom-right",
+                            "onclick": null,
+                            "fadeIn": 300,
+                            "fadeOut": 1000,
+                            "timeOut": 1500,
+                            "extendedTimeOut": 1000
+                        },
+                     toastr[event.detail.type](event.detail.message,
+                     event.detail.title ?? '')
+                    });
+    </script>
 </body>
 
 </html>

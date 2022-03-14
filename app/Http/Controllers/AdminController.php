@@ -12,6 +12,7 @@ use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
 use App\Actions\Fortify\AdminLogoutResponse;
 use App\Http\Responses\LoginResponse;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
@@ -44,6 +45,17 @@ class AdminController extends Controller
     public function adminLogin()
     {
         return view('admin.auth.login', ['guard' => 'admin']);
+    }
+
+
+    /**
+     * To return admin profile
+     *
+     */
+    public function profile()
+    {
+        $admin = Auth::user();
+        return view('admin.pages.profile', compact('admin'));
     }
 
     /**

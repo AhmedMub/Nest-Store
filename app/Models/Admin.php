@@ -26,7 +26,7 @@ class Admin extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'second_name', 'phone_number', 'email', 'password',
     ];
 
     /**
@@ -58,4 +58,10 @@ class Admin extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    //Get Full Admin Name
+    public function getFullName()
+    {
+        return $this->first_name . " " . $this->second_name;
+    }
 }
