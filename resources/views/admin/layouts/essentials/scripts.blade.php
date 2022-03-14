@@ -19,6 +19,9 @@
 <script src="{{asset('backend/assets/plugins/peitychart/jquery.peity.min.js')}}"></script>
 <script src="{{asset('backend/assets/plugins/peitychart/peitychart.init.js')}}"></script>
 
+<!-- INPUT MASK JS-->
+<script src="{{asset('backend/assets/plugins/input-mask/jquery.mask.min.js')}}"></script>
+
 {{-- SIDEBAR JS --}}
 <script src="{{asset('backend/assets/plugins/sidebar/sidebar.js')}}"></script>
 
@@ -63,6 +66,7 @@
 
 {{-- SIDE-MENU JS--}}
 <script src="{{asset('backend/assets/plugins/sidemenu/sidemenu.js')}}"></script>
+
 
 @endauth
 

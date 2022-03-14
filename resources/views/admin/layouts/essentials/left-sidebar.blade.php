@@ -35,7 +35,7 @@
                             class="side-menu__icon fe fe-slack"></i><span class="side-menu__label">Category</span><i
                             class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
-                        <li><a href="" class="slide-item text-capitalize">all categories</a></li>
+                        <li><a href="{{route('all.cats')}}" class="slide-item text-capitalize">all categories</a></li>
                         <li><a href="" class="slide-item text-capitalize">all subcategories</a></li>
                     </ul>
                 </li>
