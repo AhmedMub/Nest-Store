@@ -31,11 +31,7 @@ class UpdatePassword extends Component
             'password' => $this->admin['password'],
             'password_confirmation' => $this->admin['password_confirmation']
         ]);
-        $this->reset();
-        $this->dispatchBrowserEvent('alert', [
-            'type' => 'success',
-            'message' => 'Password Updated Successfully'
-        ]);
+        return Redirect::route('admin.profile');
     }
 
     public function render()

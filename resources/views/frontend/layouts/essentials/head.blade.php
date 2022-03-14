@@ -21,11 +21,14 @@
     <link rel="stylesheet" href="{{asset('frontend/css/plugins/animate.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/main.css?v=4.0')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/override.css')}}" />
+    <link rel="stylesheet" href=" {{asset('frontend/css/toastr.min.css')}} ">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @stack('added-head')
     @livewireStyles
     <style>
         .newsletter .newsletter-inner {
             background: url("{{asset('frontend/assets/imgs/banner/banner-10.png')}}") no-repeat center;
         }
     </style>
-    @stack('added-head')
+
 </head>

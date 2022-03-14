@@ -1,6 +1,7 @@
 <header class="header-area header-style-1 header-style-5 header-height-2">
     <div class="mobile-promotion">
-        <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
+        <span>{{__('Grand opening')}}, <strong>{{__('up to 15%')}}</strong> {{__('off all items. Only')}} <strong>
+                {{__('3 days')}} </strong> {{__('left')}} </span>
     </div>
     <div class="header-top header-top-ptb-1 d-none d-lg-block">
         <div class="container">
@@ -76,7 +77,8 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src={{asset("frontend/assets/imgs/theme/logo.svg")}} alt="logo" /></a>
+                    <a href=" {{route('home')}} "><img src={{asset("frontend/assets/imgs/theme/logo.svg")}}
+                            alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -186,12 +188,12 @@
                                     <img class="svgInject" alt="Nest"
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-user.svg")}} />
                                 </a>
-                                <a href="page-account.html"><span class="lable ml-0">Account</span></a>
                                 @auth
+                                <livewire:frontend.user.header-user-name />
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
                                         <li>
-                                            <a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>My
+                                            <a href=" {{route('user.profile')}} "><i class="fi fi-rs-user mr-10"></i>My
                                                 Account</a>
                                         </li>
                                         <li>
@@ -211,17 +213,21 @@
                                                     class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                         </li>
                                         <li>
-                                            {{-- <a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>Sign
-                                                out</a> --}}
-                                            <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                                            <form method="POST" id="logoutForm" action="{{ route('logout') }}">
                                                 @csrf
-                                                <button type="submit">Sign out</button>
+                                                <a href="javascript:void(0)"
+                                                    onclick="document.getElementById('logoutForm').submit();"><i
+                                                        class="fi fi-rs-sign-out mr-10"></i>Sign
+                                                    out</a>
                                             </form>
                                         </li>
                                     </ul>
                                 </div>
                                 @endauth
                                 @guest
+                                <a href="javascript:void(0)"><span class="lable ml-0 text-capitalize">
+                                        {{__('Account')}}
+                                    </span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                     <ul>
                                         <li>

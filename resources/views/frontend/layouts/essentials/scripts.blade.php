@@ -24,7 +24,24 @@
 <script src={{asset("frontend/js/shop.js?v=4.0")}}></script>
 <script src={{asset("frontend/js/override.js")}}></script>
 
+{{-- Alerts Taostr js --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    window.addEventListener('alert', event => {
+                toastr.options = {
+                        "closeButton": true,
+                        "progressBar": false,
+                        "positionClass": "toast-bottom-right",
+                        "onclick": null,
+                        "fadeIn": 300,
+                        "fadeOut": 1000,
+                        "timeOut": 1500,
+                        "extendedTimeOut": 500
+                    },
+                 toastr[event.detail.type](event.detail.message,
+                 event.detail.title ?? '')
+                });
+</script>
+@stack('added-scripts')
 
 @livewireScripts
-
-@stack('added-scripts')
