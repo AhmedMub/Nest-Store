@@ -12,6 +12,7 @@ use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
 use App\Actions\Fortify\AdminLogoutResponse;
 use App\Http\Responses\LoginResponse;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Features;
@@ -42,9 +43,9 @@ class AdminController extends Controller
      * To return admin login view
      *
      */
-    public function adminLogin()
+    public function adminLogin(Request $request)
     {
-        return view('admin.auth.login', ['guard' => 'admin']);
+        return view('admin.auth.login', ['request' => $request]);
     }
 
 
@@ -54,8 +55,13 @@ class AdminController extends Controller
      */
     public function profile()
     {
+        /*
+            If there is only one admin in the table Delete portion should not be visible by the only admin that is exists
+        */
+        $allAdmins = Admin::count();
+
         $admin = Auth::user();
-        return view('admin.pages.profile', compact('admin'));
+        return view('admin.pages.profile', compact(['admin', 'allAdmins']));
     }
 
     /**

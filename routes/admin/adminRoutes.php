@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Livewire\Admin\Profile;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Features;
+use App\Actions\Fortify\PasswordResetLinkController;
+use App\Actions\Fortify\NewPasswordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,23 @@ Route::prefix('admin/')->middleware('admin:admin')->name('admin.')->group(functi
     Route::get('login', [AdminController::class, 'adminLogin'])->name('login');
 
     Route::post('login', [AdminController::class, 'store'])->name('store');
+
+    // Password Reset...
+    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
+        ->middleware(['guest:' . config('fortify.guard')])
+        ->name('password.request');
+
+    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+        ->middleware(['guest:' . config('fortify.guard')])
+        ->name('password.reset');
+
+    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+        ->middleware(['guest:' . config('fortify.guard')])
+        ->name('password.email');
+
+    Route::post('reset-password', [NewPasswordController::class, 'store'])
+        ->middleware(['guest:' . config('fortify.guard')])
+        ->name('password.update');
 });
 
 
@@ -31,7 +51,7 @@ Route::prefix('admin/')->middleware('admin:admin')->name('admin.')->group(functi
 // })->name('admin.dashboard');
 
 //Admin Routes ONLY
-Route::prefix('admin/')->middleware(['auth:sanctum,admin', 'verified'])->name('admin.')->group(function () {
+Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->group(function () {
 
     Route::get('dashboard', function () {
         return view('admin.pages.dashboard');
@@ -39,5 +59,12 @@ Route::prefix('admin/')->middleware(['auth:sanctum,admin', 'verified'])->name('a
 
 
     //admin profile
-    Route::get('profile', [AdminController::class, 'profile'])->name('profile');
+    Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
+
+    //Categories
+    Route::prefix('category')->group(function () {
+
+        //All Categories
+        Route::get('all/show');
+    });
 });

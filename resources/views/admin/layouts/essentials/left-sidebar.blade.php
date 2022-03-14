@@ -24,36 +24,19 @@
                     <h3>Main</h3>
                 </li>
                 <li class="slide">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="index.html"><i
+                    <a class="side-menu__item" data-bs-toggle="slide" href="{{route('home')}}"><i
                             class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Dashboard</span></a>
                 </li>
                 <li class="sub-category">
-                    <h3>UI Kit</h3>
+                    <h3 class="text-capitalize">essentials</h3>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
-                            class="side-menu__icon fe fe-slack"></i><span class="side-menu__label">Apps</span><i
+                            class="side-menu__icon fe fe-slack"></i><span class="side-menu__label">Category</span><i
                             class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
-                        <li class="side-menu-label1"><a href="javascript:void(0)">Apps</a></li>
-                        <li><a href="cards.html" class="slide-item"> Cards design</a></li>
-                        <li><a href="calendar.html" class="slide-item"> Default calendar</a></li>
-                        <li><a href="calendar2.html" class="slide-item"> Full calendar</a></li>
-                        <li><a href="chat.html" class="slide-item"> Chat</a></li>
-                        <li><a href="notify.html" class="slide-item"> Notifications</a></li>
-                        <li><a href="sweetalert.html" class="slide-item"> Sweet alerts</a></li>
-                        <li><a href="rangeslider.html" class="slide-item"> Range slider</a></li>
-                        <li><a href="scroll.html" class="slide-item"> Content Scroll bar</a></li>
-                        <li><a href="loaders.html" class="slide-item"> Loaders</a></li>
-                        <li><a href="counters.html" class="slide-item"> Counters</a></li>
-                        <li><a href="rating.html" class="slide-item"> Rating</a></li>
-                        <li><a href="timeline.html" class="slide-item"> Timeline</a></li>
-                        <li><a href="treeview.html" class="slide-item"> Treeview</a></li>
-                        <li><a href="chart.html" class="slide-item"> Charts</a></li>
-                        <li><a href="footers.html" class="slide-item"> Footers</a></li>
-                        <li><a href="users-list.html" class="slide-item"> User List</a></li>
-                        <li><a href="search.html" class="slide-item">Search</a></li>
-                        <li><a href="crypto-currencies.html" class="slide-item"> Crypto-currencies</a></li>
+                        <li><a href="" class="slide-item text-capitalize">all categories</a></li>
+                        <li><a href="" class="slide-item text-capitalize">all subcategories</a></li>
                     </ul>
                 </li>
                 <li class="slide">
