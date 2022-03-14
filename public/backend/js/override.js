@@ -19,6 +19,17 @@ eval("// border fix for Login page\n$(function () {\n  $('.validate-inputs').eac
 
 /***/ }),
 
+/***/ "./resources/frontend/sass/override.scss":
+/*!***********************************************!*\
+  !*** ./resources/frontend/sass/override.scss ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvZnJvbnRlbmQvc2Fzcy9vdmVycmlkZS5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9mcm9udGVuZC9zYXNzL292ZXJyaWRlLnNjc3M/NTIyMSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/frontend/sass/override.scss\n");
+
+/***/ }),
+
 /***/ "./resources/admin/sass/override.scss":
 /*!********************************************!*\
   !*** ./resources/admin/sass/override.scss ***!
@@ -26,7 +37,7 @@ eval("// border fix for Login page\n$(function () {\n  $('.validate-inputs').eac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvYWRtaW4vc2Fzcy9vdmVycmlkZS5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9hZG1pbi9zYXNzL292ZXJyaWRlLnNjc3M/NmZkYSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/admin/sass/override.scss\n");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvYWRtaW4vc2Fzcy9vdmVycmlkZS5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9hZG1pbi9zYXNzL292ZXJyaWRlLnNjc3M/NDUwMSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/admin/sass/override.scss\n");
 
 /***/ })
 
@@ -117,7 +128,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/backend/js/override": 0,
-/******/ 			"backend/css/override": 0
+/******/ 			"backend/css/override": 0,
+/******/ 			"frontend/css/override": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -167,8 +179,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["backend/css/override"], () => (__webpack_require__("./resources/admin/js/override.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["backend/css/override"], () => (__webpack_require__("./resources/admin/sass/override.scss")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/override","frontend/css/override"], () => (__webpack_require__("./resources/admin/js/override.js")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/override","frontend/css/override"], () => (__webpack_require__("./resources/frontend/sass/override.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["backend/css/override","frontend/css/override"], () => (__webpack_require__("./resources/admin/sass/override.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

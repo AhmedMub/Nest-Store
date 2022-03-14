@@ -12,6 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/admin/js/override.js', 'public/backend/js/override.js')
+    .js('resources/frontend/js/override.js', 'public/frontend/js/override.js')
+    .sass('resources/frontend/sass/override.scss', 'public/frontend/css/override.css')
     .sass('resources/admin/sass/override.scss', 'public/backend/css/override.css')
     .sourceMaps();
 
