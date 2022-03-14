@@ -12,7 +12,7 @@
                 </svg></span>
             <strong>Danger Zone</strong>
             <hr class="message-inner-separator">
-            <p class="mb-3">Careful this is a danger zone, Account Deletion</p>
+            <p class="mb-3">Careful this is a danger zone, Account wil be hard deleted</p>
             <label for="checkbox" class="custom-control custom-checkbox mb-0">
                 <input id="checkbox" x-model="checked" type="checkbox" class="custom-control-input" value="option1">
                 <span class="custom-control-label">Yes, Delete my account.</span>
