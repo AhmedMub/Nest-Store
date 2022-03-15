@@ -5,6 +5,7 @@ $(function(e) {
         language: {
             searchPlaceholder: 'Search...',
             sSearch: '',
+
         }
     });
 
@@ -71,9 +72,9 @@ $(function(e) {
 			lengthMenu: '_MENU_ items/page',
 		}
 	});
-	
 
-    //______Select2 
+
+    //______Select2
     $('.select2').select2({
         minimumResultsForSearch: Infinity
     });

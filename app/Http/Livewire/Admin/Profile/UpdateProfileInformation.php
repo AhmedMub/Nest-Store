@@ -28,7 +28,7 @@ class UpdateProfileInformation extends Component
     protected $rules = [
         'first_name' => ['required', 'string', 'max:15', 'min:3'],
         'second_name' => ['required', 'string', 'max:15', 'min:3'],
-        'email' => ['required', 'string', 'email', 'string'],
+        'email' => ['required', 'string', 'email', 'string', 'unique:admins'],
         'phone_number' => ['required', 'integer'],
         //TODO add security regex
     ];

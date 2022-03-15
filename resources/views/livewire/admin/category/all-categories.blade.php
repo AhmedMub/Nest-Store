@@ -3,71 +3,7 @@
 {{-- ROW-1 OPEN --}}
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xl-8">
-        <div class="card cart">
-            <div class="card-header">
-                <h3 class="card-title">Categories List</h3>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
-                        <thead>
-                            <tr class="border-top text-center">
-                                <th class="wd-15p border-bottom-0 text-capitalize">category icon</th>
-                                <th class="wd-15p border-bottom-0 text-capitalize">category EN</th>
-                                <th class="wd-15p border-bottom-0 text-capitalize">Category AR</th>
-                                <th class="wd-15p border-bottom-0 text-capitalize">status</th>
-                                <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-center">
-                                <td>
-                                    {{-- <div class="text-center">
-                                        <img src="../assets/images/pngs/4.jpg" alt="" class="cart-img text-center">
-                                    </div> --}}
-                                    icon
-                                </td>
-                                <td>en</td>
-                                <td>ar</td>
-                                <td>status</td>
-                                <td>
-                                    <div class=" d-flex justify-content-center g-2">
-                                        <a class="btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
-                                            data-bs-toggle="tooltip" data-bs-original-title="Edit"><span
-                                                class="bi bi-heart fs-16"></span></a>
-                                        <a class="btn text-danger bg-danger-transparent btn-icon py-1"
-                                            data-bs-toggle="tooltip" data-bs-original-title="Delete"><span
-                                                class="bi bi-trash fs-16"></span></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>
-                                    {{-- <div class="text-center">
-                                        <img src="../assets/images/pngs/4.jpg" alt="" class="cart-img text-center">
-                                    </div> --}}
-                                    icon
-                                </td>
-                                <td>en</td>
-                                <td>ar</td>
-                                <td>status</td>
-                                <td>
-                                    <div class=" d-flex justify-content-center g-2">
-                                        <a class="btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
-                                            data-bs-toggle="tooltip" data-bs-original-title="Edit"><span
-                                                class="bi bi-heart fs-16"></span></a>
-                                        <a class="btn text-danger bg-danger-transparent btn-icon py-1"
-                                            data-bs-toggle="tooltip" data-bs-original-title="Delete"><span
-                                                class="bi bi-trash fs-16"></span></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
+        <livewire:datatable model="App\Models\Category" />
     </div>
 
     {{-- Start Create Category --}}
@@ -86,7 +22,12 @@
 
 </div>
 {{-- ROW-1 CLOSED --}}
+@push('child-styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+@endpush
 @push('child-scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('backend/assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
 <script src="{{asset('backend/assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
