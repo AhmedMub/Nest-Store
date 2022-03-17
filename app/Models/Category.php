@@ -29,4 +29,12 @@ class Category extends Model
             ]
         ];
     }
+
+
+    public function scopeSearch($query, $val)
+    {
+        return $query
+            ->where('name_en', 'like', '%' . $val . '%')
+            ->OrWhere('name_ar', 'like', '%' . $val . '%');
+    }
 }

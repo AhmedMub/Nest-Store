@@ -3,7 +3,7 @@
 {{-- ROW-1 OPEN --}}
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xl-8">
-        <livewire:datatable model="App\Models\Category" />
+        <livewire:admin.category.crud.read />
     </div>
 
     {{-- Start Create Category --}}
@@ -22,12 +22,7 @@
 
 </div>
 {{-- ROW-1 CLOSED --}}
-@push('child-styles')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-
-@endpush
 @push('child-scripts')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('backend/assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
 <script src="{{asset('backend/assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>

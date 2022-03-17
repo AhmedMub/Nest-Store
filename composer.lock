@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c289877e7908cefb5fcfa2a0921ab22",
+    "content-hash": "4b68a2f3df6d8076374f2a87edeea725",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -739,6 +739,68 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "emmanuel/livewire-datatable-bs4",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EmmanuelAyTuz/Views-BS4-Livewire-Datatable.git",
+                "reference": "7b56ed786b1706c773d7498d0b3b7733749f48b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EmmanuelAyTuz/Views-BS4-Livewire-Datatable/zipball/7b56ed786b1706c773d7498d0b3b7733749f48b5",
+                "reference": "7b56ed786b1706c773d7498d0b3b7733749f48b5",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "^1.1.4",
+                "mediconesystems/livewire-datatables": "^0.6.6|^0.5.4|^0.4.3|dev-master"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.17",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Emmanuel\\LivewireDatatableBs4\\LivewireDatatableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Emmanuel\\LivewireDatatableBs4\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "EmmanuelAyTuz"
+                }
+            ],
+            "description": "Views for the package MedicOneSystems Livewire Datatables with Bootstrap 4",
+            "keywords": [
+                "BS",
+                "bootstrap",
+                "bootstrap4",
+                "bs4",
+                "datatables",
+                "laravel",
+                "livewire",
+                "mediconesystems",
+                "tables"
+            ],
+            "support": {
+                "issues": "https://github.com/EmmanuelAyTuz/Views-BS4-Livewire-Datatable/issues",
+                "source": "https://github.com/EmmanuelAyTuz/Views-BS4-Livewire-Datatable/tree/v1.0.1"
+            },
+            "time": "2021-11-11T19:25:07+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -2708,28 +2770,28 @@
         },
         {
             "name": "mediconesystems/livewire-datatables",
-            "version": "v0.7.0",
+            "version": "v0.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MedicOneSystems/livewire-datatables.git",
-                "reference": "cb527079f2c184d279c194b1a12b53a380e396d1"
+                "reference": "ce518201227e41533bb6ae44491a41a7be5e3192"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/cb527079f2c184d279c194b1a12b53a380e396d1",
-                "reference": "cb527079f2c184d279c194b1a12b53a380e396d1",
+                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/ce518201227e41533bb6ae44491a41a7be5e3192",
+                "reference": "ce518201227e41533bb6ae44491a41a7be5e3192",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^7.0|^8.0|^9.0",
+                "illuminate/support": "^7.0|^8.0",
                 "livewire/livewire": "^2.4.4",
                 "maatwebsite/excel": "^3.1",
                 "php": "^7.2.5|^8.0"
             },
             "require-dev": {
                 "laravel/legacy-factories": "^1.0.4",
-                "orchestra/testbench": "^4.0|5.0|6.0|^7.0",
-                "phpunit/phpunit": "^8.0|9.0|^9.5.10"
+                "orchestra/testbench": "^4.0|5.0|6.0",
+                "phpunit/phpunit": "^8.0|9.0"
             },
             "type": "library",
             "extra": {
@@ -2765,9 +2827,9 @@
             ],
             "support": {
                 "issues": "https://github.com/MedicOneSystems/livewire-datatables/issues",
-                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.7.0"
+                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.6.8"
             },
-            "time": "2022-02-22T11:02:59+00:00"
+            "time": "2021-09-22T12:54:06+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
