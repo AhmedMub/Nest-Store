@@ -7,7 +7,12 @@ use Livewire\Component;
 
 class AllCategories extends Component
 {
+    public $categories;
 
+    public function mount()
+    {
+        $this->categories = Category::count();
+    }
 
     public function render()
     {

@@ -1,5 +1,5 @@
 <div class="card">
-    <form method="POST" wire:submit.prevent='create'>
+    <form autocomplete="off" method="POST" wire:submit.prevent='create'>
         <div class="card-header">
             <div class="card-title text-capitalize">creat new category</div>
         </div>
@@ -19,9 +19,33 @@
                 <x-defaults.input-error for="name_ar" />
             </div>
             <div class="form-group">
-                <label class="text-capitalize form-label mt-0" for="catIcon">icon</label>
+                <label class="text-capitalize form-label mt-0" for="catIcon">custom icon</label>
                 <input type="file" wire:model.defer='icon' id="catIcon" name="icon" class="form-control" />
                 <x-defaults.input-error for="icon" />
+            </div>
+            <div class="form-group">
+                <label class="text-capitalize form-label mt-0" for="selectDefault">Choose Default Icon Instead of Custom
+                    Icon</label>
+                <select>
+                    <option> test</option>
+                </select>
+                {{-- <select name="default_icon" wire:model.defer='default_icon' class="my-select form-control"
+                    id="selectDefault">
+                    <option selected="selected"
+                        data-img-src="{{asset('backend/default-images/default_icons/category-1.svg')}} "
+                        value="category-1.svg">Adnan Sagar
+                    </option>
+                    <option data-img-src="{{asset('backend/default-images/default_icons/category-1.svg')}}"
+                        value="category-1.svg">Rena
+                        Cugelman</option>
+                    <option data-img-src="{{asset('backend/default-images/default_icons/category-1.svg')}}"
+                        value="category-1.svg">Tavis
+                        Lochhead</option>
+                    <option data-img-src="{{asset('backend/default-images/default_icons/category-1.svg')}}"
+                        value="category-1.svg">Brain
+                        Cugelman</option>
+                </select> --}}
+                <x-defaults.input-error for="default_icon" />
             </div>
         </div>
         <div class="card-footer">

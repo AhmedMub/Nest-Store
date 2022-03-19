@@ -15,37 +15,39 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $name_en, $name_ar, $icon, $status, $slug;
+    public $name_en, $name_ar, $icon, $status, $slug, $default_icon, $default_icon_status;
 
     //TODO must add security regex
     protected $rules = [
         'name_en' => ['required', 'string', 'unique:categories'],
         'name_ar' => ['required', 'string', 'unique:categories'],
         'icon' => ['nullable', 'image', 'max:500', 'mimes:jpeg,png,jpg,svg'],
+        'default_icon' => ['required']
     ];
 
     //Create Category
     public function create()
     {
-        $this->validate();
+        dd($this->default_icon);
+        // $this->validate();
 
-        //save and resize Image if exists
-        $image = $this->uploadImage();
+        // //save and resize Image if exists
+        // $image = $this->uploadImage();
 
-        Category::create([
-            'name_en' => $this->name_en,
-            'name_ar' => $this->name_ar,
-            'icon' => $image,
-        ]);
+        // Category::create([
+        //     'name_en' => $this->name_en,
+        //     'name_ar' => $this->name_ar,
+        //     'icon' => $image,
+        // ]);
 
-        $this->reset();
+        // $this->reset();
 
-        $this->emit('newCatAdded');
+        // $this->emit('newCatAdded');
 
-        $this->dispatchBrowserEvent('alert', [
-            'type'      => 'success',
-            'message'   => 'Category Created Successfully'
-        ]);
+        // $this->dispatchBrowserEvent('alert', [
+        //     'type'      => 'success',
+        //     'message'   => 'Category Created Successfully'
+        // ]);
     }
 
     public function uploadImage()
