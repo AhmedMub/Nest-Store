@@ -17,9 +17,10 @@ class Create extends Component
 
     public $name_en, $name_ar, $icon, $status, $slug;
 
+    //TODO must add security regex
     protected $rules = [
-        'name_en' => ['required', 'unique:categories'],
-        'name_ar' => ['required', 'unique:categories'],
+        'name_en' => ['required', 'string', 'unique:categories'],
+        'name_ar' => ['required', 'string', 'unique:categories'],
         'icon' => ['nullable', 'image', 'max:500', 'mimes:jpeg,png,jpg,svg'],
     ];
 
