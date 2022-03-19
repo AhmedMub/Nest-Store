@@ -29,7 +29,7 @@ class EditProfileInfo extends Component
         'first_name' => ['required', 'string', 'max:15', 'min:3'],
         'second_name' => ['required', 'string', 'max:15', 'min:3'],
         'address' => ['required', 'string', 'max:60', 'min:3'],
-        'email' => ['required', 'string', 'email', 'string'],
+        'email' => ['required', 'string', 'email', 'string', 'unique:users'],
         'phone' => ['required', 'regex:/[0-9]{8}/'],
         //TODO add security regex
     ];

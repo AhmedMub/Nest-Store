@@ -1,5 +1,5 @@
 <div class="card">
-    <form action="">
+    <form method="POST" wire:submit.prevent='create'>
         <div class="card-header">
             <div class="card-title text-capitalize">creat new category</div>
         </div>
@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="catIcon">icon</label>
                 <input type="file" wire:model.defer='icon' id="catIcon" name="icon" class="form-control" />
-                <x-defaults.input-error for="name_ar" />
+                <x-defaults.input-error for="icon" />
             </div>
         </div>
         <div class="card-footer">

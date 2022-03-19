@@ -11,6 +11,7 @@
 <link href="{{asset('backend/css/skin-modes.css')}}" rel="stylesheet" />
 
 {{-- FONT-ICONS CSS --}}
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <link href="{{asset('backend/css/icons.css')}}" rel="stylesheet" />
 
 {{-- COLOR SKIN CSS --}}
