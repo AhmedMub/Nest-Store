@@ -23,7 +23,7 @@
 // Image template, this can be overridden from the constructor (options.template),
 // must contains {src} placeholder. Ther eare two class names
 // 'chose-image' or 'chose-image-small', modifiy in CSS
-var fn_template = '<img class="{class_name}" src="{url}" />'
+var fn_template = '<img class="{class_name}" src="{url}" /> '
 
 function prependTemplate(element, option, template, rtl, multiple, cls){
     // summery:

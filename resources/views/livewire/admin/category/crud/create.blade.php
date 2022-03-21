@@ -24,27 +24,18 @@
                 <x-defaults.input-error for="icon" />
             </div>
             <div class="form-group">
-                <label class="text-capitalize form-label mt-0" for="selectDefault">Choose Default Icon Instead of Custom
+                <label class="text-capitalize form-label mt-0" for="selectDefault">Choose Default Icon Instead of
+                    Custom
                     Icon</label>
-                <select>
-                    <option> test</option>
-                </select>
-                {{-- <select name="default_icon" wire:model.defer='default_icon' class="my-select form-control"
-                    id="selectDefault">
-                    <option selected="selected"
-                        data-img-src="{{asset('backend/default-images/default_icons/category-1.svg')}} "
-                        value="category-1.svg">Adnan Sagar
-                    </option>
-                    <option data-img-src="{{asset('backend/default-images/default_icons/category-1.svg')}}"
-                        value="category-1.svg">Rena
-                        Cugelman</option>
-                    <option data-img-src="{{asset('backend/default-images/default_icons/category-1.svg')}}"
-                        value="category-1.svg">Tavis
-                        Lochhead</option>
-                    <option data-img-src="{{asset('backend/default-images/default_icons/category-1.svg')}}"
-                        value="category-1.svg">Brain
-                        Cugelman</option>
-                </select> --}}
+                <label class="custom-control custom-checkbox  col">
+                    <input wire:model.defer='default_icon' name="default_icon"
+                        value="{{asset('backend/default-images/default_icons/category-1.svg')}}" type="checkbox"
+                        class="custom-control-input check-one">
+                    <span class="custom-control-label">
+                        <img class="fix-icons-radio"
+                            src=" {{asset('backend/default-images/default_icons/category-1.svg')}} " alt="cat1">
+                    </span>
+                </label>
                 <x-defaults.input-error for="default_icon" />
             </div>
         </div>
@@ -55,3 +46,17 @@
         </div>
     </form>
 </div>
+
+@push('child-scripts')
+<script>
+    //for create Category
+$(function() {
+
+$('.check-one').on('click',function() {
+    $('.check-one').not(this).prop('checked', false);
+  });
+
+});
+
+</script>
+@endpush

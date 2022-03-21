@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Category;
+namespace App\Http\Livewire\Admin\Category\Crud;
 
 use App\Models\Category;
 use Livewire\Component;
@@ -25,6 +25,6 @@ class Status extends Component
 
     public function render()
     {
-        return view('livewire.admin.category.status');
+        return view('livewire.admin.category.crud.status');
     }
 }

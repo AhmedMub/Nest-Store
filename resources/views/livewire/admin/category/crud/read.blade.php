@@ -95,6 +95,7 @@
 
                         </th>
                         <th class="wd-15p border-bottom-0 text-capitalize">status</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">default icon status</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
                     </tr>
                 </thead>
@@ -113,8 +114,12 @@
                         <td> {{$category->name_en}} </td>
                         <td> {{$category->name_ar}} </td>
                         <td>
-                            <livewire:admin.category.status :category="$category" :name="'status'"
+                            <livewire:admin.category.crud.status :category="$category" :name="'status'"
                                 :key="'status'.$category->id" />
+                        </td>
+                        <td>
+                            <livewire:admin.category.crud.category-default-icon :category="$category"
+                                :name="'default_icon_status'" :key="'default_icon_status'.$category->id" />
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
