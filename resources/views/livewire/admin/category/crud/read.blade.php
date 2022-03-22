@@ -75,8 +75,9 @@
                         </div>
                     </div>
                 </div>
-                <thead>
+                <thead class="table-primary">
                     <tr class="text-center">
+                        <th class="wd-15p border-bottom-0 text-capitalize">default icon</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">category icon</th>
                         <th wire:click="sortBy('name_en')"
                             class="cursor-pointer wd-15p border-bottom-0 text-capitalize">category EN
@@ -104,11 +105,23 @@
                     <tr class="text-center">
                         <input type="hidden">
                         <td>
+                            @if ($category->default_icon)
+                            <div class="text-center">
+                                <img src="{{asset('backend/default-images/'.$category->default_icon)}}" alt="icon"
+                                    class="cart-img text-center">
+                            </div>
+                            @else
+                            <span class="badge rounded-pill bg-warning-gradient badge-sm me-1 mb-1 mt-1">Not Set</span>
+                            @endif
+                        </td>
+                        <td>
                             @if ($category->icon)
                             <div class="text-center">
                                 <img src="{{asset('storage/frontend/categories/'.$category->icon)}}" alt="icon"
                                     class="cart-img text-center">
                             </div>
+                            @else
+                            <span class="badge rounded-pill bg-warning-gradient badge-sm me-1 mb-1 mt-1">Not Set</span>
                             @endif
                         </td>
                         <td> {{$category->name_en}} </td>

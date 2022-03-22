@@ -24,18 +24,10 @@
                 <x-defaults.input-error for="icon" />
             </div>
             <div class="form-group">
-                <label class="text-capitalize form-label mt-0" for="selectDefault">Choose Default Icon Instead of
+                <label class="text-capitalize form-label mt-0 mb-3" for="selectDefault">Choose Default Icon Instead of
                     Custom
                     Icon</label>
-                <label class="custom-control custom-checkbox  col">
-                    <input wire:model.defer='default_icon' name="default_icon"
-                        value="{{asset('backend/default-images/default_icons/category-1.svg')}}" type="checkbox"
-                        class="custom-control-input check-one">
-                    <span class="custom-control-label">
-                        <img class="fix-icons-radio"
-                            src=" {{asset('backend/default-images/default_icons/category-1.svg')}} " alt="cat1">
-                    </span>
-                </label>
+                <x-admin.category.default-icon />
                 <x-defaults.input-error for="default_icon" />
             </div>
         </div>
@@ -48,15 +40,23 @@
 </div>
 
 @push('child-scripts')
-<script>
-    //for create Category
+
+{{-- <script>
+    //insert checked icon to input value
 $(function() {
+$('.check-one').each(function() {
+    $(this).on('change', function() {
 
-$('.check-one').on('click',function() {
-    $('.check-one').not(this).prop('checked', false);
-  });
-
+        let val = $(this).val();
+        if($(this).is(':checked')) {
+            @this.default_icon = '';
+            @this.default_icon = val;
+        }else {
+            @this.default_icon = '';
+        }
+    });
 });
+});
+</script> --}}
 
-</script>
 @endpush
