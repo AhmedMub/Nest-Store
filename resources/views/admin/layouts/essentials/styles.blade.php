@@ -4,6 +4,8 @@
 {{-- BOOTSTRAP CSS --}}
 <link id="style" href=" {{asset('backend/assets/plugins/bootstrap/css/bootstrap.min.css')}} " rel="stylesheet" />
 
+
+@stack('child-styles')
 {{-- STYLE CSS --}}
 <link href="{{asset('backend/css/style.css')}}" rel="stylesheet" />
 <link href="{{asset('backend/css/dark-style.css')}}" rel="stylesheet" />
@@ -11,13 +13,13 @@
 <link href="{{asset('backend/css/skin-modes.css')}}" rel="stylesheet" />
 
 {{-- FONT-ICONS CSS --}}
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <link href="{{asset('backend/css/icons.css')}}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
 
 {{-- COLOR SKIN CSS --}}
 <link id="theme" rel="stylesheet" type="text/css" media="all" href=" {{asset('backend/assets/colors/color1.css')}}" />
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 
-@stack('child-styles')
+
 
 <link href="{{asset('backend/css/override.css')}}" rel="stylesheet" />

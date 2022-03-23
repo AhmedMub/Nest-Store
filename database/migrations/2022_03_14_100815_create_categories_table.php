@@ -18,7 +18,9 @@ class CreateCategoriesTable extends Migration
             $table->string('name_en')->unique();
             $table->string('name_ar')->unique();
             $table->string('icon')->nullable();
+            $table->string('default_icon')->nullable();
             $table->integer('status')->default(1);
+            $table->integer('default_icon_status')->default(0);
             $table->string('slug');
             $table->timestamps();
         });

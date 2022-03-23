@@ -17,7 +17,11 @@ class Read extends Component
     public $search = '';
 
     protected $paginationTheme = 'bootstrap';
-    protected $listeners = ['newCatAdded' => '$refresh'];
+    protected $listeners = [
+        'newCatAdded' => '$refresh',
+        'categoryUpdated' => '$refresh',
+        'catDeleted' => '$refresh'
+    ];
 
     public function sortBy($field)
     {

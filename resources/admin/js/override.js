@@ -12,6 +12,5 @@ $(function() {
 });
 
 
-$('option:selected').each(function(){
-    $(this).prop('selected',true);
-});
+
+
