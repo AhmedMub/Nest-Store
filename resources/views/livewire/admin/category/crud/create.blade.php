@@ -40,7 +40,17 @@
 </div>
 
 @push('child-scripts')
+<script>
+    //category icon only checked one is allowed
+$(function() {
 
+$('.check-one').on('click',function() {
+    $('.check-one').not(this).prop('checked', false);
+    });
+
+});
+
+</script>
 {{-- <script>
     //insert checked icon to input value
 $(function() {

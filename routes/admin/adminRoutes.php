@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use App\Actions\Fortify\PasswordResetLinkController;
 use App\Actions\Fortify\NewPasswordController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Livewire\Admin\Category\AllCategories;
 use Faker\Guesser\Name;
 
@@ -69,6 +70,6 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
     Route::prefix('category')->group(function () {
 
         //All Categories
-        Route::get('show/all', AllCategories::class)->name('all.cats');
+        Route::get('show/all', [CategoryController::class, 'show'])->name('all.cats');
     });
 });

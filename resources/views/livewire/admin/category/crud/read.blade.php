@@ -1,53 +1,3 @@
-{{-- <div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Categories List</h3>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
-                <thead>
-                    <tr class="border-top text-center">
-                        <th class="wd-15p border-bottom-0 text-capitalize">category icon</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">category EN</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">Category AR</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">status</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($categories as $category)
-                    <tr class="text-center">
-                        <td>
-                            @if ($category->icon)
-                            <div class="text-center">
-                                <img src="{{asset('storage/frontend/categories/'.$category->icon)}}" alt="icon"
-                                    class="cart-img text-center">
-                            </div>
-                            @endif
-                        </td>
-                        <td> {{$category->name_en}} </td>
-                        <td> {{$category->name_ar}} </td>
-                        <td>
-                            <livewire:admin.category.status :category="$category" :name="'status'"
-                                :key="'status'.$category->id" />
-                        </td>
-                        <td>
-                            <div class=" d-flex justify-content-center g-2">
-                                <a class="btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
-                                    data-bs-toggle="tooltip" data-bs-original-title="Edit"><span
-                                        class="bi bi-pen fs-16"></span></a>
-                                <a class="btn text-danger bg-danger-transparent btn-icon py-1" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div> --}}
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Categories List</h3>
@@ -91,8 +41,15 @@
                             @endif
                         </th>
                         <th wire:click="sortBy('name_ar')"
-                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">category AR <i
-                                class="bi bi-arrow-down"></i> <i class="bi bi-arrow-up"></i>
+                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">category AR
+                            {{-- change Icone --}}
+                            @if ($sortBy !== $field)
+                            <i class="bi bi-arrow-down"></i>
+                            @elseif($sortDirection == 'asc')
+                            <i class="bi bi-arrow-up"></i>
+                            @else
+                            <i class="bi bi-arrow-down"></i>
+                            @endif
 
                         </th>
                         <th class="wd-15p border-bottom-0 text-capitalize">status</th>
@@ -142,7 +99,9 @@
                                     data-bs-original-title="Edit" href="#modaldemo8">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
-                                <a class="btn text-danger bg-danger-transparent btn-icon py-1" data-bs-toggle="tooltip"
+                                <a wire:click="$emit('deleteCat',{{$category->id}})"
+                                    class="btn text-danger bg-danger-transparent btn-icon py-1"
+                                    data-bs-target="#modaldemo5" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
                             </div>
                         </td>

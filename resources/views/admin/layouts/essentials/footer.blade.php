@@ -1,3 +1,4 @@
+{{-- //TODO Must be updated --}}
 <footer class="footer">
     <div class="container">
         <div class="row align-items-center flex-row-reverse">

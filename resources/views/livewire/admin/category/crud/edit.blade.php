@@ -25,14 +25,23 @@
                         <x-defaults.input-error for="name_ar" />
                     </div>
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="catIcon">icon</label>
+                        <label class="text-capitalize form-label mt-0" for="catIcon">custom icon</label>
                         <input type="file" wire:model.defer='icon' id="catIcon" name="icon" class="form-control" />
                         <x-defaults.input-error for="icon" />
                     </div>
+
+                    <div class="form-group">
+                        <label class="text-capitalize form-label mt-0 mb-3" for="selectDefault">Choose Default Icon
+                            Instead of
+                            Custom
+                            Icon</label>
+                        <x-admin.category.default-icon />
+                        <x-defaults.input-error for="default_icon" />
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save changes</button> <button class="btn btn-light"
-                        data-bs-dismiss="modal">Close</button>
+                    <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Save changes</button>
+                    <a href="javascript:void(0)" class="btn btn-light text-capitalize" data-bs-dismiss="modal">close</a>
                 </div>
             </form>
         </div>
