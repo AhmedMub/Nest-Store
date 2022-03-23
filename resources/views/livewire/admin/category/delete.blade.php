@@ -13,6 +13,7 @@
                 <h4 class="h4 mb-0 mt-3">Warning</h4>
                 <p class="card-text">Are you sure you want to delete this category</p>
                 <form class="d-inline" method="POST" wire:submit.prevent='delete'>
+                    @csrf
                     <button type="submit" aria-label="Close" class="btn btn-danger pd-x-25"
                         data-bs-dismiss="modal">Continue</button>
                 </form>

@@ -6,8 +6,7 @@ use Laravel\Fortify\Features;
 use App\Actions\Fortify\PasswordResetLinkController;
 use App\Actions\Fortify\NewPasswordController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Livewire\Admin\Category\AllCategories;
-use Faker\Guesser\Name;
+use App\Http\Controllers\Admin\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,21 +45,14 @@ Route::prefix('admin/')->middleware('admin:admin')->name('admin.')->group(functi
 });
 
 
-
-// Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-
-//     return view('admin.pages.dashboard');
-// })->name('admin.dashboard');
-
 //Admin Routes ONLY
 Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->group(function () {
 
     //for Admin. routes
     Route::name('admin.')->group(function () {
-        Route::get('dashboard', function () {
-            return view('admin.pages.dashboard');
-        })->name('dashboard');
 
+        //Admin Dashboard
+        Route::get('dashboard', [AdminController::class, 'show'])->name('dashboard');
 
         //admin profile
         Route::get('profile', [AdminController::class, 'profile'])->name('profile');
@@ -71,5 +63,8 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
 
         //All Categories
         Route::get('show/all', [CategoryController::class, 'show'])->name('all.cats');
+
+        //All Categories
+        Route::get('subcategory', [SubCategoryController::class, 'show'])->name('subcategory');
     });
 });

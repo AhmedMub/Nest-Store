@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Category\Crud;
+namespace App\Http\Livewire\Admin\Subcategory;
 
-use App\Models\Category;
+use App\Models\SubCategory;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Read extends Component
 {
+
     use WithPagination;
     //Sorting
     public $sortBy = 'name_en';
@@ -17,10 +18,9 @@ class Read extends Component
     public $search = '';
 
     protected $paginationTheme = 'bootstrap';
+
     protected $listeners = [
-        'newCatAdded' => '$refresh',
-        'categoryUpdated' => '$refresh',
-        'catDeleted' => '$refresh'
+        'subCatAdded' => '$refresh',
     ];
 
     public function sortBy($field)
@@ -43,11 +43,11 @@ class Read extends Component
 
     public function render()
     {
-        $categories = Category::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+        $subCategories = SubCategory::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
 
-        return view('livewire.admin.category.crud.read', [
+        return view('livewire.admin.subcategory.read', [
 
-            'categories' => $categories,
+            'subCategories' => $subCategories
         ]);
     }
 }

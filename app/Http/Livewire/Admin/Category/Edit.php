@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Category\Crud;
+namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
@@ -112,6 +112,6 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.admin.category.crud.edit');
+        return view('livewire.admin.category.edit');
     }
 }

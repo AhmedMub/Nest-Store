@@ -48,6 +48,16 @@ class AdminController extends Controller
         return view('admin.auth.login', ['request' => $request]);
     }
 
+    /**
+     * To return admin Dashboard
+     *
+     */
+    public function show()
+    {
+
+        return view('admin.pages.dashboard');
+    }
+
 
     /**
      * To return admin profile

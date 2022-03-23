@@ -84,11 +84,11 @@
                         <td> {{$category->name_en}} </td>
                         <td> {{$category->name_ar}} </td>
                         <td>
-                            <livewire:admin.category.crud.status :category="$category" :name="'status'"
+                            <livewire:admin.category.status :category="$category" :name="'status'"
                                 :key="'status'.$category->id" />
                         </td>
                         <td>
-                            <livewire:admin.category.crud.category-default-icon :category="$category"
+                            <livewire:admin.category.category-default-icon :category="$category"
                                 :name="'default_icon_status'" :key="'default_icon_status'.$category->id" />
                         </td>
                         <td>

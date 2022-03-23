@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Category\Crud;
+namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
@@ -14,12 +14,17 @@ class Create extends Component
 
     public $name_en, $name_ar, $icon, $status, $slug, $default_icon, $default_icon_status;
 
-    //TODO must add security regex
+    //TODO must add security regex && must add custom messages because in required it returnes field name which is risky
     protected $rules = [
         'name_en' => ['required', 'string', 'unique:categories'],
         'name_ar' => ['required', 'string', 'unique:categories'],
         'icon' => ['nullable', 'image', 'max:500', 'mimes:jpeg,png,jpg,svg'],
         'default_icon' => ['nullable'],
+
+    ];
+
+    protected $messages = [
+        //
 
     ];
 
@@ -101,6 +106,6 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.admin.category.crud.create');
+        return view('livewire.admin.category.create');
     }
 }

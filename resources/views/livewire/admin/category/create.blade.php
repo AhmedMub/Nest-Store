@@ -1,5 +1,6 @@
 <div class="card">
     <form autocomplete="off" method="POST" wire:submit.prevent='create'>
+        @csrf
         <div class="card-header">
             <div class="card-title text-capitalize">creat new category</div>
         </div>
