@@ -22,7 +22,8 @@
 
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="mainCat">main category</label>
-                <select class="form-select" wire:model.defer="category_id" name="category_id" id="mainCat">
+                <select autocomplete="off" class="form-select" wire:model.defer="category_id" name="category_id"
+                    id="mainCat">
                     <option selected class="text-uppercase" value="">--selecte category--</option>
                     @foreach ($categories as $category)
                     <option value="{{$category->id}}"> {{$category->name_en}} </option>

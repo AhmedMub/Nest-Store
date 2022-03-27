@@ -36,7 +36,7 @@ class Create extends Component
             'category_id' => $this->category_id,
         ]);
 
-        if ($count <= 1) {
+        if ($count < 1) {
 
             redirect()->route('subcategory');
         }

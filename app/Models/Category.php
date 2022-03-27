@@ -39,7 +39,7 @@ class Category extends Model
             ->OrWhere('name_ar', 'like', '%' . $val . '%');
     }
 
-    public function subcategories()
+    public function subCats()
     {
         return $this->HasMany(SubCategory::class);
     }

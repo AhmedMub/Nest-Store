@@ -7,6 +7,7 @@ use App\Actions\Fortify\PasswordResetLinkController;
 use App\Actions\Fortify\NewPasswordController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Models\SubCategory;
 
 /*
 |--------------------------------------------------------------------------
