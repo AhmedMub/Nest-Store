@@ -2,7 +2,7 @@
     <form method="POST" wire:submit.prevent='create'>
         @csrf
         <div class="card-header">
-            <div class="card-title text-capitalize">creat new subcategory</div>
+            <div class="card-title text-capitalize">creat new sub-subcategory</div>
         </div>
         <div class="card-body py-2">
             <div class="form-group">
@@ -30,6 +30,18 @@
                     @endforeach
                 </select>
                 <x-defaults.input-error for="category_id" />
+            </div>
+
+            <div class="form-group">
+                <label class="text-capitalize form-label mt-0" for="mainCat">Sub-Subcategory category</label>
+                <select autocomplete="off" class="form-select" wire:model.defer="subcategory_id" name="subcategory_id"
+                    id="mainCat">
+                    <option selected class="text-uppercase" value="">--selecte sub-subcategory--</option>
+                    @foreach ($subcategory as $subCat)
+                    <option value="{{$subCat->id}}"> {{$subCat->name_en}} </option>
+                    @endforeach
+                </select>
+                <x-defaults.input-error for="subcategory_id" />
             </div>
         </div>
         <div class="card-footer">

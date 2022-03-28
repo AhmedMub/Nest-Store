@@ -42,6 +42,9 @@
                         </li>
                         <li><a href=" {{route('subcategory')}} " class="slide-item text-capitalize">subcategories</a>
                         </li>
+                        <li><a href=" {{route('sub.subcategory')}} "
+                                class="slide-item text-capitalize">sub-subcategories</a>
+                        </li>
                     </ul>
                 </li>
 
