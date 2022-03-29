@@ -11,7 +11,7 @@ class SubSubcategory extends Model
     use HasFactory, Sluggable;
 
     protected $fillable = [
-        'category_id', 'subcategory_id', 'name_en', 'name_ar', 'status', 'slug'
+        'subcategory_id', 'name_en', 'name_ar', 'status', 'slug'
     ];
 
     /**
@@ -33,5 +33,11 @@ class SubSubcategory extends Model
         return $query
             ->where('name_en', 'like', '%' . $val . '%')
             ->OrWhere('name_ar', 'like', '%' . $val . '%');
+    }
+
+    //Sub-subcategory one to many inverse relation
+    public function belongToSubCategory()
+    {
+        return $this->belongsTo(SubCategory::class, 'subcategory_id');
     }
 }

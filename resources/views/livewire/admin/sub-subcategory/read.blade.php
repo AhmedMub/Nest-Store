@@ -59,8 +59,8 @@
                             @endif
 
                         </th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">Main Category</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">subcategory</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">Main Category</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">status</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
                     </tr>
@@ -72,23 +72,23 @@
                         <td><input wire:model='selectedSubSubCats' value="{{$subcat->id}}" type="checkbox"></td>
                         <td> {{$subcat->name_en}} </td>
                         <td> {{$subcat->name_ar}} </td>
-                        <td> maincat </td>
-                        <td> subcats </td>
+                        <td> {{$subcat->belongToSubCategory->name_en}} </td>
+                        <td> {{$subcat->belongToSubCategory->mainCats->name_en}} </td>
                         <td>
                             <livewire:admin.sub-subcategory.status :subcat="$subcat" :name="'status'"
                                 :key="'status'.$subcat->id" />
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
-                                <a wire:click="$emit('editSubcategory',{{$subcat->id}})"
+                                <a wire:click="$emit('editSubSubcategory',{{$subcat->id}})"
                                     class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
                                     data-bs-original-title="Edit" href="#modaldemo8">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
-                                <a wire:click="$emit('deleteSubCat',{{$subcat->id}})"
+                                <a wire:click="$emit('deleteSubsubCat',{{$subcat->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
-                                    data-bs-target="#modaldemo5" data-bs-toggle="modal"
+                                    data-bs-target="#modaldemo50" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
                             </div>
                         </td>

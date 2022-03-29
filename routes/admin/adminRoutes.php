@@ -8,6 +8,7 @@ use App\Actions\Fortify\NewPasswordController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubSubcategoryController;
+use App\Models\Category;
 use App\Models\SubCategory;
 
 /*

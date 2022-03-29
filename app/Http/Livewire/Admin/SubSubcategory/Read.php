@@ -31,7 +31,7 @@ class Read extends Component
     protected $listeners = [
         'newSubSubcategoryAdded' => '$refresh',
         'subSubCatUpdated' => '$refresh',
-        'subCatDeleted' => '$refresh',
+        'subSubCatDeleted' => '$refresh',
     ];
 
     public function sortBy($field)

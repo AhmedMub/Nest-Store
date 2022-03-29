@@ -19,19 +19,6 @@
                     placeholder="Category Arabic Name" />
                 <x-defaults.input-error for="name_ar" />
             </div>
-
-            <div class="form-group">
-                <label class="text-capitalize form-label mt-0" for="mainCat">main category</label>
-                <select autocomplete="off" class="form-select" wire:model.defer="category_id" name="category_id"
-                    id="mainCat">
-                    <option selected class="text-uppercase" value="">--selecte category--</option>
-                    @foreach ($categories as $category)
-                    <option value="{{$category->id}}"> {{$category->name_en}} </option>
-                    @endforeach
-                </select>
-                <x-defaults.input-error for="category_id" />
-            </div>
-
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="mainCat">Sub-Subcategory category</label>
                 <select autocomplete="off" class="form-select" wire:model.defer="subcategory_id" name="subcategory_id"

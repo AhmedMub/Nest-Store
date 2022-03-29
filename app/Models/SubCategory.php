@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Category;
+use App\Models\SubSubcategory;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,10 +31,17 @@ class SubCategory extends Model
         ];
     }
 
+    //has many reverse
     public function mainCats()
     {
 
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    //has many sub-subcategory
+    public function subSubCats()
+    {
+        return $this->hasMany(SubSubcategory::class, 'subcategory_id');
     }
 
     public function scopeSearch($query, $val)

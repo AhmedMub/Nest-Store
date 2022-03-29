@@ -86,7 +86,7 @@
                                 </a>
                                 <a wire:click="$emit('deleteSubCat',{{$category->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
-                                    data-bs-target="#modaldemo5" data-bs-toggle="modal"
+                                    data-bs-target="#modaldemo6" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
                             </div>
                         </td>

@@ -25,8 +25,10 @@
                         <x-defaults.input-error for="name_ar" />
                     </div>
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="nameAr">arabic name</label>
-                        <input type="text" class="selectedMainCat form-control" value="{{$selectedMainCat}}" readonly />
+                        <label class="text-capitalize form-label mt-0" for="selectedCat">selected main
+                            category</label>
+                        <input type="text" id="selectedCat" class="selectedMainCat form-control"
+                            value="{{$selectedMainCat}}" readonly />
                     </div>
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0" for="mainCat">change main category</label>

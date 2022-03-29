@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Models\SubCategory;
+use App\Models\SubSubcategory;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Category extends Model
 {
@@ -42,5 +43,11 @@ class Category extends Model
     public function subCats()
     {
         return $this->HasMany(SubCategory::class);
+    }
+
+    //has many through to access sub-subcategory
+    public function subSubcategoryThroCategory()
+    {
+        return $this->hasManyThrough(SubSubcategory::class, SubCategory::class, 'category_id', 'subcategory_id');
     }
 }

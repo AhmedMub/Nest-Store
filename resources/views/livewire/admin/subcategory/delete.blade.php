@@ -1,4 +1,4 @@
-<div wire:ignore.self class="modal fade" id="modaldemo5">
+<div wire:ignore.self class="modal fade" id="modaldemo6">
     <div class="modal-dialog modal-dialog-centered text-center" role="document">
         <div class="modal-content tx-size-sm">
             <div class="modal-body text-center p-4 pb-5">
@@ -11,7 +11,7 @@
                         <path fill="#e62a45" d="M12,14a1,1,0,0,1-1-1V9a1,1,0,0,1,2,0v4A1,1,0,0,1,12,14Z" />
                     </svg></span>
                 <h4 class="h4 mb-0 mt-3">Warning</h4>
-                <p class="card-text">Are you sure you want to delete this category</p>
+                <p class="card-text">Are you sure you want to delete this subcategory</p>
                 <form class="d-inline" method="POST" wire:submit.prevent='delete'>
                     @csrf
                     <button type="submit" aria-label="Close" class="btn btn-danger pd-x-25"

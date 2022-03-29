@@ -3,8 +3,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-content-demo">
             <div class="modal-header">
-                <h5 class="fw-bold modal-title text-capitalize">edit selected subcategory</h5><button aria-label="Close"
-                    class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h5 class="fw-bold modal-title text-capitalize">edit selected sub-subcategory</h5><button
+                    aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
             <form method="POST" wire:submit.prevent='update'>
                 @csrf
@@ -25,18 +26,19 @@
                         <x-defaults.input-error for="name_ar" />
                     </div>
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="nameAr">arabic name</label>
-                        <input type="text" class="selectedMainCat form-control" value="{{$selectedMainCat}}" readonly />
+                        <label class="text-capitalize form-label mt-0" for="selectedCat">selected subcategory</label>
+                        <input type="text" id="selectedCat" class="selectedMainCat form-control"
+                            value="{{$selectedSubCat}}" readonly />
                     </div>
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="mainCat">change main category</label>
-                        <select id="changeMainCat" autocomplete="off" class="form-select" wire:model.defer="category_id"
-                            name="category_id" id="mainCat">
-                            @foreach ($categories as $category)
-                            <option value="{{$category->id}}">{{$category->name_en}}</option>
+                        <label class="text-capitalize form-label mt-0" for="mainCat">change selected subcategory</label>
+                        <select id="changeMainCat" autocomplete="off" class="form-select"
+                            wire:model.defer="subcategory_id" id="subcategory_id">
+                            @foreach ($subCategories as $subSubCat)
+                            <option value="{{$subSubCat->id}}">{{$subSubCat->name_en}}</option>
                             @endforeach
                         </select>
-                        <x-defaults.input-error for="category_id" />
+                        <x-defaults.input-error for="subcategory_id" />
                     </div>
                 </div>
                 <div class="modal-footer">
