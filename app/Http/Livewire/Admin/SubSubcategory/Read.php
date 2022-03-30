@@ -55,7 +55,7 @@ class Read extends Component
     //bulk delete: this is will be bind with delete button (wire:click.prevent='deleteSelected'), it will grab all ids from selectedSubSubCats array and will deleted, then return empty array as it was, then make sure that selectAll false
     public function deleteSelected()
     {
-        SubCategory::query()->whereIn('id', $this->selectedSubSubCats)->delete();
+        SubSubcategory::query()->whereIn('id', $this->selectedSubSubCats)->delete();
         $this->selectedSubSubCats = [];
         $this->selectAll = false;
     }
