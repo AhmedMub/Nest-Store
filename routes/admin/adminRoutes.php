@@ -8,6 +8,7 @@ use App\Actions\Fortify\NewPasswordController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubSubcategoryController;
+use App\Http\Controllers\Admin\VendorController;
 use App\Models\Category;
 use App\Models\SubCategory;
 
@@ -62,7 +63,7 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
     });
 
     //Categories
-    Route::prefix('category')->group(function () {
+    Route::prefix('category/')->group(function () {
 
         //All Categories
         Route::get('show/all', [CategoryController::class, 'show'])->name('all.cats');
@@ -72,5 +73,12 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
 
         //All SubSubCategories
         Route::get('sub-subcategory', [SubSubcategoryController::class, 'show'])->name('sub.subcategory');
+    });
+
+    //Vendors
+    Route::prefix('vendors/')->group(function () {
+
+        //show all vendor
+        Route::get('show', [VendorController::class, 'show'])->name('vendors');
     });
 });

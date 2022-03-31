@@ -33,6 +33,17 @@
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon fe fe-slack"></i>
+                        <span class="side-menu__label">Vendor</span>
+                        <i class="angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li><a href=" {{route('vendors')}} " class="slide-item text-capitalize">manage vendors</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide is-expanded">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                        <i class="side-menu__icon fe fe-slack"></i>
                         <span class="side-menu__label">Category</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
