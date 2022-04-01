@@ -37,7 +37,10 @@
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
                     <ul class="slide-menu">
-                        <li><a href=" {{route('vendors')}} " class="slide-item text-capitalize">manage vendors</a>
+                        <li><a href=" {{route('manage.vendors')}} " class="slide-item text-capitalize">manage
+                                vendors</a>
+                        </li>
+                        <li><a href=" {{route('add.vendor')}} " class="slide-item text-capitalize">add new vendor</a>
                         </li>
                     </ul>
                 </li>

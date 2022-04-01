@@ -78,7 +78,11 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
     //Vendors
     Route::prefix('vendors/')->group(function () {
 
-        //show all vendor
-        Route::get('show', [VendorController::class, 'show'])->name('vendors');
+        $vendor = 'App\Http\Livewire\Admin\Vendor\\';
+
+        Route::get('edit/vendors', [VendorController::class, 'show'])->name('manage.vendors');
+
+        //Add new Vendor
+        Route::get('add/new-vendor', $vendor . Create::class)->name('add.vendor');
     });
 });

@@ -46,31 +46,32 @@ class Create extends Component
     //Create Category
     public function create()
     {
+        dd($this->description_en);
 
-        $newVendor = $this->validate();
+        // $newVendor = $this->validate();
 
-        //save and resize Image if exists
-        if ($this->logo) {
-            $newVendor;
-            $image = $this->uploadImage();
-            Vendor::create([
-                'name_en' => $this->name_en,
-                'name_ar' => $this->name_ar,
-                'logo' => $this->$image,
-                'address' => $this->address,
-                'phone' => $this->phone,
-                'description_en' => $this->description_en,
-                'description_ar' => $this->description_ar,
-                'twitter' => $this->twitter,
-                'instagram' => $this->instagram,
-                'facebook' => $this->facebook,
-                'start_date' => $start_date,
-            ]);
-            $this->vendorAdded();
-        } else {
-            Vendor::create($newVendor);
-            $this->vendorAdded();
-        }
+        // //save and resize Image if exists
+        // if ($this->logo) {
+        //     $newVendor;
+        //     $image = $this->uploadImage();
+        //     Vendor::create([
+        //         'name_en' => $this->name_en,
+        //         'name_ar' => $this->name_ar,
+        //         'logo' => $this->$image,
+        //         'address' => $this->address,
+        //         'phone' => $this->phone,
+        //         'description_en' => $this->description_en,
+        //         'description_ar' => $this->description_ar,
+        //         'twitter' => $this->twitter,
+        //         'instagram' => $this->instagram,
+        //         'facebook' => $this->facebook,
+        //         'start_date' => $start_date,
+        //     ]);
+        //     $this->vendorAdded();
+        // } else {
+        //     Vendor::create($newVendor);
+        //     $this->vendorAdded();
+        // }
     }
 
     public function uploadImage()
@@ -112,6 +113,8 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.admin.vendor.create');
+        return view('livewire.admin.vendor.create')
+            ->extends('admin.layouts.master')
+            ->section('content');
     }
 }

@@ -67,6 +67,8 @@
 {{-- SIDE-MENU JS--}}
 <script src="{{asset('backend/assets/plugins/sidemenu/sidemenu.js')}}"></script>
 
+{{-- Tooltip and Popover JS --}}
+<script src=" {{asset('backend/js/tooltip&popover.js')}} "></script>
 
 @endauth
 
