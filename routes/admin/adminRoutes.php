@@ -20,6 +20,10 @@ use App\Models\SubCategory;
 */
 //TODO: must add forget-password functionality for Admin
 
+Route::get('testing', function () {
+
+    return view('testing');
+});
 // Public Routes
 Route::post('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 

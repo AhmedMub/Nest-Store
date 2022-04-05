@@ -9,9 +9,6 @@
 {{-- SPARKLINE JS--}}
 <script src="{{asset('backend/js/jquery.sparkline.min.js')}}"></script>
 
-{{-- Sticky js --}}
-<script src="{{asset('backend/js/sticky.js')}}"></script>
-
 {{-- CHART-CIRCLE JS--}}
 <script src="{{asset('backend/js/circle-progress.min.js')}}"></script>
 
@@ -67,8 +64,6 @@
 {{-- SIDE-MENU JS--}}
 <script src="{{asset('backend/assets/plugins/sidemenu/sidemenu.js')}}"></script>
 
-{{-- Tooltip and Popover JS --}}
-<script src=" {{asset('backend/js/tooltip&popover.js')}} "></script>
 
 @endauth
 
@@ -77,37 +72,10 @@
 {{-- Color Theme js --}}
 <script src="{{asset('backend/js/themeColors.js')}}"></script>
 
+{{-- Sticky js --}}
+<script src="{{asset('backend/js/sticky.js')}}"></script>
+
 {{-- CUSTOM JS --}}
 <script src="{{asset('backend/js/custom.js')}}"></script>
 
 <script src="{{asset('backend/js/override.js')}}"></script>
-
-
-{{-- INTERNAL Bootstrap-Datepicker js--}}
-{{-- <script src="{{asset('backend/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-<script src="{{asset('backend/js/select2.js')}}"></script> --}}
-
-{{-- BOOTSTRAP-DATERANGEPICKER JS --}}
-{{-- <script src="{{asset('backend/assets/plugins/bootstrap-daterangepicker/moment.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script> --}}
-
-{{-- INTERNAL Sumoselect js--}}
-{{-- <script src="{{asset('backend/assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script> --}}
-{{-- INTERNAL jquery transfer js--}}
-{{-- <script src="{{asset('backend/assets/plugins/jQuerytransfer/jquery.transfer.js')}}"></script> --}}
-
-{{-- INTERNAL multi js--}}
-{{-- <script src="{{asset('backend/assets/plugins/multi/multi.min.js')}}"></script> --}}
-
-{{-- DATEPICKER JS --}}
-{{-- <script src="{{asset('backend/assets/plugins/date-picker/date-picker.js')}}"></script> --}}
-{{-- <script src="{{asset('backend/assets/plugins/date-picker/jquery-ui.js')}}"></script> --}}
-{{-- <script src="{{asset('backend/assets/plugins/input-mask/jquery.maskedinput.js')}}"></script> --}}
-
-{{-- MULTI SELECT JS--}}
-{{-- <script src="{{asset('backend/assets/plugins/multipleselect/multiple-select.js')}}"></script> --}}
-{{-- <script src="{{asset('backend/assets/plugins/multipleselect/multi-select.js')}}"></script> --}}
-
-{{-- FORMELEMENTS JS --}}
-{{-- <script src="{{asset('backend/js/formelementadvnced.js')}}"></script> --}}
-{{-- <script src="{{asset('backend/js/form-elements.js')}}"></script> --}}

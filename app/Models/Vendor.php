@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,5 +36,10 @@ class Vendor extends Model
             ->OrWhere('name_ar', 'like', '%' . $val . '%')
             ->OrWhere('description_en', 'like', '%' . $val . '%')
             ->OrWhere('description_ar', 'like', '%' . $val . '%');
+    }
+
+    public function setStartDateAttribute($value)
+    {
+        $this->attributes['start_date'] = Carbon::parse($value)->toDateString();
     }
 }

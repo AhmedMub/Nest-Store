@@ -20,58 +20,53 @@ class Create extends Component
         'name_ar' => ['required', 'string', 'unique:categories'],
         'logo' => ['nullable', 'image', 'max:500', 'mimes:jpeg,png,jpg,svg'],
         'address' => ['required', 'string'],
-        'phone' => ['required', 'string'],
+        'phone' => ['required', 'integer'],
         'description_en' => ['required', 'string'],
         'description_ar' => ['required', 'string'],
         'twitter' => ['nullable', 'string'],
         'instagram' => ['nullable', 'string'],
         'facebook' => ['nullable', 'string'],
-        'start_date' => ['required', 'date_format:d/m/Y'],
+        'start_date' => ['required'],
     ];
 
     protected $messages = [
         'name_en.required' => 'The English Name field is required',
         'name_ar.required' => 'The English Name field is required',
-        'logo.required' => 'The English Name field is required',
-        'address.required' => 'The English Name field is required',
-        'phone.required' => 'The English Name field is required',
-        'description_en.required' => 'The English Name field is required',
-        'description_ar.required' => 'The English Name field is required',
-        'twitter.required' => 'The English Name field is required',
-        'instagram.required' => 'The English Name field is required',
-        'facebook.required' => 'The English Name field is required',
-        'start_date.required' => 'The English Name field is required',
+        'address.required' => 'The Address field is required',
+        'phone.required' => 'The Phone field is required',
+        'description_en.required' => 'The English Description field is required',
+        'description_ar.required' => 'The Arabic Description field is required',
+        'start_date.required' => 'The Start Date field is required',
     ];
 
     //Create Category
     public function create()
     {
-        dd($this->description_en);
 
-        // $newVendor = $this->validate();
+        $newVendor = $this->validate();
 
-        // //save and resize Image if exists
-        // if ($this->logo) {
-        //     $newVendor;
-        //     $image = $this->uploadImage();
-        //     Vendor::create([
-        //         'name_en' => $this->name_en,
-        //         'name_ar' => $this->name_ar,
-        //         'logo' => $this->$image,
-        //         'address' => $this->address,
-        //         'phone' => $this->phone,
-        //         'description_en' => $this->description_en,
-        //         'description_ar' => $this->description_ar,
-        //         'twitter' => $this->twitter,
-        //         'instagram' => $this->instagram,
-        //         'facebook' => $this->facebook,
-        //         'start_date' => $start_date,
-        //     ]);
-        //     $this->vendorAdded();
-        // } else {
-        //     Vendor::create($newVendor);
-        //     $this->vendorAdded();
-        // }
+        //save and resize Image if exists
+        if ($this->logo) {
+            $newVendor;
+            $image = $this->uploadImage();
+            Vendor::create([
+                'name_en' => $this->name_en,
+                'name_ar' => $this->name_ar,
+                'logo' => $image,
+                'address' => $this->address,
+                'phone' => $this->phone,
+                'description_en' => $this->description_en,
+                'description_ar' => $this->description_ar,
+                'twitter' => $this->twitter,
+                'instagram' => $this->instagram,
+                'facebook' => $this->facebook,
+                'start_date' => $this->start_date,
+            ]);
+            $this->vendorAdded();
+        } else {
+            Vendor::create($newVendor);
+            $this->vendorAdded();
+        }
     }
 
     public function uploadImage()
@@ -93,17 +88,7 @@ class Create extends Component
 
     public function vendorAdded()
     {
-        $count = Vendor::count();
-
-        //refresh page only if there is no data and new just added
-        if ($count <= 1) {
-
-            redirect()->route('all.cats');
-        }
-
         $this->reset();
-
-        $this->emit('newVendorAdded');
 
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',

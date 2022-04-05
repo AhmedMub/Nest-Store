@@ -1,7 +1,7 @@
 @section('title', 'Vendors')
 @section('page-title','Add New Vendor')
 <div class="card">
-    {{-- <form autocomplete="off" method="POST" wire:submit.prevent='create'>
+    <form autocomplete="off" method="POST" wire:submit.prevent='create'>
         @csrf
         <div class="card-header">
             <div class="card-title text-capitalize">Insert New Vendor</div>
@@ -52,7 +52,7 @@
                                 class="text-red">*</span></label>
                         <input wire:model.defer='phone' id="venPhone" type="text"
                             class="form-control {{$errors->has('phone')?'is-invalid':''}}"
-                            placeholder="Vendor Mobile Phone:965 67622829" />
+                            placeholder="Vendor Mobile Phone" />
                         <x-defaults.input-error for="phone" />
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <label class="text-capitalize form-label mt-0" for="descEn">english description <span
                                 class="text-red">*</span></label>
                         <textarea wire:model.defer='description_en' id="descEn"
-                            class="form-control {{$errors->has('name_ar')?'is-invalid':''}}"
+                            class="form-control {{$errors->has('description_en')?'is-invalid':''}}"
                             placeholder="Write a short English description" style="height: 100px"></textarea>
                         <x-defaults.input-error for="description_en" />
                     </div>
@@ -70,47 +70,63 @@
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0" for="descAr">arabic description <span
                                 class="text-red">*</span></label>
-                        <input wire:model.defer='description_ar' id="descAr" type="text"
+                        <textarea wire:model.defer='description_ar' id="descAr"
                             class="form-control {{$errors->has('description_ar')?'is-invalid':''}}"
-                            placeholder="Write a short Arabic description" />
+                            placeholder="Write a short Arabic description" style="height: 100px"></textarea>
                         <x-defaults.input-error for="description_ar" />
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="startDate">start date</label>
-                        <input wire:model.defer='start_date' id="startDate" type="text"
-                            class="form-control {{$errors->has('start_date')?'is-invalid':''}}"
-                            placeholder="Starting Date: dd/mm/yyyy" />
+                        <label class="text-capitalize form-label mt-0" for="start_date">start date <span
+                                class="text-red">*</span></label>
+
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
+                            </div>
+                            <input wire:model.lazy='start_date' id="start_date"
+                                class="form-control {{$errors->has('start_date')?'is-invalid':''}}"
+                                placeholder="DD/MM/YYYY">
+                        </div>
                         <x-defaults.input-error for="start_date" />
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="fb">enter facebook profile
+                        <label class="text-capitalize form-label mt-0" for="fb">enter facebook profile ID <a
+                                href="javascript:void(0)" data-bs-toggle="popover" title="Facebook Profile ID"
+                                data-bs-content="Facebook URL:https://www.facebook.com/nestProfile, Only insert nestProfile"><i
+                                    class="bi bi-patch-exclamation"></i></a>
                         </label>
                         <input wire:model.defer='facebook' id="fb" type="text"
                             class="form-control {{$errors->has('facebook')?'is-invalid':''}}"
-                            placeholder="https://facebook/nestProfile " />
+                            placeholder="nestProfile" />
                         <x-defaults.input-error for="facebook" />
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="nameAr">enter instgram profile</label>
-                        <input wire:model.defer='name_ar' id="nameAr" type="text"
-                            class="form-control {{$errors->has('name_ar')?'is-invalid':''}}"
-                            placeholder="Vendor Arabic Name" />
-                        <x-defaults.input-error for="name_ar" />
+                        <label class="text-capitalize form-label mt-0" for="Insta">enter instgram profile ID <a
+                                class="popOver" href="javascript:void(0)" data-bs-toggle="popover"
+                                data-bs-content="Instgram URL:https://www.instagram.com/nestProfile, Only insert nestProfile"
+                                title="Instgram Profile ID"><i class="bi bi-patch-exclamation"></i></a></label>
+                        <input wire:model.defer='instgram' id="Insta" type="text"
+                            class="form-control {{$errors->has('instgram')?'is-invalid':''}}"
+                            placeholder="nestProfile" />
+                        <x-defaults.input-error for="instgram" />
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="nameAr">enter twitter profile</label>
-                        <input wire:model.defer='name_ar' id="nameAr" type="text"
-                            class="form-control {{$errors->has('name_ar')?'is-invalid':''}}"
-                            placeholder="Vendor Arabic Name" />
-                        <x-defaults.input-error for="name_ar" />
+                        <label class="text-capitalize form-label mt-0" for="twit">enter twitter profile ID <a
+                                href="javascript:void(0)" data-bs-toggle="popover"
+                                data-bs-content="Twitter URL:https://twitter.com/nestProfile, Only insert nestProfile"
+                                title="Twitter Profile ID"><i class="bi bi-patch-exclamation"></i></a></label>
+                        <input wire:model.defer='twitter' id="twit" type="text"
+                            class="form-control {{$errors->has('twitter')?'is-invalid':''}}"
+                            placeholder="nestProfile" />
+                        <x-defaults.input-error for="twitter" />
                     </div>
                 </div>
             </div>
@@ -120,64 +136,19 @@
                 <button class="btn btn-success float-sm-end" type="submit">Add<i class="fa fa-plus ms-1"></i></button>
             </div>
         </div>
-    </form> --}}
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title">
-                Full Colored Popover
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="form-label  mb-2">
-                Static Example
-            </div>
-            <div class="popover-static-demo mb-4 border br-3 pb-6">
-                <div class="row row-sm">
-                    <div class="col-md-6 mt-4">
-                        <div class="popover popover-primary bs-popover-top">
-                            <div class="popover-arrow"></div>
-                            <h3 class="popover-header">Popover top</h3>
-                            <div class="popover-body">
-                                <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem
-                                    lacinia quam venenatis vestibulum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-4">
-                        <div class="popover popover-secondary bs-popover-bottom">
-                            <div class="popover-arrow"></div>
-                            <h3 class="popover-header">Popover Bottom</h3>
-                            <div class="popover-body">
-                                <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem
-                                    lacinia quam venenatis vestibulum.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-label mb-2">
-                Example
-            </div>
-            <div class="bg-light p-3 border br-3">
-                <div class="row row-sm text-center">
-                    <div class="col-sm-6 col-lg-3  mt-2 mb-2">
-                        <button class="btn btn-primary" data-bs-container="body"
-                            data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-                            data-bs-placement="top" data-bs-popover-color="primary" title="Popover top">Click
-                            me</button>
-                    </div>
-                    <div class="col-sm-6 col-lg-3  mt-2 mb-2">
-                        <button class="btn btn-secondary" data-bs-container="body"
-                            data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-                            data-bs-placement="bottom" data-bs-popover-color="secondary" title="Popover bottom">Click
-                            me</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
 
+@push('child-styles')
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+@endpush
 @push('child-scripts')
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 
+<script>
+    new Pikaday({
+        field: document.getElementById('start_date'),
+        format: 'D MMM YYYY',
+        });
+</script>
 @endpush
