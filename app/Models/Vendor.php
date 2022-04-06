@@ -42,4 +42,9 @@ class Vendor extends Model
     {
         $this->attributes['start_date'] = Carbon::parse($value)->toDateString();
     }
+
+    public static function since($date)
+    {
+        return Carbon::parse($date)->isoFormat('YYYY');
+    }
 }

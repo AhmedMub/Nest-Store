@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
-@section('title', 'Vendors')
-@section('page-title','Vendors')
+@section('title', 'Vendors List')
+@section('page-title','Vendors List')
 @section('content')
 {{-- ROW-1 OPEN --}}
 <div>
