@@ -131,6 +131,7 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
     </div>
 
 
+    {{-- //TODO must put it in component and figure out how to pass the variables to the nested component --}}
     {{-- Bulk Delete --}}
     <div wire:ignore.self class="modal fade" id="modaldemo5">
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
