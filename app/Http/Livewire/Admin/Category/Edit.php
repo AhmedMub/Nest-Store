@@ -106,7 +106,7 @@ class Edit extends Component
 
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',
-            'message'   => 'Category Created Successfully'
+            'message'   => 'Category Updated Successfully'
         ]);
     }
 

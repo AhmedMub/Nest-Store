@@ -184,7 +184,7 @@
                                 </div>
                             </div>
                             <div class="header-action-icon-2">
-                                <a href="page-account.html">
+                                <a href="javascript:avoid(0)">
                                     <img class="svgInject" alt="Nest"
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-user.svg")}} />
                                 </a>

@@ -68,7 +68,6 @@
                 <tbody>
                     @foreach ($subSubCategories as $subcat)
                     <tr class="text-center">
-                        <input type="hidden">
                         <td><input wire:model='selectedSubSubCats' value="{{$subcat->id}}" type="checkbox"></td>
                         <td> {{$subcat->name_en}} </td>
                         <td> {{$subcat->name_ar}} </td>

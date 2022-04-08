@@ -20,6 +20,6 @@
 <link id="theme" rel="stylesheet" type="text/css" media="all" href=" {{asset('backend/assets/colors/color1.css')}}" />
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 
-
+<link rel="stylesheet" href=" {{asset('backend/css/toastr.min.css')}} ">
 
 <link href="{{asset('backend/css/override.css')}}" rel="stylesheet" />

@@ -107,14 +107,14 @@
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="Insta">enter instgram profile ID <a
+                        <label class="text-capitalize form-label mt-0" for="Insta">enter instagram profile ID <a
                                 class="popOver" href="javascript:void(0)" data-bs-toggle="popover"
                                 data-bs-content="Instgram URL:https://www.instagram.com/nestProfile, Only insert nestProfile"
                                 title="Instgram Profile ID"><i class="bi bi-patch-exclamation"></i></a></label>
-                        <input wire:model.defer='instgram' id="Insta" type="text"
-                            class="form-control {{$errors->has('instgram')?'is-invalid':''}}"
+                        <input wire:model.defer='instagram' id="Insta" type="text"
+                            class="form-control {{$errors->has('instagram')?'is-invalid':''}}"
                             placeholder="nestProfile" />
-                        <x-defaults.input-error for="instgram" />
+                        <x-defaults.input-error for="instagram" />
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6">

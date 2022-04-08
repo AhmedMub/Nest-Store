@@ -9,6 +9,7 @@ use Livewire\Component;
 class EditProfileInfo extends Component
 {
     public $user;
+    public $userId;
     public $first_name;
     public $second_name;
     public $address;
@@ -18,6 +19,7 @@ class EditProfileInfo extends Component
     public function mount()
     {
         $this->user = Auth::user();
+        $this->userId = $this->user->id;
         $this->first_name = $this->user->first_name;
         $this->second_name = $this->user->second_name;
         $this->address = $this->user->address;
@@ -25,14 +27,17 @@ class EditProfileInfo extends Component
         $this->email = $this->user->email;
     }
     //form validation
-    protected $rules = [
-        'first_name' => ['required', 'string', 'max:15', 'min:3'],
-        'second_name' => ['required', 'string', 'max:15', 'min:3'],
-        'address' => ['required', 'string', 'max:60', 'min:3'],
-        'email' => ['required', 'string', 'email', 'string', 'unique:users'],
-        'phone' => ['required', 'regex:/[0-9]{8}/'],
-        //TODO add security regex
-    ];
+    protected function rules()
+    {
+        return [
+            'first_name' => ['required', 'string', 'max:15', 'min:3'],
+            'second_name' => ['required', 'string', 'max:15', 'min:3'],
+            'address' => ['required', 'string', 'max:60', 'min:3'],
+            'email' => ['required', 'string', 'email', 'string', "unique:users,email,$this->userId"],
+            'phone' => ['required', 'regex:/[0-9]{8}/'],
+            //TODO add security regex
+        ];
+    }
 
     protected $messages = [
         'first_name.string' => 'Must Be Characters Only',

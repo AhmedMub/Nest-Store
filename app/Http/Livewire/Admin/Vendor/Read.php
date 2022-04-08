@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Admin\Vendor;
 
 use App\Models\Vendor;
-use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -18,6 +17,16 @@ class Read extends Component
     public $search = '';
 
     protected $paginationTheme = 'bootstrap';
+
+    //Bulk Delete
+    //this is an empty array property will be bind to all checkboxes it will grab all selected values ids
+    public $selectedVendors = [];
+
+    //select all method below
+    public $selectAll = false;
+
+    public $bulkDisabled = true;
+
     protected $listeners = [
         'categoryUpdated' => '$refresh',
         'catDeleted' => '$refresh'
@@ -41,8 +50,33 @@ class Read extends Component
         $this->resetPage();
     }
 
+    //bulk delete: this is will be bind with delete button (wire:click.prevent='deleteSelected'), it will grab all ids from selectedSubCats array and will deleted, then return empty array as it was, then make sure that selectAll false
+    public function deleteSelected()
+    {
+        Vendor::query()->whereIn('id', $this->selectedVendors)->delete();
+        $this->selectedVendors = [];
+        $this->selectAll = false;
+
+        $this->dispatchBrowserEvent('alert', [
+            'type'      => 'success',
+            'message'   => 'Vendor Deleted Successfully'
+        ]);
+    }
+
+    //catch select all property from checkbox input: this will will be model bind ( wire:model='selectAll') for checkbox input type, so if user checked will check all the selected box accordingly
+    public function updatedSelectAll($val)
+    {
+        if ($val) {
+            $this->selectedVendors = Vendor::pluck('id');
+        } else {
+            $this->selectedVendors = [];
+        }
+    }
+
     public function render()
     {
+        $this->bulkDisabled = count($this->selectedVendors) < 1;
+
         $vendors = Vendor::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
 
 
