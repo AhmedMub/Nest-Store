@@ -24,6 +24,10 @@ Route::get('testing', function () {
 
     return view('testing');
 });
+Route::get('testing2', function () {
+
+    return view('testing2');
+});
 // Public Routes
 Route::post('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class Delete extends Component
@@ -19,6 +20,11 @@ class Delete extends Component
 
     public function delete()
     {
+        $catIcon = Category::findOrFail($this->catId)->icon;
+        //check if field not null
+        if ($catIcon !== null) {
+            Storage::delete('public/frontend/categories/' . $catIcon);
+        }
 
         Category::whereId($this->catId)->delete();
 

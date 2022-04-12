@@ -138,17 +138,3 @@
         </div>
     </form>
 </div>
-
-@push('child-styles')
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
-@endpush
-@push('child-scripts')
-<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-
-<script>
-    new Pikaday({
-        field: document.getElementById('start_date'),
-        format: 'D MMM YYYY',
-        });
-</script>
-@endpush

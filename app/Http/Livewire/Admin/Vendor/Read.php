@@ -28,8 +28,8 @@ class Read extends Component
     public $bulkDisabled = true;
 
     protected $listeners = [
-        'categoryUpdated' => '$refresh',
-        'catDeleted' => '$refresh'
+        'vendorUpdated' => '$refresh',
+        'vendorDeleted' => '$refresh'
     ];
 
     public function sortBy($field)

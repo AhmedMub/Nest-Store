@@ -1,3 +1,6 @@
+{{-- //TODO must remove below scripts and put it in the views that only related to like peity chart, I need this only
+inthe dashboard view and so on. This is to enhance performance and remove unrelated scripts from rending at all views
+--}}
 {{-- JQUERY JS --}}
 <script src="{{asset('backend/js/jquery.min.js')}}"></script>
 
@@ -8,6 +11,9 @@
 @auth
 {{-- SPARKLINE JS--}}
 <script src="{{asset('backend/js/jquery.sparkline.min.js')}}"></script>
+
+{{-- Sticky js --}}
+<script src="{{asset('backend/js/sticky.js')}}"></script>
 
 {{-- CHART-CIRCLE JS--}}
 <script src="{{asset('backend/js/circle-progress.min.js')}}"></script>
@@ -71,9 +77,6 @@
 @stack('child-scripts')
 {{-- Color Theme js --}}
 <script src="{{asset('backend/js/themeColors.js')}}"></script>
-
-{{-- Sticky js --}}
-<script src="{{asset('backend/js/sticky.js')}}"></script>
 
 {{-- CUSTOM JS --}}
 <script src="{{asset('backend/js/custom.js')}}"></script>
