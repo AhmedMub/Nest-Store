@@ -2,15 +2,14 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
 use App\Actions\Fortify\PasswordResetLinkController;
 use App\Actions\Fortify\NewPasswordController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubSubcategoryController;
 use App\Http\Controllers\Admin\VendorController;
-use App\Models\Category;
-use App\Models\SubCategory;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -86,11 +85,23 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
     //Vendors
     Route::prefix('vendors/')->group(function () {
 
+        //vendor namespace, to use create::class method for many routes
         $vendor = 'App\Http\Livewire\Admin\Vendor\\';
 
         Route::get('edit/vendors', [VendorController::class, 'show'])->name('manage.vendors');
 
         //Add new Vendor
         Route::get('add/new-vendor', $vendor . Create::class)->name('add.vendor');
+    });
+
+    //Products
+    Route::prefix('product/')->name('product.')->group(function () {
+
+        $product = 'App\Http\Livewire\Admin\Product\\';
+
+        Route::get('edit/products', [ProductController::class, 'show'])->name('manage');
+
+        //Add new product
+        Route::get('add/new-product', $product . Create::class)->name('add');
     });
 });

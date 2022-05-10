@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ProductTag extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'product_id', 'tags_en', 'tags_ar'
+    ];
 }
