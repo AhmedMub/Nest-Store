@@ -16,6 +16,10 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
 
+            /*
+                category should not be as foreign key
+            */
+
             //product default fields
             $table->id();
             $table->integer('product_status')->default(1);
@@ -32,16 +36,13 @@ class CreateProductsTable extends Migration
 
             $table->integer('qty');
             $table->integer('price');
-            $table->string('size')->nullable();
+            $table->integer('size')->nullable();
             $table->string('hot_deals')->default(0);
             $table->string('new_deals')->default(1);
             $table->string('type');
 
             // written abbreviation for manufacturing date
             $table->string('mfg');
-
-            //Expiration date in days (calculated in the model)
-            $table->integer('life');
 
             //show description
             $table->integer('desc_status')->default(1);

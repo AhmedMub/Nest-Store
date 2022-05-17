@@ -83,11 +83,14 @@ $manageProduct = route('product.manage');
                     <ul class="slide-menu">
                         <li><a href=" {{$manageProduct}} "
                                 class=" @if ($currentRoute == $manageProduct) active @endif slide-item text-capitalize">manage
-                                product</a>
+                                products</a>
                         </li>
                         <li><a href=" {{$addProduct}} "
                                 class="@if ($currentRoute == $addProduct) active @endif slide-item text-capitalize">add
                                 new product</a>
+                        </li>
+                        {{-- ////TODO add product tag --}}
+                        <li><a href="  " class=" slide-item text-capitalize">manage product tags</a>
                         </li>
                     </ul>
                 </li>
