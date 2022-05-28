@@ -110,7 +110,7 @@
                                     </div>
 
                                     {{-- long product description --}}
-                                    <div class="panel panel-default">
+                                    <div class="panel panel-default" wire:ignore>
                                         <div class="panel-heading1">
                                             <h4 class="panel-title1">
                                                 <a class="text-capitalize accordion-toggle collapsed"
@@ -125,9 +125,7 @@
                                                 <div class="form-group">
                                                     <label class="text-capitalize form-label mt-0">English</label>
                                                     <textarea wire:model.defer='long_desc_en' id="long_desc_en"
-                                                        class="form-control {{$errors->has('long_desc_en')?'is-invalid':''}}"
-                                                        placeholder="Write a long English description"
-                                                        style="height: 100px"></textarea>
+                                                        class="form-control {{$errors->has('long_desc_en')?'is-invalid':''}}"></textarea>
                                                     <x-defaults.input-error for="long_desc_en" />
                                                 </div>
                                                 <div class="form-group">
@@ -143,7 +141,7 @@
                                     </div>
 
                                     {{-- Packaging & Delivery --}}
-                                    <div class="panel panel-default">
+                                    <div class="panel panel-default" wire:ignore>
                                         <div class="panel-heading1">
                                             <h4 class="panel-title1">
                                                 <a class="text-capitalize accordion-toggle collapsed"
@@ -178,7 +176,7 @@
                                     </div>
 
                                     {{-- Suggested Use --}}
-                                    <div class="panel panel-default">
+                                    <div class="panel panel-default" wire:ignore>
                                         <div class="panel-heading1">
                                             <h4 class="panel-title1">
                                                 <a class="text-capitalize accordion-toggle collapsed"
@@ -211,7 +209,7 @@
                                     </div>
 
                                     {{-- Other Ingredients --}}
-                                    <div class="panel panel-default">
+                                    <div class="panel panel-default" wire:ignore>
                                         <div class="panel-heading1">
                                             <h4 class="panel-title1">
                                                 <a class="text-capitalize accordion-toggle collapsed"
@@ -246,7 +244,7 @@
                                     </div>
 
                                     {{-- Warnings --}}
-                                    <div class="panel panel-default">
+                                    <div class="panel panel-default" wire:ignore>
                                         <div class="panel-heading1">
                                             <h4 class="panel-title1">
                                                 <a class="text-capitalize accordion-toggle collapsed"
@@ -349,8 +347,6 @@
 
 
 
-
-
                 <div class="col-md-12">
                     <div>
                         <label class="custom-control custom-checkbox  col">
@@ -371,7 +367,6 @@
                         </label>
                     </div>
                 </div>
-
                 {{--
 
                 <div class="col-md-12">
@@ -450,6 +445,38 @@
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+{{-- Include summernote stylesheet --}}
+<link href="{{asset('backend/assets/plugins/summernote/summernote.min.css')}}" rel="stylesheet">
+
+{{-- summerNote icons --}}
+
+<style>
+    @font-face {
+        font-display: auto;
+        font-family: summernote;
+        font-style: normal;
+        font-weight: 400;
+        src: url(font/summernote.eot?#iefix) format("embedded-opentype"),
+        url("{{asset('backend/assets/plugins/summernote/font/summernote.woff2')}}") format("woff2"),
+        url("{{asset('backend/assets/plugins/summernote/font/summernote.woff')}}") format("woff"),
+        url("{{asset('backend/assets/plugins/summernote/font/summernote.ttf')}}") format("truetype")
+    }
+
+    @font-face {
+        font-family: "Glyphicons Halflings";
+        src: url("{{asset('backend/iconfonts/glyphicons/fonts/glyphicons-halflings-regular.eot')}}");
+        src: url("{{asset('backend/iconfonts/glyphicons/fonts/glyphicons-halflings-regular.eot')}}?#iefix") format("embedded-opentype"),
+        url("{{asset('backend/iconfonts/glyphicons/fonts/glyphicons-halflings-regular.woff2')}}") format("woff2"),
+        url("{{asset('backend/iconfonts/glyphicons/fonts/glyphicons-halflings-regular.woff')}}") format("woff"),
+        url("{{asset('backend/iconfonts/glyphicons/fonts/glyphicons-halflings-regular.ttf')}}") format("truetype"),
+        url("{{asset('backend/iconfonts/glyphicons/fonts/glyphicons-halflings-regular.svg')}}#glyphicons_halflingsregular") format("svg");
+    }
+
+    .note-editable {
+        background-color: #fff;
+    }
+</style>
+
 @endpush
 @push('child-scripts')
 <script>
@@ -465,6 +492,37 @@ $('.check-one').on('click',function() {
     });
 
 });
+</script>
 
+<!-- INTERNAL SUMMERNOTE Editor JS -->
+<script src="{{asset('backend/assets/plugins/summernote/summernote1.js')}}"></script>
+
+{{-- Initialize Quill editor --}}
+<script>
+    $(document).ready(function() {
+        let arr = ['#long_desc_en', '#long_desc_ar', '#packaging_delivery_en', '#packaging_delivery_ar', '#suggested_use_en', '#suggested_use_ar', '#other_ingredients_en', '#other_ingredients_ar', '#warnings_en', '#warnings_ar'];
+
+        let arrLivewier = arr.map(val=> val.slice(1));
+        console.log(arrLivewier);
+
+  $.each(arr, function (index, value) {
+        let livewireVal = value.replace('#', '');
+    $(value).summernote({
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['view', ['fullscreen', 'help']]
+        ],
+        callbacks: {
+            onChange: function(contents, $editable) {
+                @this.set(livewireVal, contents);
+            }
+        }
+
+  });
+   })
+});
 </script>
 @endpush
