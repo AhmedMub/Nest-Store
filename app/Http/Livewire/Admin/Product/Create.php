@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Admin\Product;
 
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductAdditionalInfo;
 use App\Models\ProductDescription;
 use App\Models\SubCategory;
 use App\Models\SubSubcategory;
 use App\Models\Vendor;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
@@ -21,10 +24,13 @@ class Create extends Component
     */
 
     //main to product model
-    public $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $new_deals, $type, $mfg, $life, $manufacturing_date;
+    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $new_deals, $type, $mfg, $life, $manufacturing_date;
 
     //define product description
     public $short_desc_en, $short_desc_ar, $long_desc_en, $long_desc_ar, $packaging_delivery_en, $packaging_delivery_ar, $suggested_use_en, $suggested_use_ar, $other_ingredients_en, $other_ingredients_ar, $warnings_en, $warnings_ar;
+
+    //define Additional Info
+    public $stand_up_en, $stand_up_ar, $folded_en, $folded_ar, $frame_en, $frame_ar, $color_en, $color_ar, $size_en;
 
 
     //TODO must add security regex && must add custom messages because in required it returnes field name which is risky
@@ -32,8 +38,8 @@ class Create extends Component
         'category_id' => ['required', 'integer'],
         'subCategory_id' => ['required', 'integer'],
         'vendor_id' => ['required', 'string'],
-        'name_en' => ['required', 'string'],
-        'name_ar' => ['required', 'string'],
+        'name_en' => ['required', 'string', 'unique:products'],
+        'name_ar' => ['required', 'string', 'unique:products'],
         'qty' => ['required', 'integer'],
         'price' => ['required', 'integer'],
         'type' => ['required', 'string'],
@@ -41,16 +47,26 @@ class Create extends Component
         'mfg' => ['required', 'date_format:Y-m-d'],
         'short_desc_en' => ['string'],
         'short_desc_ar' => ['string'],
-        'long_desc_en' => ['string'],
-        'long_desc_ar' => ['string'],
-        'packaging_delivery_en' => ['string'],
-        'packaging_delivery_ar' => ['string'],
-        'suggested_use_en' => ['string'],
-        'suggested_use_ar' => ['string'],
-        'other_ingredients_en' => ['string'],
-        'other_ingredients_ar' => ['string'],
-        'warnings_en' => ['string'],
-        'warnings_ar' => ['string'],
+        'long_desc_en' => ['nullable', 'string'],
+        'long_desc_ar' => ['nullable', 'string'],
+        'packaging_delivery_en' => ['nullable', 'string'],
+        'packaging_delivery_ar' => ['nullable', 'string'],
+        'suggested_use_en' => ['nullable', 'string'],
+        'suggested_use_ar' => ['nullable', 'string'],
+        'other_ingredients_en' => ['nullable', 'string'],
+        'other_ingredients_ar' => ['nullable', 'string'],
+        'warnings_en' => ['nullable', 'string'],
+        'warnings_ar' => ['nullable', 'string'],
+        'stand_up_en' => ['nullable', 'string'],
+        'stand_up_ar' => ['nullable', 'string'],
+        'folded_en' => ['nullable', 'string'],
+        'folded_ar' => ['nullable', 'string'],
+        'frame_en' => ['nullable', 'string'],
+        'frame_ar' => ['nullable', 'string'],
+        'color_en' => ['nullable', 'string'],
+        'color_ar' => ['nullable', 'string'],
+        'size_en' => ['nullable', 'string'],
+
     ];
 
     protected $messages = [
@@ -68,15 +84,47 @@ class Create extends Component
     //Create Category
     public function create()
     {
-        $product = $this->validate();
+        $this->validate();
 
         //TODO you should check with Osama is this a good way of validating the checkbox because it may be altered in client side with malicious scripts in the request
+        // if (isset($this->hot_deals) && $this->hot_deals >= 2) {
 
-        $product_id = Product::create($product);
+        //     return null;
+        // }
+        // if (isset($this->new_deals) && $this->new_deals >= 2) {
+
+        //     return null;
+        // }
+
+        /*
+            - you must specify the guard admin from which auth faceds can get the auth user because Auth default is for users table NOT admins
+
+            * for more info visit: https://stackoverflow.com/questions/70086068/get-auth-user-id-laravel
+        */
+        $authAdmin = Auth::guard('admin')->user()->id;
+
+        $product_id = Product::create([
+            'createdBy_adminID' => $authAdmin,
+            'updatedBy_adminID' => $authAdmin,
+            'category_id' => $this->category_id,
+            'subCategory_id' => $this->subCategory_id,
+            'vendor_id' => $this->vendor_id,
+            'name_en' => $this->name_en,
+            'name_ar' => $this->name_ar,
+            'qty' => $this->qty,
+            'price' => $this->price,
+            'type' => $this->type,
+            'size' => $this->size,
+            'mfg' => $this->mfg
+        ]);
 
         //add product descriptions
         $this->productDesc($product_id->id);
 
+        //add product additional Info
+        $this->additionalInfo($product_id->id);
+
+        $this->reset();
 
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',
@@ -100,6 +148,21 @@ class Create extends Component
             'other_ingredients_ar' => $this->other_ingredients_ar,
             'warnings_en' => $this->warnings_en,
             'warnings_ar' => $this->warnings_ar,
+        ]);
+    }
+    public function additionalInfo($id)
+    {
+        ProductAdditionalInfo::create([
+            'product_id' => $id,
+            'stand_up_en' => $this->stand_up_en,
+            'stand_up_ar' => $this->stand_up_ar,
+            'folded_en' => $this->folded_en,
+            'folded_ar' => $this->folded_ar,
+            'frame_en' => $this->frame_en,
+            'frame_ar' => $this->frame_ar,
+            'color_en' => $this->color_en,
+            'color_ar' => $this->color_ar,
+            'size_en' => $this->size_en
         ]);
     }
 

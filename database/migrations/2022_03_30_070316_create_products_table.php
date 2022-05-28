@@ -22,13 +22,17 @@ class CreateProductsTable extends Migration
 
             //product default fields
             $table->id();
+
+            //set to null in case the created user has been removed from admins
+            $table->foreignId('createdBy_adminID')->nullable()->references('id')->on('admins')->onDelete('set null');
+            $table->integer('updatedBy_adminID');
             $table->integer('product_status')->default(1);
             $table->integer('category_id');
             $table->integer('subCategory_id');
             $table->integer('subSubCategory_id')->default(0);
             $table->integer('vendor_id');
-            $table->string('name_en');
-            $table->string('name_ar');
+            $table->string('name_en')->unique();
+            $table->string('name_ar')->unique();
             $table->string('slug');
 
             //Stock keeping unit

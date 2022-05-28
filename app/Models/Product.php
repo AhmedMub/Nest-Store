@@ -12,7 +12,7 @@ class Product extends Model
     use HasFactory, Sluggable, HasSku;
 
     protected $fillable = [
-        'product_status', 'subCategory_id', 'category_id', 'subSubCategory_id', 'vendor_id', 'slug', 'name_en', 'name_ar', 'sku', 'qty', 'price', 'size', 'hot_deals', 'new_deals', 'type', 'mfg', 'life', 'desc_status', 'discount_status', 'additionalInfo_status', 'vendor_status', 'reviews_status',
+        'createdBy_adminID', 'updatedBy_adminID', 'product_status', 'subCategory_id', 'category_id', 'subSubCategory_id', 'vendor_id', 'slug', 'name_en', 'name_ar', 'sku', 'qty', 'price', 'size', 'hot_deals', 'new_deals', 'type', 'mfg', 'life', 'desc_status', 'discount_status', 'additionalInfo_status', 'vendor_status', 'reviews_status',
     ];
 
     /**
