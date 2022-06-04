@@ -192,42 +192,6 @@ class Create extends Component
         ]);
     }
 
-    // public function uploadMainImage($id)
-    // {
-    //     ProductImages::create([
-    //         'product_id' => $id
-    //     ])->addMedia($this->main_img->getRealPath())->toMediaCollection('main_img');
-    // }
-
-    // public function uploadImage()
-    // {
-    //     $image = $this->logo;
-
-    //     $logoName = $image->hashName();
-
-    //     $img = Image::make($image->getRealPath())->resize(136, 150, function ($constraint) {
-    //         $constraint->aspectRatio();
-    //         $constraint->upsize();
-    //     });
-
-    //     $img->stream();
-    //     Storage::disk('frontend')->put('vendors' . '/' . $logoName, $img);
-
-    //     return $logoName;
-    // }
-
-    // public function vendorAdded()
-    // {
-    //     $this->reset();
-
-    //     $this->dispatchBrowserEvent('alert', [
-    //         'type'      => 'success',
-    //         'message'   => 'New Vendor Created Successfully'
-    //     ]);
-    // }
-
-
-
     public function render()
     {
         $mainCats = Category::latest()->get();
