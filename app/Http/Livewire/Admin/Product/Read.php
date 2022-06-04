@@ -2,12 +2,29 @@
 
 namespace App\Http\Livewire\Admin\Product;
 
-use Livewire\Component;
+use App\Models\Product;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class Read extends Component
+class Read extends DataTableComponent
 {
-    public function render()
+
+    protected $model = Product::class;
+
+    public function configure(): void
     {
-        return view('livewire.admin.product.read');
+        $this->setPrimaryKey('id');
+    }
+
+    public function columns(): array
+    {
+        return [
+            Column::make('ID', 'id')
+                ->sortable()
+                ->searchable(),
+            Column::make('English Name', 'name_en')
+                ->sortable()
+                ->searchable(),
+        ];
     }
 }

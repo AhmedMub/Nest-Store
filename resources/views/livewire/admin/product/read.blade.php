@@ -1,3 +1,12 @@
 <div>
-    {{-- The best athlete wants his opponent at his best. --}}
+    <livewire:users-table theme="bootstrap-5" />
 </div>
+
+
+@push('child-styles')
+<style>
+    [x-cloak] {
+        display: none !important;
+    }
+</style>
+@endpush
