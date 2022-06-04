@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductAdditionalInfo;
 use App\Models\ProductDescription;
+use App\Models\ProductImages;
 use App\Models\SubCategory;
 use App\Models\SubSubcategory;
 use App\Models\Vendor;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
+use phpDocumentor\Reflection\Types\This;
 
 class Create extends Component
 {
@@ -24,13 +26,19 @@ class Create extends Component
     */
 
     //main to product model
-    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $new_deals, $type, $mfg, $life, $manufacturing_date;
+    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $mfg, $life, $manufacturing_date;
+
+    public $new_deals = 0;
 
     //define product description
     public $short_desc_en, $short_desc_ar, $long_desc_en, $long_desc_ar, $packaging_delivery_en, $packaging_delivery_ar, $suggested_use_en, $suggested_use_ar, $other_ingredients_en, $other_ingredients_ar, $warnings_en, $warnings_ar;
 
     //define Additional Info
     public $stand_up_en, $stand_up_ar, $folded_en, $folded_ar, $frame_en, $frame_ar, $color_en, $color_ar, $size_en;
+
+    //define product Images
+    public $mainImage;
+    public $multiImgs = [];
 
 
     //TODO must add security regex && must add custom messages because in required it returnes field name which is risky
@@ -66,6 +74,8 @@ class Create extends Component
         'color_en' => ['nullable', 'string'],
         'color_ar' => ['nullable', 'string'],
         'size_en' => ['nullable', 'string'],
+        'mainImage' => ['required', 'image', 'max:10000'],
+        'multiImgs.*' => ['required', 'image', 'max:10000'],
 
     ];
 
@@ -79,22 +89,19 @@ class Create extends Component
         'price.required' => 'Price field is required',
         'type.required' => 'Type field is required',
         'mfg.required' => 'MFG field is required',
+        'mainImage.required' => 'Product main image is required',
+        'multiImgs.required' => 'Product images are required',
     ];
+
 
     //Create Category
     public function create()
     {
         $this->validate();
 
-        //TODO you should check with Osama is this a good way of validating the checkbox because it may be altered in client side with malicious scripts in the request
-        // if (isset($this->hot_deals) && $this->hot_deals >= 2) {
-
-        //     return null;
-        // }
-        // if (isset($this->new_deals) && $this->new_deals >= 2) {
-
-        //     return null;
-        // }
+        //for validation
+        ($this->new_deals !== 1 ? $this->new_deals = 0 : "");
+        ($this->hot_deals !== 1 ? $this->hot_deals = 0 : "");
 
         /*
             - you must specify the guard admin from which auth faceds can get the auth user because Auth default is for users table NOT admins
@@ -115,9 +122,19 @@ class Create extends Component
             'price' => $this->price,
             'type' => $this->type,
             'size' => $this->size,
-            'mfg' => $this->mfg
+            'mfg' => $this->mfg,
+            'hot_deals' => $this->hot_deals,
+            'new_deals' => $this->new_deals
         ]);
 
+        //to add the main Image
+        $product_id->addMedia($this->mainImage->getRealPath())->toMediaCollection('mainImage');
+
+        // Add the multi images to the collection
+        collect($this->multiImgs)->each(
+            fn ($image) =>
+            $product_id->addMedia($image->getRealPath())->toMediaCollection('multiImages')
+        );
         //add product descriptions
         $this->productDesc($product_id->id);
 
@@ -125,6 +142,15 @@ class Create extends Component
         $this->additionalInfo($product_id->id);
 
         $this->reset();
+
+        //to reset main img field
+        $this->dispatchBrowserEvent('mainReset');
+
+        //reset summernote fields
+        $this->dispatchBrowserEvent('resetSummerNote');
+
+        //to reset multi images field
+        $this->dispatchBrowserEvent('multiImagesReset');
 
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',
@@ -165,6 +191,13 @@ class Create extends Component
             'size_en' => $this->size_en
         ]);
     }
+
+    // public function uploadMainImage($id)
+    // {
+    //     ProductImages::create([
+    //         'product_id' => $id
+    //     ])->addMedia($this->main_img->getRealPath())->toMediaCollection('main_img');
+    // }
 
     // public function uploadImage()
     // {

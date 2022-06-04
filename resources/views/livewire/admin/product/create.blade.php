@@ -66,9 +66,21 @@
                     </div>
                 </div>
 
+                {{-- Product Main Image --}}
+                <div class="row">
+                    <x-admin.product.create.mainimg wire:model="mainImage" />
+                </div>
+
+                {{-- Product Multi Images --}}
+                <div class="row">
+                    <x-admin.product.create.multi-images wire:model="multiImgs" multiple />
+                </div>
+
                 {{-- Product Descriptions --}}
                 <x-admin.product.create.description />
 
+
+                {{-- Product Additional Info --}}
                 <x-admin.product.create.additional-info />
 
                 <div class="col-sm-6 col-md-6">
@@ -139,19 +151,19 @@
                 <div class="col-md-12">
                     <div>
                         <label class="custom-control custom-checkbox  col">
-                            <input wire:model.defer='hot_deals' value="1" type="checkbox"
-                                class="check-one custom-control-input check-one check-one2">
+                            <input wire:model.defer='hot_deals' id="hot_deals" value="<script>alert('test')</script>"
+                                type="checkbox" class="check-one custom-control-input check-one check-one2">
                             <span class="custom-control-label">
-                                New Deals
+                                Hot Deals
                             </span>
                         </label>
                     </div>
                     <div>
                         <label class="custom-control custom-checkbox  col">
-                            <input wire:model.defer='new_deals' value="1" type="checkbox"
+                            <input wire:model.defer='new_deals' id="new_deals" value="1" type="checkbox"
                                 class="check-one custom-control-input check-one check-one2">
                             <span class="custom-control-label">
-                                Hot Deals
+                                New Deals
                             </span>
                         </label>
                     </div>
@@ -201,33 +213,47 @@
     }
 </style>
 
+{{--@once: to fix issue if we have more than one of the same component on a page the CDN calls will be duplicated.
+Laravel provides the @once directive for this reason. It only includes that portion of the template once per rendering
+cycle. --}}
+@once
+
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+@endonce
+
+{{-- Alpine.js --}}
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 @endpush
 @push('child-scripts')
+@once
+
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+@endonce
 <script>
     flatpickr('#mfg', {});
 </script>
 
 <script>
-    //category icon only checked one is allowed
-$(function() {
-
+    $(function() {
+ //checked one is allowed
 $('.check-one').on('click',function() {
     $('.check-one').not(this).prop('checked', false);
     });
-
 });
 </script>
 
 <!-- INTERNAL SUMMERNOTE Editor JS -->
 <script src="{{asset('backend/assets/plugins/summernote/summernote1.js')}}"></script>
 
-{{-- Initialize Quill editor --}}
+{{-- Initialize SUMMERNOTE editor --}}
 <script>
     $(document).ready(function() {
         let arr = ['#long_desc_en', '#long_desc_ar', '#packaging_delivery_en', '#packaging_delivery_ar', '#suggested_use_en', '#suggested_use_ar', '#other_ingredients_en', '#other_ingredients_ar', '#warnings_en', '#warnings_ar'];
 
         let arrLivewier = arr.map(val=> val.slice(1));
-        console.log(arrLivewier);
 
   $.each(arr, function (index, value) {
         let livewireVal = value.replace('#', '');
@@ -242,11 +268,14 @@ $('.check-one').on('click',function() {
         callbacks: {
             onChange: function(contents, $editable) {
                 @this.set(livewireVal, contents);
+                }
             }
-        }
-
-  });
-   })
+        });
+        //reset summernote fields after submit successfully
+        window.addEventListener('resetSummerNote', event => {
+            $(value).summernote('reset');
+        })
+    });
 });
 </script>
 @endpush
