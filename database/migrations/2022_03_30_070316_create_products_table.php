@@ -16,21 +16,16 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
 
-            /*
-                category should not be as foreign key
-            */
-
-            //product default fields
             $table->id();
 
             //set to null in case the created user has been removed from admins
             $table->foreignId('createdBy_adminID')->nullable()->references('id')->on('admins')->onDelete('set null');
-            $table->integer('updatedBy_adminID');
+            $table->foreignId('updatedBy_adminID')->nullable()->references('id')->on('admins')->onDelete('set null');
             $table->integer('product_status')->default(1);
-            $table->integer('category_id');
-            $table->integer('subCategory_id');
-            $table->integer('subSubCategory_id')->default(0);
-            $table->integer('vendor_id');
+            $table->foreignId('category_id')->nullable()->references('id')->on('categories')->onDelete('set null');
+            $table->foreignId('subCategory_id')->nullable()->references('id')->on('sub_categories')->onDelete('set null');
+            $table->foreignId('subSubCategory_id')->nullable()->references('id')->on('sub_subcategories')->onDelete('set null');
+            $table->foreignId('vendor_id')->nullable()->references('id')->on('vendors')->onDelete('set null');
             $table->string('name_en')->unique();
             $table->string('name_ar')->unique();
             $table->string('slug');

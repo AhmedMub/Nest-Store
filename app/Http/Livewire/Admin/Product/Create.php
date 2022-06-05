@@ -45,6 +45,7 @@ class Create extends Component
     protected $rules = [
         'category_id' => ['required', 'integer'],
         'subCategory_id' => ['required', 'integer'],
+        'subSubCategory_id' => ['nullable', 'integer'],
         'vendor_id' => ['required', 'string'],
         'name_en' => ['required', 'string', 'unique:products'],
         'name_ar' => ['required', 'string', 'unique:products'],
@@ -115,6 +116,7 @@ class Create extends Component
             'updatedBy_adminID' => $authAdmin,
             'category_id' => $this->category_id,
             'subCategory_id' => $this->subCategory_id,
+            'subSubCategory_id' => $this->subSubCategory_id,
             'vendor_id' => $this->vendor_id,
             'name_en' => $this->name_en,
             'name_ar' => $this->name_ar,

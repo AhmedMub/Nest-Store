@@ -50,12 +50,30 @@ class Product extends Model implements HasMedia
             ->singleFile();
     }
 
-    // public function subCats()
-    // {
-    //     return $this->HasMany(SubCategory::class);
-    // }
+    //Model RelationShips
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'createdBy_adminID');
+    }
+    public function productVendor()
+    {
+        return $this->belongsTo(Vendor::class, 'vendor_id');
+    }
 
-    // //has many through to access sub-subcategory
+    public function productMainCat()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function productSubCat()
+    {
+        return $this->belongsTo(SubCategory::class, 'subCategory_id');
+    }
+    public function productSubSubCat()
+    {
+        return $this->belongsTo(SubSubcategory::class, 'subSubCategory_id');
+    }
+
+    //has many through to access sub-subcategory
     // public function subSubcategoryThroCategory()
     // {
     //     return $this->hasManyThrough(SubSubcategory::class, SubCategory::class, 'category_id', 'subcategory_id');

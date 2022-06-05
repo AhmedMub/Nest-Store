@@ -47,4 +47,8 @@ class Vendor extends Model
     {
         return Carbon::parse($date)->isoFormat('YYYY');
     }
+    public function productVendor()
+    {
+        return $this->hasMany(Product::class, 'vendor_id');
+    }
 }

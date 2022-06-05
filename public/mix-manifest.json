@@ -1,8 +1,6 @@
 {
     "/backend/js/override.js": "/backend/js/override.js",
     "/frontend/js/override.js": "/frontend/js/override.js",
-    "/backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5.js": "/backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5.js",
-    "/backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5.css": "/backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5.css",
     "/backend/css/override.css": "/backend/css/override.css",
     "/frontend/css/override.css": "/frontend/css/override.css"
 }

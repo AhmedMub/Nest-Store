@@ -39,17 +39,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvYWRtaW4vc2Fzcy9vdmVycmlkZS5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9hZG1pbi9zYXNzL292ZXJyaWRlLnNjc3M/NDUwMSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/admin/sass/override.scss\n");
 
-/***/ }),
-
-/***/ "./public/backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5.scss":
-/*!***********************************************************************************************************!*\
-  !*** ./public/backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5.scss ***!
-  \***********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9wdWJsaWMvYmFja2VuZC9hc3NldHMvcGx1Z2lucy9zdW1tZXJub3RlQlM1L3N1bW1lcm5vdGUtZGV2ZWxvcC9zcmMvc3R5bGVzL2JzNS9zdW1tZXJub3RlLWJzNS5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3B1YmxpYy9iYWNrZW5kL2Fzc2V0cy9wbHVnaW5zL3N1bW1lcm5vdGVCUzUvc3VtbWVybm90ZS1kZXZlbG9wL3NyYy9zdHlsZXMvYnM1L3N1bW1lcm5vdGUtYnM1LnNjc3M/YjkyYiJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./public/backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5.scss\n");
-
 /***/ })
 
 /******/ 	});
@@ -139,7 +128,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/backend/js/override": 0,
-/******/ 			"backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5": 0,
 /******/ 			"backend/css/override": 0,
 /******/ 			"frontend/css/override": 0
 /******/ 		};
@@ -191,10 +179,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5","backend/css/override","frontend/css/override"], () => (__webpack_require__("./resources/admin/js/override.js")))
-/******/ 	__webpack_require__.O(undefined, ["backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5","backend/css/override","frontend/css/override"], () => (__webpack_require__("./resources/frontend/sass/override.scss")))
-/******/ 	__webpack_require__.O(undefined, ["backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5","backend/css/override","frontend/css/override"], () => (__webpack_require__("./resources/admin/sass/override.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5","backend/css/override","frontend/css/override"], () => (__webpack_require__("./public/backend/assets/plugins/summernoteBS5/summernote-develop/src/styles/bs5/summernote-bs5.scss")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/override","frontend/css/override"], () => (__webpack_require__("./resources/admin/js/override.js")))
+/******/ 	__webpack_require__.O(undefined, ["backend/css/override","frontend/css/override"], () => (__webpack_require__("./resources/frontend/sass/override.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["backend/css/override","frontend/css/override"], () => (__webpack_require__("./resources/admin/sass/override.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

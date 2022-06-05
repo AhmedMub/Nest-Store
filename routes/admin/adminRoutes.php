@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubSubcategoryController;
+use App\Http\Controllers\Admin\Testing;
 use App\Http\Controllers\Admin\VendorController;
 
 
@@ -19,10 +20,8 @@ use App\Http\Controllers\Admin\VendorController;
 */
 //TODO: must add forget-password functionality for Admin
 
-Route::get('testing', function () {
+Route::get('testing', [Testing::class, 'testing']);
 
-    return view('testing');
-});
 Route::get('testing2', function () {
 
     return view('testing2');
