@@ -67,7 +67,10 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="d-none">
+                        <div id="longDescEn">{{$longDescEn}}</div>
+                        <div id="longDescAr">{{$longDescAr}}</div>
+                    </div>
 
                     {{-- Packaging & Delivery --}}
                     <div class="panel panel-default" wire:ignore>
@@ -99,7 +102,10 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="d-none">
+                        <div id="packagingDeliveryEn">{{$packagingDeliveryEn}}</div>
+                        <div id="packagingDeliveryAr">{{$packagingDeliveryAr}}</div>
+                    </div>
 
                     {{-- Suggested Use --}}
                     <div class="panel panel-default" wire:ignore>
@@ -129,7 +135,10 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="d-none">
+                        <div id="suggestedUseEn">{{$suggestedUseEn}}</div>
+                        <div id="suggestedUseAr">{{$suggestedUseAr}}</div>
+                    </div>
 
                     {{-- Other Ingredients --}}
                     <div class="panel panel-default" wire:ignore>
@@ -161,7 +170,10 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="d-none">
+                        <div id="otherIngredientsEn">{{$otherIngredientsEn}}</div>
+                        <div id="otherIngredientsAr">{{$otherIngredientsAr}}</div>
+                    </div>
                     {{-- Warnings --}}
                     <div class="panel panel-default" wire:ignore>
                         <div class="panel-heading1">
@@ -192,9 +204,44 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="d-none">
+                        <div id="warningsEn">{{$warningsEn}}</div>
+                        <div id="warningsAr">{{$warningsAr}}</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@push('child-scripts')
+
+<script>
+    $(function() {
+            var liveObject = {
+                "#long_desc_en":'#longDescEn',
+                "#long_desc_ar":'#longDescAr',
+                "#packaging_delivery_en":'#packagingDeliveryEn',
+                "#packaging_delivery_ar":'#packagingDeliveryAr',
+                "#suggested_use_en":'#suggestedUseEn',
+                "#suggested_use_ar":'#suggestedUseAr',
+                "#other_ingredients_en":'#otherIngredientsEn',
+                "#other_ingredients_ar":'#otherIngredientsAr',
+                "#warnings_en":'#warningsEn',
+                "#warnings_ar":'#warningsAr',
+            };
+        $.each(liveObject, function (index, value) {
+
+        window.addEventListener('getProductInfo', event => {
+
+            //get coded info from database
+            var getHtml = $(value).html();
+
+            //decode the info so you can use it for summernote
+            var decodeHtml = $(value).html(getHtml).text();
+            $(index).summernote('code', decodeHtml);
+        });
+        });
+    })
+</script>
+@endpush

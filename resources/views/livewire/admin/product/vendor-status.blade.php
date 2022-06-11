@@ -1,6 +1,6 @@
 <div>
     <label class="custom-switch form-switch" for=" {{$name.$product->id}} ">
-        <input wire:model="product_status" id=" {{$name.$product->id}} " type="checkbox" name="toggle"
+        <input wire:model="vendor_status" id=" {{$name.$product->id}} " type="checkbox" name="toggle"
             class="custom-switch-input">
         <span class="custom-switch-indicator"></span>
     </label>

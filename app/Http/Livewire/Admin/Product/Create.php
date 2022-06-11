@@ -2,20 +2,16 @@
 
 namespace App\Http\Livewire\Admin\Product;
 
-use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductAdditionalInfo;
 use App\Models\ProductDescription;
-use App\Models\ProductImages;
 use App\Models\SubCategory;
 use App\Models\SubSubcategory;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Intervention\Image\Facades\Image;
-use phpDocumentor\Reflection\Types\This;
 
 class Create extends Component
 {
@@ -46,7 +42,7 @@ class Create extends Component
         'category_id' => ['required', 'integer'],
         'subCategory_id' => ['required', 'integer'],
         'subSubCategory_id' => ['nullable', 'integer'],
-        'vendor_id' => ['required', 'string'],
+        'vendor_id' => ['required', 'integer'],
         'name_en' => ['required', 'string', 'unique:products'],
         'name_ar' => ['required', 'string', 'unique:products'],
         'qty' => ['required', 'integer'],

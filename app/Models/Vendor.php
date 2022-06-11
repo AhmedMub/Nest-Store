@@ -35,7 +35,8 @@ class Vendor extends Model
             ->where('name_en', 'like', '%' . $val . '%')
             ->OrWhere('name_ar', 'like', '%' . $val . '%')
             ->OrWhere('description_en', 'like', '%' . $val . '%')
-            ->OrWhere('description_ar', 'like', '%' . $val . '%');
+            ->OrWhere('description_ar', 'like', '%' . $val . '%')
+            ->OrWhere('phone', 'like', '%' . $val . '%');
     }
 
     public function setStartDateAttribute($value)

@@ -2,7 +2,7 @@
 <div class="col-lg-12">
     <div class="card custom-bg">
         <div class="card-header">
-            <h3 class="card-title">Change Product Main Images<span class="text-red">*</span></h3>
+            <h3 class="card-title">Change Product Main Images</h3>
         </div>
         <div class="card-body">
             <div class="panel-group1">
@@ -22,17 +22,12 @@
                             },
                         }
                     });
-
-                    {{-- Remove the images after uploud  --}}
-                    this.addEventListener('mainReset', e => {
-                        ProductMainImg.removeFile();
-                    });
                 }">
                     <input type="file" x-ref="mainImage">
 
                 </div>
             </div>
-            <x-defaults.input-error for="main_img" />
+            <x-defaults.input-error for="mainImage" />
         </div>
     </div>
 </div>

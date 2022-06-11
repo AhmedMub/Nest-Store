@@ -1,17 +1,16 @@
 <?php
 
-namespace App\View\Components\Admin\Product\Create;
+namespace App\View\Components\Admin\Product\Edit;
 
 use Illuminate\View\Component;
 
-class Description extends Component
+class MainImg extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-
     public function __construct()
     {
         //
@@ -24,6 +23,6 @@ class Description extends Component
      */
     public function render()
     {
-        return view('components.admin.product.create.description');
+        return view('components.admin.product.edit.main-img');
     }
 }

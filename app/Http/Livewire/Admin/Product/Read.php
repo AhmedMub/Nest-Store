@@ -3,110 +3,87 @@
 namespace App\Http\Livewire\Admin\Product;
 
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
+use App\Models\Vendor;
+use Livewire\Component;
+use Livewire\WithPagination;
 
-class Read extends DataTableComponent
+class Read extends Component
 {
+    use WithPagination;
+    //Sorting
+    public $sortBy = 'name_en';
+    public $sortDirection = 'desc';
+    public $field = 'name_en';
+    public $perPage = 5;
+    public $search = '';
 
-    protected $model = Product::class;
+    protected $paginationTheme = 'bootstrap';
 
-    public function configure(): void
+    //Bulk Delete
+    //this is an empty array property will be bind to all checkboxes it will grab all selected values ids
+    public $selectedCheckboxes = [];
+
+    //select all method below
+    public $selectAll = false;
+
+    public $bulkDisabled = true;
+
+    protected $listeners = [
+        'productUpdated' => '$refresh',
+        'productDeleted' => '$refresh'
+    ];
+
+    public function sortBy($field)
     {
-        $this->setPrimaryKey('id');
 
-        $this->setTableWrapperAttributes([
-            'default' => false,
-            'class' => 'table-responsive',
-        ]);
+        if ($this->sortDirection == 'desc') {
 
-        $this->setTableAttributes([
-            'default' => false,
-            'id' => 'basic-edit',
-            'class' => 'table table-bordered border text-nowrap mb-0',
-        ]);
+            $this->sortDirection = 'asc';
+        } else {
 
-        $this->setTheadAttributes([
-            'class' => 'table-primary',
-        ]);
-
-        // Takes a callback that gives you the current row and its index
-        $this->setTrAttributes(function ($row, $index) {
-            if ($index % 1 === 0) {
-                return [
-                    'class' => 'text-center',
-                ];
-            }
-            return [];
-        });
+            $this->sortDirection = 'desc';
+        }
+        return $this->sortBy = $field;
     }
 
-    public function columns(): array
+    public function updatingSearch()
     {
-        return [
-            Column::make('ID', 'id')
-                ->sortable()
-                ->searchable(),
-            Column::make('Created By', 'admin.first_name')
-                ->sortable()
-                ->searchable(),
-            Column::make('English Name', 'name_en')
-                ->sortable()
-                ->searchable(),
-            Column::make('Main Category', 'productMainCat.name_en')
-                ->sortable()
-                ->searchable(),
-            Column::make('Sub Category', 'productSubCat.name_en')
-                ->sortable()
-                ->searchable(),
-            Column::make('Sub Subcategory', 'productSubSubCat.name_en')
-                ->sortable()
-                ->searchable(),
-            Column::make('Vendor', 'productVendor.name_en')
-                ->sortable()
-                ->searchable(),
-            ButtonGroupColumn::make('Actions')
-                ->unclickable()
-                ->attributes(function ($row) {
-                    return [
-                        'class' => 'space-x-2',
-                    ];
-                })
-                ->buttons([
-                    LinkColumn::make('My Link 1')
-                        ->title(fn ($row) => 'Link 1')
-                        ->location(fn ($row) => 'https://' . $row->id . 'google1.com')
-                        ->attributes(function ($row) {
-                            return [
-                                'target' => '_blank',
-                                'class' => 'underline text-blue-500',
-                            ];
-                        }),
-                    LinkColumn::make('My Link 2')
-                        ->title(fn ($row) => 'Link 2')
-                        ->location(fn ($row) => 'https://' . $row->id . 'google2.com')
-                        ->attributes(function ($row) {
-                            return [
-                                'class' => 'underline text-blue-500',
-                            ];
-                        }),
-                    LinkColumn::make('My Link 3')
-                        ->title(fn ($row) => 'Link 3')
-                        ->location(fn ($row) => 'https://' . $row->id . 'google3.com')
-                        ->attributes(function ($row) {
-                            return [
-                                'class' => 'underline text-blue-500',
-                            ];
-                        })
-                ]),
-        ];
+        $this->resetPage();
+    }
+
+    //bulk delete: this is will be bind with delete button (wire:click.prevent='deleteSelected'), it will grab all ids from selectedSubCats array and will deleted, then return empty array as it was, then make sure that selectAll false
+    public function deleteSelected()
+    {
+        Product::query()->whereIn('id', $this->selectedCheckboxes)->delete();
+        $this->selectedCheckboxes = [];
+        $this->selectAll = false;
+
+        $this->dispatchBrowserEvent('alert', [
+            'type'      => 'success',
+            'message'   => 'Products Deleted Successfully'
+        ]);
+    }
+
+    //catch select all property from checkbox input: this will be model bind ( wire:model='selectAll') for checkbox input type, so if user checked 'select All' all checkboxes will be selected accordingly
+    public function updatedSelectAll($val)
+    {
+        if ($val) {
+            $this->selectedCheckboxes = Product::pluck('id');
+        } else {
+            $this->selectedCheckboxes = [];
+        }
+    }
+
+    public function render()
+    {
+        $this->bulkDisabled = count($this->selectedCheckboxes) < 1;
+
+        $products = Product::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+
+
+        return view('livewire.admin.product.read', [
+
+            'products' => $products,
+        ]);
     }
 }

@@ -4,6 +4,7 @@ $currentRoute = url()->current();
 
 //routes
 $addProduct = route('product.add');
+$productControls = route('product.ctrl');
 $manageProduct = route('product.manage');
 @endphp
 <div class="sticky">
@@ -85,10 +86,15 @@ $manageProduct = route('product.manage');
                                 class=" @if ($currentRoute == $manageProduct) active @endif slide-item text-capitalize">manage
                                 products</a>
                         </li>
+                        <li><a href=" {{$productControls}} "
+                                class="@if ($currentRoute == $productControls) active @endif slide-item text-capitalize">product
+                                Settings</a>
+                        </li>
                         <li><a href=" {{$addProduct}} "
                                 class="@if ($currentRoute == $addProduct) active @endif slide-item text-capitalize">add
                                 new product</a>
                         </li>
+
                         {{-- ////TODO add product tag --}}
                         <li><a href="  " class=" slide-item text-capitalize">manage product tags</a>
                         </li>

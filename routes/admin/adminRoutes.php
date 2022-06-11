@@ -102,5 +102,8 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
 
         //Add new product
         Route::get('add/new-product', $product . Create::class)->name('add');
+
+        //product controls
+        Route::get('controls', $product . Controls::class)->name('ctrl');
     });
 });

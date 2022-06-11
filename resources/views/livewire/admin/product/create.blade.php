@@ -151,8 +151,8 @@
                 <div class="col-md-12">
                     <div>
                         <label class="custom-control custom-checkbox  col">
-                            <input wire:model.defer='hot_deals' id="hot_deals" value="<script>alert('test')</script>"
-                                type="checkbox" class="check-one custom-control-input check-one check-one2">
+                            <input wire:model.defer='hot_deals' id="hot_deals" value="1" type="checkbox"
+                                class="check-one custom-control-input check-one check-one2">
                             <span class="custom-control-label">
                                 Hot Deals
                             </span>

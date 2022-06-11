@@ -36,7 +36,20 @@ class Product extends Model implements HasMedia
     {
         return $query
             ->where('name_en', 'like', '%' . $val . '%')
-            ->OrWhere('name_ar', 'like', '%' . $val . '%');
+            ->OrWhere('name_ar', 'like', '%' . $val . '%')
+            ->OrWhere('sku', 'like', '%' . $val . '%')
+            ->OrWhereHas('productMainCat', function ($query) use ($val) {
+                $query->where('name_en', 'like', '%' . $val . '%')
+                    ->where('name_ar', 'like', '%' . $val . '%');
+            })
+            ->OrWhereHas('productSubCat', function ($query) use ($val) {
+                $query->where('name_en', 'like', '%' . $val . '%')
+                    ->where('name_ar', 'like', '%' . $val . '%');
+            })
+            ->OrWhereHas('productSubSubCat', function ($query) use ($val) {
+                $query->where('name_en', 'like', '%' . $val . '%')
+                    ->where('name_ar', 'like', '%' . $val . '%');
+            });
     }
 
 
@@ -48,12 +61,20 @@ class Product extends Model implements HasMedia
         $this
             ->addMediaCollection('mainImage')
             ->singleFile();
+
+        $this
+            ->addMediaCollection('multiImages')
+            ->onlyKeepLatest(6);
     }
 
     //Model RelationShips
     public function admin()
     {
         return $this->belongsTo(Admin::class, 'createdBy_adminID');
+    }
+    public function updatedByAdmin()
+    {
+        return $this->belongsTo(Admin::class, 'updatedBy_adminID');
     }
     public function productVendor()
     {
@@ -71,6 +92,22 @@ class Product extends Model implements HasMedia
     public function productSubSubCat()
     {
         return $this->belongsTo(SubSubcategory::class, 'subSubCategory_id');
+    }
+    public function productDescriptions()
+    {
+        return $this->hasOne(ProductDescription::class, 'product_id');
+    }
+    public function productAdditionalInfo()
+    {
+        return $this->hasOne(ProductAdditionalInfo::class, 'product_id');
+    }
+    public function productDiscount()
+    {
+        return $this->hasOne(ProductDiscount::class, 'product_id');
+    }
+    public function productTags()
+    {
+        return $this->hasMany(ProductTag::class, 'product_id');
     }
 
     //has many through to access sub-subcategory

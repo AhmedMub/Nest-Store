@@ -5,14 +5,7 @@
 {{-- ROW-1 OPEN --}}
 <div>
     @if ($count > 0)
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Product List</h3>
-        </div>
-        <div class="card-body">
-            <livewire:admin.product.read />
-        </div>
-    </div>
+    <livewire:admin.product.read />
     @else
     <div class="card">
         <div class="card-body text-center">
@@ -35,11 +28,6 @@
 {{-- ROW-1 CLOSED --}}
 @endsection
 @push('child-styles')
-<style>
-    [x-cloak] {
-        display: none !important;
-    }
-</style>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 @endpush
 @push('child-scripts')
@@ -50,11 +38,5 @@
         field: document.getElementById('start_date'),
         format: 'D MMM YYYY',
         });
-</script>
-<script>
-    //center element th product table list
-    // $(function() {
-    //     $('thead tr th div').addClass('justify-content-center')
-    // })
 </script>
 @endpush
