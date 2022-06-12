@@ -6,6 +6,7 @@ $currentRoute = url()->current();
 $addProduct = route('product.add');
 $productControls = route('product.ctrl');
 $manageProduct = route('product.manage');
+$manageTags = route('product.tags');
 @endphp
 <div class="sticky">
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
@@ -94,9 +95,9 @@ $manageProduct = route('product.manage');
                                 class="@if ($currentRoute == $addProduct) active @endif slide-item text-capitalize">add
                                 new product</a>
                         </li>
-
-                        {{-- ////TODO add product tag --}}
-                        <li><a href="  " class=" slide-item text-capitalize">manage product tags</a>
+                        <li><a href=" {{$manageTags}} "
+                                class="@if ($currentRoute == $manageTags) active @endif slide-item text-capitalize">manage
+                                product tags</a>
                         </li>
                     </ul>
                 </li>

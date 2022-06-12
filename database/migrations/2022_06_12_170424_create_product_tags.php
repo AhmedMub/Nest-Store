@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductTagsTable extends Migration
+class CreateProductTags extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,9 @@ class CreateProductTagsTable extends Migration
     {
         Schema::create('product_tags', function (Blueprint $table) {
             $table->id();
+            $table->integer('status')->default(1);
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->string('tags_en')->nullable();
-            $table->string('tags_ar')->nullable();
+            $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade');
             $table->timestamps();
         });
     }

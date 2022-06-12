@@ -11,7 +11,6 @@ use App\Http\Controllers\Admin\SubSubcategoryController;
 use App\Http\Controllers\Admin\Testing;
 use App\Http\Controllers\Admin\VendorController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -105,5 +104,8 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
 
         //product controls
         Route::get('controls', $product . Controls::class)->name('ctrl');
+
+        //product tags
+        Route::get('manageTags', [ProductController::class, 'productTags'])->name('tags');
     });
 });
