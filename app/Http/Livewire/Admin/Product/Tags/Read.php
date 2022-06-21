@@ -2,17 +2,17 @@
 
 namespace App\Http\Livewire\Admin\Product\Tags;
 
-use App\Models\Tag;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Spatie\Tags\Tag;
 
 class Read extends Component
 {
     use WithPagination;
     //Sorting
-    public $sortBy = 'name_en';
+    public $sortBy = 'name';
     public $sortDirection = 'desc';
-    public $field = 'name_en';
+    public $field = 'name';
     public $perPage = 5;
     public $search = '';
 

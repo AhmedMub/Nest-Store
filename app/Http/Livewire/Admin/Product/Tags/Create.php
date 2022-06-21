@@ -27,26 +27,26 @@ class Create extends Component
     //Create Category
     public function create()
     {
-        $validated = $this->validate();
+        // $validated = $this->validate();
 
-        $product = Product::findOrFail($this->product_id);
+        // $product = Product::findOrFail($this->product_id);
 
-        $tag = Tag::create($validated);
+        // $tag = Tag::create($validated);
 
-        $product->productTags()->save($tag);
+        // $product->productTags()->save($tag);
 
-        //if no tags should be reloaded once
-        $count = Tag::count();
-        if ($count <= 1) {
+        // //if no tags should be reloaded once
+        // $count = Tag::count();
+        // if ($count <= 1) {
 
-            redirect()->route('product.tags');
-        }
-        $this->reset();
-        $this->emit('newTagCreated');
-        $this->dispatchBrowserEvent('alert', [
-            'type'      => 'success',
-            'message'   => 'New Tag Created Successfully'
-        ]);
+        //     redirect()->route('product.tags');
+        // }
+        // $this->reset();
+        // $this->emit('newTagCreated');
+        // $this->dispatchBrowserEvent('alert', [
+        //     'type'      => 'success',
+        //     'message'   => 'New Tag Created Successfully'
+        // ]);
     }
 
     public function render()

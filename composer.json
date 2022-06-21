@@ -19,7 +19,8 @@
         "laravelcollective/html": "^6.2",
         "livewire/livewire": "^2.5",
         "rappasoft/laravel-livewire-tables": "^2.7",
-        "spatie/laravel-medialibrary": "^9.0.0"
+        "spatie/laravel-medialibrary": "^9.0.0",
+        "spatie/laravel-tags": "^4.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

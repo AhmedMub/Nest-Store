@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\Product\Tags;
 
-use App\Models\Tag;
 use Livewire\Component;
+use Spatie\Tags\Tag;
 
 class Status extends Component
 {

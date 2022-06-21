@@ -36,8 +36,8 @@
                         <th class="wd-15p border-bottom-0 text-capitalize">
                             <input wire:model='selectAll' type="checkbox"> select all
                         </th>
-                        <th wire:click="sortBy('name_en')"
-                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">english name
+                        <th wire:click="sortBy('name')" class="cursor-pointer wd-15p border-bottom-0 text-capitalize">
+                            tag name
                             {{-- change Icone --}}
                             @if ($sortBy !== $field)
                             <i class="bi bi-arrow-down"></i>
@@ -46,18 +46,6 @@
                             @else
                             <i class="bi bi-arrow-down"></i>
                             @endif
-                        </th>
-                        <th wire:click="sortBy('name_ar')"
-                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">arabic name
-                            {{-- change Icone --}}
-                            @if ($sortBy !== $field)
-                            <i class="bi bi-arrow-down"></i>
-                            @elseif($sortDirection == 'asc')
-                            <i class="bi bi-arrow-up"></i>
-                            @else
-                            <i class="bi bi-arrow-down"></i>
-                            @endif
-
                         </th>
                         <th class="wd-15p border-bottom-0 text-capitalize">status</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
@@ -67,8 +55,7 @@
                     @foreach ($tags as $tag)
                     <tr class="text-center">
                         <td><input wire:model='selectedCheckboxes' value="{{$tag->id}}" type="checkbox"></td>
-                        <td> {{$tag->name_en}} </td>
-                        <td> {{$tag->name_ar}} </td>
+                        <td> {{$tag->name}} </td>
                         <td>
                             <livewire:admin.product.tags.status :tag="$tag" :name="'status'" :key="'status'.$tag->id" />
                         </td>
@@ -103,7 +90,7 @@
             </div>
         </div>
     </div>
-
+    {{--
     <div wire:ignore.self class="modal fade" id="modaldemo5">
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content tx-size-sm">
@@ -135,6 +122,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 </div>

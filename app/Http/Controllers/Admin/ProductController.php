@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\ProductTag;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Spatie\Tags\Tag;
 
 class ProductController extends Controller
 {
@@ -18,7 +19,7 @@ class ProductController extends Controller
 
     public function productTags()
     {
-        $count = ProductTag::count();
+        $count = Tag::count();
         return view('admin.pages.product-tags', compact('count'));
     }
 }

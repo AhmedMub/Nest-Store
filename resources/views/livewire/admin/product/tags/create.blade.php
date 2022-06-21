@@ -1,4 +1,4 @@
-<div class="card">
+{{-- <div class="card">
     <form method="POST" wire:submit.prevent='create'>
         @csrf
         <div class="card-header">
@@ -36,4 +36,4 @@
             </div>
         </div>
     </form>
-</div>
+</div> --}}
