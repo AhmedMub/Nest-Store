@@ -61,15 +61,15 @@
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
-                                <a wire:click="$emit('editSubcategory',{{$tag->id}})"
+                                <a wire:click="$emit('editTag',{{$tag->id}})"
                                     class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
-                                    data-bs-original-title="Edit" href="#modaldemo8">
+                                    data-bs-original-title="Edit" href="#smallmodal">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
-                                <a wire:click="$emit('deleteSubCat',{{$tag->id}})"
+                                <a wire:click="$emit('deleteTag',{{$tag->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
-                                    data-bs-target="#modaldemo6" data-bs-toggle="modal"
+                                    data-bs-target="#smallmodalDelete" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
                             </div>
                         </td>
@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
-    {{--
+
     <div wire:ignore.self class="modal fade" id="modaldemo5">
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content tx-size-sm">
@@ -109,10 +109,10 @@
                         <span class="alert-inner--text text-uppercase"><strong>be careful!</strong>
                             @if ($selectAll)
                             this action will
-                            delete all subcategory with releted records
+                            delete all Tags.
                             @else
                             this action will
-                            delete Selected subcategory with releted records
+                            delete Selected Tag.
                             @endif
                         </span>
                     </div>
@@ -122,6 +122,6 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
 </div>

@@ -22,9 +22,16 @@ class Edit extends Component
     protected $listeners = ['editCategory' => 'edit'];
 
     //TODO must put security regex validation && must edit error messages because like on required message it reveals field name used in database
-    protected $rules = [
-        'name_en' => ['required'],
-        'name_ar' => ['required']
+    protected function rules()
+    {
+        return [
+            'name_en' => ['required', "string", "unique:categories,name_en,$this->catId"],
+            'name_ar' => ['required', "string", "unique:categories,name_ar,$this->catId"]
+        ];
+    }
+    protected $messages = [
+        'name_en.required' => "The English Name field is required",
+        'name_ar.required' => "The Arabic Name field is required"
     ];
 
     public function edit($id)

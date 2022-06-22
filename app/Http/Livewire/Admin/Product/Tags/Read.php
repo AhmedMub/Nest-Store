@@ -29,7 +29,8 @@ class Read extends Component
 
     protected $listeners = [
         'newTagCreated' => '$refresh',
-        // 'productDeleted' => '$refresh'
+        'tagUpdated' => '$refresh',
+        'tagDeleted' => '$refresh'
     ];
 
     public function sortBy($field)
@@ -59,7 +60,7 @@ class Read extends Component
 
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',
-            'message'   => 'Products Deleted Successfully'
+            'message'   => 'Tags Deleted Successfully'
         ]);
     }
 
@@ -78,10 +79,7 @@ class Read extends Component
         $this->bulkDisabled = count($this->selectedCheckboxes) < 1;
 
         $tags = Tag::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
-
-
         return view('livewire.admin.product.tags.read', [
-
             'tags' => $tags,
         ]);
     }
