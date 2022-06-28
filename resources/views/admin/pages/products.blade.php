@@ -12,7 +12,11 @@
             <img class="fixWidth" src="{{asset('backend/default-images/default_icons/categories.png')}}" alt="">
             <h6 class="mt-4 mb-2 text-capitalize">products added</h6>
             <h2 class="h2 mb-2 number-font">0</h2>
-            <a href=" {{route('product.add')}} " class="text-muted text-capitalize">add new product</a>
+            <a href=" {{route('product.add')}} " id="table2-new-row-button"
+                class="btn btn-primary mb-4 text-capitalize">
+                Add
+                New product</a>
+
         </div>
     </div>
     @endif

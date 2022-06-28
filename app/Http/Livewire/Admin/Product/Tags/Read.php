@@ -78,7 +78,7 @@ class Read extends Component
     {
         $this->bulkDisabled = count($this->selectedCheckboxes) < 1;
 
-        $tags = Tag::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+        $tags = Tag::search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
         return view('livewire.admin.product.tags.read', [
             'tags' => $tags,
         ]);
