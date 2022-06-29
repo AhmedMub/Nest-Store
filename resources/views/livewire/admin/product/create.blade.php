@@ -94,13 +94,12 @@
                             <div class="card-body">
                                 <div class="panel-group1" id="accordion1">
                                     <div class="mb-2">
-                                        //added tags should be here
                                         @if (!empty($addedTags))
                                         @foreach ($addedTags as $tag)
                                         <span class="tag tag-purple">
                                             {{$tag->name}}
-                                            <a href="javascript:void(0)" class="tag-addon fix-tag-hover"><i
-                                                    class="fe fe-x"></i></a>
+                                            <a href="javascript:void(0)" wire:click="removeFromCol({{$tag->id}})"
+                                                class="tag-addon fix-tag-hover"><i class="fe fe-x"></i></a>
                                         </span>
                                         @endforeach
                                         @endif
@@ -114,7 +113,7 @@
                                         <div class="list-group">
                                             @if (!empty($getTags))
                                             @foreach ($getTags as $tag)
-                                            <a href="javascript:void(0)" wire:click="addTag({{$tag->id}})"
+                                            <a href="javascript:void(0)" wire:click="addTagToCol({{$tag->id}})"
                                                 class="list-group-item list-group-item-action flex-column align-items-start">
                                                 <h5 class="mb-1">{{$tag->name}}</h5>
                                             </a>

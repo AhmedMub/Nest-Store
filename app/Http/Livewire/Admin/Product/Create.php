@@ -215,12 +215,35 @@ class Create extends Component
     }
 
     //add tag to attache
-    public function addTag($id)
+    public function addTagToCol($id)
     {
         $foundedTag = Tag::findOrFail($id);
 
         //to prevent user from adding duplicate tags in the collection
         (!$this->addedTags->contains('name', $foundedTag->name)) ? $this->addedTags->push($foundedTag) : "";
+    }
+    //remove tag from collection
+    public function removeFromCol($id)
+    {
+        $foundedTag = Tag::findOrFail($id);
+        // $this->addedTags->filter(function ($value, $key) use ($id) {
+        //     return $value['id'] != $id;
+        // });
+        // dd($this->addedTags);
+        // $this->addedTags->forget(6);
+        // dd($this->addedTags);
+        /*
+            ///FIXME  when you dealing with colleciton you can not push an object of collection becuase you will not be able to remove it , so you need to specify the name and id and push that to a collection so you should have collection like below, as such collection you can add or remove anything from it
+        $collection = collect([
+
+            ['id'=>1, 'name'=>'Hardik'],
+
+            ['id'=>2, 'name'=>'Harsukh'],
+
+            ['id'=>3, 'name'=>'Bhagat'],
+
+        ]);
+        */
     }
 
     public function render()
