@@ -61,6 +61,13 @@
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
+                                <a wire:click="$emit('showPr',{{$tag->id}})"
+                                    class="modal-effect btn text-primary bg-primary-transparent btn-icon py-1 me-2"
+                                    data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
+                                    data-bs-original-title="Edit" href="#modaldemo8">
+                                    <span class="bi bi-eye-fill fs-16"></span>
+                                </a>
+
                                 <a wire:click="$emit('editTag',{{$tag->id}})"
                                     class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"

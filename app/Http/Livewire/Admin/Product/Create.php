@@ -157,6 +157,9 @@ class Create extends Component
         //add product additional Info
         $this->additionalInfo($product_id->id);
 
+        //add product tags
+        $this->addProductTags($product_id->id);
+
         $this->reset();
 
         //to reset main img field
@@ -214,7 +217,7 @@ class Create extends Component
         $this->getTags = Tag::search($this->queryTag)->get();
     }
 
-    //add tag to attache
+    //add tags to the collection
     public function addTagToCol($id)
     {
         $foundedTag = Tag::findOrFail($id);
@@ -226,24 +229,22 @@ class Create extends Component
     public function removeFromCol($id)
     {
         $foundedTag = Tag::findOrFail($id);
-        // $this->addedTags->filter(function ($value, $key) use ($id) {
-        //     return $value['id'] != $id;
-        // });
-        // dd($this->addedTags);
-        // $this->addedTags->forget(6);
-        // dd($this->addedTags);
-        /*
-            ///FIXME  when you dealing with colleciton you can not push an object of collection becuase you will not be able to remove it , so you need to specify the name and id and push that to a collection so you should have collection like below, as such collection you can add or remove anything from it
-        $collection = collect([
 
-            ['id'=>1, 'name'=>'Hardik'],
+        //find the collection key that will be removed from the collection
+        $key = $this->addedTags->search($foundedTag);
 
-            ['id'=>2, 'name'=>'Harsukh'],
+        //remove from the collection the correspondence item
+        $this->addedTags->forget($key);
+    }
 
-            ['id'=>3, 'name'=>'Bhagat'],
-
-        ]);
-        */
+    public function addProductTags($id)
+    {
+        $product = Product::findOrFail($id);
+        $selectedTags = [];
+        foreach ($this->addedTags as $tag) {
+            $selectedTags[] = $tag->name;
+        }
+        $product->syncTags($selectedTags);
     }
 
     public function render()
