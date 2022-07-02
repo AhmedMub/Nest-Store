@@ -12,7 +12,7 @@
                 <div class="card text-info bg-info-transparent">
                     <div class="card-body">
                         <h4 class="card-title">Tag Name "{{$selectedTagName}}" </h4>
-                        <p class="card-text">There are not records found for selected tag</p>
+                        <p class="card-text">There are no records found for selected tag</p>
                     </div>
                 </div>
                 @else
