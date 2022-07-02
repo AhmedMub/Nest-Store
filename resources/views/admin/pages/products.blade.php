@@ -21,13 +21,13 @@
     </div>
     @endif
 
-    {{-- Start Edit Category --}}
     <livewire:admin.product.edit>
-        {{-- End Edit Category --}}
 
-        {{-- Start Delete Category --}}
-        <livewire:admin.product.delete>
-            {{-- End Delete Category --}}
+        {{-- Start edit attached tags --}}
+        <livewire:admin.product.edit-product-tags>
+
+
+            <livewire:admin.product.delete>
 </div>
 {{-- ROW-1 CLOSED --}}
 @endsection

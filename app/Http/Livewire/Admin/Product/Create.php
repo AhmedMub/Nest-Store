@@ -100,10 +100,6 @@ class Create extends Component
         'multiImgs.required' => 'Product images are required',
     ];
 
-    protected $listeners = [
-        'testingTag' => '$refresh',
-    ];
-
     public function mount()
     {
         $this->addedTags = new Collection();

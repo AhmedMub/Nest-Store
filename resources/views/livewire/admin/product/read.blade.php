@@ -101,6 +101,12 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                                     data-bs-original-title="Edit" href="#extralargemodal">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
+                                <a wire:click="$emit('editProductTags',{{$product->id}})"
+                                    class="modal-effect btn text-primary bg-primary-transparent btn-icon py-1 me-2"
+                                    data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
+                                    data-bs-original-title="Edit" href="#modaldemo88">
+                                    <span class="bi bi-eye-fill fs-16"></span>
+                                </a>
                                 <a wire:click="$emit('deleteProduct',{{$product->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
                                     data-bs-target="#modaldemo50" data-bs-toggle="modal"
