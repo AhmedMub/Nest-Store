@@ -44,6 +44,11 @@ class Category extends Model
     {
         return $this->HasMany(SubCategory::class);
     }
+    public function productMainCat()
+    {
+        return $this->HasMany(Product::class, 'category_id');
+    }
+
 
     //has many through to access sub-subcategory
     public function subSubcategoryThroCategory()

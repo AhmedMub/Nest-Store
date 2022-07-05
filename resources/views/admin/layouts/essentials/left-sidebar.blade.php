@@ -1,6 +1,12 @@
 @php
 //to get current route to add active class for navigation left side
 $currentRoute = url()->current();
+
+//routes
+$addProduct = route('product.add');
+$productControls = route('product.ctrl');
+$manageProduct = route('product.manage');
+$manageTags = route('product.tags');
 @endphp
 <div class="sticky">
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
@@ -67,6 +73,31 @@ $currentRoute = url()->current();
                         </li>
                         <li><a href=" {{route('sub.subcategory')}} "
                                 class="slide-item text-capitalize">sub-subcategories</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide is-expanded">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                        <i class="side-menu__icon fe fe-slack"></i>
+                        <span class="side-menu__label">Product</span>
+                        <i class="angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li><a href=" {{$manageProduct}} "
+                                class=" @if ($currentRoute == $manageProduct) active @endif slide-item text-capitalize">manage
+                                products</a>
+                        </li>
+                        <li><a href=" {{$productControls}} "
+                                class="@if ($currentRoute == $productControls) active @endif slide-item text-capitalize">product
+                                Settings</a>
+                        </li>
+                        <li><a href=" {{$addProduct}} "
+                                class="@if ($currentRoute == $addProduct) active @endif slide-item text-capitalize">add
+                                new product</a>
+                        </li>
+                        <li><a href=" {{$manageTags}} "
+                                class="@if ($currentRoute == $manageTags) active @endif slide-item text-capitalize">manage
+                                product tags</a>
                         </li>
                     </ul>
                 </li>

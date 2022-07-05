@@ -3,7 +3,7 @@
 [Master Stylesheet]
 
 Project        :   sash – Bootstrap 5  Admin & Dashboard Template
-Copyright      :   Spruko Technologies Private Limited 
+Copyright      :   Spruko Technologies Private Limited
 Author         :   SprukoSoft
 Author URL     :   https://themeforest.net/user/sprukosoft
 Support	       :   support@spruko.com
@@ -37610,14 +37610,7 @@ License: MIT
     filter: drop-shadow(-2px -2px 2px #888);
 }
 
-@font-face {
-    font-family: summernote;
-    font-style: normal;
-    font-weight: 400;
-    font-display: auto;
-    src: url(../plugins/summernote/font/summernote.eot);
-    src: url(../plugins/summernote/font/summernote.eot?#iefix) format("embedded-opentype"), url(../plugins/summernote/font/summernote.woff2) format("woff2"), url(../plugins/summernote/font/summernote.woff) format("woff"), url(../plugins/summernote/font/summernote.ttf) format("truetype");
-}
+
 
 [class*=" note-icon"]:before,
 [class^=note-icon]:before {
@@ -56621,11 +56614,7 @@ svg {
     content: "\ea06";
 }
 
-@font-face {
-    font-family: "Glyphicons Halflings";
-    src: url("../fonts/glyphicons-halflings-regular.eot");
-    src: url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
-}
+
 
 .glyphicon {
     position: relative;

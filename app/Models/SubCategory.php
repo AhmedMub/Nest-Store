@@ -43,6 +43,11 @@ class SubCategory extends Model
     {
         return $this->hasMany(SubSubcategory::class, 'subcategory_id');
     }
+    public function productSubCat()
+    {
+        return $this->HasMany(Product::class, 'subCategory_id');
+    }
+
 
     public function scopeSearch($query, $val)
     {

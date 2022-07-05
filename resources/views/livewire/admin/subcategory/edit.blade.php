@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0" for="mainCat">change main category</label>
                         <select id="changeMainCat" autocomplete="off" class="form-select" wire:model.defer="category_id"
-                            name="category_id" id="mainCat">
+                            name="category_id">
                             @foreach ($categories as $category)
                             <option value="{{$category->id}}">{{$category->name_en}}</option>
                             @endforeach

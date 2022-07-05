@@ -35,7 +35,8 @@ class Vendor extends Model
             ->where('name_en', 'like', '%' . $val . '%')
             ->OrWhere('name_ar', 'like', '%' . $val . '%')
             ->OrWhere('description_en', 'like', '%' . $val . '%')
-            ->OrWhere('description_ar', 'like', '%' . $val . '%');
+            ->OrWhere('description_ar', 'like', '%' . $val . '%')
+            ->OrWhere('phone', 'like', '%' . $val . '%');
     }
 
     public function setStartDateAttribute($value)
@@ -46,5 +47,9 @@ class Vendor extends Model
     public static function since($date)
     {
         return Carbon::parse($date)->isoFormat('YYYY');
+    }
+    public function productVendor()
+    {
+        return $this->hasMany(Product::class, 'vendor_id');
     }
 }

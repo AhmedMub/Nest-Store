@@ -87,7 +87,7 @@
                             </div>
                             <input wire:model.lazy='start_date' id="start_date"
                                 class="form-control {{$errors->has('start_date')?'is-invalid':''}}"
-                                placeholder="DD/MM/YYYY">
+                                placeholder="YYYY/MM/DD">
                         </div>
                         <x-defaults.input-error for="start_date" />
                     </div>
@@ -138,3 +138,13 @@
         </div>
     </form>
 </div>
+@push('child-styles')
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+@endpush
+@push('child-scripts')
+<script>
+    flatpickr('#start_date', {});
+</script>
+@endpush

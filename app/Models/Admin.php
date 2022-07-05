@@ -76,4 +76,13 @@ class Admin extends Authenticatable
     {
         $this->notify(new ResetPassword($token));
     }
+
+    /**
+     * Admin Model Relationships
+     *
+     */
+    public function admin()
+    {
+        return $this->hasMany(Product::class, 'createdBy_adminID');
+    }
 }

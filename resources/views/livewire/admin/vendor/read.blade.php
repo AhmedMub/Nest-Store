@@ -45,7 +45,7 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         <th wire:click="sortBy('name_en')"
                             class="cursor-pointer wd-15p border-bottom-0 text-capitalize">english name
                             {{-- change Icone --}}
-                            {{-- //FIXME not working well--}}
+                            {{-- /-//FIXME not working well--}}
                             @if ($sortBy !== $field)
                             <i class="bi bi-arrow-down"></i>
                             @elseif($sortDirection == 'asc')

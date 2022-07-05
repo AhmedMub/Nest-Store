@@ -4338,6 +4338,7 @@
         },
         {
             "name": "spatie/laravel-package-tools",
+<<<<<<< HEAD
             "version": "1.12.1",
             "source": {
                 "type": "git",
@@ -4348,6 +4349,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/09f80fa240d44fafb1c70657c74ee44ffa929357",
                 "reference": "09f80fa240d44fafb1c70657c74ee44ffa929357",
+=======
+            "version": "1.11.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "baeb3df0ebb3a541394fdaf8cbe6115bf4034a59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/baeb3df0ebb3a541394fdaf8cbe6115bf4034a59",
+                "reference": "baeb3df0ebb3a541394fdaf8cbe6115bf4034a59",
+>>>>>>> admin-product
                 "shasum": ""
             },
             "require": {
@@ -4385,7 +4398,11 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-package-tools/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/spatie/laravel-package-tools/tree/1.12.1"
+=======
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.11.3"
+>>>>>>> admin-product
             },
             "funding": [
                 {
@@ -4393,7 +4410,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2022-06-28T14:29:26+00:00"
+=======
+            "time": "2022-03-15T20:01:36+00:00"
+>>>>>>> admin-product
         },
         {
             "name": "spatie/temporary-directory",
