@@ -2,17 +2,17 @@
 
 namespace App\Http\Livewire\Admin\Product\Tags;
 
-use App\Models\Tag;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Spatie\Tags\Tag;
 
 class Read extends Component
 {
     use WithPagination;
     //Sorting
-    public $sortBy = 'name_en';
+    public $sortBy = 'name';
     public $sortDirection = 'desc';
-    public $field = 'name_en';
+    public $field = 'name';
     public $perPage = 5;
     public $search = '';
 
@@ -29,7 +29,8 @@ class Read extends Component
 
     protected $listeners = [
         'newTagCreated' => '$refresh',
-        // 'productDeleted' => '$refresh'
+        'tagUpdated' => '$refresh',
+        'tagDeleted' => '$refresh'
     ];
 
     public function sortBy($field)
@@ -59,7 +60,7 @@ class Read extends Component
 
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',
-            'message'   => 'Products Deleted Successfully'
+            'message'   => 'Tags Deleted Successfully'
         ]);
     }
 
@@ -77,11 +78,8 @@ class Read extends Component
     {
         $this->bulkDisabled = count($this->selectedCheckboxes) < 1;
 
-        $tags = Tag::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
-
-
+        $tags = Tag::search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
         return view('livewire.admin.product.tags.read', [
-
             'tags' => $tags,
         ]);
     }

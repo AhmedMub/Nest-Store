@@ -12,18 +12,22 @@
             <img class="fixWidth" src="{{asset('backend/default-images/default_icons/categories.png')}}" alt="">
             <h6 class="mt-4 mb-2 text-capitalize">products added</h6>
             <h2 class="h2 mb-2 number-font">0</h2>
-            <a href=" {{route('product.add')}} " class="text-muted text-capitalize">add new product</a>
+            <a href=" {{route('product.add')}} " id="table2-new-row-button"
+                class="btn btn-primary mb-4 text-capitalize">
+                Add
+                New product</a>
+
         </div>
     </div>
     @endif
 
-    {{-- Start Edit Category --}}
     <livewire:admin.product.edit>
-        {{-- End Edit Category --}}
 
-        {{-- Start Delete Category --}}
-        <livewire:admin.product.delete>
-            {{-- End Delete Category --}}
+        {{-- Start edit attached tags --}}
+        <livewire:admin.product.edit-product-tags>
+
+
+            <livewire:admin.product.delete>
 </div>
 {{-- ROW-1 CLOSED --}}
 @endsection

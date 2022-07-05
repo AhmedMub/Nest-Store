@@ -9,9 +9,11 @@ use App\Models\ProductDescription;
 use App\Models\SubCategory;
 use App\Models\SubSubcategory;
 use App\Models\Vendor;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Spatie\Tags\Tag;
 
 class Create extends Component
 {
@@ -35,6 +37,14 @@ class Create extends Component
     //define product Images
     public $mainImage;
     public $multiImgs = [];
+
+    //tags
+    //this is will be updated foreach tag search if user choose a tag should be added
+    public $addedTags;
+
+    //NOTE:search function: any given input will immediately stored in $queryTag after 300ms, then search method will start search for the given input using updatedQueryTag() method, and will store database results in $getTags array;
+    public $queryTag = '';
+    public $getTags = [];
 
 
     //TODO must add security regex && must add custom messages because in required it returnes field name which is risky
@@ -90,6 +100,10 @@ class Create extends Component
         'multiImgs.required' => 'Product images are required',
     ];
 
+    public function mount()
+    {
+        $this->addedTags = new Collection();
+    }
 
     //Create Category
     public function create()
@@ -138,6 +152,9 @@ class Create extends Component
 
         //add product additional Info
         $this->additionalInfo($product_id->id);
+
+        //add product tags
+        $this->addProductTags($product_id->id);
 
         $this->reset();
 
@@ -190,18 +207,56 @@ class Create extends Component
         ]);
     }
 
+    //search for Tags;
+    public function updatedQueryTag()
+    {
+        $this->getTags = Tag::search($this->queryTag)->get();
+    }
+
+    //add tags to the collection
+    public function addTagToCol($id)
+    {
+        $foundedTag = Tag::findOrFail($id);
+
+        //to prevent user from adding duplicate tags in the collection
+        (!$this->addedTags->contains('name', $foundedTag->name)) ? $this->addedTags->push($foundedTag) : "";
+    }
+    //remove tag from collection
+    public function removeFromCol($id)
+    {
+        $foundedTag = Tag::findOrFail($id);
+
+        //find the collection key that will be removed from the collection
+        $key = $this->addedTags->search($foundedTag);
+
+        //remove from the collection the correspondence item
+        $this->addedTags->forget($key);
+    }
+
+    public function addProductTags($id)
+    {
+        $product = Product::findOrFail($id);
+        $selectedTags = [];
+        foreach ($this->addedTags as $tag) {
+            $selectedTags[] = $tag->name;
+        }
+        $product->syncTags($selectedTags);
+    }
+
     public function render()
     {
         $mainCats = Category::latest()->get();
         $subCats = SubCategory::latest()->get();
         $subSubCats = SubSubcategory::latest()->get();
         $vendors = Vendor::latest()->get();
+        $tags = Tag::all();
 
         return view('livewire.admin.product.create', compact(
             'mainCats',
             'subCats',
             'subSubCats',
-            'vendors'
+            'vendors',
+            'tags'
         ))
             ->extends('admin.layouts.master')
             ->section('content');

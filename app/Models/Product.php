@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Tags\HasTags;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, Sluggable, HasSku, InteractsWithMedia;
+    use HasFactory, Sluggable, HasSku, InteractsWithMedia, HasTags;
 
     protected $fillable = [
         'createdBy_adminID', 'updatedBy_adminID', 'product_status', 'subCategory_id', 'category_id', 'subSubCategory_id', 'vendor_id', 'slug', 'name_en', 'name_ar', 'sku', 'qty', 'price', 'size', 'hot_deals', 'new_deals', 'type', 'mfg', 'life', 'desc_status', 'discount_status', 'additionalInfo_status', 'vendor_status', 'reviews_status',
@@ -105,10 +106,10 @@ class Product extends Model implements HasMedia
     // {
     //     return $this->hasOne(ProductDiscount::class, 'product_id');
     // }
-    public function productTags()
-    {
-        return $this->belongsToMany(Tag::class, 'product_tags', 'product_id', 'tag_id')->withPivot('status')->withTimestamps();
-    }
+    // public function productTags()
+    // {
+    //     return $this->belongsToMany(Tag::class, 'product_tags', 'product_id', 'tag_id')->withPivot('status')->withTimestamps();
+    // }
 
 
     //has many through to access sub-subcategory

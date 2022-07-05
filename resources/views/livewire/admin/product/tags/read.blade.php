@@ -36,8 +36,8 @@
                         <th class="wd-15p border-bottom-0 text-capitalize">
                             <input wire:model='selectAll' type="checkbox"> select all
                         </th>
-                        <th wire:click="sortBy('name_en')"
-                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">english name
+                        <th wire:click="sortBy('name')" class="cursor-pointer wd-15p border-bottom-0 text-capitalize">
+                            tag name
                             {{-- change Icone --}}
                             @if ($sortBy !== $field)
                             <i class="bi bi-arrow-down"></i>
@@ -46,18 +46,6 @@
                             @else
                             <i class="bi bi-arrow-down"></i>
                             @endif
-                        </th>
-                        <th wire:click="sortBy('name_ar')"
-                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">arabic name
-                            {{-- change Icone --}}
-                            @if ($sortBy !== $field)
-                            <i class="bi bi-arrow-down"></i>
-                            @elseif($sortDirection == 'asc')
-                            <i class="bi bi-arrow-up"></i>
-                            @else
-                            <i class="bi bi-arrow-down"></i>
-                            @endif
-
                         </th>
                         <th class="wd-15p border-bottom-0 text-capitalize">status</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
@@ -67,22 +55,28 @@
                     @foreach ($tags as $tag)
                     <tr class="text-center">
                         <td><input wire:model='selectedCheckboxes' value="{{$tag->id}}" type="checkbox"></td>
-                        <td> {{$tag->name_en}} </td>
-                        <td> {{$tag->name_ar}} </td>
+                        <td> {{$tag->name}} </td>
                         <td>
                             <livewire:admin.product.tags.status :tag="$tag" :name="'status'" :key="'status'.$tag->id" />
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
-                                <a wire:click="$emit('editSubcategory',{{$tag->id}})"
-                                    class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
+                                <a wire:click="$emit('showPr',{{$tag->id}})"
+                                    class="modal-effect btn text-primary bg-primary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
                                     data-bs-original-title="Edit" href="#modaldemo8">
+                                    <span class="bi bi-eye-fill fs-16"></span>
+                                </a>
+
+                                <a wire:click="$emit('editTag',{{$tag->id}})"
+                                    class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
+                                    data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
+                                    data-bs-original-title="Edit" href="#smallmodal">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
-                                <a wire:click="$emit('deleteSubCat',{{$tag->id}})"
+                                <a wire:click="$emit('deleteTag',{{$tag->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
-                                    data-bs-target="#modaldemo6" data-bs-toggle="modal"
+                                    data-bs-target="#smallmodalDelete" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
                             </div>
                         </td>
@@ -122,10 +116,10 @@
                         <span class="alert-inner--text text-uppercase"><strong>be careful!</strong>
                             @if ($selectAll)
                             this action will
-                            delete all subcategory with releted records
+                            delete all Tags.
                             @else
                             this action will
-                            delete Selected subcategory with releted records
+                            delete Selected Tag.
                             @endif
                         </span>
                     </div>
@@ -136,5 +130,4 @@
             </div>
         </div>
     </div>
-
 </div>

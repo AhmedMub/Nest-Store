@@ -83,6 +83,58 @@
                 {{-- Product Additional Info --}}
                 <x-admin.product.create.additional-info />
 
+                {{-- product Tags --}}
+                @if (count($tags) > 0)
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card custom-bg">
+                            <div class="card-header">
+                                <h3 class="card-title">Add Product Tags </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="panel-group1" id="accordion1">
+                                    <div class="mb-2">
+                                        @if (!empty($addedTags))
+                                        @foreach ($addedTags as $tag)
+                                        <span class="tag tag-purple">
+                                            {{$tag->name}}
+                                            <a href="javascript:void(0)" wire:click="removeFromCol({{$tag->id}})"
+                                                class="tag-addon fix-tag-hover"><i class="fe fe-x"></i></a>
+                                        </span>
+                                        @endforeach
+                                        @endif
+                                    </div>
+                                    <input wire:model.debounce.300ms="queryTag" class="form-control w-100"
+                                        placeholder="Search for Below Tags..." type="search">
+
+                                    {{-- get tag serach results --}}
+                                    <div>
+                                        @if (!empty($queryTag))
+                                        <div class="list-group">
+                                            @if (!empty($getTags))
+                                            @foreach ($getTags as $tag)
+                                            <a href="javascript:void(0)" wire:click="addTagToCol({{$tag->id}})"
+                                                class="list-group-item list-group-item-action flex-column align-items-start">
+                                                <h5 class="mb-1">{{$tag->name}}</h5>
+                                            </a>
+                                            @endforeach
+                                            @endif
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <div class="bg-white example mt-2">
+                                        <div class="tags">
+                                            @foreach ($tags as $tag)
+                                            <span class="tag">{{$tag->name}}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0" for="mfg">manufacturing date (MFG) <span
@@ -145,12 +197,9 @@
                         <x-defaults.input-error for="vendor_id" />
                     </div>
                 </div>
-
-
-
-                <div class="col-md-12">
+                <div class="col-12">
                     <div>
-                        <label class="custom-control custom-checkbox  col">
+                        <label class="w-25 fix-lable-click custom-control custom-checkbox  col">
                             <input wire:model.defer='hot_deals' id="hot_deals" value="1" type="checkbox"
                                 class="check-one custom-control-input check-one check-one2">
                             <span class="custom-control-label">
@@ -159,7 +208,7 @@
                         </label>
                     </div>
                     <div>
-                        <label class="custom-control custom-checkbox  col">
+                        <label class="w-25 custom-control custom-checkbox  col">
                             <input wire:model.defer='new_deals' id="new_deals" value="1" type="checkbox"
                                 class="check-one custom-control-input check-one check-one2">
                             <span class="custom-control-label">

@@ -31,9 +31,13 @@
     <livewire:admin.product.tags.edit>
         {{-- End Edit Tags --}}
 
-        {{-- Start Delete Tags --}}
-        <livewire:admin.product.tags.delete>
-            {{-- End Delete Tags --}}
+        {{-- Start releated products--}}
+        <livewire:admin.product.tags.related-products>
+            {{-- End releated products --}}
+
+            {{-- Start Delete Tags --}}
+            <livewire:admin.product.tags.delete>
+                {{-- End Delete Tags --}}
 
 </div>
 {{-- ROW-1 CLOSED --}}
