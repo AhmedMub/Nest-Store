@@ -7,6 +7,7 @@ $addProduct = route('product.add');
 $productControls = route('product.ctrl');
 $manageProduct = route('product.manage');
 $manageTags = route('product.tags');
+$manageDiscount = route('product.discount');
 @endphp
 <div class="sticky">
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
@@ -98,6 +99,10 @@ $manageTags = route('product.tags');
                         <li><a href=" {{$manageTags}} "
                                 class="@if ($currentRoute == $manageTags) active @endif slide-item text-capitalize">manage
                                 product tags</a>
+                        </li>
+                        <li><a href=" {{$manageDiscount}} "
+                                class="@if ($currentRoute == $manageDiscount) active @endif slide-item text-capitalize">manage
+                                products discount</a>
                         </li>
                     </ul>
                 </li>

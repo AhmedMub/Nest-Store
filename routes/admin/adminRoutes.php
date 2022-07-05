@@ -106,6 +106,9 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
         Route::get('controls', $product . Controls::class)->name('ctrl');
 
         //product tags
-        Route::get('manageTags', [ProductController::class, 'productTags'])->name('tags');
+        Route::get('manage-tags', [ProductController::class, 'productTags'])->name('tags');
+
+        //product discounts
+        Route::get('manage-discounts', [ProductController::class, 'productDiscounts'])->name('discount');
     });
 });

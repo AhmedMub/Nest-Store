@@ -102,14 +102,10 @@ class Product extends Model implements HasMedia
     {
         return $this->hasOne(ProductAdditionalInfo::class, 'product_id');
     }
-    // public function productDiscount()
-    // {
-    //     return $this->hasOne(ProductDiscount::class, 'product_id');
-    // }
-    // public function productTags()
-    // {
-    //     return $this->belongsToMany(Tag::class, 'product_tags', 'product_id', 'tag_id')->withPivot('status')->withTimestamps();
-    // }
+    public function productDiscount()
+    {
+        return $this->hasOne(ProductDiscount::class, 'product_id');
+    }
 
 
     //has many through to access sub-subcategory

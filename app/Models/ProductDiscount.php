@@ -17,4 +17,12 @@ class ProductDiscount extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+    //for laravel scout to search in this field only
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+        ];
+    }
 }
