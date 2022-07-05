@@ -15,11 +15,7 @@ return [
          * SKU is based on a specific field of a model
          *
          */
-<<<<<<< HEAD
-        'source' => 'name',
-=======
         'source' => 'name_en',
->>>>>>> admin-product
 
         /*
          * Destination model field name
@@ -49,11 +45,7 @@ return [
          * Shall SKUs be re-generated on update
          *
          */
-<<<<<<< HEAD
-        'generate_on_update' => true,
-=======
         'generate_on_update' => false,
->>>>>>> admin-product
     ],
 
     /*
