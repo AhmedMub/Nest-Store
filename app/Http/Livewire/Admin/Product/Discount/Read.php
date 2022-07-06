@@ -28,9 +28,9 @@ class Read extends Component
     public $bulkDisabled = true;
 
     protected $listeners = [
-        'newTagCreated' => '$refresh',
-        'tagUpdated' => '$refresh',
-        'tagDeleted' => '$refresh'
+        'newDiscountAdded' => '$refresh',
+        'discountDeleted' => '$refresh',
+        'discountUpdated' => '$refresh'
     ];
 
     public function sortBy($field)

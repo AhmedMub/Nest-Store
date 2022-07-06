@@ -26,7 +26,7 @@
                     <div class="col-sm-12 col-md-4 align-self-center">
                         <div class="main-header-center ms-3 d-none d-lg-block">
                             <input wire:model.debounce.300ms='search' class="form-control w-100"
-                                placeholder="Search for Categories..." type="search">
+                                placeholder="Search for Percentage/SKU..." type="search">
                             <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
                         </div>
                     </div>
@@ -47,6 +47,7 @@
                             <i class="bi bi-arrow-down"></i>
                             @endif
                         </th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">discount percentage</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">product name</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">product SKU</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
@@ -57,19 +58,20 @@
                     <tr class="text-center">
                         <td><input wire:model='selectedCheckboxes' value="{{$prDiscount->id}}" type="checkbox"></td>
                         <td> {{$prDiscount->name}} </td>
-                        <td> pr name </td>
-                        <td> pr pr sku </td>
+                        <td> %{{$prDiscount->discount_percent}} </td>
+                        <td>{{$prDiscount->productDiscount->name_en}}</td>
+                        <td> {{$prDiscount->productDiscount->sku}} </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
                                 <a wire:click="$emit('editDiscount',{{$prDiscount->id}})"
                                     class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
-                                    data-bs-original-title="Edit" href="#smallmodal">
+                                    data-bs-original-title="Edit" href="#modaldemoDiscount8">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
                                 <a wire:click="$emit('deleteDiscount',{{$prDiscount->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
-                                    data-bs-target="#smallmodalDelete" data-bs-toggle="modal"
+                                    data-bs-target="#smallmodalDeleteDiscount" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
                             </div>
                         </td>

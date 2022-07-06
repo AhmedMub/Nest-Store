@@ -56,8 +56,6 @@
 
         $('#changeMainCat').on('change', function() {
 
-            var inputVal = $('.selectedMainCat').val();
-
             var selected = $('#changeMainCat option:selected').text();
 
             $('.selectedMainCat').prop('value', selected);
