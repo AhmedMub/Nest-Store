@@ -13,18 +13,22 @@ class Edit extends Component
     public $discount_percent;
     public $product_id;
     public $discountId;
-    public $selectedProductId;
     public $selectedProductName;
+    public $discounted_price;
+    public $price;
 
     protected $listeners = ['editDiscount' => 'edit'];
 
     //TODO must add more validation with more messages and regex validation
-    protected $rules = [
-        'name' => ['required', 'string'],
-        'description' => ['nullable', 'string'],
-        'discount_percent' => ['required', 'integer'],
-        'product_id' => ['required', 'integer'],
-    ];
+    protected function rules()
+    {
+        return [
+            'name' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+            'discount_percent' => ['required', 'integer'],
+            'product_id' => ['required', 'integer'],
+        ];
+    }
 
     protected $messages = [
         'name.required' => 'The Discount Name field is required',
@@ -39,9 +43,9 @@ class Edit extends Component
         $this->name = $discount->name;
         $this->description = $discount->description;
         $this->discount_percent = $discount->discount_percent;
-        $this->product_id = $discount->product_id;
-        $this->selectedProductId = $discount->productDiscount->id;
+        $this->product_id = $discount->productDiscount->id;
         $this->selectedProductName = $discount->productDiscount->name_en;
+        $this->price = $discount->productDiscount->price;
     }
 
     public function update()
@@ -50,6 +54,8 @@ class Edit extends Component
 
         ProductDiscount::whereId($this->discountId)->update($validated);
 
+        $this->calcDiscountedPrice($this->discountId);
+
         $this->emit('discountUpdated');
 
         $this->dispatchBrowserEvent('alert', [
@@ -57,6 +63,17 @@ class Edit extends Component
             'message'   => 'Discount Updated Successfully'
         ]);
     }
+
+    public function calcDiscountedPrice($discountId)
+    {
+        $productPrice = $this->price;
+        $discount = $this->discount_percent / 100;
+        $priceAfterDiscount = number_format((float)round($productPrice - ($productPrice * $discount), 3, PHP_ROUND_HALF_DOWN), 3, '.', ',');
+        ProductDiscount::whereId($discountId)->update([
+            'discounted_price' => $priceAfterDiscount,
+        ]);
+    }
+
     public function render()
     {
         $products = Product::latest()->get();

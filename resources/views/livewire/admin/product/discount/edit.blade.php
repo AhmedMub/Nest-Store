@@ -30,14 +30,14 @@
                             value="{{$selectedProductName}}" readonly />
                     </div>
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="selectedProductId">change product</label>
-                        <select id="selectedProductId" autocomplete="off" class="form-select"
-                            wire:model.defer="selectedProductId" name="selectedProductId">
+                        <label class="text-capitalize form-label mt-0" for="selectProduct">change product</label>
+                        <select id="selectProduct" autocomplete="off" class="form-select" wire:model.defer="product_id"
+                            name="product_id">
                             @foreach ($products as $product)
                             <option value="{{$product->id}}">{{$product->name_en}}</option>
                             @endforeach
                         </select>
-                        <x-defaults.input-error for="selectedProductId" />
+                        <x-defaults.input-error for="product_id" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -53,9 +53,9 @@
 <script>
     $(function() {
 
-        $('#selectedProductId').on('change', function() {
+        $('#selectProduct').on('change', function() {
 
-            var selected = $('#selectedProductId option:selected').text();
+            var selected = $('#selectProduct option:selected').text();
 
             $('.selectedProductName').prop('value', selected);
         });

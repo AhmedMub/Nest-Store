@@ -48,7 +48,8 @@
                             @endif
                         </th>
                         <th class="wd-15p border-bottom-0 text-capitalize">discount percentage</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">product name</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">discounted price</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">product price</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">product SKU</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
                     </tr>
@@ -58,8 +59,9 @@
                     <tr class="text-center">
                         <td><input wire:model='selectedCheckboxes' value="{{$prDiscount->id}}" type="checkbox"></td>
                         <td> {{$prDiscount->name}} </td>
-                        <td> %{{$prDiscount->discount_percent}} </td>
-                        <td>{{$prDiscount->productDiscount->name_en}}</td>
+                        <td> {{$prDiscount->discount_percent}}% </td>
+                        <td> {{$prDiscount->discounted_price}} </td>
+                        <td> {{$prDiscount->productDiscount->price}} </td>
                         <td> {{$prDiscount->productDiscount->sku}} </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">

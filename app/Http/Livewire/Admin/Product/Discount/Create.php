@@ -12,6 +12,7 @@ class Create extends Component
     public $description;
     public $discount_percent;
     public $product_id;
+    public $discounted_price;
 
     //TODO must add more validation with more messages and regex validation
     protected $rules = [
@@ -33,7 +34,9 @@ class Create extends Component
 
         $validate = $this->validate();
 
-        ProductDiscount::create($validate);
+        $newDiscount = ProductDiscount::create($validate);
+
+        $this->calcDiscountedPrice($newDiscount->id);
 
         if ($count < 1) {
 
@@ -47,6 +50,17 @@ class Create extends Component
         $this->dispatchBrowserEvent('alert', [
             'type' => 'success',
             'message' => 'Product Discount Added Successfully',
+        ]);
+    }
+
+    //add discounted price after discount has been set;
+    public function calcDiscountedPrice($discountId)
+    {
+        $productPrice = Product::findOrFail($this->product_id)->price;
+        $discount = $this->discount_percent / 100;
+        $priceAfterDiscount = number_format((float)round($productPrice - ($productPrice * $discount), 3, PHP_ROUND_HALF_DOWN), 3, '.', ',');
+        ProductDiscount::whereId($discountId)->update([
+            'discounted_price' => $priceAfterDiscount,
         ]);
     }
     public function render()

@@ -34,4 +34,14 @@ class ProductDiscount extends Model
             ->toArray();
         return $discount;
     }
+
+    /*
+        ///product price before
+        ///product price after discount
+        ///how much money has been discounted
+        ///NOTE this info should included to one of the tables!
+    */
+    public function priceAfterDiscount()
+    {
+    }
 }

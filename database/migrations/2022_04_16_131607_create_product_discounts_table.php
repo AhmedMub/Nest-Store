@@ -19,6 +19,7 @@ class CreateProductDiscountsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('discount_percent');
+            $table->text('discounted_price')->nullable();
             $table->timestamps();
         });
     }
