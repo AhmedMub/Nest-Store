@@ -59,7 +59,7 @@ class Create extends Component
     {
         $productPrice = Product::findOrFail($this->product_id)->price;
         $discount = $this->discount_percent / 100;
-        $priceAfterDiscount = number_format((float)round($productPrice - ($productPrice * $discount), 3, PHP_ROUND_HALF_DOWN), 3, '.', ',');
+        $priceAfterDiscount = floatval(round($productPrice - ($productPrice * $discount)));
         ProductDiscount::whereId($discountId)->update([
             'discounted_price' => $priceAfterDiscount,
         ]);

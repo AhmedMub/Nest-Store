@@ -107,6 +107,16 @@ class Product extends Model implements HasMedia
         return $this->hasOne(ProductDiscount::class, 'product_id');
     }
 
+    /*
+        -return float value if there is a number like 33.326
+        -outputs would be like:
+        /- 625.38
+        /- 1,211.00
+    */
+    public function getPriceAttribute($val)
+    {
+        return number_format((float)round($val, 2, PHP_ROUND_HALF_DOWN), 2, '.', ',');
+    }
 
     //has many through to access sub-subcategory
     // public function subSubcategoryThroCategory()

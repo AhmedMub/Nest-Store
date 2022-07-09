@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductAdditionalInfo;
 use App\Models\ProductDescription;
+use App\Models\ProductDiscount;
 use App\Models\SubCategory;
 use App\Models\SubSubcategory;
 use App\Models\Vendor;
@@ -52,7 +53,7 @@ class Edit extends Component
             'name_en' => ['required', 'string', "unique:products,name_en,$this->product_id"],
             'name_ar' => ['required', 'string', "unique:products,name_ar,$this->product_id"],
             'qty' => ['required', 'integer'],
-            'price' => ['required', 'integer'],
+            'price' => ['required', 'between:0,99.99'],
             'type' => ['required', 'string'],
             'size' => ['nullable', 'integer'],
             'mfg' => ['required', 'date_format:Y-m-d'],
@@ -142,7 +143,7 @@ class Edit extends Component
     //Update Category
     public function update()
     {
-        // $this->validate();
+        $this->validate();
 
         //for validation
         ($this->new_deals !== 1 ? $this->new_deals = 0 : "");
@@ -188,6 +189,8 @@ class Edit extends Component
         //update product additional Info
         $this->additionalInfo($this->product_id);
 
+        //update product discount if price changed according to discount that is exists
+        $this->updateDiscountedPrice($this->product_id);
 
         $this->emit('productUpdated');
 
@@ -227,6 +230,18 @@ class Edit extends Component
             'color_ar' => $this->color_ar,
             'size_en' => $this->size_en
         ]);
+    }
+
+    public function updateDiscountedPrice($id)
+    {
+        $product = Product::findOrFail($id);
+        if (isset($product->productDiscount->discount_percent)) {
+            $productDiscountId = Product::findOrFail($id)->productDiscount->id;
+            $priceAfterDiscount = floatval(round($this->price - ($this->price * ($product->productDiscount->discount_percent / 100))));
+            ProductDiscount::findOrFail($productDiscountId)->update([
+                'discounted_price' => $priceAfterDiscount,
+            ]);
+        }
     }
 
     public function render()

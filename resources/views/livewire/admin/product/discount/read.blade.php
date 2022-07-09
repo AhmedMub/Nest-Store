@@ -60,8 +60,10 @@
                         <td><input wire:model='selectedCheckboxes' value="{{$prDiscount->id}}" type="checkbox"></td>
                         <td> {{$prDiscount->name}} </td>
                         <td> {{$prDiscount->discount_percent}}% </td>
-                        <td> {{$prDiscount->discounted_price}} </td>
-                        <td> {{$prDiscount->productDiscount->price}} </td>
+                        <td>
+                            <span class="badge bg-info fs-6">${{$prDiscount->discounted_price}}</span>
+                        </td>
+                        <td> ${{$prDiscount->productDiscount->price}} </td>
                         <td> {{$prDiscount->productDiscount->sku}} </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">

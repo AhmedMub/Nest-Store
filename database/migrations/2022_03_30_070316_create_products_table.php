@@ -34,7 +34,7 @@ class CreateProductsTable extends Migration
             $table->string('sku');
 
             $table->integer('qty');
-            $table->integer('price');
+            $table->float('price');
             $table->integer('size')->nullable();
             $table->string('hot_deals')->default(0);
             $table->string('new_deals')->default(1);

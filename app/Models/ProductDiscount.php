@@ -12,7 +12,7 @@ class ProductDiscount extends Model
     use Searchable;
 
     protected $fillable = [
-        'product_id', 'name', 'description', 'discount_percent'
+        'product_id', 'name', 'description', 'discount_percent', 'discounted_price'
     ];
 
     public function productDiscount()
@@ -35,13 +35,15 @@ class ProductDiscount extends Model
         return $discount;
     }
 
+
     /*
-        ///product price before
-        ///product price after discount
-        ///how much money has been discounted
-        ///NOTE this info should included to one of the tables!
+        -return float value if there is a number like 33.326
+        -outputs would be like:
+        /- 625.38
+        /- 1,211.00
     */
-    public function priceAfterDiscount()
+    public function getDiscountedPriceAttribute($val)
     {
+        return number_format((float)round($val, 2, PHP_ROUND_HALF_DOWN), 2, '.', ',');
     }
 }
