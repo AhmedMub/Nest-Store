@@ -33,7 +33,7 @@
                 <select autocomplete="off" class="form-select" wire:model.defer="product_id" id="product_id">
                     <option selected class="text-uppercase" value="">--selecte product--</option>
                     @foreach ($products as $product)
-                    <option value="{{$product->id}}"> {{$product->name_en}} </option>
+                    <option value="{{$product->id}}"> {{$product->name_en}} | {{$product->sku}} </option>
                     @endforeach
                 </select>
                 <x-defaults.input-error for="product_id" />

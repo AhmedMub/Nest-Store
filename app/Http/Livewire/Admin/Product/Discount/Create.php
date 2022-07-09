@@ -19,13 +19,14 @@ class Create extends Component
         'name' => ['required', 'string'],
         'description' => ['nullable', 'string'],
         'discount_percent' => ['required', 'integer'],
-        'product_id' => ['required', 'integer'],
+        'product_id' => ['required', 'integer', 'unique:product_discounts'],
     ];
 
     protected $messages = [
         'name.required' => 'The Discount Name field is required',
         'discount_percent.required' => 'The Discount field is required',
         'product_id.required' => 'The Product field is required',
+        'product_id.unique' => 'This Product Already Has A discount',
     ];
 
     public function create()

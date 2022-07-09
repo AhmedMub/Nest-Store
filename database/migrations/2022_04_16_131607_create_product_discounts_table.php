@@ -14,6 +14,8 @@ class CreateProductDiscountsTable extends Migration
     public function up()
     {
         Schema::create('product_discounts', function (Blueprint $table) {
+            $table->unique('product_id');
+
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->string('name');
