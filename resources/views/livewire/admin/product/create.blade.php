@@ -271,13 +271,12 @@ cycle. --}}
 <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 @endonce
 
-{{-- Alpine.js --}}
+{{-- Alpine.js //FIXME this should added to main script--}}
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 @endpush
 @push('child-scripts')
 @once
-
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 @endonce

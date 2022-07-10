@@ -140,12 +140,12 @@ class Create extends Component
         ]);
 
         //to add the main Image
-        $product_id->addMedia($this->mainImage->getRealPath())->toMediaCollection('mainImage');
+        $product_id->addMedia($this->mainImage->getRealPath())->withResponsiveImages()->toMediaCollection('mainImage');
 
         // Add the multi images to the collection
         collect($this->multiImgs)->each(
             fn ($image) =>
-            $product_id->addMedia($image->getRealPath())->toMediaCollection('multiImages')
+            $product_id->addMedia($image->getRealPath())->withResponsiveImages()->toMediaCollection('multiImages')
         );
         //add product descriptions
         $this->productDesc($product_id->id);

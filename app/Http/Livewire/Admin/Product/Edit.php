@@ -171,7 +171,7 @@ class Edit extends Component
 
         //to update the main Image
         if ($this->mainImage) {
-            $selectedProduct->addMedia($this->mainImage->getRealPath())->toMediaCollection('mainImage');
+            $selectedProduct->addMedia($this->mainImage->getRealPath())->withResponsiveImages()->toMediaCollection('mainImage');
         }
 
         // update the multi images to the collection
@@ -179,7 +179,7 @@ class Edit extends Component
             $selectedProduct->clearMediaCollection('multiImages');
             collect($this->multiImgs)->each(
                 fn ($image) =>
-                $selectedProduct->addMedia($image->getRealPath())->toMediaCollection('multiImages')
+                $selectedProduct->addMedia($image->getRealPath())->withResponsiveImages()->toMediaCollection('multiImages')
             );
         }
 

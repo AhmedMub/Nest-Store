@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Actions\Fortify\PasswordResetLinkController;
 use App\Actions\Fortify\NewPasswordController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FrontSiteController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubSubcategoryController;
@@ -110,5 +111,11 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
 
         //product discounts
         Route::get('manage-discounts', [ProductController::class, 'productDiscounts'])->name('discount');
+    });
+
+    //Front Website Components
+    Route::prefix('components/')->group(function () {
+        //Slider
+        Route::get('edit-slider', [FrontSiteController::class, 'editSlider'])->name('slider');
     });
 });
