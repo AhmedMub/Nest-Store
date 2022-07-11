@@ -75,8 +75,10 @@ class EditProductTags extends Component
     {
         $product = Product::findOrFail($this->productId);
         $selectedTags = [];
-        foreach ($this->addedTags as $tag) {
-            $selectedTags[] = $tag->name;
+        if (count($this->addedTags) > 0) {
+            foreach ($this->addedTags as $tag) {
+                $selectedTags[] = $tag->name;
+            }
         }
         $product->attachTags($selectedTags);
 

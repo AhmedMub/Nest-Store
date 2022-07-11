@@ -10,6 +10,13 @@ use Livewire\WithPagination;
 class Read extends Component
 {
     use WithPagination;
+
+    /*
+    to read spatie images
+            @foreach($model->getMedia('gallery') as $image)
+            <img src="{{asset($image->getUrl('my-gallery-conversion'))}}">
+            @endforeach
+    */
     //Sorting
     public $sortBy = 'name_en';
     public $sortDirection = 'desc';

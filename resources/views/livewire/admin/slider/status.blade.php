@@ -1,3 +1,7 @@
 <div>
-    {{-- Because she competes with no one, no one can compete with her. --}}
+    <label class="custom-switch form-switch" for=" {{$name.$slider->id}} ">
+        <input wire:model="status" id=" {{$name.$slider->id}} " type="checkbox" name="toggle"
+            class="custom-switch-input">
+        <span class="custom-switch-indicator"></span>
+    </label>
 </div>

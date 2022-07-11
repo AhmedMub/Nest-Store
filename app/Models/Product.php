@@ -61,10 +61,12 @@ class Product extends Model implements HasMedia
     {
         $this
             ->addMediaCollection('mainImage')
+            ->useDisk('products')
             ->singleFile();
 
         $this
             ->addMediaCollection('multiImages')
+            ->useDisk('products')
             ->onlyKeepLatest(6);
     }
 

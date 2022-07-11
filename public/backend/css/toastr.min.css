@@ -13,8 +13,7 @@
     -ms-word-wrap: break-word;
     word-wrap: break-word;
     text-transform: capitalize;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 13px;
 }
 .toast-message a,
 .toast-message label {

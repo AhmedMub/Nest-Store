@@ -224,6 +224,10 @@
                 <button class="btn btn-success float-sm-end" type="submit">Add<i class="fa fa-plus ms-1"></i></button>
             </div>
         </div>
+        <div wire:loading wire:target='create'>
+            <x-admin.partials.loader />
+        </div>
+
     </form>
 </div>
 @push('child-styles')

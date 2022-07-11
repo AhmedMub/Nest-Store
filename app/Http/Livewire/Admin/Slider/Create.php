@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Slider;
 
+use App\Models\Product;
 use App\Models\Slider;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -36,7 +37,7 @@ class Create extends Component
         //to add the slider Image
         $slider->addMedia($this->sliderImage->getRealPath())
             ->withResponsiveImages()
-            ->toMediaCollection('slider', 'slider');
+            ->toMediaCollection('slider');
 
         //reload if empty table
         $count = Slider::count();

@@ -56,13 +56,13 @@ return [
         'products' => [
             'driver' => 'local',
             'root' => storage_path('app/public/frontend/products'),
-            'url' => env('APP_URL') . '/storage',
+            'url' => env('APP_URL') . '/storage/frontend/products',
             'visibility' => 'public',
         ],
         'slider' => [
             'driver' => 'local',
             'root' => storage_path('app/public/frontend/slider'),
-            'url' => env('APP_URL') . '/storage',
+            'url' => env('APP_URL') . '/storage/frontend/slider',
             'visibility' => 'public',
         ],
 

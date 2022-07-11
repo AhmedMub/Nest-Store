@@ -1,5 +1,5 @@
 <div class="card">
-    <form method="POST" wire:submit.prevent='create'>
+    <form method="POST" wire:submit.prevent='create' class="make-relative">
         @csrf
         <div class="card-header">
             <div class="card-title text-capitalize">creat new Slider</div>
@@ -45,6 +45,9 @@
             <div class="btn-list">
                 <button class="btn btn-success float-sm-end" type="submit">Add<i class="fa fa-plus ms-1"></i></button>
             </div>
+        </div>
+        <div wire:loading wire:target='create'>
+            <x-admin.partials.loader />
         </div>
     </form>
 </div>
