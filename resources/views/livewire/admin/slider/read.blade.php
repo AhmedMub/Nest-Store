@@ -72,13 +72,13 @@
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
-                                <a wire:click="$emit('editTag',{{$slider->id}})"
+                                <a wire:click="$emit('editSlider',{{$slider->id}})"
                                     class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
-                                    data-bs-original-title="Edit" href="#smallmodal">
+                                    data-bs-original-title="Edit" href="#modaldemo8">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
-                                <a wire:click="$emit('deleteTag',{{$slider->id}})"
+                                <a wire:click="$emit('deleteSlider',{{$slider->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
                                     data-bs-target="#smallmodalDelete" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>

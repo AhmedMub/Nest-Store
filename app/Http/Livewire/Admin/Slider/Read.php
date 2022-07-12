@@ -29,8 +29,8 @@ class Read extends Component
 
     protected $listeners = [
         'newSliderAdded' => '$refresh',
-        // 'tagUpdated' => '$refresh',
-        // 'tagDeleted' => '$refresh'
+        'sliderUpdated' => '$refresh',
+        'sliderDeleted' => '$refresh'
     ];
 
     public function sortBy($field)
@@ -54,7 +54,13 @@ class Read extends Component
     //bulk delete: this is will be bind with delete button (wire:click.prevent='deleteSelected'), it will grab all ids from selectedCheckboxes array and will deleted, then return empty array as it was, then make sure that selectAll false
     public function deleteSelected()
     {
-        Slider::query()->whereIn('id', $this->selectedCheckboxes)->delete();
+        //whereIn method will not delete spatie media because delete() method must called on the model itself
+        //Slider::query()->whereIn('id', $this->selectedCheckboxes)->delete();
+        if (count($this->selectedCheckboxes) > 0) {
+            foreach ($this->selectedCheckboxes as $model) {
+                Slider::findOrFail($model)->delete();
+            }
+        }
         $this->selectedCheckboxes = [];
         $this->selectAll = false;
 

@@ -20,6 +20,11 @@ class Status extends Component
     public function updating($name, $value)
     {
         $this->slider->setAttribute($name, $value)->save();
+
+        $this->dispatchBrowserEvent('alert', [
+            'type'      => 'success',
+            'message'   => 'Slider Status Updated Successfully'
+        ]);
     }
     public function render()
     {

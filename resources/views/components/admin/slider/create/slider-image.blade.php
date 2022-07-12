@@ -1,6 +1,6 @@
 <div class="card custom-bg">
     <div class="card-header">
-        <h3 class="card-title">Add Slider Image<span class="text-red">*</span></h3>
+        <h3 class="card-title"> {{$title}} <span class="text-red">*</span></h3>
     </div>
     <div class="card-body">
         <div class="panel-group1">
