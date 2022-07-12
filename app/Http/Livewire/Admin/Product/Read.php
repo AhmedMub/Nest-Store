@@ -61,7 +61,12 @@ class Read extends Component
     //bulk delete: this is will be bind with delete button (wire:click.prevent='deleteSelected'), it will grab all ids from selectedSubCats array and will deleted, then return empty array as it was, then make sure that selectAll false
     public function deleteSelected()
     {
-        Product::query()->whereIn('id', $this->selectedCheckboxes)->delete();
+        //Product::query()->whereIn('id', $this->selectedCheckboxes)->delete();
+        if (count($this->selectedCheckboxes) > 0) {
+            foreach ($this->selectedCheckboxes as $model) {
+                Product::findOrFail($model)->delete();
+            }
+        }
         $this->selectedCheckboxes = [];
         $this->selectAll = false;
 
