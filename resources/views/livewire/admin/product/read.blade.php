@@ -70,7 +70,6 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         <th class="wd-15p border-bottom-0 text-capitalize">sku</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">quantity</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">price</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">mfg</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">created at</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">updated at</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
@@ -90,7 +89,6 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         <td>{{$product->sku}}</td>
                         <td>{{$product->qty}}</td>
                         <td>{{"$".$product->price}}</td>
-                        <td>mfg</td>
                         <td>{{$product->created_at->diffForHumans();}}</td>
                         <td>{{$product->updated_at->diffForHumans();}}</td>
                         <td>

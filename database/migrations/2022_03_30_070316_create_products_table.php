@@ -33,17 +33,12 @@ class CreateProductsTable extends Migration
             //Stock keeping unit
             $table->string('sku');
 
-
             $table->integer('qty');
             $table->float('price');
             $table->integer('size')->nullable();
             $table->string('hot_deals')->default(0);
             $table->string('new_deals')->default(1);
             $table->string('type');
-
-            // written abbreviation for manufacturing date
-            //FIXME extra model should added name: ProductExpiation  the mfg and expiration date all should be nullable
-            $table->string('mfg');
 
             //show description
             $table->integer('desc_status')->default(1);

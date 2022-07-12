@@ -9,6 +9,7 @@ $manageProduct = route('product.manage');
 $manageTags = route('product.tags');
 $manageDiscount = route('product.discount');
 $manageSlider = route('slider');
+$productExpire = route('product.expire');
 @endphp
 <div class="sticky">
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
@@ -104,6 +105,10 @@ $manageSlider = route('slider');
                         <li><a href=" {{$manageDiscount}} "
                                 class="@if ($currentRoute == $manageDiscount) active @endif slide-item text-capitalize">manage
                                 products discount</a>
+                        </li>
+                        <li><a href=" {{$productExpire}} "
+                                class="@if ($currentRoute == $productExpire) active @endif slide-item text-capitalize">Product
+                                Dates & Expiry</a>
                         </li>
                     </ul>
                 </li>

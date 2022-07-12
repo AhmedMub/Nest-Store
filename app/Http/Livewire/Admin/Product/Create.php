@@ -6,9 +6,11 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductAdditionalInfo;
 use App\Models\ProductDescription;
+use App\Models\ProductExpiration;
 use App\Models\SubCategory;
 use App\Models\SubSubcategory;
 use App\Models\Vendor;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -24,12 +26,16 @@ class Create extends Component
     */
 
     //main to product model
-    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $mfg, $life, $manufacturing_date;
+    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $life, $manufacturing_date;
 
     public $getSubCats = "";
     public $getSubSubCats = "";
 
     public $new_deals = 0;
+
+    //Product Expiration table
+    public $mfg;
+    public $exp;
 
     //define product description
     public $short_desc_en, $short_desc_ar, $long_desc_en, $long_desc_ar, $packaging_delivery_en, $packaging_delivery_ar, $suggested_use_en, $suggested_use_ar, $other_ingredients_en, $other_ingredients_ar, $warnings_en, $warnings_ar;
@@ -62,7 +68,8 @@ class Create extends Component
         'price' => ['required', 'integer'],
         'type' => ['required', 'string'],
         'size' => ['nullable', 'integer'],
-        'mfg' => ['required', 'date_format:Y-m-d'],
+        'mfg' => ['nullable', 'date_format:Y-m-d'],
+        'exp' => ['nullable', 'date_format:Y-m-d'],
         'short_desc_en' => ['string'],
         'short_desc_ar' => ['string'],
         'long_desc_en' => ['nullable', 'string'],
@@ -98,7 +105,6 @@ class Create extends Component
         'qty.required' => 'Quantity field is required',
         'price.required' => 'Price field is required',
         'type.required' => 'Type field is required',
-        'mfg.required' => 'MFG field is required',
         'mainImage.required' => 'Product main image is required',
         'multiImgs.required' => 'Product images are required',
     ];
@@ -129,6 +135,17 @@ class Create extends Component
     //Create Category
     public function create()
     {
+        $mfgData = Carbon::parse($this->mfg);
+        $expDate = Carbon::parse($this->exp);
+        if ($mfgData->diffInDays($expDate) == 0 || $mfgData->gt($expDate)) {
+            //dd(Carbon::now()->diffInDays(Carbon::parse($this->exp)));
+            $this->dispatchBrowserEvent('alert', [
+                'type'      => 'error',
+                'message'   => 'Product Dates Are Invalid'
+            ]);
+            return null;
+        }
+
         $this->validate();
 
         //for validation
@@ -173,6 +190,11 @@ class Create extends Component
 
         //add product additional Info
         $this->additionalInfo($product_id->id);
+
+        //add product dates
+        if (isset($this->mfg) || isset($this->exp)) {
+            $this->addProductDates($product_id->id);
+        }
 
         //add product tags
         $this->addProductTags($product_id->id);
@@ -262,6 +284,15 @@ class Create extends Component
             $selectedTags[] = $tag->name;
         }
         $product->syncTags($selectedTags);
+    }
+
+    public function addProductDates($id)
+    {
+        ProductExpiration::create([
+            'product_id' => $id,
+            'mfg' => $this->mfg,
+            'exp' => $this->exp,
+        ]);
     }
 
     public function render()
