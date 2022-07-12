@@ -26,6 +26,9 @@ class Create extends Component
     //main to product model
     public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $mfg, $life, $manufacturing_date;
 
+    public $getSubCats = "";
+    public $getSubSubCats = "";
+
     public $new_deals = 0;
 
     //define product description
@@ -103,6 +106,24 @@ class Create extends Component
     public function mount()
     {
         $this->addedTags = new Collection();
+    }
+
+    //getSubCategory
+    public function updatedCategoryId($id)
+    {
+        //remove the old value if there is any
+        $this->subCategory_id = "";
+
+        $this->getSubCats = SubCategory::where('category_id', $id)->latest()->get();
+
+        //remove the old value if there is any
+        $this->getSubSubCats = "";
+    }
+
+    //getSubSubCategory
+    public function updatedSubCategoryId($id)
+    {
+        $this->getSubSubCats = SubSubcategory::where('subcategory_id', $id)->latest()->get();
     }
 
     //Create Category
@@ -253,8 +274,6 @@ class Create extends Component
 
         return view('livewire.admin.product.create', compact(
             'mainCats',
-            'subCats',
-            'subSubCats',
             'vendors',
             'tags'
         ))

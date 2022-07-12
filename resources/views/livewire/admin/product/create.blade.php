@@ -148,7 +148,7 @@
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0" for="mainCat">main category <span
                                 class="text-red">*</span></label>
-                        <select autocomplete="off" class="form-select" wire:model.defer='category_id'>
+                        <select autocomplete="off" class="form-select" wire:model='category_id'>
                             <option selected value="">--selecte main category--</option>
                             @foreach ($mainCats as $cat)
                             <option value="{{$cat->id}}" class="text-uppercase"> {{$cat->name_en}} </option>
@@ -162,11 +162,13 @@
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0">Subcategory <span
                                 class="text-red">*</span></label>
-                        <select autocomplete="off" class="form-select" wire:model.defer='subCategory_id'>
+                        <select autocomplete="off" class="form-select" wire:model='subCategory_id'>
                             <option selected value="">--selecte sub-category--</option>
-                            @foreach ($subCats as $cat)
+                            @if (!empty($getSubCats))
+                            @foreach ($getSubCats as $cat)
                             <option value="{{$cat->id}}" class="text-uppercase"> {{$cat->name_en}} </option>
                             @endforeach
+                            @endif
 
                         </select>
                         <x-defaults.input-error for="subCategory_id" />
@@ -175,11 +177,13 @@
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0">Sub Subcategory </label>
-                        <select autocomplete="off" class="form-select" wire:model.defer='subSubCategory_id'>
+                        <select autocomplete="off" class="form-select" wire:model='subSubCategory_id'>
                             <option selected value="">--selecte Sub sub-category--</option>
-                            @foreach ($subSubCats as $cat)
+                            @if (!empty($getSubSubCats))
+                            @foreach ($getSubSubCats as $cat)
                             <option value="{{$cat->id}}" class="text-uppercase"> {{$cat->name_en}} </option>
                             @endforeach
+                            @endif
                         </select>
                         <x-defaults.input-error for="subSubCategory_id" />
                     </div>
