@@ -20,6 +20,11 @@ class DescriptionStatus extends Component
     public function updating($name, $value)
     {
         $this->product->setAttribute($name, $value)->save();
+
+        $this->dispatchBrowserEvent('alert', [
+            'type'      => 'success',
+            'message'   => 'Status Updated Successfully'
+        ]);
     }
     public function render()
     {

@@ -21,6 +21,11 @@ class CategoryDefaultIcon extends Component
     {
 
         $this->category->setAttribute($name, $value)->save();
+
+        $this->dispatchBrowserEvent('alert', [
+            'type'      => 'success',
+            'message'   => 'Status Updated Successfully'
+        ]);
     }
     public function render()
     {

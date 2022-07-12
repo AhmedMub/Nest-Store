@@ -20,6 +20,11 @@ class Status extends Component
     public function updating($name, $value)
     {
         $this->tag->setAttribute($name, $value)->save();
+
+        $this->dispatchBrowserEvent('alert', [
+            'type'      => 'success',
+            'message'   => 'Status Updated Successfully'
+        ]);
     }
     public function render()
     {
