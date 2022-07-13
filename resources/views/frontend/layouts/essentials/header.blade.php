@@ -363,7 +363,7 @@
                             <ul>
                                 <li class="hot-deals"><img
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-hot-white.svg")}}
-                                        alt="hot deals" /><a href="shop-grid-right.html">Hot Deals</a></li>
+                                        alt="hot deals" /><a href="shop-grid-right.html"> {{__('header.deal')}}</a></li>
                                 <li>
                                     <a class="active" href="index.html">Home <i class="fi-rs-angle-down"></i></a>
                                     <ul class="sub-menu">
