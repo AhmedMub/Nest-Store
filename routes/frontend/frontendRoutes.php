@@ -21,14 +21,17 @@ Route::group([
     /** ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 
     Route::get('/', [FrontController::class, 'index'])->name('home');
+
+    //Auth Routes
+    Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+        //user profile
+        Route::get('profile', [UserProfile::class, 'show'])->name('user.profile');
+    });
 });
 
-//Auth Routes
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    //user profile
-    Route::get('profile', [UserProfile::class, 'show'])->name('user.profile');
-});
+
 
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

@@ -87,17 +87,16 @@
                     <div class="search-style-2">
                         <form action="#">
                             <select class="select-active">
-                                <option>All Categories</option>
-                                <option>Milks and Dairies</option>
-                                <option>Wines & Alcohol</option>
-                                <option>Clothing & Beauty</option>
-                                <option>Pet Foods & Toy</option>
-                                <option>Fast food</option>
-                                <option>Baking material</option>
-                                <option>Vegetables</option>
-                                <option>Fresh Seafood</option>
-                                <option>Noodles & Rice</option>
-                                <option>Ice cream</option>
+                                <option>{{__('frontend/header.All Categories')}}</option>
+                                <option>{{__('frontend/header.Milks and Dairies')}}</option>
+                                <option>{{__('frontend/header.Clothing & Beauty')}}</option>
+                                <option>{{__('frontend/header.Pet Foods & Toy')}}</option>
+                                <option>{{__('frontend/header.Fast food')}}</option>
+                                <option>{{__('frontend/header.Baking material')}}</option>
+                                <option>{{__('frontend/header.Vegetables')}}</option>
+                                <option>{{__('frontend/header.Fresh Seafood')}}</option>
+                                <option>{{__('frontend/header.Noodles & Rice')}}</option>
+                                <option>{{__('frontend/header.Ice cream')}}</option>
                             </select>
                             <input type="text" placeholder="Search for items..." />
                         </form>
@@ -363,7 +362,8 @@
                             <ul>
                                 <li class="hot-deals"><img
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-hot-white.svg")}}
-                                        alt="hot deals" /><a href="shop-grid-right.html"> {{__('header.deal')}}</a></li>
+                                        alt="hot deals" /><a href="shop-grid-right.html">
+                                        {{__('frontend/header.hot deals')}}</a></li>
                                 <li>
                                     <a class="active" href="index.html">Home <i class="fi-rs-angle-down"></i></a>
                                     <ul class="sub-menu">
