@@ -32,21 +32,32 @@
                         <ul>
                             <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
                             <li>
-                                <a class="language-dropdown-active" href="#">English <i
-                                        class="fi-rs-angle-small-down"></i></a>
+                                <a class="language-dropdown-active" href="javascript:avoid(0)">
+                                    {{str_contains(url()->current(), 'en')? 'English' : 'العربية'}}
+                                    <i class="fi-rs-angle-small-down"></i>
+                                </a>
                                 <ul class="language-dropdown">
+                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                     <li>
+                                        <a rel="alternate" hreflang="{{ $localeCode }}"
+                                            href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                            @if ($properties['native'] == "English")
+                                            <img src={{asset("frontend/assets/imgs/theme/en.png")}} alt="" />
+                                            @elseif ($properties['native'] == "العربية")
+                                            <img src={{asset("frontend/assets/imgs/theme/ar.png")}} alt="" />
+                                            @endif
+                                            {{ $properties['native'] }}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                    {{-- <li>
                                         <a href="#"><img src={{asset("frontend/assets/imgs/theme/flag-fr.png")}}
                                                 alt="" />Français</a>
                                     </li>
                                     <li>
                                         <a href="#"><img src={{asset("frontend/assets/imgs/theme/flag-dt.png")}}
                                                 alt="" />Deutsch</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src={{asset("frontend/assets/imgs/theme/flag-ru.png")}}
-                                                alt="" />Pусский</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </li>
                             <li>
@@ -55,15 +66,7 @@
                                 <ul class="language-dropdown">
                                     <li>
                                         <a href="#"><img src={{asset("frontend/assets/imgs/theme/flag-fr.png")}}
-                                                alt="" />INR</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src={{asset("frontend/assets/imgs/theme/flag-dt.png")}}
-                                                alt="" />MBP</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src={{asset("frontend/assets/imgs/theme/flag-ru.png")}}
-                                                alt="" />EU</a>
+                                                alt="" />KWD</a>
                                     </li>
                                 </ul>
                             </li>
