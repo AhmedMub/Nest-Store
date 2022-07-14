@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+{{-- /-//FIXME errors should be tranlated --}}
 <main class="main pages">
     <div class="page-header breadcrumb-wrap">
         <div class="container">
@@ -29,19 +30,19 @@
                                             <input
                                                 class="{{ $errors->has('first_name') ? 'form-control is-invalid' : '' }}"
                                                 type="text" name="first_name" placeholder="First Name *"
-                                                :value="old('first_name')" autocomplete="first_name" />
+                                                value="{{old('first_name')}}" autocomplete="first_name" />
                                             <x-defaults.input-error for="first_name" />
                                         </div>
                                         <div class="form-group">
                                             <input
                                                 class="{{ $errors->has('second_name') ? 'form-control is-invalid' : '' }}"
                                                 type="text" name="second_name" placeholder="Second Name *"
-                                                :value="old('second_name')" autocomplete="second_name" />
+                                                value="{{old('second_name')}}" autocomplete="second_name" />
                                             <x-defaults.input-error for="second_name" />
                                         </div>
                                         <div class="form-group">
                                             <input class="{{ $errors->has('email') ? 'form-control is-invalid' : '' }}"
-                                                type="email" name="email" placeholder="Email *" :value="old('email')"
+                                                type="email" name="email" placeholder="Email *" value="{{old('email')}}"
                                                 autocomplete="email" />
                                             <x-defaults.input-error for="email" />
                                         </div>
