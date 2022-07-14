@@ -10,11 +10,20 @@
                 <input type="hidden" wire:model='tagId'>
                 <div class="modal-body card-body py-2">
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="name">english name <span
-                                class="text-red">*</span></label>
-                        <input wire:model.defer='name' type="text"
-                            class="form-control {{$errors->has('name')?'is-invalid':''}}" />
-                        <x-defaults.input-error for="name" />
+                        <label class="d-inline text-capitalize form-label mt-0">english name <span
+                                class="text-red">*</span></label> <span
+                            class="badge bg-default badge-sm me-1 mb-1 mt-1"> {{$name_en}} </span>
+                        <input wire:model='name.en' type="text"
+                            class="form-control {{$errors->has('name.en')?'is-invalid':''}}" />
+                        <x-defaults.input-error for="name.en" />
+                    </div>
+                    <div class="form-group">
+                        <label class="d-inline text-capitalize form-label mt-0">arabic name <span
+                                class="text-red">*</span></label> <span
+                            class="badge bg-default badge-sm me-1 mb-1 mt-1"> {{$name_ar}} </span>
+                        <input wire:model='name.ar' type="text"
+                            class="form-control {{$errors->has('name.ar')?'is-invalid':''}}" />
+                        <x-defaults.input-error for="name.ar" />
                     </div>
                 </div>
                 <div class="modal-footer">

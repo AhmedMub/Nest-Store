@@ -10,9 +10,9 @@ class Read extends Component
 {
     use WithPagination;
     //Sorting
-    public $sortBy = 'name';
+    public $sortBy = 'id';
     public $sortDirection = 'desc';
-    public $field = 'name';
+    public $field = 'id';
     public $perPage = 5;
     public $search = '';
 
@@ -78,7 +78,7 @@ class Read extends Component
     {
         $this->bulkDisabled = count($this->selectedCheckboxes) < 1;
 
-        $tags = Tag::search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+        $tags = Tag::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
         return view('livewire.admin.product.tags.read', [
             'tags' => $tags,
         ]);

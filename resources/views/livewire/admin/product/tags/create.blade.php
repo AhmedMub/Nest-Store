@@ -7,9 +7,15 @@
         <div class="card-body py-2">
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="nameEn">tag english name</label>
-                <input wire:model.defer='name' type="text" class="form-control {{$errors->has('name')?'is-invalid':''}}"
-                    placeholder="Tag name" />
-                <x-defaults.input-error for="name" />
+                <input wire:model='name.en' name="name[en]" type="text"
+                    class="form-control {{$errors->has('name')?'is-invalid':''}}" placeholder="Tag name" />
+                <x-defaults.input-error for="name.en" />
+            </div>
+            <div class="form-group">
+                <label class="text-capitalize form-label mt-0" for="nameEn">tag english name</label>
+                <input wire:model='name.ar' name="name[ar]" type="text"
+                    class="form-control {{$errors->has('name')?'is-invalid':''}}" placeholder="Tag name" />
+                <x-defaults.input-error for="name.ar" />
             </div>
         </div>
         <div class="card-footer">

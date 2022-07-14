@@ -36,8 +36,19 @@
                         <th class="wd-15p border-bottom-0 text-capitalize">
                             <input wire:model='selectAll' type="checkbox"> select all
                         </th>
-                        <th wire:click="sortBy('name')" class="cursor-pointer wd-15p border-bottom-0 text-capitalize">
-                            tag name
+                        <th wire:click="sortBy('id')" class="cursor-pointer wd-15p border-bottom-0 text-capitalize">
+                            english tag name
+                            {{-- change Icone --}}
+                            @if ($sortBy !== $field)
+                            <i class="bi bi-arrow-down"></i>
+                            @elseif($sortDirection == 'asc')
+                            <i class="bi bi-arrow-up"></i>
+                            @else
+                            <i class="bi bi-arrow-down"></i>
+                            @endif
+                        </th>
+                        <th wire:click="sortBy('id')" class="cursor-pointer wd-15p border-bottom-0 text-capitalize">
+                            arabic tag name
                             {{-- change Icone --}}
                             @if ($sortBy !== $field)
                             <i class="bi bi-arrow-down"></i>
@@ -55,7 +66,8 @@
                     @foreach ($tags as $tag)
                     <tr class="text-center">
                         <td><input wire:model='selectedCheckboxes' value="{{$tag->id}}" type="checkbox"></td>
-                        <td> {{$tag->name}} </td>
+                        <td> {{$tag->getTranslation('name', 'en')}} </td>
+                        <td> {{$tag->getTranslation('name', 'ar')}} </td>
                         <td>
                             <livewire:admin.product.tags.status :tag="$tag" :name="'status'" :key="'status'.$tag->id" />
                         </td>
