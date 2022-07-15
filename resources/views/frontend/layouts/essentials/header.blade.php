@@ -1,7 +1,11 @@
+@php
+$categories = App\Models\Category::latest()->get();
+@endphp
 <header class="header-area header-style-1 header-style-5 header-height-2">
     <div class="mobile-promotion">
-        <span>{{__('Grand opening')}}, <strong>{{__('up to 15%')}}</strong> {{__('off all items. Only')}} <strong>
-                {{__('3 days')}} </strong> {{__('left')}} </span>
+        <span>{{__('frontend/header.Grand opening')}}, <strong>{{__('frontend/header.up to 15%')}}</strong>
+            {{__('frontend/header.off all items Only')}} <strong>
+                {{__('frontend/header.3 days')}} </strong> {{__('frontend/header.left')}} </span>
     </div>
     <div class="header-top header-top-ptb-1 d-none d-lg-block">
         <div class="container">
@@ -9,10 +13,10 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-                            <li><a href="page-about.htlm">About Us</a></li>
-                            <li><a href="page-account.html">My Account</a></li>
-                            <li><a href="shop-wishlist.html">Wishlist</a></li>
-                            <li><a href="shop-order.html">Order Tracking</a></li>
+                            <li><a href="#">{{__('frontend/header.About Us')}}</a></li>
+                            <li><a href="{{route('user.profile')}}">{{__('frontend/header.My Account')}}</a></li>
+                            {{-- /-//TODO must get be crtead to user --}}
+                            <li><a href="#">{{__('frontend/header.Wishlist')}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -20,9 +24,9 @@
                     <div class="text-center">
                         <div id="news-flash" class="d-inline-block">
                             <ul>
-                                <li>100% Secure delivery without contacting the courier</li>
-                                <li>Supper Value Deals - Save more with coupons</li>
-                                <li>Trendy 25silver jewelry, save up 35% off today</li>
+                                <li>{{__('frontend/header.100% Secure delivery without contacting the courier')}}</li>
+                                <li>{{__('frontend/header.Supper Value Deals - Save more with coupons')}}</li>
+                                <li>{{__('frontend/header.Trendy 25silver jewelry, save up 35% off today')}}</li>
                             </ul>
                         </div>
                     </div>
@@ -30,7 +34,8 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info header-info-right">
                         <ul>
-                            <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
+                            <li>{{__('frontend/header.Need help? Call Us')}} <strong class="text-brand"> +
+                                    {{__('frontend/header.1800 900')}}</strong></li>
                             <li>
                                 <a class="language-dropdown-active" href="javascript:avoid(0)">
                                     {{str_contains(url()->current(), 'en')? 'English' : 'العربية'}}
@@ -50,24 +55,6 @@
                                         </a>
                                     </li>
                                     @endforeach
-                                    {{-- <li>
-                                        <a href="#"><img src={{asset("frontend/assets/imgs/theme/flag-fr.png")}}
-                                                alt="" />Français</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src={{asset("frontend/assets/imgs/theme/flag-dt.png")}}
-                                                alt="" />Deutsch</a>
-                                    </li> --}}
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="language-dropdown-active" href="#">USD <i
-                                        class="fi-rs-angle-small-down"></i></a>
-                                <ul class="language-dropdown">
-                                    <li>
-                                        <a href="#"><img src={{asset("frontend/assets/imgs/theme/flag-fr.png")}}
-                                                alt="" />KWD</a>
-                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -87,16 +74,15 @@
                     <div class="search-style-2">
                         <form action="#">
                             <select class="select-active">
-                                <option>{{__('frontend/header.All Categories')}}</option>
-                                <option>{{__('frontend/header.Milks and Dairies')}}</option>
-                                <option>{{__('frontend/header.Clothing & Beauty')}}</option>
-                                <option>{{__('frontend/header.Pet Foods & Toy')}}</option>
-                                <option>{{__('frontend/header.Fast food')}}</option>
-                                <option>{{__('frontend/header.Baking material')}}</option>
-                                <option>{{__('frontend/header.Vegetables')}}</option>
-                                <option>{{__('frontend/header.Fresh Seafood')}}</option>
-                                <option>{{__('frontend/header.Noodles & Rice')}}</option>
-                                <option>{{__('frontend/header.Ice cream')}}</option>
+                                @if (str_contains(url()->current(), 'ar'))
+                                @foreach ($categories as $cat)
+                                <option>{{$cat->name_ar}}</option>
+                                @endforeach
+                                @else
+                                @foreach ($categories as $cat)
+                                <option>{{$cat->name_en}}</option>
+                                @endforeach
+                                @endif
                             </select>
                             <input type="text" placeholder="Search for items..." />
                         </form>

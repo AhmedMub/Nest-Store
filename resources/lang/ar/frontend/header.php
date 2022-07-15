@@ -13,4 +13,5 @@ return [
     'Fresh Seafood' => 'Fresh Seafood',
     'Noodles & Rice' => 'Noodles & Rice',
     'Ice cream' => 'Ice cream',
+    'About Us' => 'عن نست'
 ];
