@@ -20,6 +20,8 @@
     {{-- Template CSS --}}
     <link rel="stylesheet" href="{{asset('frontend/css/plugins/animate.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/main.css?v=4.0')}}" />
+
+    {{-- my custom links --}}
     <link rel="stylesheet" href="{{asset('frontend/css/override.css')}}" />
     <link rel="stylesheet" href=" {{asset('frontend/css/toastr.min.css')}} ">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

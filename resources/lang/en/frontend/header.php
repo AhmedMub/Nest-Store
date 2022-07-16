@@ -25,5 +25,8 @@ return [
     'off all items Only' => 'off all items Only',
     '3 days' => '3 days',
     'left' => 'left',
-
+    'Search for items...' => 'Search for items...',
+    'Compare' => 'Compare',
+    'Trending' => 'Trending',
+    'Categories' => 'Categories'
 ];

@@ -1907,7 +1907,7 @@ label {
   border: 0;
   border-radius: 50px 0 0 50px;
   padding-left: 58px;
-  background: url(../imgs/theme/icons/icon-plane.png) no-repeat 25px center;
+
 }
 
 .hero-slider-1 .slider-content form button {
@@ -3475,7 +3475,7 @@ table .product-thumbnail img {
   border-radius: 15px;
   overflow: hidden;
   height: 520px;
-  background: url(../imgs/banner/banner-4.png) no-repeat center bottom;
+
   background-size: cover;
   width: 100%;
 }
@@ -3490,7 +3490,6 @@ table .product-thumbnail img {
   border-radius: 15px;
   overflow: hidden;
   height: 538px;
-  background: url(../imgs/banner/banner-11.png) no-repeat center bottom;
   background-size: cover;
   width: 100%;
 }
@@ -4953,7 +4952,6 @@ table .product-thumbnail img {
 }
 
 .product-rate {
-  background-image: url("../imgs/theme/rating-stars.png");
   background-position: 0 -12px;
   background-repeat: repeat-x;
   height: 12px;
@@ -4965,7 +4963,6 @@ table .product-thumbnail img {
 .product-rating {
   height: 12px;
   background-repeat: repeat-x;
-  background-image: url("../imgs/theme/rating-stars.png");
   background-position: 0 0;
 }
 
@@ -5687,7 +5684,6 @@ table.no-border td, table.no-border th, table.no-border thead {
 
 /*BLOG*/
 .archive-header {
-  background: url(../imgs/blog/header-bg.png) no-repeat center center;
   border-radius: 20px;
   padding: 70px 80px;
   background-size: cover;
@@ -7594,7 +7590,6 @@ h6.post-title {
   width: 100%;
   max-width: 683px;
   font-size: 14px;
-  background-image: url(../imgs/theme/icons/search.png);
   background-repeat: no-repeat;
   background-position: center right;
   padding-left: 0;
@@ -9584,7 +9579,7 @@ footer .hotline img {
   border: 0;
   border-radius: 50px 0 0 50px;
   padding-left: 58px;
-  background: url(../imgs/theme/icons/icon-plane.png) no-repeat 25px center;
+
 }
 
 .newsletter .newsletter-inner .newsletter-content form button {
@@ -10516,7 +10511,7 @@ footer .hotline img {
 }
 
 /***************************
-    Page section margin 
+    Page section margin
 ****************************/
 .mtb-0 {
   margin: 0;

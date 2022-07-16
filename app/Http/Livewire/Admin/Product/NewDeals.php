@@ -9,7 +9,7 @@ class NewDeals extends Component
 {
     public Product $product;
     public string $name;
-    public bool $product_status;
+    public bool $new_deals;
 
     public function mount()
     {
@@ -26,6 +26,7 @@ class NewDeals extends Component
             'message'   => 'Status Updated Successfully'
         ]);
     }
+
     public function render()
     {
         return view('livewire.admin.product.new-deals');

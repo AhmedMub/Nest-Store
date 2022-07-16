@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->string('default_icon')->nullable();
             $table->integer('status')->default(1);
             $table->integer('default_icon_status')->default(0);
+            $table->integer('navbar_status')->default(0);
             $table->string('slug');
             $table->timestamps();
         });

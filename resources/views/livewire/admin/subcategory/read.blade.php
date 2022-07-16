@@ -61,6 +61,7 @@
                         </th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Main Category</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">status</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">navbar active</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
                     </tr>
                 </thead>
@@ -75,6 +76,10 @@
                         <td>
                             <livewire:admin.subcategory.status :category="$category" :name="'status'"
                                 :key="'status'.$category->id" />
+                        </td>
+                        <td>
+                            <livewire:admin.subcategory.navbar-status :category="$category" :name="'navbar_status'"
+                                :key="'navbar_status'.$category->id" />
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">

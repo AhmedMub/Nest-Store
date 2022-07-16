@@ -1,5 +1,14 @@
 @php
-$categories = App\Models\Category::latest()->get();
+$categories = App\Models\Category::where('status', 1)->latest()->get();
+//this is for "Trending Categories"
+$chunks = $categories->chunk(5);
+
+//check lang
+$langAr = str_contains(url()->current(), 'ar');
+
+//navbar categories
+$navCategories = App\Models\Category::where('navbar_status', 1)->where('status', 1)->latest()->get();
+
 @endphp
 <header class="header-area header-style-1 header-style-5 header-height-2">
     <div class="mobile-promotion">
@@ -84,12 +93,12 @@ $categories = App\Models\Category::latest()->get();
                                 @endforeach
                                 @endif
                             </select>
-                            <input type="text" placeholder="Search for items..." />
+                            <input type="text" placeholder="{{__('frontend/header.Search for items...')}}" />
                         </form>
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
-                            <div class="search-location">
+                            {{-- <div class="search-location">
                                 <form action="#">
                                     <select class="select-active">
                                         <option>Your Location</option>
@@ -108,38 +117,40 @@ $categories = App\Models\Category::latest()->get();
                                         <option>New York</option>
                                     </select>
                                 </form>
-                            </div>
+                            </div> --}}
                             <div class="header-action-icon-2">
-                                <a href="shop-compare.html">
+                                <a href="javascript:avoid(0)">
                                     <img class="svgInject" alt="Nest"
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-compare.svg")}} />
                                     <span class="pro-count blue">3</span>
                                 </a>
-                                <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
+                                <a href="javascript:avoid(0)"><span
+                                        class="lable ml-0">{{__('frontend/header.Compare')}}</span></a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a href="shop-wishlist.html">
+                                <a href="javascript:avoid(0)">
                                     <img class="svgInject" alt="Nest"
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-heart.svg")}} />
                                     <span class="pro-count blue">6</span>
                                 </a>
-                                <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
+                                <a href="javascript:avoid(0)"><span
+                                        class="lable">{{__('frontend/header.Wishlist')}}</span></a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="javascript:avoid(0)" href="shop-cart.html">
                                     <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-cart.svg")}} />
                                     <span class="pro-count blue">2</span>
                                 </a>
-                                <a href="shop-cart.html"><span class="lable">Cart</span></a>
+                                <a href="javascript:avoid(0)"><span class="lable">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest"
+                                                <a href="javascript:avoid(0)"><img alt="Nest"
                                                         src={{asset("frontend/assets/imgs/shop/thumbnail-3.jpg")}} /></a>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Daisy Casual Bag</a></h4>
+                                                <h4><a href="javascript:avoid(0)">Daisy Casual Bag</a></h4>
                                                 <h4><span>1 × </span>$800.00</h4>
                                             </div>
                                             <div class="shopping-cart-delete">
@@ -148,14 +159,14 @@ $categories = App\Models\Category::latest()->get();
                                         </li>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest"
+                                                <a href="javascript:avoid(0)"><img alt="Nest"
                                                         src={{asset("frontend/assets/imgs/shop/thumbnail-2.jpg")}} /></a>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Corduroy Shirts</a></h4>
+                                                <h4><a href="javascript:avoid(0)">Corduroy Shirts</a></h4>
                                                 <h4><span>1 × </span>$3200.00</h4>
                                             </div>
-                                            <div class="shopping-cart-delete">
+                                            <div class="javascript:avoid(0)">
                                                 <a href="#"><i class="fi-rs-cross-small"></i></a>
                                             </div>
                                         </li>
@@ -165,8 +176,8 @@ $categories = App\Models\Category::latest()->get();
                                             <h4>Total <span>$4000.00</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
-                                            <a href="shop-checkout.html">Checkout</a>
+                                            <a href="javascript:avoid(0)" class="outline">View cart</a>
+                                            <a href="javascript:avoid(0)">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -185,19 +196,20 @@ $categories = App\Models\Category::latest()->get();
                                                 Account</a>
                                         </li>
                                         <li>
-                                            <a href="page-account.html"><i class="fi fi-rs-location-alt mr-10"></i>Order
+                                            <a href="javascript:avoid(0)"><i
+                                                    class="fi fi-rs-location-alt mr-10"></i>Order
                                                 Tracking</a>
                                         </li>
                                         <li>
-                                            <a href="page-account.html"><i class="fi fi-rs-label mr-10"></i>My
+                                            <a href="javascript:avoid(0)"><i class="fi fi-rs-label mr-10"></i>My
                                                 Voucher</a>
                                         </li>
                                         <li>
-                                            <a href="shop-wishlist.html"><i class="fi fi-rs-heart mr-10"></i>My
+                                            <a href="javascript:avoid(0)"><i class="fi fi-rs-heart mr-10"></i>My
                                                 Wishlist</a>
                                         </li>
                                         <li>
-                                            <a href="page-account.html"><i
+                                            <a href="javascript:avoid(0)"><i
                                                     class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                         </li>
                                         <li>
@@ -239,108 +251,41 @@ $categories = App\Models\Category::latest()->get();
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="index.html"><img src={{asset("frontend/assets/imgs/theme/logo.svg")}} alt="logo" /></a>
+                    <a href="javascript:avoid(0)"><img src={{asset("frontend/assets/imgs/theme/logo.svg")}}
+                            alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
-                        <a class="categories-button-active" href="#">
-                            <span class="fi-rs-apps"></span> <span class="et">Trending</span> Categories
+                        <a href="javascript:avoid(0)" class="categories-button-active">
+                            <span class="fi-rs-apps"></span> <span class="et">{{__('frontend/header.Trending')}}</span>
+                            {{__('frontend/header.Categories')}}
                             <i class="fi-rs-angle-down"></i>
                         </a>
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
-                            <div class="d-flex categori-dropdown-inner">
+                            <div class="d-flex  w-100">
+
+                                @foreach ($chunks as $item)
                                 <ul>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-1.svg")}}
-                                                alt="" />Milks and
-                                            Dairies</a>
+                                    @foreach ($item as $cat)
+                                    <li style='width:12rem'>
+                                        <a href="javascript:avoid(0)">
+                                            @if ($cat->icon != null && $cat->default_icon_status == 0)
+                                            <img src="{{asset('storage/frontend/categories/'.$cat->icon)}}" alt="" />
+                                            @else
+                                            <img src="{{asset('backend/default-images/'.$cat->default_icon)}}" alt="" />
+                                            @endif
+                                            @if ($langAr)
+                                            {{$cat->name_ar}}
+                                            @else
+                                            {{$cat->name_en}}
+                                            @endif
+                                        </a>
                                     </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-2.svg")}}
-                                                alt="" />Clothing &
-                                            beauty</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-3.svg")}}
-                                                alt="" />Pet Foods &
-                                            Toy</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-4.svg")}}
-                                                alt="" />Baking
-                                            material</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-5.svg")}}
-                                                alt="" />Fresh Fruit</a>
-                                    </li>
+                                    @endforeach
                                 </ul>
-                                <ul class="end">
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-6.svg")}}
-                                                alt="" />Wines & Drinks</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-7.svg")}}
-                                                alt="" />Fresh Seafood</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-8.svg")}}
-                                                alt="" />Fast food</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-9.svg")}}
-                                                alt="" />Vegetables</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img
-                                                src={{asset("frontend/assets/imgs/theme/icons/category-10.svg")}}
-                                                alt="" />Bread and
-                                            Juice</a>
-                                    </li>
-                                </ul>
+                                @endforeach
+
                             </div>
-                            <div class="more_slide_open" style="display: none">
-                                <div class="d-flex categori-dropdown-inner">
-                                    <ul>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src={{asset("frontend/assets/imgs/theme/icons/icon-1.svg")}}
-                                                    alt="" />Milks and
-                                                Dairies</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src={{asset("frontend/assets/imgs/theme/icons/icon-2.svg")}}
-                                                    alt="" />Clothing &
-                                                beauty</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="end">
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src={{asset("frontend/assets/imgs/theme/icons/icon-3.svg")}}
-                                                    alt="" />Wines & Drinks</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src={{asset("frontend/assets/imgs/theme/icons/icon-4.svg")}}
-                                                    alt="" />Fresh Seafood</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show
-                                    more...</span></div>
                         </div>
                     </div>
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
@@ -348,107 +293,52 @@ $categories = App\Models\Category::latest()->get();
                             <ul>
                                 <li class="hot-deals"><img
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-hot-white.svg")}}
-                                        alt="hot deals" /><a href="shop-grid-right.html">
+                                        alt="hot deals" /><a href="javascript:avoid(0)">
                                         {{__('frontend/header.hot deals')}}</a></li>
                                 <li>
-                                    <a class="active" href="index.html">Home <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="index.html">Home 1</a></li>
-                                        <li><a href="index-2.html">Home 2</a></li>
-                                        <li><a href="index-3.html">Home 3</a></li>
-                                        <li><a href="index-4.html">Home 4</a></li>
-                                        <li><a href="index-5.html">Home 5</a></li>
-                                        <li><a href="index-6.html">Home 6</a></li>
-                                    </ul>
+                                    <a href="{{route('home')}}" class="active">{{__('Home')}}</a>
                                 </li>
-                                <li>
-                                    <a href="page-about.html">About</a>
-                                </li>
-                                <li>
-                                    <a href="shop-grid-right.html">Shop <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
-                                        <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
-                                        <li><a href="shop-list-right.html">Shop List – Right Sidebar</a></li>
-                                        <li><a href="shop-list-left.html">Shop List – Left Sidebar</a></li>
-                                        <li><a href="shop-fullwidth.html">Shop - Wide</a></li>
-                                        <li>
-                                            <a href="#">Single Product <i class="fi-rs-angle-right"></i></a>
-                                            <ul class="level-menu">
-                                                <li><a href="shop-product-right.html">Product – Right Sidebar</a></li>
-                                                <li><a href="shop-product-left.html">Product – Left Sidebar</a></li>
-                                                <li><a href="shop-product-full.html">Product – No sidebar</a></li>
-                                                <li><a href="shop-product-vendor.html">Product – Vendor Info</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="shop-filter.html">Shop – Filter</a></li>
-                                        <li><a href="shop-wishlist.html">Shop – Wishlist</a></li>
-                                        <li><a href="shop-cart.html">Shop – Cart</a></li>
-                                        <li><a href="shop-checkout.html">Shop – Checkout</a></li>
-                                        <li><a href="shop-compare.html">Shop – Compare</a></li>
-                                        <li>
-                                            <a href="#">Shop Invoice<i class="fi-rs-angle-right"></i></a>
-                                            <ul class="level-menu">
-                                                <li><a href="shop-invoice-1.html">Shop Invoice 1</a></li>
-                                                <li><a href="shop-invoice-2.html">Shop Invoice 2</a></li>
-                                                <li><a href="shop-invoice-3.html">Shop Invoice 3</a></li>
-                                                <li><a href="shop-invoice-4.html">Shop Invoice 4</a></li>
-                                                <li><a href="shop-invoice-5.html">Shop Invoice 5</a></li>
-                                                <li><a href="shop-invoice-6.html">Shop Invoice 6</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Vendors <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="vendors-grid.html">Vendors Grid</a></li>
-                                        <li><a href="vendors-list.html">Vendors List</a></li>
-                                        <li><a href="vendor-details-1.html">Vendor Details 01</a></li>
-                                        <li><a href="vendor-details-2.html">Vendor Details 02</a></li>
-                                        <li><a href="vendor-dashboard.html">Vendor Dashboard</a></li>
-                                        <li><a href="vendor-guide.html">Vendor Guide</a></li>
-                                    </ul>
-                                </li>
+                                @foreach ($navCategories as $mainCat)
                                 <li class="position-static">
-                                    <a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
+                                    <a href="{{route('byCat.main', $mainCat->slug)}}">@if ($langAr){{$mainCat->name_ar}}
+                                        @else
+                                        {{$mainCat->name_en}} @endif<i class="fi-rs-angle-down"></i></a>
                                     <ul class="mega-menu">
+                                        {{-- /-//subcategories --}}
+                                        @foreach ($mainCat->subCats as $subCat)
+                                        @if ($subCat->navbar_status == 1 && $subCat->status == 1 )
+
+
                                         <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">Fruit & Vegetables</a>
+                                            <a href="{{route('byCat.subCat', $subCat->slug)}}" class="menu-title">
+                                                @if ($langAr)
+                                                {{$subCat->name_ar}}
+                                                @else
+                                                {{$subCat->name_en}}
+                                                @endif
+                                            </a>
                                             <ul>
-                                                <li><a href="shop-product-right.html">Meat & Poultry</a></li>
-                                                <li><a href="shop-product-right.html">Fresh Vegetables</a></li>
-                                                <li><a href="shop-product-right.html">Herbs & Seasonings</a></li>
-                                                <li><a href="shop-product-right.html">Cuts & Sprouts</a></li>
-                                                <li><a href="shop-product-right.html">Exotic Fruits & Veggies</a></li>
-                                                <li><a href="shop-product-right.html">Packaged Produce</a></li>
+                                                @foreach ($subCat->subSubCats as $subSubCat)
+                                                @if ($subSubCat->navbar_status == 1 && $subSubCat->status == 1)
+                                                <li>
+                                                    <a href="{{route('byCat.subSubcat', $subSubCat->slug)}}">
+                                                        @if ($langAr)
+                                                        {{$subSubCat->name_ar}}
+                                                        @else
+                                                        {{$subSubCat->name_en}}
+                                                        @endif
+                                                    </a>
+                                                </li>
+                                                @endif
+                                                @endforeach
                                             </ul>
                                         </li>
-                                        <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">Breakfast & Dairy</a>
-                                            <ul>
-                                                <li><a href="shop-product-right.html">Milk & Flavoured Milk</a></li>
-                                                <li><a href="shop-product-right.html">Butter and Margarine</a></li>
-                                                <li><a href="shop-product-right.html">Eggs Substitutes</a></li>
-                                                <li><a href="shop-product-right.html">Marmalades</a></li>
-                                                <li><a href="shop-product-right.html">Sour Cream</a></li>
-                                                <li><a href="shop-product-right.html">Cheese</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">Meat & Seafood</a>
-                                            <ul>
-                                                <li><a href="shop-product-right.html">Breakfast Sausage</a></li>
-                                                <li><a href="shop-product-right.html">Dinner Sausage</a></li>
-                                                <li><a href="shop-product-right.html">Chicken</a></li>
-                                                <li><a href="shop-product-right.html">Sliced Deli Meat</a></li>
-                                                <li><a href="shop-product-right.html">Wild Caught Fillets</a></li>
-                                                <li><a href="shop-product-right.html">Crab and Shellfish</a></li>
-                                            </ul>
-                                        </li>
+                                        @endif
+                                        @endforeach
+
                                         <li class="sub-mega-menu sub-mega-menu-width-34">
                                             <div class="menu-banner-wrap">
-                                                <a href="shop-product-right.html"><img
+                                                <a href="javascript:avoid(0)"><img
                                                         src={{asset("frontend/assets/imgs/banner/banner-menu.png")}}
                                                         alt="Nest" /></a>
                                                 <div class="menu-banner-content">
@@ -461,7 +351,7 @@ $categories = App\Models\Category::latest()->get();
                                                         <span class="new-price text-success">Save to 50%</span>
                                                     </div>
                                                     <div class="menu-banner-btn">
-                                                        <a href="shop-product-right.html">Shop now</a>
+                                                        <a href="javascript:avoid(0)">Shop now</a>
                                                     </div>
                                                 </div>
                                                 <div class="menu-banner-discount">
@@ -474,39 +364,12 @@ $categories = App\Models\Category::latest()->get();
                                         </li>
                                     </ul>
                                 </li>
+                                @endforeach
                                 <li>
-                                    <a href="blog-category-grid.html">Blog <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
-                                        <li><a href="blog-category-list.html">Blog Category List</a></li>
-                                        <li><a href="blog-category-big.html">Blog Category Big</a></li>
-                                        <li><a href="blog-category-fullwidth.html">Blog Category Wide</a></li>
-                                        <li>
-                                            <a href="#">Single Post <i class="fi-rs-angle-right"></i></a>
-                                            <ul class="level-menu level-menu-modify">
-                                                <li><a href="blog-post-left.html">Left Sidebar</a></li>
-                                                <li><a href="blog-post-right.html">Right Sidebar</a></li>
-                                                <li><a href="blog-post-fullwidth.html">No Sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <a href="javascript:avoid(0)">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="page-about.html">About Us</a></li>
-                                        <li><a href="page-contact.html">Contact</a></li>
-                                        <li><a href="page-account.html">My Account</a></li>
-                                        <li><a href="page-login.html">Login</a></li>
-                                        <li><a href="page-register.html">Register</a></li>
-                                        <li><a href="page-purchase-guide.html">Purchase Guide</a></li>
-                                        <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
-                                        <li><a href="page-terms.html">Terms of Service</a></li>
-                                        <li><a href="page-404.html">404 Page</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="page-contact.html">Contact</a>
+                                    <a href="javascript:avoid(0)">Contact</a>
                                 </li>
                             </ul>
                         </nav>
@@ -526,13 +389,13 @@ $categories = App\Models\Category::latest()->get();
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
                         <div class="header-action-icon-2">
-                            <a href="shop-wishlist.html">
+                            <a href="javascript:avoid(0)">
                                 <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-heart.svg")}} />
                                 <span class="pro-count white">4</span>
                             </a>
                         </div>
                         <div class="header-action-icon-2">
-                            <a class="mini-cart-icon" href="#">
+                            <a href="javascript:avoid(0)" class="mini-cart-icon">
                                 <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-cart.svg")}} />
                                 <span class="pro-count white">2</span>
                             </a>
@@ -540,28 +403,28 @@ $categories = App\Models\Category::latest()->get();
                                 <ul>
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html"><img alt="Nest"
+                                            <a href="javascript:avoid(0)"><img alt="Nest"
                                                     src={{asset("frontend/assets/imgs/shop/thumbnail-3.jpg")}} /></a>
                                         </div>
                                         <div class="shopping-cart-title">
-                                            <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
+                                            <h4><a href="javascript:avoid(0)">Plain Striola Shirts</a></h4>
                                             <h3><span>1 × </span>$800.00</h3>
                                         </div>
                                         <div class="shopping-cart-delete">
-                                            <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                            <a href="javascript:avoid(0)"><i class="fi-rs-cross-small"></i></a>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html"><img alt="Nest"
+                                            <a href="javascript:avoid(0)"><img alt="Nest"
                                                     src={{asset("frontend/assets/imgs/shop/thumbnail-4.jpg")}} /></a>
                                         </div>
                                         <div class="shopping-cart-title">
-                                            <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
+                                            <h4><a href="javascript:avoid(0)">Macbook Pro 2022</a></h4>
                                             <h3><span>1 × </span>$3500.00</h3>
                                         </div>
                                         <div class="shopping-cart-delete">
-                                            <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                            <a href="javascript:avoid(0)"><i class="fi-rs-cross-small"></i></a>
                                         </div>
                                     </li>
                                 </ul>
@@ -570,8 +433,8 @@ $categories = App\Models\Category::latest()->get();
                                         <h4>Total <span>$383.00</span></h4>
                                     </div>
                                     <div class="shopping-cart-button">
-                                        <a href="shop-cart.html">View cart</a>
-                                        <a href="shop-checkout.html">Checkout</a>
+                                        <a href="javascript:avoid(0)">View cart</a>
+                                        <a href="javascript:avoid(0)">Checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -582,3 +445,35 @@ $categories = App\Models\Category::latest()->get();
         </div>
     </div>
 </header>
+
+@push('added-head')
+<style>
+    .search-style-2 form input {
+        background-image: url("{{asset('frontend/assets/imgs/theme/icons/search.png')}}");
+    }
+
+    .hero-slider-1 .slider-content form input {
+        background: url("{{asset('frontend/assets/imgs/theme/icons/icon-plane.png')}}") no-repeat 25px center;
+    }
+
+    .product-rate {
+        background-image: url("../imgs/theme/rating-stars.png");
+    }
+
+    .product-rating {
+        background-image: url("../imgs/theme/rating-stars.png");
+    }
+
+    .banner-img.style-2 {
+        background: url("{{asset('frontend/assets/imgs/banner/banner-4.png')}}") no-repeat center bottom;
+    }
+
+    .banner-img.style-3 {
+        background: url("{{asset('frontend/assets/imgs/banner/banner-11.png')}}") no-repeat center bottom;
+    }
+
+    .newsletter .newsletter-inner .newsletter-content form input {
+        background: url("{{asset('frontend/assets/imgs/theme/icons/icon-plane.png')}}") no-repeat 25px center;
+    }
+</style>
+@endpush

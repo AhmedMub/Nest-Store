@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if (str_contains(url()->current(), 'ar')) dir="rtl"
+class="rtl" @endif>
 
 {{-- Start Head --}}
 @include('frontend.layouts.essentials.head')

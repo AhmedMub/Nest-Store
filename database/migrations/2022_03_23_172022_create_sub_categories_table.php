@@ -19,6 +19,7 @@ class CreateSubCategoriesTable extends Migration
             $table->string('name_en')->unique();
             $table->string('name_ar')->unique();
             $table->integer('status')->default(1);
+            $table->integer('navbar_status')->default(0);
             $table->string('slug');
             $table->timestamps();
         });

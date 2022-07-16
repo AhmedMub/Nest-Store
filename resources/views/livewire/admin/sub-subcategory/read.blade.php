@@ -62,6 +62,7 @@
                         <th class="wd-15p border-bottom-0 text-capitalize">subcategory</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Main Category</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">status</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">navbar active</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
                     </tr>
                 </thead>
@@ -76,6 +77,10 @@
                         <td>
                             <livewire:admin.sub-subcategory.status :subcat="$subcat" :name="'status'"
                                 :key="'status'.$subcat->id" />
+                        </td>
+                        <td>
+                            <livewire:admin.sub-subcategory.navbar-status :subcat="$subcat" :name="'navbar_status'"
+                                :key="'navbar_status'.$subcat->id" />
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">

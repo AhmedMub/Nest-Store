@@ -43,6 +43,7 @@ class Read extends Component
 
     public function render()
     {
+        //FIXME solve order by id or get the latest records
         $categories = Category::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
 
         return view('livewire.admin.category.read', [
