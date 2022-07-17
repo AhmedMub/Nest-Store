@@ -22,6 +22,11 @@
                             },
                         }
                     });
+
+                    {{-- Remove the images after uploud  --}}
+                    this.addEventListener('mainReset', e => {
+                        ProductMainImg.removeFile();
+                    });
                 }">
                     <input type="file" x-ref="mainImage">
 

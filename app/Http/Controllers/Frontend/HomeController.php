@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\SubSubcategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Tags\Tag;
 
 class HomeController extends Controller
@@ -25,8 +26,12 @@ class HomeController extends Controller
         $products = $category->productMainCat->where('product_status', 1);
 
         $tags = Tag::whereStatus(1)->latest()->take(5)->get();
+        $user = 0;
+        if (Auth::check()) {
+            $user = Auth::user()->id;
+        }
 
-        return view('frontend.pages.products-by-category', compact('category', 'tags', 'products'));
+        return view('frontend.pages.products-by-category', compact('category', 'tags', 'products', 'user'));
     }
     public function bySubcategory($slug)
     {

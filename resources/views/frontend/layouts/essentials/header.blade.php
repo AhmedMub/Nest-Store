@@ -456,14 +456,6 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
         background: url("{{asset('frontend/assets/imgs/theme/icons/icon-plane.png')}}") no-repeat 25px center;
     }
 
-    .product-rate {
-        background-image: url("../imgs/theme/rating-stars.png");
-    }
-
-    .product-rating {
-        background-image: url("../imgs/theme/rating-stars.png");
-    }
-
     .banner-img.style-2 {
         background: url("{{asset('frontend/assets/imgs/banner/banner-4.png')}}") no-repeat center bottom;
     }

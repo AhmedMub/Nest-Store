@@ -114,6 +114,14 @@ class Product extends Model implements HasMedia
     }
 
     /*
+        //*FrontEnd Relationships....
+    */
+    public function addToWishes()
+    {
+        return $this->belongsToMany(User::class, 'wish_lists', 'product_id', 'user_id');
+    }
+
+    /*
         -return float value if there is a number like 33.326
         -outputs would be like:
         /- 625.38

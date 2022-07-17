@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\FrontController;
+use App\Http\Controllers\Frontend\GetProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductsByTagController;
 use App\Http\Controllers\Frontend\ProductsByVendorController;
@@ -32,6 +33,9 @@ Route::group([
         //user profile
         Route::get('profile', [UserProfile::class, 'show'])->name('user.profile');
     });
+
+    //*Product Route
+    Route::get('show-product/{slug}', [GetProductController::class, 'show'])->name('show.product');
 
     //products by category
     Route::name('byCat.')->group(function () {

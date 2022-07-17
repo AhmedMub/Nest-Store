@@ -59,4 +59,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /*
+        //*Relationships....
+    */
+    public function addToWishes()
+    {
+        return $this->belongsToMany(Product::class, 'wish_lists', 'user_id', 'product_id');
+    }
 }

@@ -192,6 +192,12 @@ class Edit extends Component
         //update product discount if price changed according to discount that is exists
         $this->updateDiscountedPrice($this->product_id);
 
+        //to reset multi images field
+        $this->dispatchBrowserEvent('multiImagesReset');
+
+        //to reset main img field
+        $this->dispatchBrowserEvent('mainReset');
+
         $this->emit('productUpdated');
 
         $this->dispatchBrowserEvent('alert', [

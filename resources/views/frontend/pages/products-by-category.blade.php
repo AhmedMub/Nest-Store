@@ -94,25 +94,26 @@ $catName = $category->name_ar;
                 </div>
                 <div class="row product-grid">
                     @foreach ($products as $product)
+
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                         <div class="product-cart-wrap mb-30">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <a href="shop-product-right.html">
-                                        <img class="default-img" src="" alt="" />
-                                        <img class="hover-img" src="" alt="" />
+                                        <img class="default-img" src="{{$product->getFirstMediaUrl('mainImage')}}"
+                                            alt="" />
+                                        <img class="hover-img" src="{{$product->getMedia('multiImages')[0]->getUrl()}}"
+                                            alt="" />
                                     </a>
                                 </div>
                                 <div class="product-action-1">
-                                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
-                                            class="fi-rs-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                            class="fi-rs-shuffle"></i></a>
+                                    <livewire:frontend.product.wishlist :product="$product->id" :user="$user" />
+
+                                    {{-- /-//TODO add quickview for product livewire component --}}
                                     <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                         data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
                                 </div>
                                 <div class="product-badges product-badges-position product-badges-mrg">
-
                                     @if ($product->hot_deals == 1)
                                     <span class="hot">{{__('frontend/productsByCategory.Hot')}}</span>
                                     @elseif ($product->new_deals == 1)
@@ -129,7 +130,7 @@ $catName = $category->name_ar;
                                         {{$product->name_en}} @endif</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
+                                        <div class="product-rating"></div>
                                     </div>
                                     <span class="font-small ml-5 text-muted"> (4.0)</span>
                                 </div>
@@ -153,7 +154,7 @@ $catName = $category->name_ar;
 
                                     </div>
                                     <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add
+                                        <a class="add" href=""><i class="fi-rs-shopping-cart mr-5"></i>Add
                                         </a>
                                     </div>
                                 </div>
@@ -190,6 +191,10 @@ $catName = $category->name_ar;
 @endsection
 @push('added-head')
 <style>
+    .product-rating {
+        background-image: url("{{asset('frontend/assets/imgs/theme/rating-stars.png')}}");
+    }
+
     .archive-header {
         background: url("{{asset('frontend/assets/imgs/blog/header-bg.png')}}") no-repeat center center;
     }
