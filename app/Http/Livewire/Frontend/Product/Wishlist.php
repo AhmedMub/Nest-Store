@@ -11,8 +11,6 @@ class Wishlist extends Component
     public $product;
     public $user;
 
-
-
     public function mount($product, $user)
     {
         $this->product = $product;

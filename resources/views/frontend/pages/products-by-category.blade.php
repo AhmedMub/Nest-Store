@@ -94,7 +94,6 @@ $catName = $category->name_ar;
                 </div>
                 <div class="row product-grid">
                     @foreach ($products as $product)
-
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                         <div class="product-cart-wrap mb-30">
                             <div class="product-img-action-wrap">
@@ -108,10 +107,8 @@ $catName = $category->name_ar;
                                 </div>
                                 <div class="product-action-1">
                                     <livewire:frontend.product.wishlist :product="$product->id" :user="$user" />
-
-                                    {{-- /-//TODO add quickview for product livewire component --}}
                                     <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                        data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                        data-bs-target="#quickViewModal_{{$product->id}}"><i class="fi-rs-eye"></i></a>
                                 </div>
                                 <div class="product-badges product-badges-position product-badges-mrg">
                                     @if ($product->hot_deals == 1)
@@ -126,7 +123,8 @@ $catName = $category->name_ar;
                                 <div class="product-category">
                                     <a href="javascript:avoid(0)">{{$catName}}</a>
                                 </div>
-                                <h2><a href="shop-product-right.html">@if ($langAr){{$product->name_ar}}@else
+                                <h2><a href="{{route('show.product', $product->slug)}}">
+                                        @if($langAr){{$product->name_ar}}@else
                                         {{$product->name_en}} @endif</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -148,7 +146,7 @@ $catName = $category->name_ar;
                                         <span>${{$product->productDiscount->discounted_price}}</span>
                                         <span class="old-price">${{$product->price}}</span>
                                         @else
-                                        <span>$32.8</span>
+                                        <span>${{$product->price}}</span>
                                         @endif
 
 
@@ -161,6 +159,7 @@ $catName = $category->name_ar;
                             </div>
                         </div>
                     </div>
+                    <livewire:frontend.product.quick-product-view :product="$product->id" :langAr="$langAr" />
                     @endforeach
                 </div>
                 <!--product grid-->
@@ -185,6 +184,7 @@ $catName = $category->name_ar;
         </div>
     </div>
 </main>
+
 @else
 <x-frontend.page404 message="No Products Found" />
 @endif
