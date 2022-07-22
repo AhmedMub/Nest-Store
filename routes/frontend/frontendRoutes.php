@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductsByTagController;
 use App\Http\Controllers\Frontend\ProductsByVendorController;
 use App\Http\Controllers\Frontend\UserProfile;
+use App\Http\Livewire\Frontend\Prodcut\ProductsByCategory;
 use Illuminate\Support\Facades\Route;
 use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -16,11 +17,17 @@ use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 |
 */
+//TODO add route for the shop view
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
+
+    Route::get('debugging-front', function () {
+
+        return view('debugging-front');
+    });
 
     /** ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', [FrontController::class, 'index'])->name('home');
@@ -38,8 +45,14 @@ Route::group([
     Route::get('show-product/{slug}', [GetProductController::class, 'show'])->name('show.product');
 
     //products by category
+    // Route::name('byCat.')->group(function () {
+    //     Route::get('by-main-category/{slug}', [HomeController::class, 'byMainCategory'])->name('main');
+    //     Route::get('by-subcategory/{slug}', [HomeController::class, 'bySubcategory'])->name('subCat');
+    //     Route::get('by-sub-subcategory/{slug}', [HomeController::class, 'bySubSubcategory'])->name('subSubcat');
+    // });
+
     Route::name('byCat.')->group(function () {
-        Route::get('by-main-category/{slug}', [HomeController::class, 'byMainCategory'])->name('main');
+        Route::get('by-main-category/{slug}', [HomeController::class, 'productsByMainCategory'])->name('main');
         Route::get('by-subcategory/{slug}', [HomeController::class, 'bySubcategory'])->name('subCat');
         Route::get('by-sub-subcategory/{slug}', [HomeController::class, 'bySubSubcategory'])->name('subSubcat');
     });

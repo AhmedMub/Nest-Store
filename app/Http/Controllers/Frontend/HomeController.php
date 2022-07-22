@@ -18,7 +18,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function byMainCategory($slug)
+    public function productsByMainCategory($slug)
     {
         $category = Category::whereSlug($slug)->firstOrFail();
 
@@ -33,16 +33,37 @@ class HomeController extends Controller
 
         return view('frontend.pages.products-by-category', compact('category', 'tags', 'products', 'user'));
     }
+    public function byMainCategory($slug)
+    {
+        // $category = Category::whereSlug($slug)->firstOrFail();
+
+        // //get related products to selected category
+        // $products = $category->productMainCat->where('product_status', 1);
+
+        // $tags = Tag::whereStatus(1)->latest()->take(5)->get();
+        // $user = 0;
+        // if (Auth::check()) {
+        //     $user = Auth::user()->id;
+        // }
+
+        // return view('frontend.pages.products-by-category', compact('category', 'tags', 'products', 'user'));
+    }
     public function bySubcategory($slug)
     {
         $category = SubCategory::whereSlug($slug)->firstOrFail();
 
         //get related products to selected category
-        $products = $category->productMainCat->where('product_status', 1);
+
+        $products = $category->productSubCat->where('product_status', 1);
 
         $tags = Tag::whereStatus(1)->latest()->take(5)->get();
 
-        return view('frontend.pages.products-by-category', compact('category', 'tags', 'products'));
+        $user = 0;
+        if (Auth::check()) {
+            $user = Auth::user()->id;
+        }
+
+        return view('frontend.pages.testing', compact('category', 'tags', 'products', 'user'));
     }
     public function bySubSubcategory($slug)
     {

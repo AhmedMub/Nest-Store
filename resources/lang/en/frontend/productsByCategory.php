@@ -8,5 +8,6 @@ return [
     'Home' => 'Home',
     'ByVendor' => 'by',
     'Hot' => 'Hot',
-    'New' => 'New'
+    'New' => 'New',
+    'Sortby' => 'Sort by'
 ];

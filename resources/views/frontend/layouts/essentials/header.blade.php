@@ -46,9 +46,9 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                             <li>{{__('frontend/header.Need help? Call Us')}} <strong class="text-brand"> +
                                     {{__('frontend/header.1800 900')}}</strong></li>
                             <li>
-                                <a class="language-dropdown-active" href="javascript:avoid(0)">
-                                    {{str_contains(url()->current(), 'en')? 'English' : 'العربية'}}
-                                    <i class="fi-rs-angle-small-down"></i>
+                                <a class="language-dropdown-active" href="#">
+                                    <i class="fi-rs-angle-small-down"></i> {{str_contains(url()->current(), 'en')?
+                                    'English' : 'العربية'}}
                                 </a>
                                 <ul class="language-dropdown">
                                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
