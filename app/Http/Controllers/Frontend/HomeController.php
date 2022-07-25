@@ -22,7 +22,11 @@ class HomeController extends Controller
     {
         $category = Category::whereSlug($slug)->firstOrFail();
 
-        //get related products to selected category
+        /*
+        /-get related products to selected category
+        //*this is only to check if there is a products or not to display.
+        /-the products will be displayed through livewire component to use livewire pagination, this $products will not be passed to livewire component
+        */
         $products = $category->productMainCat->where('product_status', 1);
 
         $tags = Tag::whereStatus(1)->latest()->take(5)->get();
@@ -31,30 +35,15 @@ class HomeController extends Controller
             $user = Auth::user()->id;
         }
 
-        return view('frontend.pages.products-by-category', compact('category', 'tags', 'products', 'user'));
+        return view('frontend.pages.show-products', compact('category', 'tags', 'products', 'user'));
     }
-    public function byMainCategory($slug)
+    public function productsBySubcategory($slug)
     {
-        // $category = Category::whereSlug($slug)->firstOrFail();
-
-        // //get related products to selected category
-        // $products = $category->productMainCat->where('product_status', 1);
-
-        // $tags = Tag::whereStatus(1)->latest()->take(5)->get();
-        // $user = 0;
-        // if (Auth::check()) {
-        //     $user = Auth::user()->id;
-        // }
-
-        // return view('frontend.pages.products-by-category', compact('category', 'tags', 'products', 'user'));
-    }
-    public function bySubcategory($slug)
-    {
-        $category = SubCategory::whereSlug($slug)->firstOrFail();
+        $subCategory = SubCategory::whereSlug($slug)->firstOrFail();
 
         //get related products to selected category
 
-        $products = $category->productSubCat->where('product_status', 1);
+        $products = $subCategory->productSubCat->where('product_status', 1);
 
         $tags = Tag::whereStatus(1)->latest()->take(5)->get();
 
@@ -62,10 +51,9 @@ class HomeController extends Controller
         if (Auth::check()) {
             $user = Auth::user()->id;
         }
-
-        return view('frontend.pages.testing', compact('category', 'tags', 'products', 'user'));
+        return view('frontend.pages.show-products', compact('subCategory', 'tags', 'products', 'user'));
     }
-    public function bySubSubcategory($slug)
+    public function productsBySubSubcategory($slug)
     {
         $category = SubSubcategory::whereSlug($slug)->firstOrFail();
 

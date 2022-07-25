@@ -68,7 +68,7 @@
 
         {{--
         <x-admin.layouts.loading /> --}}
-        {{-- //COMMENT 1-Enhancments to do is to add global loader, becuase the above needs fixing --}}
+        {{-- -//COMMENT 1-Enhancments to do is to add global loader, becuase the above needs fixing --}}
     </div>
     @endauth
     {{-- Vendor JS --}}

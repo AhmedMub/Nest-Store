@@ -8,15 +8,12 @@ use Livewire\Component;
 
 class Wishlist extends Component
 {
-    public $product;
-    public $user;
 
-    public function mount($product, $user)
-    {
-        $this->product = $product;
-        $this->user = $user;
-    }
+    //TODO must include remove from wish list
 
+    protected $listeners = [
+        'addToWishList' => 'wishList',
+    ];
 
     public function wishList($user, $product)
     {
@@ -27,8 +24,8 @@ class Wishlist extends Component
 
         $getUser = User::findOrFail($user);
 
+        //check if user already has the selected product to his wishList
         if ($getUser->addToWishes->contains($product)) {
-
             $this->dispatchBrowserEvent('alert', [
                 'type'      => 'warning',
                 'message'   => 'Product exists in your wish list!'
@@ -36,6 +33,7 @@ class Wishlist extends Component
             return null;
         }
 
+        //add product To user's wishlist
         $getUser->addToWishes()->attach($product);
 
         $this->dispatchBrowserEvent('alert', [

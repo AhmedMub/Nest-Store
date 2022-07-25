@@ -1,18 +1,22 @@
 @php
 //check lang
 $langAr = str_contains(url()->current(), 'ar');
-
-$catName = $category->name_en;
-if($langAr) {
-$catName = $category->name_ar;
-}
 @endphp
 @extends('frontend.layouts.master')
+@section('title', 'Nest | Products')
 @section('content')
 
 @if (count($products) > 0)
-<livewire:frontend.product.products-by-category :category="$category" :tags="$tags" :user="$user" :langAr="$langAr"
-    :catName="$catName" :products="$products" />
+
+@isset($category)
+<livewire:frontend.product.products-by-main-category :category="$category" :tags="$tags" :user="$user"
+    :langAr="$langAr" />
+@endisset
+
+@isset($subCategory)
+<livewire:frontend.product.products-by-sub-category :subCategory="$subCategory" :tags="$tags" :user="$user"
+    :langAr="$langAr" />
+@endisset
 
 @else
 <x-frontend.page404 message="No Products Found" />

@@ -44,17 +44,10 @@ Route::group([
     //*Product Route
     Route::get('show-product/{slug}', [GetProductController::class, 'show'])->name('show.product');
 
-    //products by category
-    // Route::name('byCat.')->group(function () {
-    //     Route::get('by-main-category/{slug}', [HomeController::class, 'byMainCategory'])->name('main');
-    //     Route::get('by-subcategory/{slug}', [HomeController::class, 'bySubcategory'])->name('subCat');
-    //     Route::get('by-sub-subcategory/{slug}', [HomeController::class, 'bySubSubcategory'])->name('subSubcat');
-    // });
-
     Route::name('byCat.')->group(function () {
         Route::get('by-main-category/{slug}', [HomeController::class, 'productsByMainCategory'])->name('main');
-        Route::get('by-subcategory/{slug}', [HomeController::class, 'bySubcategory'])->name('subCat');
-        Route::get('by-sub-subcategory/{slug}', [HomeController::class, 'bySubSubcategory'])->name('subSubcat');
+        Route::get('by-subcategory/{slug}', [HomeController::class, 'productsBySubcategory'])->name('subCat');
+        Route::get('by-sub-subcategory/{slug}', [HomeController::class, 'productsBySubSubcategory'])->name('subSubcat');
     });
 
     //products by tags

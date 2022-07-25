@@ -43,5 +43,3 @@
                 });
 </script>
 @stack('added-scripts')
-
-@livewireScripts

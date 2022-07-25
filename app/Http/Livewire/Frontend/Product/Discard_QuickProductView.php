@@ -7,13 +7,19 @@ use Livewire\Component;
 
 class QuickProductView extends Component
 {
-    public $product;
     public $langAr;
+    public $product;
+    protected $listeners = ['quickShow'];
 
-    public function mount($product, $langAr)
+    public function mount($langAr)
     {
-        $this->product = Product::findOrFail($product);
         $this->langAr = $langAr;
+    }
+
+    public function quickShow($id)
+    {
+
+        //$this->product = Product::findOrFail($id);
     }
 
     public function render()

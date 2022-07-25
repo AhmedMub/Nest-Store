@@ -1,3 +1,10 @@
+@php
+$catName = $subCategory->name_en;
+
+if($langAr) {
+$catName = $subCategory->name_ar;
+}
+@endphp
 <main class="main">
     <div class="page-header mt-30 mb-50">
         <div class="container">
@@ -152,7 +159,16 @@
                 </div>
                 <!--product grid-->
                 <div class="pagination-area mt-20 mb-20">
-                    <nav aria-label="Page navigation example">
+                    <p>
+                        {{-- -//NOTE when you use pagination you will have access to all below methods --}}
+                        showing {{$products->firstItem()}} to {{$products->lastItem()}} out of
+                        {{$products->total()}}
+                    </p>
+                    <p>
+                        {{-- this is to declare the pagenation --}}
+                        {{$products->links()}}
+                    </p>
+                    {{-- <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-start">
                             <li class="page-item">
                                 <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
@@ -166,7 +182,7 @@
                                 <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> --}}
                 </div>
             </div>
         </div>
