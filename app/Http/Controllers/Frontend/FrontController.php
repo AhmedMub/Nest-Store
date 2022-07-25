@@ -14,6 +14,11 @@ class FrontController extends Controller
         return view('frontend.pages.index');
     }
 
+    public function shop()
+    {
+        //
+    }
+
     public function contactUs()
     {
         //

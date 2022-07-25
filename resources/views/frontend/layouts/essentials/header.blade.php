@@ -296,7 +296,12 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                         alt="hot deals" /><a href="javascript:avoid(0)">
                                         {{__('frontend/header.hot deals')}}</a></li>
                                 <li>
-                                    <a href="{{route('home')}}" class="active">{{__('Home')}}</a>
+                                    <a href="{{route('home')}}"
+                                        class="text-capitalize text">{{__('frontend/header.home')}}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('shop')}}"
+                                        class="text-capitalize">{{__('frontend/header.shop')}}</a>
                                 </li>
                                 @foreach ($navCategories as $mainCat)
                                 <li class="position-static">

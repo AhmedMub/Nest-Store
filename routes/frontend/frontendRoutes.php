@@ -32,6 +32,8 @@ Route::group([
     /** ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', [FrontController::class, 'index'])->name('home');
 
+    Route::get('shop', [FrontController::class, 'shop'])->name('shop');
+
     //contact us page
     Route::get('contact-us', [FrontController::class, 'contactUs'])->name('contact');
 

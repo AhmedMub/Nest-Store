@@ -28,5 +28,8 @@ return [
     'Search for items...' => 'Search for items...',
     'Compare' => 'Compare',
     'Trending' => 'Trending',
-    'Categories' => 'Categories'
+    'Categories' => 'Categories',
+    'shop' => 'shop',
+    'home' => 'home'
+
 ];

@@ -29,6 +29,19 @@ class ProductsByMainCategory extends Component
         $this->user = $user;
         $this->langAr = $langAr;
     }
+
+    //to set products per Page
+    public function resetPerPage($no)
+    {
+        if ($no == 0) {
+            $setTo = "";
+            $this->perPage = $setTo;
+        } else {
+            $setTo = $no;
+            $this->perPage = $setTo;
+        }
+    }
+
     public function render()
     {
         $products = Product::whereProductStatus(1)->whereCategoryId($this->category->id)->latest()->paginate($this->perPage);

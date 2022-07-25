@@ -4,6 +4,7 @@ $catName = $category->name_en;
 if($langAr) {
 $catName = $category->name_ar;
 }
+$sortPerPage = array(15,25,35,45,0);
 @endphp
 <main class="main">
     <div class="page-header mt-30 mb-50">
@@ -45,22 +46,31 @@ $catName = $category->name_ar;
 
                     </div>
                     <div class="sort-by-product-area">
-                        <div class="sort-by-cover mr-10">
+                        <div class="sort-by-cover mr-10" x-data="{getActive: false}">
                             <div class="sort-by-product-wrap">
                                 <div class="sort-by">
                                     <span><i class="fi-rs-apps"></i>Show:</span>
                                 </div>
                                 <div class="sort-by-dropdown-wrap">
-                                    <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                    <span> @if (empty($perPage)) All @else {{$perPage}} @endif <i
+                                            class="fi-rs-angle-small-down"></i></span>
                                 </div>
                             </div>
                             <div class="sort-by-dropdown">
                                 <ul>
-                                    <li><a class="active" href="#">50</a></li>
-                                    <li><a href="#">100</a></li>
-                                    <li><a href="#">150</a></li>
-                                    <li><a href="#">200</a></li>
-                                    <li><a href="#">All</a></li>
+                                    {{--
+                                    -//FIXME fix "Uncaught ReferenceError: avoid is not defined"caused by
+                                    javascript:avoid(0)"
+                                    --}}
+                                    @foreach ($sortPerPage as $no)
+                                    <li><a class="@if($perPage == $no) active @endif" wire:click="resetPerPage({{$no}})"
+                                            href="javascript:avoid(0)">@if ($no != 0)
+                                            {{$no}}
+                                            @else
+                                            All
+                                            @endif</a>
+                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
