@@ -30,6 +30,7 @@ return [
     'Trending' => 'Trending',
     'Categories' => 'Categories',
     'shop' => 'shop',
-    'home' => 'home'
+    'home' => 'home',
+
 
 ];

@@ -1,6 +1,15 @@
 @php
 //check lang
 $langAr = str_contains(url()->current(), 'ar');
+if(!isset($subCategory)) {
+$subCategory = null;
+}
+if(!isset($category)) {
+$category = null;
+}
+if(!isset($subSubCategory)) {
+$subSubCategory = null;
+}
 @endphp
 @extends('frontend.layouts.master')
 @section('title', 'Nest | Products')
@@ -8,10 +17,14 @@ $langAr = str_contains(url()->current(), 'ar');
 
 @if (count($products) > 0)
 
-@isset($category)
+
+<livewire:frontend.product.products-by-main-category :category="$category" :subCategory="$subCategory"
+    :subSubCategory="$subSubCategory" :tags="$tags" :user="$user" :langAr="$langAr" />
+
+{{-- @isset($category)
 <livewire:frontend.product.products-by-main-category :category="$category" :tags="$tags" :user="$user"
     :langAr="$langAr" />
-@endisset
+@endisset --}}
 
 @isset($subCategory)
 <livewire:frontend.product.products-by-sub-category :subCategory="$subCategory" :tags="$tags" :user="$user"

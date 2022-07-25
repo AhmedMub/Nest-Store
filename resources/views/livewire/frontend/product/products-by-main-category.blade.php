@@ -5,6 +5,7 @@ if($langAr) {
 $catName = $category->name_ar;
 }
 $sortPerPage = array(15,25,35,45,0);
+$sortByField = array('featured', 'price low to high', 'price high to low', 'release date');
 @endphp
 <main class="main">
     <div class="page-header mt-30 mb-50">
@@ -81,17 +82,22 @@ $sortPerPage = array(15,25,35,45,0);
                                             class="fi-rs-apps-sort"></i>{{__('frontend/productsByCategory.Sortby')}}:</span>
                                 </div>
                                 <div class="sort-by-dropdown-wrap">
-                                    <span> {{__('frontend/productsByCategory.Featured')}} <i
+                                    <span> {{__("frontend/productsByCategory.$dropDownHead")}} <i
                                             class="fi-rs-angle-small-down"></i></span>
                                 </div>
                             </div>
                             <div class="sort-by-dropdown">
                                 <ul>
-                                    <li><a class="active" href="#">Featured</a></li>
-                                    <li><a href="#">Price: Low to High</a></li>
-                                    <li><a href="#">Price: High to Low</a></li>
-                                    <li><a href="#">Release Date</a></li>
-                                    <li><a href="#">Avg. Rating</a></li>
+                                    {{--
+                                    -//FIXME fix "Uncaught ReferenceError: avoid is not defined"caused by
+                                    javascript:avoid(0)"
+                                    --}}
+                                    @foreach ($sortByField as $key => $item)
+                                    <li><a wire:click="sortBySelectedField({{$key}}, '{{$item}}')"
+                                            class="text-capitalize @if ($activeClass == $key) active @endif"
+                                            href="javascript:avoid(0)">{{__("frontend/productsByCategory.$item")}}</a>
+                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

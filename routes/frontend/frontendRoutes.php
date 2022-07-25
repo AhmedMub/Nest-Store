@@ -46,10 +46,10 @@ Route::group([
     //*Product Route
     Route::get('show-product/{slug}', [GetProductController::class, 'show'])->name('show.product');
 
-    Route::name('byCat.')->group(function () {
-        Route::get('by-main-category/{slug}', [HomeController::class, 'productsByMainCategory'])->name('main');
-        Route::get('by-subcategory/{slug}', [HomeController::class, 'productsBySubcategory'])->name('subCat');
-        Route::get('by-sub-subcategory/{slug}', [HomeController::class, 'productsBySubSubcategory'])->name('subSubcat');
+    Route::controller(HomeController::class)->name('byCat.')->group(function () {
+        Route::get('by-main-category/{slug}', 'productsByMainCategory')->name('main');
+        Route::get('by-subcategory/{slug}', 'productsBySubCategory')->name('subCat');
+        Route::get('by-sub-subcategory/{slug}', 'productsBySubSubCategory')->name('subSubcat');
     });
 
     //products by tags
@@ -58,10 +58,6 @@ Route::group([
     //products by tags
     Route::get('by-vendor/{slug}', [ProductsByVendorController::class, 'getProducts'])->name('byVendor');
 });
-
-
-
-
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

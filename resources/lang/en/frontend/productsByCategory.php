@@ -9,5 +9,9 @@ return [
     'ByVendor' => 'by',
     'Hot' => 'Hot',
     'New' => 'New',
-    'Sortby' => 'Sort by'
+    'Sortby' => 'Sort by',
+    'featured' => 'featured',
+    'price low to high' => 'price low to high',
+    'price high to low' => 'price high to low',
+    'release date' => 'release date',
 ];

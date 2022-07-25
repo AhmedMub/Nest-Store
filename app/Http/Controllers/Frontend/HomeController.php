@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         return view('frontend.pages.show-products', compact('category', 'tags', 'products', 'user'));
     }
-    public function productsBySubcategory($slug)
+    public function productsBySubCategory($slug)
     {
         $subCategory = SubCategory::whereSlug($slug)->firstOrFail();
 
@@ -53,16 +53,21 @@ class HomeController extends Controller
         }
         return view('frontend.pages.show-products', compact('subCategory', 'tags', 'products', 'user'));
     }
-    public function productsBySubSubcategory($slug)
+    public function productsBySubSubCategory($slug)
     {
-        $category = SubSubcategory::whereSlug($slug)->firstOrFail();
+        $subSubCategory = SubSubcategory::whereSlug($slug)->firstOrFail();
 
         //get related products to selected category
-        $products = $category->productMainCat->where('product_status', 1);
+        $products = $subSubCategory->productSubSubCat->where('product_status', 1);
 
         $tags = Tag::whereStatus(1)->latest()->take(5)->get();
 
-        return view('frontend.pages.products-by-category', compact('category', 'tags', 'products'));
+        $user = 0;
+        if (Auth::check()) {
+            $user = Auth::user()->id;
+        }
+
+        return view('frontend.pages.show-products', compact('subSubCategory', 'tags', 'products', 'user'));
     }
 
     /**
