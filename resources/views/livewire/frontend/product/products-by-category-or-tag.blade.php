@@ -1,8 +1,13 @@
 @php
-$catName = $category->name_en;
-
-if($langAr) {
-$catName = $category->name_ar;
+$headerName;
+if(isset($byTag)) {
+$headerName = $tagName;
+}
+if(isset($currentCat)) {
+$headerName = $currentCat->name_en;
+}
+if($langAr && isset($currentCat)) {
+$headerName = $currentCat->name_ar;
 }
 $sortPerPage = array(15,25,35,45,0);
 $sortByField = array('featured', 'price low to high', 'price high to low', 'release date');
@@ -13,10 +18,10 @@ $sortByField = array('featured', 'price low to high', 'price high to low', 'rele
             <div class="archive-header">
                 <div class="row align-items-center">
                     <div class="col-xl-3">
-                        <h1 class="mb-15">{{$catName}}</h1>
+                        <h1 class="mb-15">{{$headerName}}</h1>
                         <div class="breadcrumb">
                             <a href="{{route('home')}}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                            <span></span> Shop <span></span>{{$catName}}
+                            <span></span> Shop <span></span>{{$headerName}}
                         </div>
                     </div>
                     {{-- get products by category --}}
@@ -134,7 +139,7 @@ $sortByField = array('featured', 'price low to high', 'price high to low', 'rele
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="javascript:avoid(0)">{{$catName}}</a>
+                                    <a href="javascript:avoid(0)">{{$headerName}}</a>
                                 </div>
                                 <h2><a href="{{route('show.product', $product->slug)}}">
                                         @if($langAr){{$product->name_ar}}@else
