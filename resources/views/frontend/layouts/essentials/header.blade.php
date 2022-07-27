@@ -268,7 +268,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                 <ul>
                                     @foreach ($item as $cat)
                                     <li style='width:12rem'>
-                                        <a href="javascript:avoid(0)">
+                                        <a href="{{route('byCat.main', $cat->slug)}}">
                                             @if ($cat->icon != null && $cat->default_icon_status == 0)
                                             <img src="{{asset('storage/frontend/categories/'.$cat->icon)}}" alt="" />
                                             @else
