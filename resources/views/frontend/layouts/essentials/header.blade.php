@@ -119,12 +119,13 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                 </form>
                             </div> --}}
                             <div class="header-action-icon-2">
-                                <a href="javascript:avoid(0)">
+                                <a href="{{route('products.compare')}}">
                                     <img class="svgInject" alt="Nest"
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-compare.svg")}} />
+                                    {{-- -/This number will be dynamic --}}
                                     <span class="pro-count blue">3</span>
                                 </a>
-                                <a href="javascript:avoid(0)"><span
+                                <a href="{{route('products.compare')}}"><span
                                         class="lable ml-0">{{__('frontend/header.Compare')}}</span></a>
                             </div>
                             <div class="header-action-icon-2">

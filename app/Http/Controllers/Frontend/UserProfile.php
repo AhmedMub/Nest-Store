@@ -13,4 +13,10 @@ class UserProfile extends Controller
 
         return view('frontend.pages.profile');
     }
+
+    // products compare page:
+    public function productsCompare()
+    {
+        //
+    }
 }

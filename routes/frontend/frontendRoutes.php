@@ -37,13 +37,16 @@ Route::group([
     //contact us page
     Route::get('contact-us', [FrontController::class, 'contactUs'])->name('contact');
 
-    //Auth Routes
+    //*Auth Routes
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         //user profile
         Route::get('profile', [UserProfile::class, 'show'])->name('user.profile');
+
+        //compare products page
+        Route::get('products-compare', [UserProfile::class, 'productsCompare'])->name('products.compare');
     });
 
-    //*Product Route
+    //Product Route
     Route::get('show-product/{slug}', [GetProductController::class, 'show'])->name('show.product');
 
     Route::controller(HomeController::class)->name('byCat.')->group(function () {

@@ -1,6 +1,7 @@
 @php
 $langAr = str_contains(url()->current(), 'ar');
 
+
 @endphp
 @extends('frontend.layouts.master')
 @section('content')
@@ -59,34 +60,27 @@ $langAr = str_contains(url()->current(), 'ar');
                 <div class="col-lg-7">
                     <div class="home-slide-cover mt-30">
                         <div class="hero-slider-1 style-5 dot-style-1 dot-style-1-position-2">
+                            @foreach ($sliders as $slider)
                             <div class="single-hero-slider single-animation-wrap"
-                                style="background-image: url({{asset('frontend/assets/imgs/slider/slider-7.png')}})">
+                                style="background-image: url('{{$slider->getFirstMediaUrl('slider')}}')">
                                 <div class="slider-content">
-                                    <h1 class="display-2 mb-40">
-                                        Don’t miss amazing<br />
-                                        grocery deals
+                                    <h1 class="display-2 mb-40 slider-title">
+                                        @if ($langAr)
+                                        {!! $slider->modifyTitle($slider->title_ar) !!}
+                                        @else
+                                        {!! $slider->modifyTitle($slider->title_en) !!}
+                                        @endif
                                     </h1>
-                                    <p class="mb-65">Sign up for the daily newsletter</p>
-                                    <form class="form-subcriber d-flex">
-                                        <input type="email" placeholder="Your emaill address" />
-                                        <button class="btn" type="submit">Subscribe</button>
-                                    </form>
+                                    <p class="mb-65">
+                                        @if ($langAr)
+                                        {{$slider->description_ar}}
+                                        @else
+                                        {{$slider->description_en}}
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
-                            <div class="single-hero-slider single-animation-wrap"
-                                style="background-image: url({{asset('frontend/assets/imgs/slider/slider-8.png')}})">
-                                <div class="slider-content">
-                                    <h1 class="display-2 mb-40">
-                                        Fresh Vegetables<br />
-                                        Big discount
-                                    </h1>
-                                    <p class="mb-65">Save up to 50% off on your first order</p>
-                                    <form class="form-subcriber d-flex">
-                                        <input type="email" placeholder="Your emaill address" />
-                                        <button class="btn" type="submit">Subscribe</button>
-                                    </form>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="slider-arrow hero-slider-1-arrow"></div>
                     </div>
@@ -95,27 +89,28 @@ $langAr = str_contains(url()->current(), 'ar');
                     <div class="row">
                         <div class="col-md-6 col-lg-12">
                             <div class="banner-img style-4 mt-30">
-                                <img src={{asset("frontend/assets/imgs/banner/banner-14.png")}} alt="" />
+                                <img src={{asset("frontend/assets/defaultImages/banner-14.png")}} alt="" />
                                 <div class="banner-text">
                                     <h4 class="mb-30">
-                                        Everyday Fresh &amp; <br />Clean with Our<br />
-                                        Products
+                                        {{__('frontend/index.Everyday Fresh')}} &amp; <br />
+                                        {{__('frontend/index.Clean with Our')}}<br />
+                                        {{__('frontend/index.Products')}}
                                     </h4>
-                                    <a href="shop-grid-right.html" class="btn btn-xs mb-50">Shop Now <i
-                                            class="fi-rs-arrow-small-right"></i></a>
+                                    <a href="{{route('shop')}}" class="btn btn-xs mb-50">
+                                        {{__('frontend/index.Shop Now')}} <i class="fi-rs-arrow-small-right"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-12">
                             <div class="banner-img style-5 mt-5 mt-md-30">
-                                <img src={{asset("frontend/assets/imgs/banner/banner-15.png")}} alt="" />
+                                <img src={{asset("frontend/assets/defaultImages/banner-15.png")}} alt="" />
                                 <div class="banner-text">
                                     <h5 class="mb-20">
-                                        The best Organic <br />
-                                        Products Online
+                                        {{__('frontend/index.The best Organic')}} <br />
+                                        {{__('frontend/index.Products Online')}}
                                     </h5>
-                                    <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i
-                                            class="fi-rs-arrow-small-right"></i></a>
+                                    <a href="{{route('shop')}}" class="btn btn-xs">
+                                        {{__('frontend/index.Shop Now')}} <i class="fi-rs-arrow-small-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -129,6 +124,8 @@ $langAr = str_contains(url()->current(), 'ar');
         <div class="container wow animate__animated animate__fadeIn">
             <div class="section-title">
                 <div class="title">
+
+                    {{-- /-//TODO pick up from your left --}}
                     <h3>Featured Categories</h3>
                     <ul class="list-inline nav nav-tabs links">
                         <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Cake &
@@ -339,7 +336,7 @@ $langAr = str_contains(url()->current(), 'ar');
                                     <div class="product-action-1">
                                         <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
                                                 class="fi-rs-heart"></i></a>
-                                        <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
+                                        <a aria-label="Compare" class="action-btn" href=""><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                             data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>

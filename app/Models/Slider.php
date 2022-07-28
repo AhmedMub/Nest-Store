@@ -43,4 +43,16 @@ class Slider extends Model implements HasMedia
                     ->height(200);
             });;
     }
+
+    //to edit title
+    public function modifyTitle($title)
+    {
+        $arr = explode(" ", $title);
+
+        if (count($arr) > 3) {
+            $arr[3] = " </br> ";
+        }
+
+        return join(" ", $arr);
+    }
 }

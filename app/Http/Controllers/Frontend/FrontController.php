@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Slider;
 
 class FrontController extends Controller
 {
@@ -25,7 +26,10 @@ class FrontController extends Controller
         //get remaining categories
         $catsRemainingRecords = Category::skip($skip)->take($remaining)->get();
 
-        return view('frontend.pages.index', compact('catsFirstRecords', 'catsRemainingRecords'));
+        //Slider
+        $sliders = Slider::whereStatus(1)->get();
+
+        return view('frontend.pages.index', compact('catsFirstRecords', 'catsRemainingRecords', 'sliders'));
     }
 
     public function shop()
