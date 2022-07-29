@@ -27,6 +27,9 @@ class Edit extends Component
     //main to product model
     public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $mainCatN, $subCatN, $vendorName, $subSubCatN, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $mfg, $life, $manufacturing_date;
 
+    public $getSubCats = "";
+    public $getSubSubCats = "";
+
     public $new_deals = 0;
 
     //define product description
@@ -100,10 +103,13 @@ class Edit extends Component
         $this->mainCatN = $product->productMainCat->name_en;
         $this->category_id = $product->productMainCat->id;
         $this->subCatN = $product->productSubCat->name_en;
+        $this->getSubCats = SubCategory::where('category_id', $this->category_id)->latest()->get();
+
         $this->subCategory_id = $product->productSubCat->id;
         if ($product->subSubCategory_id) {
             $this->subSubCatN = $product->productSubSubCat->name_en;
             $this->subSubCategory_id = $product->productSubSubCat->id;
+            $this->getSubSubCats = SubSubcategory::where('subcategory_id', $this->subCategory_id)->latest()->get();
         }
         $this->vendor_id = $product->productVendor->id;
         $this->vendorName = $product->productVendor->name_en;
@@ -138,6 +144,24 @@ class Edit extends Component
 
         //send above info to be rendered using summerNote
         $this->dispatchBrowserEvent('getProductInfo');
+    }
+
+    //getSubCategory
+    public function updatedCategoryId($id)
+    {
+        //remove the old value if there is any
+        $this->subCategory_id = "";
+
+        $this->getSubCats = SubCategory::where('category_id', $id)->latest()->get();
+
+        //remove the old value if there is any
+        $this->getSubSubCats = "";
+    }
+
+    //getSubSubCategory
+    public function updatedSubCategoryId($id)
+    {
+        $this->getSubSubCats = SubSubcategory::where('subcategory_id', $id)->latest()->get();
     }
 
     //Update Category

@@ -110,7 +110,7 @@
                                         class="text-red">*</span> <span
                                         class="selectedMainCat badge rounded-pill bg-warning-gradient badge-sm me-1 mb-1 mt-1 badge-size">{{$mainCatN}}</span></label>
                                 <select id="changeMainCat" autocomplete="off" class="form-select"
-                                    wire:model.defer='category_id' name="category_id">
+                                    wire:model='category_id' name="category_id">
                                     @foreach ($mainCats as $cat)
                                     <option value="{{$cat->id}}" class="text-uppercase"> {{$cat->name_en}} </option>
                                     @endforeach
@@ -123,10 +123,13 @@
                                 <label class="text-capitalize form-label mt-0">Subcategory <span
                                         class="text-red">*</span> <span
                                         class="badge rounded-pill bg-warning-gradient badge-sm me-1 mb-1 mt-1 badge-size">{{$subCatN}}</span></label>
-                                <select autocomplete="off" class="form-select" wire:model.defer='subCategory_id'>
-                                    @foreach ($subCats as $cat)
+                                <select autocomplete="off" class="form-select" wire:model='subCategory_id'>
+                                    <option>--selecte sub category--</option>
+                                    @if (!empty($getSubCats))
+                                    @foreach ($getSubCats as $cat)
                                     <option value="{{$cat->id}}" class="text-uppercase"> {{$cat->name_en}} </option>
                                     @endforeach
+                                    @endif
 
                                 </select>
                                 <x-defaults.input-error for="subCategory_id" />
@@ -136,13 +139,13 @@
                             <div class="form-group">
                                 <label class="text-capitalize form-label mt-0">Sub Subcategory <span
                                         class="badge rounded-pill bg-warning-gradient badge-sm me-1 mb-1 mt-1 badge-size">{{$subSubCatN}}</span></label>
-                                <select autocomplete="off" class="form-select" wire:model.defer='subSubCategory_id'>
-                                    @if (!$subSubCatN)
-                                    <option selected value="">--selecte Sub sub-category--</option>
-                                    @endif
-                                    @foreach ($subSubCats as $cat)
+                                <select autocomplete="off" class="form-select" wire:model='subSubCategory_id'>
+                                    <option>--selecte Sub sub-category--</option>
+                                    @if (!empty($getSubSubCats))
+                                    @foreach ($getSubSubCats as $cat)
                                     <option value="{{$cat->id}}" class="text-uppercase"> {{$cat->name_en}} </option>
                                     @endforeach
+                                    @endif
                                 </select>
                                 <x-defaults.input-error for="subSubCategory_id" />
                             </div>

@@ -59,6 +59,9 @@ class Edit extends Component
                 ->toMediaCollection('slider');
         }
 
+        //to reset main img field
+        $this->dispatchBrowserEvent('ResetImage');
+
         $this->emit('sliderUpdated');
 
         $this->dispatchBrowserEvent('alert', [

@@ -59,6 +59,7 @@ $langAr = str_contains(url()->current(), 'ar');
                 </div>
                 <div class="col-lg-7">
                     <div class="home-slide-cover mt-30">
+                        @if (count($sliders) > 0)
                         <div class="hero-slider-1 style-5 dot-style-1 dot-style-1-position-2">
                             @foreach ($sliders as $slider)
                             <div class="single-hero-slider single-animation-wrap"
@@ -82,6 +83,7 @@ $langAr = str_contains(url()->current(), 'ar');
                             </div>
                             @endforeach
                         </div>
+                        @endif
                         <div class="slider-arrow hero-slider-1-arrow"></div>
                     </div>
                 </div>
