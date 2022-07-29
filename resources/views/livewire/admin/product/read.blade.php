@@ -85,7 +85,13 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         <td> {{$product->admin->getFullName()}} </td>
                         <td> {{$product->updatedByAdmin->getFullName()}} </td>
                         <td>{{$product->productMainCat->name_en}}</td>
-                        <td>{{$product->productSubCat->name_en}}</td>
+                        <td>
+                            @if (!is_null($product->subCategory_id))
+                            {{$product->productSubCat->name_en}}
+                            @else
+                            <span class="badge bg-warning-gradient badge-sm fx-5 me-1 mb-1 mt-1">No Date</span>
+                            @endif
+                        </td>
                         <td>{{$product->sku}}</td>
                         <td>{{$product->qty}}</td>
                         <td>{{"$".$product->price}}</td>

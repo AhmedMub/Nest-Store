@@ -4,7 +4,7 @@
 @section('content')
 {{-- ROW-1 OPEN --}}
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-8">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-9">
         @if ($count > 0)
         <livewire:admin.category.read />
         @else
@@ -22,7 +22,7 @@
     </div>
 
     {{-- Start Create Category --}}
-    <div class="col-lg-12 col-xl-4 col-sm-12 col-md-12">
+    <div class="col-lg-12 col-xl-3 col-sm-12 col-md-12">
         <livewire:admin.category.create />
     </div>
     {{-- End Create Category --}}

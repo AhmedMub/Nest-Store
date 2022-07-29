@@ -25,7 +25,7 @@ class Edit extends Component
     public $long_desc_en;
 
     //main to product model
-    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $mainCatN, $subCatN, $vendorName, $subSubCatN, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $mfg, $life, $manufacturing_date;
+    public $createdBy_adminID, $updatedBy_adminID, $category_id, $subCategory_id, $subSubCategory_id, $vendor_id, $mainCatN, $subCatN, $vendorName, $subSubCatN, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $mfg, $life, $manufacturing_date;
 
     public $getSubCats = "";
     public $getSubSubCats = "";
@@ -50,7 +50,7 @@ class Edit extends Component
     {
         return [
             'category_id' => ['required', 'integer'],
-            'subCategory_id' => ['required', 'integer'],
+            'subCategory_id' => ['nullable', 'integer'],
             'subSubCategory_id' => ['nullable', 'integer'],
             'vendor_id' => ['required', 'integer'],
             'name_en' => ['required', 'string', "unique:products,name_en,$this->product_id"],
@@ -102,14 +102,20 @@ class Edit extends Component
         $this->product_id = $id;
         $this->mainCatN = $product->productMainCat->name_en;
         $this->category_id = $product->productMainCat->id;
-        $this->subCatN = $product->productSubCat->name_en;
-        $this->getSubCats = SubCategory::where('category_id', $this->category_id)->latest()->get();
 
-        $this->subCategory_id = $product->productSubCat->id;
-        if ($product->subSubCategory_id) {
-            $this->subSubCatN = $product->productSubSubCat->name_en;
+
+        //this is incase the subcategory is null
+        if (!is_null($product->subCategory_id)) {
+            $this->getSubCats = SubCategory::where('category_id', $this->category_id)->latest()->get();
+            $this->subCategory_id = $product->productSubCat->id;
+            $this->subCatN = $product->productSubCat->name_en;
+        }
+
+        //this is incase sub subcategory is null
+        if (!is_null($product->subSubCategory_id)) {
+            //$this->getSubSubCats = SubSubcategory::where('subcategory_id', $this->subCategory_id)->latest()->get();
             $this->subSubCategory_id = $product->productSubSubCat->id;
-            $this->getSubSubCats = SubSubcategory::where('subcategory_id', $this->subCategory_id)->latest()->get();
+            $this->subSubCatN = $product->productSubSubCat->name_en;
         }
         $this->vendor_id = $product->productVendor->id;
         $this->vendorName = $product->productVendor->name_en;
@@ -149,8 +155,9 @@ class Edit extends Component
     //getSubCategory
     public function updatedCategoryId($id)
     {
-        //remove the old value if there is any
+        //remove the old value if there is any subcat id and subSubcat id
         $this->subCategory_id = "";
+        $this->subSubCategory_id = "";
 
         $this->getSubCats = SubCategory::where('category_id', $id)->latest()->get();
 
@@ -161,6 +168,9 @@ class Edit extends Component
     //getSubSubCategory
     public function updatedSubCategoryId($id)
     {
+        //when changing option for subcategory the subSubcategory_id should be empty or remove the old value if there is any
+        $this->subSubCategory_id = "";
+
         $this->getSubSubCats = SubSubcategory::where('subcategory_id', $id)->latest()->get();
     }
 
@@ -172,6 +182,14 @@ class Edit extends Component
         //for validation
         ($this->new_deals !== 1 ? $this->new_deals = 0 : "");
         ($this->hot_deals !== 1 ? $this->hot_deals = 0 : "");
+
+        //check if admin choose subcategory and subSubcategory
+        if (!$this->subCategory_id) {
+            $this->subCategory_id = null;
+        }
+        if (!$this->subSubCategory_id) {
+            $this->subSubCategory_id = null;
+        }
 
         $authAdmin = Auth::guard('admin')->user()->id;
         $selectedProduct = Product::findOrFail($this->product_id);

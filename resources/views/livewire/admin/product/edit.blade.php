@@ -121,7 +121,6 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
                                 <label class="text-capitalize form-label mt-0">Subcategory <span
-                                        class="text-red">*</span> <span
                                         class="badge rounded-pill bg-warning-gradient badge-sm me-1 mb-1 mt-1 badge-size">{{$subCatN}}</span></label>
                                 <select autocomplete="off" class="form-select" wire:model='subCategory_id'>
                                     <option>--selecte sub category--</option>

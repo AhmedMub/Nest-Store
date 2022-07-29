@@ -9,4 +9,8 @@ return [
     'Products' => 'Products',
     'Shop Now' => 'Shop Now',
     'Products Online' => 'Products Online',
+    'Make your Breakfast' => 'Make your Breakfast',
+    'Healthy and Easy' => 'Healthy and Easy',
+    'Featured Categories' => 'Featured Categories',
+    'Popular Products' => 'Popular Products'
 ];

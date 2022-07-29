@@ -13,8 +13,7 @@ class FrontController extends Controller
     public function index()
     {
         //get first records where are 10 records
-        $catsFirstRecords = Category::select('*')->whereStatus(1)->take(10)->get();
-
+        $catsFirstRecords = Category::select('*')->whereStatus(1)->where('featured_category', 0)->take(10)->get();
         $count = Category::count();
 
         //skip the records you got "$catsFirstRecords"
@@ -29,7 +28,19 @@ class FrontController extends Controller
         //Slider
         $sliders = Slider::whereStatus(1)->get();
 
-        return view('frontend.pages.index', compact('catsFirstRecords', 'catsRemainingRecords', 'sliders'));
+        //get Featured Categories
+        $featuredCats = Category::whereStatus(1)->where('featured_category', 1)->latest()->get();
+
+        //get 6 categories for popular products section
+        $getFiveCats = Category::select('*')->whereStatus(1)->where('featured_category', 0)->take(6)->get();
+
+        return view('frontend.pages.index', compact(
+            'catsFirstRecords',
+            'catsRemainingRecords',
+            'sliders',
+            'featuredCats',
+            'getFiveCats'
+        ));
     }
 
     public function shop()

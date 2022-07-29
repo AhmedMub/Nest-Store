@@ -56,6 +56,7 @@
                         <th class="wd-15p border-bottom-0 text-capitalize">status</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">default icon</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">navbar active</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">featured category</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
                     </tr>
                 </thead>
@@ -96,6 +97,10 @@
                         <td>
                             <livewire:admin.category.navbar-status :category="$category" :name="'navbar_status'"
                                 :key="'navbar_status'.$category->id" />
+                        </td>
+                        <td>
+                            <livewire:admin.category.featured-category :category="$category" :name="'featured_category'"
+                                :key="'featured_category'.$category->id" />
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
