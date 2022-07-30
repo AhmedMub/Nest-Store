@@ -44,6 +44,9 @@ Route::group([
 
         //compare products page
         Route::get('products-compare', [UserProfile::class, 'productsCompare'])->name('products.compare');
+
+        //Wishlist products page
+        Route::get('products-wishlist', [UserProfile::class, 'wishList'])->name('products.wishList');
     });
 
     //Product Route

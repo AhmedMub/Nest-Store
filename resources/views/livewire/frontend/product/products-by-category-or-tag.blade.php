@@ -107,8 +107,10 @@ $sortByField = array('featured', 'price low to high', 'price high to low', 'rele
 
                 <div class="row product-grid">
                     @foreach ($products as $product)
-                    <x-frontend.products.product-grid :langAr="$langAr" :user="$user" :headerName="$headerName"
-                        :product="$product" />
+                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                        <x-frontend.products.single-product-view :langAr="$langAr" :user="$user"
+                            :headerName="$headerName" :product="$product" />
+                    </div>
                     @endforeach
                 </div>
 

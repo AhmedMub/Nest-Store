@@ -1,5 +1,5 @@
 @php
-$categories = App\Models\Category::where('status', 1)->latest()->get();
+$categories = App\Models\Category::where('status', 1)->where('featured_category', 0)->latest()->get();
 //this is for "Trending Categories"
 $chunks = $categories->chunk(5);
 
@@ -25,7 +25,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                             <li><a href="#">{{__('frontend/header.About Us')}}</a></li>
                             <li><a href="{{route('user.profile')}}">{{__('frontend/header.My Account')}}</a></li>
                             {{-- /-//TODO must get be crtead to user --}}
-                            <li><a href="#">{{__('frontend/header.Wishlist')}}</a></li>
+                            <li><a href="{{route('products.wishList')}}">{{__('frontend/header.Wishlist')}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -98,26 +98,6 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
-                            {{-- <div class="search-location">
-                                <form action="#">
-                                    <select class="select-active">
-                                        <option>Your Location</option>
-                                        <option>Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>Arizona</option>
-                                        <option>Delaware</option>
-                                        <option>Florida</option>
-                                        <option>Georgia</option>
-                                        <option>Hawaii</option>
-                                        <option>Indiana</option>
-                                        <option>Maryland</option>
-                                        <option>Nevada</option>
-                                        <option>New Jersey</option>
-                                        <option>New Mexico</option>
-                                        <option>New York</option>
-                                    </select>
-                                </form>
-                            </div> --}}
                             <div class="header-action-icon-2">
                                 <a href="{{route('products.compare')}}">
                                     <img class="svgInject" alt="Nest"
@@ -273,7 +253,9 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                             @if ($cat->icon != null && $cat->default_icon_status == 0)
                                             <img src="{{asset('storage/frontend/categories/'.$cat->icon)}}" alt="" />
                                             @else
-                                            <img src="{{asset('backend/default-images/'.$cat->default_icon)}}" alt="" />
+                                            @if ($cat->default_icon)
+                                            <img src="{{asset('storage/default_images/'.$cat->default_icon)}}" alt="" />
+                                            @endif
                                             @endif
                                             @if ($langAr)
                                             {{$cat->name_ar}}

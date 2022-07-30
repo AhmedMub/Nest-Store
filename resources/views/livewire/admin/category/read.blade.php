@@ -67,7 +67,7 @@
                         <td>
                             @if ($category->default_icon)
                             <div class="text-center">
-                                <img src="{{asset('backend/default-images/'.$category->default_icon)}}" alt="icon"
+                                <img src="{{asset('storage/default_images/'.$category->default_icon)}}" alt="icon"
                                     class="cart-img text-center">
                             </div>
                             @else

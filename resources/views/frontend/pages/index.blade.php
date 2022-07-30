@@ -21,7 +21,9 @@ $langAr = str_contains(url()->current(), 'ar');
                                         @if ($cat->icon != null && $cat->default_icon_status == 0)
                                         <img src="{{asset('storage/frontend/categories/'.$cat->icon)}}" alt="" />
                                         @else
-                                        <img src="{{asset('backend/default-images/'.$cat->default_icon)}}" alt="" />
+                                        @if ($cat->default_icon)
+                                        <img src="{{asset('storage/default_images/'.$cat->default_icon)}}" alt="icon">
+                                        @endif
                                         @endif
                                         @if ($langAr)
                                         {{$cat->name_ar}} @else {{$cat->name_en}}
@@ -41,7 +43,9 @@ $langAr = str_contains(url()->current(), 'ar');
                                             @if ($cat->icon != null && $cat->default_icon_status == 0)
                                             <img src="{{asset('storage/frontend/categories/'.$cat->icon)}}" alt="" />
                                             @else
-                                            <img src="{{asset('backend/default-images/'.$cat->default_icon)}}" alt="" />
+                                            @if ($cat->default_icon)
+                                            <img src="{{asset('storage/default_images/'.$cat->default_icon)}}" alt="" />
+                                            @endif
                                             @endif
                                             @if ($langAr)
                                             {{$cat->name_ar}} @else {{$cat->name_en}}
@@ -201,7 +205,8 @@ $langAr = str_contains(url()->current(), 'ar');
         </div>
     </section>
     {{--End banners--}}
-    <livewire:frontend.index.popular-products-section />
+    {{-- popular products section --}}
+    <livewire:frontend.index.popular-products-section :user="$user" :getSixCats="$getSixCats" :langAr="$langAr" />
     {{--Products Tabs--}}
     <section class="section-padding">
         <div class="container">

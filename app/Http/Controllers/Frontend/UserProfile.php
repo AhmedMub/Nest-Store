@@ -19,4 +19,10 @@ class UserProfile extends Controller
     {
         //
     }
+
+    // products wishlist page:
+    public function wishList()
+    {
+        //
+    }
 }

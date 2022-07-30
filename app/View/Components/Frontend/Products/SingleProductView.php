@@ -4,7 +4,7 @@ namespace App\View\Components\Frontend\Products;
 
 use Illuminate\View\Component;
 
-class ProductGrid extends Component
+class SingleProductView extends Component
 {
     public $headerName;
     public $product;
@@ -31,6 +31,6 @@ class ProductGrid extends Component
      */
     public function render()
     {
-        return view('components.frontend.products.product-grid');
+        return view('components.frontend.products.single-product-view');
     }
 }
