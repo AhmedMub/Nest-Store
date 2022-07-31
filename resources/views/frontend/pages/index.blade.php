@@ -6,6 +6,7 @@ $langAr = str_contains(url()->current(), 'ar');
 @extends('frontend.layouts.master')
 @section('content')
 <main class="main">
+    {{-- section 1 --}}
     <section class="home-slider position-relative mb-30">
         <div class="container">
             <div class="row">
@@ -126,6 +127,7 @@ $langAr = str_contains(url()->current(), 'ar');
         </div>
     </section>
     {{--End hero slider--}}
+    {{-- section 2 --}}
     <section class="popular-categories section-padding">
         <div class="container wow animate__animated animate__fadeIn">
             <div class="section-title">
@@ -160,6 +162,7 @@ $langAr = str_contains(url()->current(), 'ar');
         </div>
     </section>
     {{--End category slider--}}
+    {{-- section 3 --}}
     <section class="banners mb-25">
         <div class="container">
             <div class="row">
@@ -168,8 +171,8 @@ $langAr = str_contains(url()->current(), 'ar');
                         <img src={{asset("frontend/assets/defaultImages/banner-1.png")}} alt="" />
                         <div class="banner-text">
                             <h4>
-                                {{__('frontend/index.Everyday Fresh')}} & <br />{{__('frontend/index.Clean with
-                                Our')}}<br />
+                                {{__('frontend/index.Everyday Fresh')}} & <br />
+                                {{__('frontend/index.Clean with Our')}}<br />
                                 {{__('frontend/index.Products')}}
                             </h4>
                             <a href="{{route('shop')}}" class="btn btn-xs">{{__('frontend/index.Shop Now')}} <i
@@ -206,50 +209,60 @@ $langAr = str_contains(url()->current(), 'ar');
     </section>
     {{--End banners--}}
     {{-- popular products section --}}
+    {{-- section 4 --}}
     <livewire:frontend.index.popular-products-section :user="$user" :getSixCats="$getSixCats" :langAr="$langAr" />
     {{--Products Tabs--}}
+    {{-- section 5 --}}
     <section class="section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="banner-img style-6 wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                        <img src={{asset("frontend/assets/imgs/banner/banner-16.png")}} alt="" />
+                        <img src={{asset("frontend/assets/defaultImages/banner-16.png")}} alt="" />
                         <div class="banner-text">
-                            <h6 class="mb-10 mt-30">Everyday Fresh with<br />Our Products</h6>
-                            <p>Go to supplier</p>
+                            <h6 class="mb-10 mt-30">
+                                {{__('frontend/index.Everyday Fresh with')}}<br />
+                                {{__('frontend/index.Our Products')}}
+                            </h6>
+                            <p>{{__('frontend/index.Go to supplier')}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <div class="banner-img style-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
-                        <img src={{asset("frontend/assets/imgs/banner/banner-17.png")}} alt="" />
+                        <img src={{asset("frontend/assets/defaultImages/banner-17.png")}} alt="" />
                         <div class="banner-text">
-                            <h6 class="mb-10 mt-30">100% guaranteed all<br />Fresh items</h6>
-                            <p>Go to supplier</p>
+                            <h6 class="mb-10 mt-30">
+                                {{__('frontend/index.100% guaranteed all')}}<br />
+                                {{__('frontend/index.Fresh items')}}</h6>
+                            <p>
+                                {{__('frontend/index.Go to supplier')}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <div class="banner-img style-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
-                        <img src={{asset("frontend/assets/imgs/banner/banner-18.png")}} alt="" />
+                        <img src={{asset("frontend/assets/defaultImages/banner-18.png")}} alt="" />
                         <div class="banner-text">
-                            <h6 class="mb-10 mt-30">Special grocery sale<br />off this month</h6>
-                            <p>Go to supplier</p>
+                            <h6 class="mb-10 mt-30">
+                                {{__('frontend/index.Special grocery sale')}}<br />
+                                {{__('frontend/index.off this month')}}</h6>
+                            <p>{{__('frontend/index.Go to supplier')}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <div class="banner-img style-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">
-                        <img src={{asset("frontend/assets/imgs/banner/banner-19.png")}} alt="" />
+                        <img src={{asset("frontend/assets/defaultImages/banner-19.png")}} alt="" />
                         <div class="banner-text">
                             <h6 class="mb-10 mt-30">
-                                Enjoy 15% OFF for all<br />
-                                vegetable and fruit
+                                {{__('frontend/index.Enjoy 15% OFF for all')}}<br />
+                                {{__('frontend/index.vegetable and fruit')}}
                             </h6>
-                            <p>Go to supplier</p>
+                            <p>{{__('frontend/index.Go to supplier')}}</p>
                         </div>
                     </div>
                 </div>
