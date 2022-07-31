@@ -9,6 +9,9 @@ class Edit extends Component
 {
     public $name, $tagId, $name_en, $name_ar;
 
+    public $old_name_en;
+    public $old_name_ar;
+
     protected $listeners = [
         'editTag' => 'edit',
     ];
@@ -17,14 +20,10 @@ class Edit extends Component
     protected function rules()
     {
         return [
-            'name.en' => ['required', 'string'],
-            'name.ar' => ['required', 'string'],
+            'name.en' => ['nullable', 'string'],
+            'name.ar' => ['nullable', 'string'],
         ];
     }
-    protected $messages = [
-        'name.en.required' => 'This field is required',
-        'name.ar.required' => 'This field is required',
-    ];
 
     public function edit($id)
     {
@@ -32,6 +31,10 @@ class Edit extends Component
         $this->tagId = $id;
         $this->name_en = $tag->getTranslation('name', 'en');
         $this->name_ar = $tag->getTranslation('name', 'ar');
+
+        //fix error en or ar null
+        $this->old_name_en = $tag->getTranslation('name', 'en');
+        $this->old_name_ar = $tag->getTranslation('name', 'ar');
     }
 
     public function update()
@@ -43,13 +46,17 @@ class Edit extends Component
 
         //this will return a recode as collection if the values from $this->name array found, will be stored
         $collection = [];
-        foreach ($this->name as $el) {
-            $collection[] = Tag::where('name', 'like', '%' . rtrim($el, " ") . '%')->get();
+        if (isset($this->name)) {
+            foreach ($this->name as $el) {
+                $collection[] = Tag::where('name', 'like', '%' . rtrim($el, " ") . '%')->get();
+            }
         }
         //$collection has collections values stored as an array for each value is an array if the value exsits the $col count will be grater than 0 then increment $check by one
-        foreach ($collection as $col) {
-            if (count($col) > 0) {
-                $check++;
+        if (isset($collection)) {
+            foreach ($collection as $col) {
+                if (count($col) > 0) {
+                    $check++;
+                }
             }
         }
         //if $check value grater than 0 then the input value already exists in the DB will return null to stop the rest of the function statements
@@ -63,8 +70,19 @@ class Edit extends Component
 
         $tag = Tag::findOrFail($this->tagId);
 
-        $tag->setTranslation('name', 'en', $this->name['en']);
-        $tag->setTranslation('name', 'ar', $this->name['ar']);
+        //fix error one of field are null: if user want to update only one field the other field will set to the old value
+        if (isset($this->name['en']) && !empty($this->name['en'])) {
+            $tag->setTranslation('name', 'en', $this->name['en']);
+        } else {
+            $tag->setTranslation('name', 'en', $this->old_name_en);
+        }
+
+        if (isset($this->name['ar']) && !empty($this->name['ar'])) {
+            $tag->setTranslation('name', 'ar', $this->name['ar']);
+        } else {
+            $tag->setTranslation('name', 'ar', $this->old_name_ar);
+        }
+
 
         $tag->save();
 

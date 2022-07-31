@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Tags\Tag;
 
 class FrontController extends Controller
 {
@@ -46,6 +47,12 @@ class FrontController extends Controller
         //for daily best sells section
         $getFiveProducts = Product::where('product_status', 1)->take(5)->get();
 
+        //get daily best sells tags
+        $dailySellsTags = Tag::where('status_bestSells_sec', 1)->get();
+
+
+
+        dd($dailySellsTags);
         return view('frontend.pages.index', compact(
             'catsFirstRecords',
             'catsRemainingRecords',
@@ -53,7 +60,8 @@ class FrontController extends Controller
             'featuredCats',
             'getSixCats',
             'user',
-            'getFiveProducts'
+            'getFiveProducts',
+            'dailySellsTags',
         ));
     }
 
