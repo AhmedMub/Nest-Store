@@ -6,6 +6,8 @@
 {{-- Favicon --}}
 <link rel="shortcut icon" type="image/x-icon" href="{{asset('frontend/assets/imgs/theme/favicon.svg')}}" />
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
 {{-- Template CSS --}}
 <link rel="stylesheet" href="{{asset('frontend/css/plugins/animate.min.css')}}" />
 <link rel="stylesheet" href="{{asset('frontend/css/main.css?v=4.0')}}" />

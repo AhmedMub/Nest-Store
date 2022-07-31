@@ -186,9 +186,9 @@
                     <h4 class="widget-title">Install App</h4>
                     <p class="">From App Store or Google Play</p>
                     <div class="download-app">
-                        <a href="#" class="hover-up mb-sm-2 mb-lg-0"><img class="active"
+                        <a href="javascript:void(0)" class="hover-up mb-sm-2 mb-lg-0"><img class="active"
                                 src={{asset("frontend/assets/imgs/theme/app-store.jpg")}} alt="" /></a>
-                        <a href="#" class="hover-up mb-sm-2"><img
+                        <a href="javascript:void(0)" class="hover-up mb-sm-2"><img
                                 src={{asset("frontend/assets/imgs/theme/google-play.jpg")}} alt="" /></a>
                     </div>
                     <p class="mb-20">Secured Payment Gateways</p>
@@ -202,8 +202,10 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6">
-                <p class="font-sm mb-0">&copy; 2021, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template
-                    <br />All rights reserved
+                <p class="font-sm mb-0">&copy; {{date('Y')}}, <strong class="text-brand">Nest Mart</strong> Made With <i
+                        class="fa-solid fa-heart text-danger"></i>
+
+                    By <a href="https://mubarak.codes" target="_blank">Mubarak</a><br />All rights reserved
                 </p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
@@ -219,16 +221,16 @@
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                 <div class="mobile-social-icon">
                     <h6>Follow Us</h6>
-                    <a href="#"><img src={{asset("frontend/assets/imgs/theme/icons/icon-facebook-white.svg")}}
-                            alt="" /></a>
-                    <a href="#"><img src={{asset("frontend/assets/imgs/theme/icons/icon-twitter-white.svg")}}
-                            alt="" /></a>
-                    <a href="#"><img src={{asset("frontend/assets/imgs/theme/icons/icon-instagram-white.svg")}}
-                            alt="" /></a>
-                    <a href="#"><img src={{asset("frontend/assets/imgs/theme/icons/icon-pinterest-white.svg")}}
-                            alt="" /></a>
-                    <a href="#"><img src={{asset("frontend/assets/imgs/theme/icons/icon-youtube-white.svg")}}
-                            alt="" /></a>
+                    <a href="javascript:void(0)"><img
+                            src={{asset("frontend/assets/imgs/theme/icons/icon-facebook-white.svg")}} alt="" /></a>
+                    <a href="javascript:void(0)"><img
+                            src={{asset("frontend/assets/imgs/theme/icons/icon-twitter-white.svg")}} alt="" /></a>
+                    <a href="javascript:void(0)"><img
+                            src={{asset("frontend/assets/imgs/theme/icons/icon-instagram-white.svg")}} alt="" /></a>
+                    <a href="javascript:void(0)"><img
+                            src={{asset("frontend/assets/imgs/theme/icons/icon-pinterest-white.svg")}} alt="" /></a>
+                    <a href="javascript:void(0)"><img
+                            src={{asset("frontend/assets/imgs/theme/icons/icon-youtube-white.svg")}} alt="" /></a>
                 </div>
                 <p class="font-sm">Up to 15% discount on your first subscribe</p>
             </div>
