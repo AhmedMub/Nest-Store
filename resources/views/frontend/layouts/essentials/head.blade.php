@@ -18,6 +18,6 @@
 
 <style>
     .newsletter .newsletter-inner {
-        background: url("{{asset('frontend/assets/imgs/banner/banner-10.png')}}") no-repeat center;
+        background: url("{{asset('frontend/assets/defaultImages/banner-10.png')}}") no-repeat center;
     }
 </style>

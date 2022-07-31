@@ -109,29 +109,29 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                         class="lable ml-0">{{__('frontend/header.Compare')}}</span></a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a href="javascript:avoid(0)">
+                                <a href="javascript:void(0)">
                                     <img class="svgInject" alt="Nest"
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-heart.svg")}} />
                                     <span class="pro-count blue">6</span>
                                 </a>
-                                <a href="javascript:avoid(0)"><span
+                                <a href="javascript:void(0)"><span
                                         class="lable">{{__('frontend/header.Wishlist')}}</span></a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class="javascript:avoid(0)" href="shop-cart.html">
+                                <a class="javascript:void(0)" href="shop-cart.html">
                                     <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-cart.svg")}} />
                                     <span class="pro-count blue">2</span>
                                 </a>
-                                <a href="javascript:avoid(0)"><span class="lable">Cart</span></a>
+                                <a href="javascript:void(0)"><span class="lable">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="javascript:avoid(0)"><img alt="Nest"
+                                                <a href="javascript:void(0)"><img alt="Nest"
                                                         src={{asset("frontend/assets/imgs/shop/thumbnail-3.jpg")}} /></a>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="javascript:avoid(0)">Daisy Casual Bag</a></h4>
+                                                <h4><a href="javascript:void(0)">Daisy Casual Bag</a></h4>
                                                 <h4><span>1 × </span>$800.00</h4>
                                             </div>
                                             <div class="shopping-cart-delete">
@@ -140,14 +140,14 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                         </li>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="javascript:avoid(0)"><img alt="Nest"
+                                                <a href="javascript:void(0)"><img alt="Nest"
                                                         src={{asset("frontend/assets/imgs/shop/thumbnail-2.jpg")}} /></a>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="javascript:avoid(0)">Corduroy Shirts</a></h4>
+                                                <h4><a href="javascript:void(0)">Corduroy Shirts</a></h4>
                                                 <h4><span>1 × </span>$3200.00</h4>
                                             </div>
-                                            <div class="javascript:avoid(0)">
+                                            <div class="javascript:void(0)">
                                                 <a href="#"><i class="fi-rs-cross-small"></i></a>
                                             </div>
                                         </li>
@@ -157,14 +157,14 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                             <h4>Total <span>$4000.00</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="javascript:avoid(0)" class="outline">View cart</a>
-                                            <a href="javascript:avoid(0)">Checkout</a>
+                                            <a href="javascript:void(0)" class="outline">View cart</a>
+                                            <a href="javascript:void(0)">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="header-action-icon-2">
-                                <a href="javascript:avoid(0)">
+                                <a href="javascript:void(0)">
                                     <img class="svgInject" alt="Nest"
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-user.svg")}} />
                                 </a>
@@ -177,20 +177,20 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                                 Account</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:avoid(0)"><i
+                                            <a href="javascript:void(0)"><i
                                                     class="fi fi-rs-location-alt mr-10"></i>Order
                                                 Tracking</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:avoid(0)"><i class="fi fi-rs-label mr-10"></i>My
+                                            <a href="javascript:void(0)"><i class="fi fi-rs-label mr-10"></i>My
                                                 Voucher</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:avoid(0)"><i class="fi fi-rs-heart mr-10"></i>My
+                                            <a href="javascript:void(0)"><i class="fi fi-rs-heart mr-10"></i>My
                                                 Wishlist</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:avoid(0)"><i
+                                            <a href="javascript:void(0)"><i
                                                     class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                         </li>
                                         <li>
@@ -232,12 +232,12 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="javascript:avoid(0)"><img src={{asset("frontend/assets/imgs/theme/logo.svg")}}
+                    <a href="javascript:void(0)"><img src={{asset("frontend/assets/imgs/theme/logo.svg")}}
                             alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
-                        <a href="javascript:avoid(0)" class="categories-button-active">
+                        <a href="javascript:void(0)" class="categories-button-active">
                             <span class="fi-rs-apps"></span> <span class="et">{{__('frontend/header.Trending')}}</span>
                             {{__('frontend/header.Categories')}}
                             <i class="fi-rs-angle-down"></i>
@@ -276,7 +276,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                             <ul>
                                 <li class="hot-deals"><img
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-hot-white.svg")}}
-                                        alt="hot deals" /><a href="javascript:avoid(0)">
+                                        alt="hot deals" /><a href="javascript:void(0)">
                                         {{__('frontend/header.hot deals')}}</a></li>
                                 <li>
                                     <a href="{{route('home')}}"
@@ -326,7 +326,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
 
                                         <li class="sub-mega-menu sub-mega-menu-width-34">
                                             <div class="menu-banner-wrap">
-                                                <a href="javascript:avoid(0)"><img
+                                                <a href="javascript:void(0)"><img
                                                         src={{asset("frontend/assets/imgs/banner/banner-menu.png")}}
                                                         alt="Nest" /></a>
                                                 <div class="menu-banner-content">
@@ -339,7 +339,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                                         <span class="new-price text-success">Save to 50%</span>
                                                     </div>
                                                     <div class="menu-banner-btn">
-                                                        <a href="javascript:avoid(0)">Shop now</a>
+                                                        <a href="javascript:void(0)">Shop now</a>
                                                     </div>
                                                 </div>
                                                 <div class="menu-banner-discount">
@@ -354,10 +354,10 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                 </li>
                                 @endforeach
                                 <li>
-                                    <a href="javascript:avoid(0)">About Us</a>
+                                    <a href="javascript:void(0)">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:avoid(0)">Contact</a>
+                                    <a href="javascript:void(0)">Contact</a>
                                 </li>
                             </ul>
                         </nav>
@@ -377,13 +377,13 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
                         <div class="header-action-icon-2">
-                            <a href="javascript:avoid(0)">
+                            <a href="javascript:void(0)">
                                 <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-heart.svg")}} />
                                 <span class="pro-count white">4</span>
                             </a>
                         </div>
                         <div class="header-action-icon-2">
-                            <a href="javascript:avoid(0)" class="mini-cart-icon">
+                            <a href="javascript:void(0)" class="mini-cart-icon">
                                 <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-cart.svg")}} />
                                 <span class="pro-count white">2</span>
                             </a>
@@ -391,28 +391,28 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                 <ul>
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="javascript:avoid(0)"><img alt="Nest"
+                                            <a href="javascript:void(0)"><img alt="Nest"
                                                     src={{asset("frontend/assets/imgs/shop/thumbnail-3.jpg")}} /></a>
                                         </div>
                                         <div class="shopping-cart-title">
-                                            <h4><a href="javascript:avoid(0)">Plain Striola Shirts</a></h4>
+                                            <h4><a href="javascript:void(0)">Plain Striola Shirts</a></h4>
                                             <h3><span>1 × </span>$800.00</h3>
                                         </div>
                                         <div class="shopping-cart-delete">
-                                            <a href="javascript:avoid(0)"><i class="fi-rs-cross-small"></i></a>
+                                            <a href="javascript:void(0)"><i class="fi-rs-cross-small"></i></a>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="javascript:avoid(0)"><img alt="Nest"
+                                            <a href="javascript:void(0)"><img alt="Nest"
                                                     src={{asset("frontend/assets/imgs/shop/thumbnail-4.jpg")}} /></a>
                                         </div>
                                         <div class="shopping-cart-title">
-                                            <h4><a href="javascript:avoid(0)">Macbook Pro 2022</a></h4>
+                                            <h4><a href="javascript:void(0)">Macbook Pro 2022</a></h4>
                                             <h3><span>1 × </span>$3500.00</h3>
                                         </div>
                                         <div class="shopping-cart-delete">
-                                            <a href="javascript:avoid(0)"><i class="fi-rs-cross-small"></i></a>
+                                            <a href="javascript:void(0)"><i class="fi-rs-cross-small"></i></a>
                                         </div>
                                     </li>
                                 </ul>
@@ -421,8 +421,8 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                         <h4>Total <span>$383.00</span></h4>
                                     </div>
                                     <div class="shopping-cart-button">
-                                        <a href="javascript:avoid(0)">View cart</a>
-                                        <a href="javascript:avoid(0)">Checkout</a>
+                                        <a href="javascript:void(0)">View cart</a>
+                                        <a href="javascript:void(0)">Checkout</a>
                                     </div>
                                 </div>
                             </div>
