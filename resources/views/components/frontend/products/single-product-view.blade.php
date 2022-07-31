@@ -1,7 +1,7 @@
 <div class="product-cart-wrap mb-30">
     <div class="product-img-action-wrap">
         <div class="product-img product-img-zoom">
-            <a href="shop-product-right.html">
+            <a href="{{route('show.product',$product->slug)}}">
                 <img class="default-img" src="{{$product->getFirstMediaUrl('mainImage')}}" alt="" />
                 <img class="hover-img" src="{{$product->getMedia('multiImages')[0]->getUrl()}}" alt="" />
             </a>
@@ -44,7 +44,6 @@
         </div>
         <div class="product-card-bottom">
             <div class="product-price">
-
                 @if (!empty($product->productDiscount->discount_percent) &&
                 $product->discount_status == 1)
                 <span>${{$product->productDiscount->discounted_price}}</span>
@@ -52,8 +51,6 @@
                 @else
                 <span>${{$product->price}}</span>
                 @endif
-
-
             </div>
             <div class="add-cart">
                 <a class="add" href=""><i class="fi-rs-shopping-cart mr-5"></i>Add

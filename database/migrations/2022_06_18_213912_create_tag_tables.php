@@ -13,7 +13,6 @@ class CreateTagTables extends Migration
 
             $table->json('name');
             $table->integer('status')->default(1);
-            $table->integer('status_bestSells_sec')->default(0);
             $table->integer('status_trending_sec')->default(0);
             $table->json('slug');
             $table->string('type')->nullable();

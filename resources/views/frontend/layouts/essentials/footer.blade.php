@@ -6,8 +6,8 @@
                     <div class="position-relative newsletter-inner">
                         <div class="newsletter-content">
                             <h2 class="mb-20">
-                                Stay home & get your daily <br />
-                                needs from our shop
+                                {{__('frontend/footer.Stay home & get your daily')}} <br />
+                                {{__('frontend/footer.needs from our shop')}}
                             </h2>
                             <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest Mart</span>
                             </p>

@@ -44,15 +44,12 @@ class FrontController extends Controller
             $user = Auth::user()->id;
         }
 
-        //for daily best sells section
         $getFiveProducts = Product::where('product_status', 1)->take(5)->get();
 
-        //get daily best sells tags
-        $dailySellsTags = Tag::where('status_bestSells_sec', 1)->get();
+        //get trending tags
+        $trendingTags = Tag::whereStatus(1)->where('status_trending_sec', 1)->take(4)->get();
 
 
-
-        dd($dailySellsTags);
         return view('frontend.pages.index', compact(
             'catsFirstRecords',
             'catsRemainingRecords',
@@ -61,7 +58,7 @@ class FrontController extends Controller
             'getSixCats',
             'user',
             'getFiveProducts',
-            'dailySellsTags',
+            'trendingTags'
         ));
     }
 

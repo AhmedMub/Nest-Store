@@ -37,6 +37,9 @@ Route::group([
     //contact us page
     Route::get('contact-us', [FrontController::class, 'contactUs'])->name('contact');
 
+    //
+    Route::get('order-by-tag/{id}', [FrontController::class, 'orderByTag'])->name('reOrder');
+
     //*Auth Routes
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         //user profile
