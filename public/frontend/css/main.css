@@ -3472,12 +3472,10 @@ table .product-thumbnail img {
 }
 
 .banner-img.style-2 {
-  border-radius: 15px;
-  overflow: hidden;
-  height: 520px;
-
-  background-size: cover;
-  width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 520px;
+    width: 100%;
 }
 
 .banner-img.style-2 .banner-text {

@@ -59,6 +59,8 @@
                             @endif
                         </th>
                         <th class="wd-15p border-bottom-0 text-capitalize">status</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">Daily Sells status</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">Trending status</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
                     </tr>
                 </thead>
@@ -70,6 +72,14 @@
                         <td> {{$tag->getTranslation('name', 'ar')}} </td>
                         <td>
                             <livewire:admin.product.tags.status :tag="$tag" :name="'status'" :key="'status'.$tag->id" />
+                        </td>
+                        <td>
+                            <livewire:admin.product.tags.status-best-sells-section :tag="$tag"
+                                :name="'status_bestSells_sec'" :key="'status_bestSells_sec'.$tag->id" />
+                        </td>
+                        <td>
+                            <livewire:admin.product.tags.status-trending-section :tag="$tag"
+                                :name="'status_trending_sec'" :key="'status_trending_sec'.$tag->id" />
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">

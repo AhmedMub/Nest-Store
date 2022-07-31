@@ -22,6 +22,7 @@ return [
     'off this month' => 'off this month',
     'Enjoy 15% OFF for all' => 'Enjoy 15% OFF for all',
     'vegetable and fruit' => 'vegetable and fruit',
-
+    'Daily Best Sells' => 'Daily Best Sells',
+    'Bring nature into your home' => 'Bring nature into your home',
 
 ];

@@ -43,13 +43,17 @@ class FrontController extends Controller
             $user = Auth::user()->id;
         }
 
+        //for daily best sells section
+        $getFiveProducts = Product::where('product_status', 1)->take(5)->get();
+
         return view('frontend.pages.index', compact(
             'catsFirstRecords',
             'catsRemainingRecords',
             'sliders',
             'featuredCats',
             'getSixCats',
-            'user'
+            'user',
+            'getFiveProducts'
         ));
     }
 
