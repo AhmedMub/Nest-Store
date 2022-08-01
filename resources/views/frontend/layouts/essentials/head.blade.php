@@ -26,4 +26,12 @@ $langAr = str_contains(url()->current(), 'ar');
     .newsletter .newsletter-inner {
         background: url("{{asset('frontend/assets/defaultImages/banner-10.png')}}") no-repeat center;
     }
+
+    .product-rating {
+        background-image: url("{{asset('frontend/assets/imgs/theme/rating-stars.png')}}");
+    }
+
+    .archive-header {
+        background: url("{{asset('frontend/assets/imgs/blog/header-bg.png')}}") no-repeat center center;
+    }
 </style>

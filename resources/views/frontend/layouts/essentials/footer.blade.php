@@ -35,7 +35,7 @@
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">{{__('frontend/footer.Best prices & offers')}}</h3>
-                            <p>{{__('frotnend/footer.Orders $50 or more')}}</p>
+                            <p>{{__('frontend/footer.Orders $50 or more')}}</p>
                         </div>
                     </div>
                 </div>
