@@ -1,3 +1,6 @@
+@php
+$langAr = str_contains(url()->current(), 'ar');
+@endphp
 {{-- Vendor JS --}}
 <script src="{{asset('frontend/js/vendor/modernizr-3.6.0.min.js')}}"></script>
 <script src="{{asset('frontend/js/vendor/jquery-3.6.0.min.js')}}"></script>
@@ -20,8 +23,16 @@
 <script src="{{asset('frontend/js/plugins/jquery.elevatezoom.js')}}"></script>
 
 {{-- Template JS --}}
-<script src="{{asset('frontend/js/main.js')}}"></script>
-<script src="{{asset('frontend/js/shop.js')}}"></script>
+<script src=" @if ($langAr)
+{{asset('frontend/js/mainRTL.js')}}
+@else
+{{asset('frontend/js/main.js')}}
+@endif "></script>
+<script src=" @if ($langAr)
+{{asset('frontend/js/shopRTL.js')}}
+@else
+{{asset('frontend/js/shop.js')}}
+@endif "></script>
 <script src="{{asset('frontend/js/override.js')}}"></script>
 
 {{-- Alerts Taostr js --}}

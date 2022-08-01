@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if (str_contains(url()->current(), 'ar')) dir="rtl"
-class="rtl" @endif>
+@php
+$langAr = str_contains(url()->current(), 'ar');
+@endphp
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if ($langAr) dir="rtl" class="rtl" @endif>
 
 <head>
     <meta charset="utf-8">

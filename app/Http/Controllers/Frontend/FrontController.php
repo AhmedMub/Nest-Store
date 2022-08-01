@@ -30,7 +30,7 @@ class FrontController extends Controller
         $catsRemainingRecords = Category::skip($skip)->take($remaining)->get();
 
         //Slider
-        $sliders = Slider::whereStatus(1)->get();
+        $sliders = Slider::whereStatus(1)->latest()->get();
 
         //get Featured Categories
         $featuredCats = Category::whereStatus(1)->where('featured_category', 1)->latest()->get();

@@ -321,5 +321,13 @@ $test = $products;
     .product-rating {
         background-image: url("{{asset('frontend/assets/imgs/theme/rating-stars.png')}}");
     }
+
+    .product-rate {
+        background-image: url("{{asset('frontend/assets/imgs/theme/rating-stars.png')}}");
+    }
+
+    .newsletter .newsletter-inner .newsletter-content form input {
+        background: url("{{asset('frontend/assets/imgs/theme/icons/icon-plane.png')}}") no-repeat 25px center;
+    }
 </style>
 @endpush

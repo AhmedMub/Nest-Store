@@ -1,3 +1,6 @@
+@php
+$langAr = str_contains(url()->current(), 'ar');
+@endphp
 <title>@yield('title', 'Nest')</title>
 
 {{-- Fonts --}}
@@ -10,7 +13,8 @@
 
 {{-- Template CSS --}}
 <link rel="stylesheet" href="{{asset('frontend/css/plugins/animate.min.css')}}" />
-<link rel="stylesheet" href="{{asset('frontend/css/main.css?v=4.0')}}" />
+<link rel="stylesheet"
+    href="@if ($langAr) {{asset('frontend/css/mainRTL.css')}} @else {{asset('frontend/css/main.css?v=4.0')}} @endif " />
 
 {{-- my custom links --}}
 <link rel="stylesheet" href="{{asset('frontend/css/override.css')}}" />
