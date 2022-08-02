@@ -10,7 +10,7 @@ $langAr = str_contains(url()->current(), 'ar');
 <link rel="shortcut icon" type="image/x-icon" href="{{asset('frontend/assets/imgs/theme/favicon.svg')}}" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-
+@stack('added-head')
 {{-- Template CSS --}}
 <link rel="stylesheet" href="{{asset('frontend/css/plugins/animate.min.css')}}" />
 <link rel="stylesheet"
@@ -20,7 +20,7 @@ $langAr = str_contains(url()->current(), 'ar');
 <link rel="stylesheet" href="{{asset('frontend/css/override.css')}}" />
 <link rel="stylesheet" href=" {{asset('frontend/css/toastr.min.css')}} ">
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-@stack('added-head')
+
 
 <style>
     .newsletter .newsletter-inner {

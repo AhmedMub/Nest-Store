@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 @php
 $langAr = str_contains(url()->current(), 'ar');
+$bodySingleProduct = str_contains(url()->current(), 'show-product');
 @endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if ($langAr) dir="rtl" class="rtl" @endif>
 
@@ -22,7 +23,9 @@ $langAr = str_contains(url()->current(), 'ar');
     @livewireStyles
 </head>
 
-<body>
+{{-- check if user in the product route will add the below class for product elevatezoom --}}
+
+<body @if ($bodySingleProduct) class="single-product" @endif>
 
     {{-- Start Header --}}
     @include('frontend.layouts.essentials.header')

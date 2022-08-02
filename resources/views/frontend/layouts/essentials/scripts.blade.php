@@ -10,6 +10,7 @@ $langAr = str_contains(url()->current(), 'ar');
 <script src="{{asset('frontend/js/plugins/jquery.syotimer.min.js')}}"></script>
 <script src="{{asset('frontend/js/plugins/waypoints.js')}}"></script>
 <script src="{{asset('frontend/js/plugins/wow.js')}}"></script>
+<script src="{{asset('frontend/js/plugins/slider-range.js')}}"></script>
 <script src="{{asset('frontend/js/plugins/perfect-scrollbar.js')}}"></script>
 <script src="{{asset('frontend/js/plugins/magnific-popup.js')}}"></script>
 <script src="{{asset('frontend/js/plugins/select2.min.js')}}"></script>
@@ -21,7 +22,7 @@ $langAr = str_contains(url()->current(), 'ar');
 <script src="{{asset('frontend/js/plugins/jquery.vticker-min.js')}}"></script>
 <script src="{{asset('frontend/js/plugins/jquery.theia.sticky.js')}}"></script>
 <script src="{{asset('frontend/js/plugins/jquery.elevatezoom.js')}}"></script>
-
+@stack('added-scripts')
 {{-- Template JS --}}
 <script src=" @if ($langAr)
 {{asset('frontend/js/mainRTL.js')}}
@@ -53,4 +54,3 @@ $langAr = str_contains(url()->current(), 'ar');
                  event.detail.title ?? '')
                 });
 </script>
-@stack('added-scripts')
