@@ -108,7 +108,7 @@ class Product extends Model implements HasMedia
     {
         return $this->hasOne(ProductDiscount::class, 'product_id');
     }
-    public function productExpiry()
+    public function productDates()
     {
         return $this->hasOne(ProductExpiration::class, 'product_id');
     }

@@ -16,7 +16,7 @@ class ProductExpiration extends Model
         'product_id', 'mfg', 'exp'
     ];
 
-    public function productExpiry()
+    public function productDates()
     {
         return $this->belongsTo(Product::class, 'product_id');
     }

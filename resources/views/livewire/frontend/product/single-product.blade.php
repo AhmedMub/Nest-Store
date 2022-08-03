@@ -27,6 +27,10 @@
                                         <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                                         <!-- MAIN SLIDES -->
                                         <div class="product-image-slider">
+                                            <figure class="border-radius-10">
+                                                <img src="{{$product->getFirstMediaUrl('mainImage')}}"
+                                                    alt="product image" />
+                                            </figure>
                                             @foreach ($product->getMedia('multiImages') as $img)
                                             <figure class="border-radius-10">
                                                 <img src="{{$img->getUrl()}}" alt="product image" />
@@ -36,6 +40,9 @@
                                         </div>
                                         <!-- THUMBNAILS -->
                                         <div class="slider-nav-thumbnails">
+                                            <div><img src="{{$product->getFirstMediaUrl('mainImage')}}"
+                                                    alt="product image" />
+                                            </div>
                                             @foreach ($product->getMedia('multiImages') as $img)
                                             <div><img src="{{$img->getUrl()}}" alt="product image" />
                                             </div>
@@ -46,7 +53,13 @@
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="detail-info pr-30 pl-30">
-                                        <span class="stock-status out-stock"> Sale Off </span>
+                                        @if ($product->hot_deals == 1 && $product->new_deals == 0)
+                                        <span
+                                            class="stock-status out-stock text-capitalize">{{__('frontend/productsByCategory.Hot')}}</span>
+                                        @elseif ($product->new_deals == 1 && $product->hot_deals == 0)
+                                        <span
+                                            class="stock-status out-stock text-capitalize">{{__('frontend/productsByCategory.New')}}</span>
+                                        @endif
                                         <h2 class="title-detail">@if ($langAr)
                                             {{$product->name_ar}}
                                             @else

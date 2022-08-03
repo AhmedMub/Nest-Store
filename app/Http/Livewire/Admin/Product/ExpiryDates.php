@@ -11,9 +11,10 @@ class ExpiryDates extends Component
     use WithPagination;
 
     //Sorting
-    public $sortBy = 'name_en';
+    //FIXME sortBy
+    public $sortBy = 'id';
     public $sortDirection = 'desc';
-    public $field = 'name_en';
+    public $field = 'id';
     public $perPage = 5;
     public $search = '';
 

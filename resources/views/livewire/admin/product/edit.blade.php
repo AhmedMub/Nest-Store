@@ -106,6 +106,17 @@
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
+                                <label class="text-capitalize form-label mt-0" for="exp">Expiration date (EXP) <span
+                                        class="text-red">*</span></label>
+                                <input wire:model.defer='exp' id="exp" type="text"
+                                    class="form-control {{$errors->has('exp')?'is-invalid':''}}"
+                                    placeholder="YYYY-MM-DD" />
+                                <div id="productEXP" class="d-none">{{$mfg}}</div>
+                                <x-defaults.input-error for="exp" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
                                 <label class="text-capitalize form-label mt-0" for="mainCat">main category <span
                                         class="text-red">*</span> <span
                                         class="selectedMainCat badge rounded-pill bg-warning-gradient badge-sm me-1 mb-1 mt-1 badge-size">{{$mainCatN}}</span></label>
@@ -161,27 +172,6 @@
                                     @endforeach
                                 </select>
                                 <x-defaults.input-error for="vendor_id" />
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div>
-                                <label class="custom-control custom-checkbox  col">
-                                    <input wire:model.defer='hot_deals' id="hot_deals" value="1" type="checkbox"
-                                        class="check-one custom-control-input check-one check-one2">
-                                    <span class="custom-control-label">
-                                        Hot Deals
-                                    </span>
-                                </label>
-                            </div>
-                            <div>
-                                <label class="custom-control custom-checkbox  col">
-                                    <input wire:model.defer='new_deals' id="new_deals" value="1" type="checkbox"
-                                        class="check-one custom-control-input check-one check-one2">
-                                    <span class="custom-control-label">
-                                        New Deals
-                                    </span>
-                                </label>
                             </div>
                         </div>
                     </div>
@@ -251,11 +241,17 @@ cycle. --}}
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 @endonce
 <script>
+    //this is for rendering product dates
     window.addEventListener('getProductInfo', event => {
         var getMfg = $('#productMFG').html();
-        console.log(getMfg);
             flatpickr('#mfg', {
                 defaultDate:[getMfg]
+            });
+        })
+        window.addEventListener('getProductInfo', event => {
+        var getExp = $('#productEXP').html();
+            flatpickr('#exp', {
+                defaultDate:[getExp]
             });
         })
 </script>

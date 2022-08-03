@@ -54,8 +54,8 @@
                 <tbody>
                     @foreach ($dates as $date)
                     <tr class="text-center">
-                        <td> {{$date->productExpiry->name_en}} </td>
-                        <td> {{$date->productExpiry->sku}} </td>
+                        <td> {{$date->productDates->name_en}} </td>
+                        <td> {{$date->productDates->sku}} </td>
                         <td>
                             @if (!empty($date->mfg))
                             {{$date->mfg}}

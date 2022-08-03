@@ -68,8 +68,8 @@ class Create extends Component
         'price' => ['required', 'integer'],
         'type' => ['required', 'string'],
         'size' => ['nullable', 'integer'],
-        'mfg' => ['nullable', 'date_format:Y-m-d'],
-        'exp' => ['nullable', 'date_format:Y-m-d'],
+        'mfg' => ['required', 'date_format:Y-m-d'],
+        'exp' => ['required', 'date_format:Y-m-d'],
         'short_desc_en' => ['string'],
         'short_desc_ar' => ['string'],
         'long_desc_en' => ['nullable', 'string'],
@@ -107,6 +107,8 @@ class Create extends Component
         'type.required' => 'Type field is required',
         'mainImage.required' => 'Product main image is required',
         'multiImgs.required' => 'Product images are required',
+        'mfg.required' => 'MFG field is required',
+        'exp.required' => 'EXP field is required',
     ];
 
     public function mount()
@@ -135,6 +137,14 @@ class Create extends Component
     //Create Category
     public function create()
     {
+        $this->validate();
+        /*
+            =>this to check if product mfg less than or grater than exp date.
+            $mfgData->diffInDays($expDate) == 0 => check if user insert duplicate dates for each mfg and exp as this should result "Invalid dates"
+            $mfgData->gt($expDate) => gt: is grater than if mfg grater than exp
+                        Example: 3/8/2022 > 2/8/2022
+                        this will cause error "invalid" as this should be false mfg must be less than exp
+        */
         $mfgData = Carbon::parse($this->mfg);
         $expDate = Carbon::parse($this->exp);
         if ($mfgData->diffInDays($expDate) == 0 || $mfgData->gt($expDate)) {
@@ -145,8 +155,6 @@ class Create extends Component
             ]);
             return null;
         }
-
-        $this->validate();
 
         //for validation
         ($this->new_deals !== 1 ? $this->new_deals = 0 : "");
@@ -172,7 +180,6 @@ class Create extends Component
             'price' => $this->price,
             'type' => $this->type,
             'size' => $this->size,
-            'mfg' => $this->mfg,
             'hot_deals' => $this->hot_deals,
             'new_deals' => $this->new_deals
         ]);

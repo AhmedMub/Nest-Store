@@ -137,7 +137,8 @@
                 @endif
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="mfg">manufacturing date (MFG)</label>
+                        <label class="text-capitalize form-label mt-0" for="mfg">manufacturing date (MFG) <span
+                                class="text-red">*</span></label>
                         <input wire:model.defer='mfg' id="mfg" type="text"
                             class="form-control {{$errors->has('mfg')?'is-invalid':''}}" placeholder="YYYY-MM-DD" />
                         <x-defaults.input-error for="mfg" />
@@ -145,7 +146,8 @@
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="exp">Expiration date (EXP)</label>
+                        <label class="text-capitalize form-label mt-0" for="exp">Expiration date (EXP) <span
+                                class="text-red">*</span></label>
                         <input wire:model.defer='exp' id="exp" type="text"
                             class="form-control {{$errors->has('exp')?'is-invalid':''}}" placeholder="YYYY-MM-DD" />
                         <x-defaults.input-error for="exp" />

@@ -7,9 +7,11 @@ use App\Models\Product;
 use App\Models\ProductAdditionalInfo;
 use App\Models\ProductDescription;
 use App\Models\ProductDiscount;
+use App\Models\ProductExpiration;
 use App\Models\SubCategory;
 use App\Models\SubSubcategory;
 use App\Models\Vendor;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -18,19 +20,14 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    /*
-     ///TODO hot and new deals only one can be selected + life should be calculated in days upon the mfg date
-    */
     public $product_id;
     public $long_desc_en;
 
     //main to product model
-    public $createdBy_adminID, $updatedBy_adminID, $category_id, $subCategory_id, $subSubCategory_id, $vendor_id, $mainCatN, $subCatN, $vendorName, $subSubCatN, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $mfg, $life, $manufacturing_date;
+    public $createdBy_adminID, $updatedBy_adminID, $category_id, $subCategory_id, $subSubCategory_id, $vendor_id, $mainCatN, $subCatN, $vendorName, $subSubCatN, $name_en, $name_ar, $qty, $price, $size, $type, $mfg, $exp, $life, $manufacturing_date;
 
     public $getSubCats = "";
     public $getSubSubCats = "";
-
-    public $new_deals = 0;
 
     //define product description
     public $short_desc_en, $short_desc_ar, $long_desc_ar, $packaging_delivery_en, $packaging_delivery_ar, $suggested_use_en, $suggested_use_ar, $other_ingredients_en, $other_ingredients_ar, $warnings_en, $warnings_ar;
@@ -60,6 +57,7 @@ class Edit extends Component
             'type' => ['required', 'string'],
             'size' => ['nullable', 'integer'],
             'mfg' => ['required', 'date_format:Y-m-d'],
+            'exp' => ['required', 'date_format:Y-m-d'],
             'short_desc_en' => ['string'],
             'short_desc_ar' => ['string'],
             'long_desc_en' => ['nullable', 'string'],
@@ -94,6 +92,7 @@ class Edit extends Component
         'price.required' => 'Price field is required',
         'type.required' => 'Type field is required',
         'mfg.required' => 'MFG field is required',
+        'exp.required' => 'EXP field is required',
     ];
 
     public function edit($id)
@@ -125,7 +124,8 @@ class Edit extends Component
         $this->price = $product->price;
         $this->type = $product->type;
         $this->size =  $product->size;
-        $this->mfg = $product->mfg;
+        $this->mfg = $product->productDates->mfg;
+        $this->exp = $product->productDates->exp;
         $this->short_desc_en = $product->productDescriptions->short_desc_en;
         $this->short_desc_ar = $product->productDescriptions->short_desc_ar;
         $this->long_desc_en = $product->productDescriptions->long_desc_en;
@@ -179,9 +179,26 @@ class Edit extends Component
     {
         $this->validate();
 
-        //for validation
-        ($this->new_deals !== 1 ? $this->new_deals = 0 : "");
-        ($this->hot_deals !== 1 ? $this->hot_deals = 0 : "");
+        /*
+            =>this to check if product mfg less than or grater than exp date.
+            $mfgData->diffInDays($expDate) == 0 => check if user insert duplicate dates for each mfg and exp as this should result "Invalid dates"
+            $mfgData->gt($expDate) => gt: is grater than if mfg grater than exp
+                        Example: 3/8/2022 > 2/8/2022
+                        this will cause error "invalid" as this should be false mfg must be less than exp
+        */
+        $mfgData = Carbon::parse($this->mfg);
+        $expDate = Carbon::parse($this->exp);
+
+        if ($mfgData->diffInDays($expDate) == 0 || $mfgData->gt($expDate)) {
+            //dd(Carbon::now()->diffInDays(Carbon::parse($this->exp)));
+            $this->dispatchBrowserEvent('alert', [
+                'type'      => 'error',
+                'message'   => 'Product Dates Are Invalid'
+            ]);
+            return null;
+        }
+
+
 
         //check if admin choose subcategory and subSubcategory
         if (!$this->subCategory_id) {
@@ -206,9 +223,6 @@ class Edit extends Component
             'price' => $this->price,
             'type' => $this->type,
             'size' => $this->size,
-            'mfg' => $this->mfg,
-            'hot_deals' => $this->hot_deals,
-            'new_deals' => $this->new_deals
         ]);
 
         //to update the main Image
@@ -224,6 +238,9 @@ class Edit extends Component
                 $selectedProduct->addMedia($image->getRealPath())->withResponsiveImages()->toMediaCollection('multiImages')
             );
         }
+
+        //update product dates
+        $this->productDates($this->product_id);
 
         //add product descriptions
         $this->productDesc($this->product_id);
@@ -245,6 +262,14 @@ class Edit extends Component
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',
             'message'   => 'product Updated Successfully'
+        ]);
+    }
+
+    public function productDates($id)
+    {
+        ProductExpiration::whereProductId($id)->update([
+            'mfg' => $this->mfg,
+            'exp' => $this->exp
         ]);
     }
 
