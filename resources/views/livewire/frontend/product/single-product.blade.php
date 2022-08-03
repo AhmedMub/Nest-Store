@@ -1,3 +1,7 @@
+@php
+//related product tags
+$relatedTags = $product->tags()->get();
+@endphp
 <main class="main">
     <div class="page-header breadcrumb-wrap">
         <div class="container">
@@ -75,17 +79,27 @@
                                         </div>
                                         <div class="clearfix product-price-cover">
                                             <div class="product-price primary-color float-left">
-                                                <span class="current-price text-brand">$38</span>
+                                                @if (!empty($product->productDiscount->discount_percent) &&
+                                                $product->discount_status == 1)
+                                                <span
+                                                    class="current-price text-brand">{{$product->productDiscount->discounted_price}}</span>
                                                 <span>
-                                                    <span class="save-price font-md color3 ml-15">26% Off</span>
-                                                    <span class="old-price font-md ml-15">$52</span>
+                                                    <span
+                                                        class="save-price font-md color3 ml-15">%{{$product->productDiscount->discount_percent}}
+                                                        Off</span>
+                                                    <span class="old-price font-md ml-15">${{$product->price}}</span>
                                                 </span>
+                                                @else
+                                                <span class="current-price text-brand">${{$product->price}}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="short-desc mb-30">
-                                            <p class="font-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                                Aliquam rem officia, corrupti reiciendis minima nisi modi, quasi, odio
-                                                minus dolore impedit fuga eum eligendi.</p>
+                                            <p class="font-lg">@if ($langAr)
+                                                {{$product->name_ar}}
+                                                @else
+                                                {{$product->name_en}}
+                                                @endif</p>
                                         </div>
                                         <div class="attr-detail attr-size mb-30">
                                             <strong class="mr-10">Size / Weight: </strong>
@@ -114,15 +128,25 @@
                                         </div>
                                         <div class="font-xs">
                                             <ul class="mr-50 float-start">
-                                                <li class="mb-5">Type: <span class="text-brand">Organic</span></li>
-                                                <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2021</span></li>
-                                                <li>LIFE: <span class="text-brand">70 days</span></li>
+                                                <li class="mb-5">{{__('frontend/singleProduct.Type')}}: <span
+                                                        class="text-brand">{{$product->type}}</span></li>
+                                                <li class="mb-5">{{__('frontend/singleProduct.MFG')}}:<span
+                                                        class="text-brand"> {{$product->productDates->mfg}}</span></li>
+                                                <li>{{__('frontend/singleProduct.LIFE')}}: <span
+                                                        class="text-brand">{{$product->productDates->remainingDays()}}</span>
+                                                </li>
                                             </ul>
                                             <ul class="float-start">
-                                                <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
-                                                <li class="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a href="#"
-                                                        rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
-                                                <li>Stock:<span class="in-stock text-brand ml-5">8 Items In Stock</span>
+                                                <li class="mb-5">{{__('frontend/singleProduct.SKU')}}: <span
+                                                        class="text-brand">{{$product->sku}}</span></li>
+                                                <li class="mb-5">{{__('frontend/singleProduct.Tags')}}:
+                                                    @foreach ($relatedTags as $tag)
+                                                    <a href="{{route('byTag', $tag->id)}}" rel="tag">{{$tag->name}}</a>
+                                                    @endforeach
+                                                </li>
+                                                <li>{{__('frontend/singleProduct.Stock')}}:<span
+                                                        class="in-stock text-brand ml-5">{{$product->qty}}
+                                                        {{__('frontend/singleProduct.Items In Stock')}}</span>
                                                 </li>
                                             </ul>
                                         </div>
