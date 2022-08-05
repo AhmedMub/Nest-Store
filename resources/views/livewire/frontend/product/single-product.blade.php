@@ -193,87 +193,54 @@ $relatedTags = $product->tags()->get();
                                             <table class="font-md">
                                                 <tbody>
                                                     <tr class="stand-up">
-                                                        <th>Stand Up</th>
+                                                        <th>{{__('frontend/singleProduct.Stand Up')}}</th>
                                                         <td>
-                                                            <p>35″L x 24″W x 37-45″H(front to back wheel)</p>
+                                                            <p>@if ($langAr)
+                                                                {{$product->productAdditionalInfo->stand_up_ar}}
+                                                                @else
+                                                                {{$product->productAdditionalInfo->stand_up_en}}
+                                                                @endif</p>
                                                         </td>
                                                     </tr>
                                                     <tr class="folded-wo-wheels">
-                                                        <th>Folded (w/o wheels)</th>
+                                                        <th>{{__('frontend/singleProduct.Folded')}}
+                                                            ({{__('frontend/singleProduct.w/o wheels')}})</th>
                                                         <td>
-                                                            <p>32.5″L x 18.5″W x 16.5″H</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="folded-w-wheels">
-                                                        <th>Folded (w/ wheels)</th>
-                                                        <td>
-                                                            <p>32.5″L x 24″W x 18.5″H</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="door-pass-through">
-                                                        <th>Door Pass Through</th>
-                                                        <td>
-                                                            <p>24</p>
+                                                            <p>@if ($langAr)
+                                                                {{$product->productAdditionalInfo->folded_ar}}
+                                                                @else
+                                                                {{$product->productAdditionalInfo->folded_en}}
+                                                                @endif</p>
                                                         </td>
                                                     </tr>
                                                     <tr class="frame">
-                                                        <th>Frame</th>
+                                                        <th>{{__('frontend/singleProduct.Frame')}}</th>
                                                         <td>
-                                                            <p>Aluminum</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="weight-wo-wheels">
-                                                        <th>Weight (w/o wheels)</th>
-                                                        <td>
-                                                            <p>20 LBS</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="weight-capacity">
-                                                        <th>Weight Capacity</th>
-                                                        <td>
-                                                            <p>60 LBS</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="width">
-                                                        <th>Width</th>
-                                                        <td>
-                                                            <p>24″</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="handle-height-ground-to-handle">
-                                                        <th>Handle height (ground to handle)</th>
-                                                        <td>
-                                                            <p>37-45″</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="wheels">
-                                                        <th>Wheels</th>
-                                                        <td>
-                                                            <p>12″ air / wide track slick tread</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="seat-back-height">
-                                                        <th>Seat back height</th>
-                                                        <td>
-                                                            <p>21.5″</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="head-room-inside-canopy">
-                                                        <th>Head room (inside canopy)</th>
-                                                        <td>
-                                                            <p>25″</p>
+                                                            <p>@if ($langAr)
+                                                                {{$product->productAdditionalInfo->frame_ar}}
+                                                                @else
+                                                                {{$product->productAdditionalInfo->frame_en}}
+                                                                @endif</p>
                                                         </td>
                                                     </tr>
                                                     <tr class="pa_color">
-                                                        <th>Color</th>
+                                                        <th>{{__('frontend/singleProduct.Color')}}</th>
                                                         <td>
-                                                            <p>Black, Blue, Red, White</p>
+                                                            <p>@if ($langAr)
+                                                                {{$product->productAdditionalInfo->color_ar}}
+                                                                @else
+                                                                {{$product->productAdditionalInfo->color_en}}
+                                                                @endif</p>
                                                         </td>
                                                     </tr>
                                                     <tr class="pa_size">
-                                                        <th>Size</th>
+                                                        <th>{{__('frontend/singleProduct.Size')}}</th>
                                                         <td>
-                                                            <p>M, S</p>
+                                                            <p>@if ($langAr)
+                                                                {{$product->productAdditionalInfo->size_ar}}
+                                                                @else
+                                                                {{$product->productAdditionalInfo->size_en}}
+                                                                @endif</p>
                                                         </td>
                                                     </tr>
                                                 </tbody>

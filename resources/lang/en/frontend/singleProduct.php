@@ -12,5 +12,12 @@ return [
     'Additional info' => 'Additional info',
     'Vendor' => 'Vendor',
     'Reviews' => 'Reviews',
+    'Stand Up' => 'Stand Up',
+    'Folded' => 'Folded',
+    'w/o wheels' => 'w/o wheels',
+    'Frame' => 'Frame',
+    'Color' => 'Color',
+    'Size' => 'Size',
+
 
 ];
