@@ -318,7 +318,10 @@ $('.check-one').on('click',function() {
 {{-- Initialize SUMMERNOTE editor --}}
 <script>
     $(document).ready(function() {
-        let arr = ['#long_desc_en', '#long_desc_ar', '#packaging_delivery_en', '#packaging_delivery_ar', '#suggested_use_en', '#suggested_use_ar', '#other_ingredients_en', '#other_ingredients_ar', '#warnings_en', '#warnings_ar'];
+        // let arr = ['#long_desc_en', '#long_desc_ar', '#packaging_delivery_en', '#packaging_delivery_ar', '#suggested_use_en', '#suggested_use_ar', '#other_ingredients_en', '#other_ingredients_ar', '#warnings_en', '#warnings_ar'];
+
+        //modifided
+        let arr = ['#long_desc_en', '#long_desc_ar'];
 
         let arrLivewier = arr.map(val=> val.slice(1));
 

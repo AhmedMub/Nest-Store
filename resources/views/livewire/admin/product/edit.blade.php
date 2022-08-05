@@ -83,11 +83,11 @@
 
                         {{-- Product Descriptions --}}
                         <x-admin.product.edit.description :long-desc-en="$long_desc_en" :long-desc-ar="$long_desc_ar"
-                            :packaging-delivery-en="$packaging_delivery_en"
+                            {{-- :packaging-delivery-en="$packaging_delivery_en"
                             :packaging-delivery-ar="$packaging_delivery_ar" :suggested-use-en="$suggested_use_en"
                             :suggested-use-ar="$suggested_use_ar" :other-ingredients-en="$other_ingredients_en"
                             :other-ingredients-ar="$other_ingredients_ar" :warnings-en="$warnings_en"
-                            :warnings-ar="$warnings_en" />
+                            :warnings-ar="$warnings_en" --}} />
 
 
                         {{-- Product Additional Info --}}

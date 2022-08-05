@@ -21,7 +21,6 @@ class Edit extends Component
     use WithFileUploads;
 
     public $product_id;
-    public $long_desc_en;
 
     //main to product model
     public $createdBy_adminID, $updatedBy_adminID, $category_id, $subCategory_id, $subSubCategory_id, $vendor_id, $mainCatN, $subCatN, $vendorName, $subSubCatN, $name_en, $name_ar, $qty, $price, $size, $type, $mfg, $exp, $life, $manufacturing_date;
@@ -30,7 +29,8 @@ class Edit extends Component
     public $getSubSubCats = "";
 
     //define product description
-    public $short_desc_en, $short_desc_ar, $long_desc_ar, $packaging_delivery_en, $packaging_delivery_ar, $suggested_use_en, $suggested_use_ar, $other_ingredients_en, $other_ingredients_ar, $warnings_en, $warnings_ar;
+    public $short_desc_en, $short_desc_ar, $long_desc_ar, $long_desc_en;
+    // public  $packaging_delivery_en, $packaging_delivery_ar, $suggested_use_en, $suggested_use_ar, $other_ingredients_en, $other_ingredients_ar, $warnings_en, $warnings_ar;
 
     //define Additional Info
     public $stand_up_en, $stand_up_ar, $folded_en, $folded_ar, $frame_en, $frame_ar, $color_en, $color_ar, $size_en;
@@ -62,14 +62,14 @@ class Edit extends Component
             'short_desc_ar' => ['string'],
             'long_desc_en' => ['nullable', 'string'],
             'long_desc_ar' => ['nullable', 'string'],
-            'packaging_delivery_en' => ['nullable', 'string'],
-            'packaging_delivery_ar' => ['nullable', 'string'],
-            'suggested_use_en' => ['nullable', 'string'],
-            'suggested_use_ar' => ['nullable', 'string'],
-            'other_ingredients_en' => ['nullable', 'string'],
-            'other_ingredients_ar' => ['nullable', 'string'],
-            'warnings_en' => ['nullable', 'string'],
-            'warnings_ar' => ['nullable', 'string'],
+            // 'packaging_delivery_en' => ['nullable', 'string'],
+            // 'packaging_delivery_ar' => ['nullable', 'string'],
+            // 'suggested_use_en' => ['nullable', 'string'],
+            // 'suggested_use_ar' => ['nullable', 'string'],
+            // 'other_ingredients_en' => ['nullable', 'string'],
+            // 'other_ingredients_ar' => ['nullable', 'string'],
+            // 'warnings_en' => ['nullable', 'string'],
+            // 'warnings_ar' => ['nullable', 'string'],
             'stand_up_en' => ['nullable', 'string'],
             'stand_up_ar' => ['nullable', 'string'],
             'folded_en' => ['nullable', 'string'],
@@ -130,14 +130,14 @@ class Edit extends Component
         $this->short_desc_ar = $product->productDescriptions->short_desc_ar;
         $this->long_desc_en = $product->productDescriptions->long_desc_en;
         $this->long_desc_ar = $product->productDescriptions->long_desc_ar;
-        $this->packaging_delivery_en = $product->productDescriptions->packaging_delivery_en;
-        $this->packaging_delivery_ar = $product->productDescriptions->packaging_delivery_ar;
-        $this->suggested_use_en = $product->productDescriptions->suggested_use_en;
-        $this->suggested_use_ar = $product->productDescriptions->suggested_use_ar;
-        $this->other_ingredients_en = $product->productDescriptions->other_ingredients_en;
-        $this->other_ingredients_ar = $product->productDescriptions->other_ingredients_ar;
-        $this->warnings_en = $product->productDescriptions->warnings_en;
-        $this->warnings_ar = $product->productDescriptions->warnings_ar;
+        // $this->packaging_delivery_en = $product->productDescriptions->packaging_delivery_en;
+        // $this->packaging_delivery_ar = $product->productDescriptions->packaging_delivery_ar;
+        // $this->suggested_use_en = $product->productDescriptions->suggested_use_en;
+        // $this->suggested_use_ar = $product->productDescriptions->suggested_use_ar;
+        // $this->other_ingredients_en = $product->productDescriptions->other_ingredients_en;
+        // $this->other_ingredients_ar = $product->productDescriptions->other_ingredients_ar;
+        // $this->warnings_en = $product->productDescriptions->warnings_en;
+        // $this->warnings_ar = $product->productDescriptions->warnings_ar;
         $this->stand_up_en = $product->productAdditionalInfo->stand_up_en;
         $this->stand_up_ar = $product->productAdditionalInfo->stand_up_ar;
         $this->folded_en = $product->productAdditionalInfo->folded_en;
@@ -280,14 +280,14 @@ class Edit extends Component
             'short_desc_ar' => $this->short_desc_ar,
             'long_desc_en' => $this->long_desc_en,
             'long_desc_ar' => $this->long_desc_ar,
-            'packaging_delivery_en' => $this->packaging_delivery_en,
-            'packaging_delivery_ar' => $this->packaging_delivery_ar,
-            'suggested_use_en' =>  $this->suggested_use_en,
-            'suggested_use_ar' => $this->suggested_use_ar,
-            'other_ingredients_en' => $this->other_ingredients_en,
-            'other_ingredients_ar' => $this->other_ingredients_ar,
-            'warnings_en' => $this->warnings_en,
-            'warnings_ar' => $this->warnings_ar,
+            // 'packaging_delivery_en' => $this->packaging_delivery_en,
+            // 'packaging_delivery_ar' => $this->packaging_delivery_ar,
+            // 'suggested_use_en' =>  $this->suggested_use_en,
+            // 'suggested_use_ar' => $this->suggested_use_ar,
+            // 'other_ingredients_en' => $this->other_ingredients_en,
+            // 'other_ingredients_ar' => $this->other_ingredients_ar,
+            // 'warnings_en' => $this->warnings_en,
+            // 'warnings_ar' => $this->warnings_ar,
         ]);
     }
     public function additionalInfo($id)

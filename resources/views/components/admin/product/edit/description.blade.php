@@ -73,7 +73,7 @@
                     </div>
 
                     {{-- Packaging & Delivery --}}
-                    <div class="panel panel-default" wire:ignore>
+                    {{-- <div class="panel panel-default" wire:ignore>
                         <div class="panel-heading1">
                             <h4 class="panel-title1">
                                 <a class="text-capitalize accordion-toggle collapsed" data-bs-toggle="collapse"
@@ -105,10 +105,10 @@
                     <div class="d-none">
                         <div id="packagingDeliveryEn">{{$packagingDeliveryEn}}</div>
                         <div id="packagingDeliveryAr">{{$packagingDeliveryAr}}</div>
-                    </div>
+                    </div> --}}
 
                     {{-- Suggested Use --}}
-                    <div class="panel panel-default" wire:ignore>
+                    {{-- <div class="panel panel-default" wire:ignore>
                         <div class="panel-heading1">
                             <h4 class="panel-title1">
                                 <a class="text-capitalize accordion-toggle collapsed" data-bs-toggle="collapse"
@@ -138,10 +138,10 @@
                     <div class="d-none">
                         <div id="suggestedUseEn">{{$suggestedUseEn}}</div>
                         <div id="suggestedUseAr">{{$suggestedUseAr}}</div>
-                    </div>
+                    </div> --}}
 
                     {{-- Other Ingredients --}}
-                    <div class="panel panel-default" wire:ignore>
+                    {{-- <div class="panel panel-default" wire:ignore>
                         <div class="panel-heading1">
                             <h4 class="panel-title1">
                                 <a class="text-capitalize accordion-toggle collapsed" data-bs-toggle="collapse"
@@ -173,9 +173,9 @@
                     <div class="d-none">
                         <div id="otherIngredientsEn">{{$otherIngredientsEn}}</div>
                         <div id="otherIngredientsAr">{{$otherIngredientsAr}}</div>
-                    </div>
+                    </div> --}}
                     {{-- Warnings --}}
-                    <div class="panel panel-default" wire:ignore>
+                    {{-- <div class="panel panel-default" wire:ignore>
                         <div class="panel-heading1">
                             <h4 class="panel-title1">
                                 <a class="text-capitalize accordion-toggle collapsed" data-bs-toggle="collapse"
@@ -203,11 +203,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-none">
+                    </div> --}}
+                    {{-- <div class="d-none">
                         <div id="warningsEn">{{$warningsEn}}</div>
                         <div id="warningsAr">{{$warningsAr}}</div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -221,14 +221,14 @@
             var liveObject = {
                 "#long_desc_en":'#longDescEn',
                 "#long_desc_ar":'#longDescAr',
-                "#packaging_delivery_en":'#packagingDeliveryEn',
-                "#packaging_delivery_ar":'#packagingDeliveryAr',
-                "#suggested_use_en":'#suggestedUseEn',
-                "#suggested_use_ar":'#suggestedUseAr',
-                "#other_ingredients_en":'#otherIngredientsEn',
-                "#other_ingredients_ar":'#otherIngredientsAr',
-                "#warnings_en":'#warningsEn',
-                "#warnings_ar":'#warningsAr',
+                // "#packaging_delivery_en":'#packagingDeliveryEn',
+                // "#packaging_delivery_ar":'#packagingDeliveryAr',
+                // "#suggested_use_en":'#suggestedUseEn',
+                // "#suggested_use_ar":'#suggestedUseAr',
+                // "#other_ingredients_en":'#otherIngredientsEn',
+                // "#other_ingredients_ar":'#otherIngredientsAr',
+                // "#warnings_en":'#warningsEn',
+                // "#warnings_ar":'#warningsAr',
             };
         $.each(liveObject, function (index, value) {
 

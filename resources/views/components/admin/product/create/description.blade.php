@@ -70,7 +70,7 @@
 
 
                     {{-- Packaging & Delivery --}}
-                    <div class="panel panel-default" wire:ignore>
+                    {{-- <div class="panel panel-default" wire:ignore>
                         <div class="panel-heading1">
                             <h4 class="panel-title1">
                                 <a class="text-capitalize accordion-toggle collapsed" data-bs-toggle="collapse"
@@ -98,11 +98,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
 
                     {{-- Suggested Use --}}
-                    <div class="panel panel-default" wire:ignore>
+                    {{-- <div class="panel panel-default" wire:ignore>
                         <div class="panel-heading1">
                             <h4 class="panel-title1">
                                 <a class="text-capitalize accordion-toggle collapsed" data-bs-toggle="collapse"
@@ -128,11 +128,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
 
                     {{-- Other Ingredients --}}
-                    <div class="panel panel-default" wire:ignore>
+                    {{-- <div class="panel panel-default" wire:ignore>
                         <div class="panel-heading1">
                             <h4 class="panel-title1">
                                 <a class="text-capitalize accordion-toggle collapsed" data-bs-toggle="collapse"
@@ -160,10 +160,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{-- Warnings --}}
-                    <div class="panel panel-default" wire:ignore>
+                    {{-- <div class="panel panel-default" wire:ignore>
                         <div class="panel-heading1">
                             <h4 class="panel-title1">
                                 <a class="text-capitalize accordion-toggle collapsed" data-bs-toggle="collapse"
@@ -191,7 +191,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

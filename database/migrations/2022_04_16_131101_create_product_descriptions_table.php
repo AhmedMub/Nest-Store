@@ -20,14 +20,14 @@ class CreateProductDescriptionsTable extends Migration
             $table->text('short_desc_ar');
             $table->text('long_desc_en')->nullable();
             $table->text('long_desc_ar')->nullable();
-            $table->text('packaging_delivery_en')->nullable();
-            $table->text('packaging_delivery_ar')->nullable();
-            $table->text('suggested_use_en')->nullable();
-            $table->text('suggested_use_ar')->nullable();
-            $table->text('other_ingredients_en')->nullable();
-            $table->text('other_ingredients_ar')->nullable();
-            $table->text('warnings_en')->nullable();
-            $table->text('warnings_ar')->nullable();
+            // $table->text('packaging_delivery_en')->nullable();
+            // $table->text('packaging_delivery_ar')->nullable();
+            // $table->text('suggested_use_en')->nullable();
+            // $table->text('suggested_use_ar')->nullable();
+            // $table->text('other_ingredients_en')->nullable();
+            // $table->text('other_ingredients_ar')->nullable();
+            // $table->text('warnings_en')->nullable();
+            // $table->text('warnings_ar')->nullable();
             $table->timestamps();
         });
     }

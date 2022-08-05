@@ -13,27 +13,27 @@ class Description extends Component
      */
     public $longDescEn;
     public $longDescAr;
-    public $packagingDeliveryEn;
-    public $packagingDeliveryAr;
-    public $suggestedUseEn;
-    public $suggestedUseAr;
-    public $otherIngredientsEn;
-    public $otherIngredientsAr;
-    public $warningsEn;
-    public $warningsAr;
+    // public $packagingDeliveryEn;
+    // public $packagingDeliveryAr;
+    // public $suggestedUseEn;
+    // public $suggestedUseAr;
+    // public $otherIngredientsEn;
+    // public $otherIngredientsAr;
+    // public $warningsEn;
+    // public $warningsAr;
 
-    public function __construct($longDescEn, $longDescAr, $packagingDeliveryEn, $packagingDeliveryAr, $suggestedUseEn, $suggestedUseAr, $otherIngredientsEn, $otherIngredientsAr, $warningsEn, $warningsAr)
+    public function __construct($longDescEn, $longDescAr)
     {
         $this->longDescEn = $longDescEn;
         $this->longDescAr = $longDescAr;
-        $this->packagingDeliveryEn = $packagingDeliveryEn;
-        $this->packagingDeliveryAr = $packagingDeliveryAr;
-        $this->suggestedUseEn = $suggestedUseEn;
-        $this->suggestedUseAr = $suggestedUseAr;
-        $this->otherIngredientsEn = $otherIngredientsEn;
-        $this->otherIngredientsAr = $otherIngredientsAr;
-        $this->warningsEn = $warningsEn;
-        $this->warningsAr = $warningsAr;
+        // $this->packagingDeliveryEn = $packagingDeliveryEn;
+        // $this->packagingDeliveryAr = $packagingDeliveryAr;
+        // $this->suggestedUseEn = $suggestedUseEn;
+        // $this->suggestedUseAr = $suggestedUseAr;
+        // $this->otherIngredientsEn = $otherIngredientsEn;
+        // $this->otherIngredientsAr = $otherIngredientsAr;
+        // $this->warningsEn = $warningsEn;
+        // $this->warningsAr = $warningsAr;
     }
 
     /**
