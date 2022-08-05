@@ -8,4 +8,9 @@ return [
     'Tags' => 'Tags',
     'Stock' => 'Stock',
     'Items In Stock' => 'Items In Stock',
+    'Description' => 'Description',
+    'Additional info' => 'Additional info',
+    'Vendor' => 'Vendor',
+    'Reviews' => 'Reviews',
+
 ];

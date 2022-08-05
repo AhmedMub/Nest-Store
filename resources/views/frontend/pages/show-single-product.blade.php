@@ -12,5 +12,5 @@ $langAr = str_contains(url()->current(), 'ar');
 @endpush
 @section('title', "Nest | $product->name_en")
 @section('content')
-<livewire:frontend.product.single-product :product="$product" :langAr="$langAr" />
+<livewire:frontend.product.single-product :product="$product" :langAr="$langAr" :user="$user" />
 @endsection

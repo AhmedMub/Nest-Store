@@ -96,20 +96,10 @@ $relatedTags = $product->tags()->get();
                                         </div>
                                         <div class="short-desc mb-30">
                                             <p class="font-lg">@if ($langAr)
-                                                {{$product->name_ar}}
+                                                {{$product->productDescriptions->short_desc_ar}}
                                                 @else
-                                                {{$product->name_en}}
+                                                {{$product->productDescriptions->short_desc_en}}
                                                 @endif</p>
-                                        </div>
-                                        <div class="attr-detail attr-size mb-30">
-                                            <strong class="mr-10">Size / Weight: </strong>
-                                            <ul class="list-filter size-filter font-small">
-                                                <li><a href="#">50g</a></li>
-                                                <li class="active"><a href="#">60g</a></li>
-                                                <li><a href="#">80g</a></li>
-                                                <li><a href="#">100g</a></li>
-                                                <li><a href="#">150g</a></li>
-                                            </ul>
                                         </div>
                                         <div class="detail-extralink mb-50">
                                             <div class="detail-qty border radius">
@@ -120,10 +110,12 @@ $relatedTags = $product->tags()->get();
                                             <div class="product-extra-link2">
                                                 <button type="submit" class="button button-add-to-cart"><i
                                                         class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                                <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                                    href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                <a wire:click="$emit('addToWishList',{{$user}}, {{$product->id}})"
+                                                    aria-label="Add To Wishlist" class="action-btn hover-up"
+                                                    href="javascript:void(0)"><i class="fi-rs-heart"></i></a>
+                                                {{-- /-//TODO add product compare --}}
                                                 <a aria-label="Compare" class="action-btn hover-up"
-                                                    href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                                    href="javscript:void(0)"><i class="fi-rs-shuffle"></i></a>
                                             </div>
                                         </div>
                                         <div class="font-xs">
@@ -157,87 +149,46 @@ $relatedTags = $product->tags()->get();
                             <div class="product-info">
                                 <div class="tab-style3">
                                     <ul class="nav nav-tabs text-uppercase">
+                                        @if ($product->desc_status == 1)
                                         <li class="nav-item">
                                             <a class="nav-link active" id="Description-tab" data-bs-toggle="tab"
-                                                href="#Description">Description</a>
+                                                href="#Description">{{__('frontend/singleProduct.Description')}}</a>
                                         </li>
+                                        @endif
+                                        @if ($product->additionalInfo_status == 1)
                                         <li class="nav-item">
                                             <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab"
-                                                href="#Additional-info">Additional info</a>
+                                                href="#Additional-info">
+                                                {{__('frontend/singleProduct.Additional info')}}</a>
                                         </li>
+                                        @endif
+                                        @if ($product->vendor_status == 1)
                                         <li class="nav-item">
                                             <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab"
-                                                href="#Vendor-info">Vendor</a>
+                                                href="#Vendor-info">{{__('frontend/singleProduct.Vendor')}}</a>
                                         </li>
+                                        @endif
+                                        @if ($product->reviews_status == 1)
                                         <li class="nav-item">
                                             <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab"
-                                                href="#Reviews">Reviews (3)</a>
+                                                href="#Reviews">{{__('frontend/singleProduct.Reviews')}} (3)</a>
                                         </li>
+                                        @endif
+
                                     </ul>
                                     <div class="tab-content shop_info_tab entry-main-content">
+                                        @if ($product->desc_status == 1)
                                         <div class="tab-pane fade show active" id="Description">
                                             <div class="">
-                                                <p>Uninhibited carnally hired played in whimpered dear gorilla koala
-                                                    depending and much yikes off far quetzal goodness and from for
-                                                    grimaced goodness unaccountably and meadowlark near unblushingly
-                                                    crucial scallop tightly neurotic hungrily some and dear furiously
-                                                    this apart.</p>
-                                                <p>Spluttered narrowly yikes left moth in yikes bowed this that grizzly
-                                                    much hello on spoon-fed that alas rethought much decently richly and
-                                                    wow against the frequent fluidly at formidable acceptably flapped
-                                                    besides and much circa far over the bucolically hey precarious
-                                                    goldfinch mastodon goodness gnashed a jellyfish and one however
-                                                    because.</p>
-                                                <ul class="product-more-infor mt-30">
-                                                    <li><span>Type Of Packing</span> Bottle</li>
-                                                    <li><span>Color</span> Green, Pink, Powder Blue, Purple</li>
-                                                    <li><span>Quantity Per Case</span> 100ml</li>
-                                                    <li><span>Ethyl Alcohol</span> 70%</li>
-                                                    <li><span>Piece In One</span> Carton</li>
-                                                </ul>
-                                                <hr class="wp-block-separator is-style-dots" />
-                                                <p>Laconic overheard dear woodchuck wow this outrageously taut beaver
-                                                    hey hello far meadowlark imitatively egregiously hugged that yikes
-                                                    minimally unanimous pouted flirtatiously as beaver beheld above
-                                                    forward energetic across this jeepers beneficently cockily less a
-                                                    the raucously that magic upheld far so the this where crud then
-                                                    below after jeez enchanting drunkenly more much wow callously
-                                                    irrespective limpet.</p>
-                                                <h4 class="mt-30">Packaging & Delivery</h4>
-                                                <hr class="wp-block-separator is-style-wide" />
-                                                <p>Less lion goodness that euphemistically robin expeditiously bluebird
-                                                    smugly scratched far while thus cackled sheepishly rigid after due
-                                                    one assenting regarding censorious while occasional or this more
-                                                    crane went more as this less much amid overhung anathematic because
-                                                    much held one exuberantly sheep goodness so where rat wry well
-                                                    concomitantly.</p>
-                                                <p>Scallop or far crud plain remarkably far by thus far iguana lewd
-                                                    precociously and and less rattlesnake contrary caustic wow this near
-                                                    alas and next and pled the yikes articulate about as less cackled
-                                                    dalmatian in much less well jeering for the thanks blindly
-                                                    sentimental whimpered less across objectively fanciful grimaced
-                                                    wildly some wow and rose jeepers outgrew lugubrious luridly
-                                                    irrationally attractively dachshund.</p>
-                                                <h4 class="mt-30">Suggested Use</h4>
-                                                <ul class="product-more-infor mt-30">
-                                                    <li>Refrigeration not necessary.</li>
-                                                    <li>Stir before serving</li>
-                                                </ul>
-                                                <h4 class="mt-30">Other Ingredients</h4>
-                                                <ul class="product-more-infor mt-30">
-                                                    <li>Organic raw pecans, organic raw cashews.</li>
-                                                    <li>This butter was produced using a LTG (Low Temperature Grinding)
-                                                        process</li>
-                                                    <li>Made in machinery that processes tree nuts but does not process
-                                                        peanuts, gluten, dairy or soy</li>
-                                                </ul>
-                                                <h4 class="mt-30">Warnings</h4>
-                                                <ul class="product-more-infor mt-30">
-                                                    <li>Oil separation occurs naturally. May contain pieces of shell.
-                                                    </li>
-                                                </ul>
+                                                @if ($langAr)
+                                                {!! $product->productDescriptions->long_desc_ar !!}
+                                                @else
+                                                {!! $product->productDescriptions->long_desc_en !!}
+                                                @endif
                                             </div>
                                         </div>
+                                        @endif
+                                        @if ($product->additionalInfo_status == 1)
                                         <div class="tab-pane fade" id="Additional-info">
                                             <table class="font-md">
                                                 <tbody>
@@ -328,6 +279,8 @@ $relatedTags = $product->tags()->get();
                                                 </tbody>
                                             </table>
                                         </div>
+                                        @endif
+                                        @if ($product->vendor_status == 1)
                                         <div class="tab-pane fade" id="Vendor-info">
                                             <div class="vendor-logo d-flex mb-30">
                                                 <img src="assets/imgs/vendor/vendor-18.svg" alt="" />
@@ -373,6 +326,8 @@ $relatedTags = $product->tags()->get();
                                                 were 460 Noodles & Company locations across 29 states and Washington,
                                                 D.C.</p>
                                         </div>
+                                        @endif
+                                        @if ($product->reviews_status == 1)
                                         <div class="tab-pane fade" id="Reviews">
                                             <!--Comments-->
                                             <div class="comments-area">
@@ -571,6 +526,8 @@ $relatedTags = $product->tags()->get();
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>
@@ -746,35 +703,6 @@ $relatedTags = $product->tags()->get();
                         </div>
                     </div>
                     <div class="col-xl-3 primary-sidebar sticky-sidebar mt-30">
-                        <div class="sidebar-widget widget-delivery mb-30 bg-grey-9 box-shadow-none">
-                            <h5 class="section-title style-3 mb-20">Delivery</h5>
-                            <ul>
-                                <li>
-                                    <i class="fi fi-rs-marker mr-10 text-brand"></i>
-                                    <span>
-                                        5171 W Campbell Ave <br />
-                                        undefined Kent, Utah 53127 <br />United States
-                                    </span>
-                                    <a href="#" class="change float-end">Change</a>
-                                </li>
-                                <li class="hr"><span></span></li>
-                            </ul>
-                            <h5 class="section-title style-3 mb-20">Return & Warranty</h5>
-                            <ul>
-                                <li>
-                                    <i class="fi fi-rs-shield-check mr-10 text-brand"></i>
-                                    <span> 100% Authentic </span>
-                                </li>
-                                <li>
-                                    <i class="fi fi-rs-time-forward-ten mr-10 text-brand"></i>
-                                    <span> 10 Days Return </span>
-                                </li>
-                                <li>
-                                    <i class="fi fi-rs-diploma mr-10 text-brand"></i>
-                                    <span> 12 Months Warranty </span>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="sidebar-widget widget-vendor mb-30 bg-grey-9 box-shadow-none">
                             <h5 class="section-title style-3 mb-20">Vendor</h5>
                             <div class="vendor-logo d-flex mb-30">
@@ -884,7 +812,7 @@ $relatedTags = $product->tags()->get();
                             </div>
                         </div>
                         <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
-                            <img src="assets/imgs/banner/banner-11.png" alt="" />
+                            <img src="{{asset('frontend/assets/defaultImages/banner-11.png')}}" alt="banner" />
                             <div class="banner-text">
                                 <span>Oganic</span>
                                 <h4>
@@ -899,4 +827,5 @@ $relatedTags = $product->tags()->get();
             </div>
         </div>
     </div>
+    <livewire:frontend.product.wishlist />
 </main>

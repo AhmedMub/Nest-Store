@@ -8,11 +8,13 @@ class SingleProduct extends Component
 {
     public $langAr;
     public $product;
+    public $user;
 
-    public function mount($langAr, $product)
+    public function mount($langAr, $product, $user)
     {
         $this->langAr = $langAr;
         $this->product = $product;
+        $this->user = $user;
     }
 
     public function render()
