@@ -21,7 +21,7 @@ class ProductsByTagController extends Controller
         */
         $products = Product::withAnyTagsOfAnyType($tagName)->where('product_status', 1)->get();
 
-        $tags = Tag::whereStatus(1)->latest()->take(5)->get();
+        $tags = Tag::whereStatus(1)->take(5)->get();
         $user = 0;
         if (Auth::check()) {
             $user = Auth::user()->id;

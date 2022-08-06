@@ -3,11 +3,11 @@ $headerName;
 if(isset($byTag)) {
 $headerName = $tagName;
 }
-if(isset($currentCat)) {
-$headerName = $currentCat->name_en;
+if(isset($currentObj)) {
+$headerName = $currentObj->name_en;
 }
-if($langAr && isset($currentCat)) {
-$headerName = $currentCat->name_ar;
+if($langAr && isset($currentObj)) {
+$headerName = $currentObj->name_ar;
 }
 $sortPerPage = array(15,25,35,45,0);
 $sortByField = array('featured', 'price low to high', 'price high to low', 'release date');

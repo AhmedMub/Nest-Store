@@ -10,6 +10,9 @@ $subCategory = null;
 undefined vairables
 error
 */
+if(!isset($vendor)) {
+$vendor = null;
+}
 if(!isset($category)) {
 $category = null;
 }
@@ -28,7 +31,7 @@ $byTag = null;
 
 {{-- this livewire component to display products based on the main or subcategory that selected by the user --}}
 <livewire:frontend.product.products-by-category-or-tag :category="$category" :subCategory="$subCategory"
-    :subSubCategory="$subSubCategory" :byTag="$byTag" :tags="$tags" :user="$user" :langAr="$langAr" />
+    :subSubCategory="$subSubCategory" :byTag="$byTag" :vendor="$vendor" :tags="$tags" :user="$user" :langAr="$langAr" />
 @else
 <x-frontend.page404 message="No Products Found" />
 @endif

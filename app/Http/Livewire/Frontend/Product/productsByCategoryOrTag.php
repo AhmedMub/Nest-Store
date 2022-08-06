@@ -18,7 +18,8 @@ class productsByCategoryOrTag extends Component
     public $category;
     public $subCategory;
     public $subSubCategory;
-    public $currentCat;
+    public $currentObj;
+    public $vendor;
 
     /*
     /--- //NOTE fix error:  properties in a livewire component can be only [numeric, string, array, null, boolean] for $products property
@@ -41,7 +42,7 @@ class productsByCategoryOrTag extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public function mount($tags, $user, $langAr, $category, $subCategory, $subSubCategory, $byTag)
+    public function mount($tags, $user, $langAr, $category, $subCategory, $subSubCategory, $byTag, $vendor)
     {
         $this->category = $category;
         $this->subCategory = $subCategory;
@@ -50,18 +51,22 @@ class productsByCategoryOrTag extends Component
         $this->user = $user;
         $this->langAr = $langAr;
         $this->byTag = $byTag;
+        $this->vendor = $vendor;
         //
         if (isset($this->category)) {
-            $this->currentCat = $this->category;
+            $this->currentObj = $this->category;
         }
         if (isset($this->subCategory)) {
-            $this->currentCat = $this->subCategory;
+            $this->currentObj = $this->subCategory;
         }
         if (isset($this->subSubCategory)) {
-            $this->currentCat = $this->subSubCategory;
+            $this->currentObj = $this->subSubCategory;
         }
         if (isset($this->byTag)) {
             $this->tagName = $this->byTag->name;
+        }
+        if (isset($this->vendor)) {
+            $this->currentObj = $this->vendor;
         }
     }
 
@@ -99,16 +104,20 @@ class productsByCategoryOrTag extends Component
     public function render()
     {
         if (isset($this->category)) {
-            $this->products = Product::whereProductStatus(1)->whereCategoryId($this->currentCat->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
-            $this->productsCount = Product::whereProductStatus(1)->whereCategoryId($this->currentCat->id)->count();
+            $this->products = Product::whereProductStatus(1)->whereCategoryId($this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->whereCategoryId($this->currentObj->id)->count();
         }
         if (isset($this->subCategory)) {
-            $this->products = Product::whereProductStatus(1)->where('subCategory_id', $this->currentCat->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
-            $this->productsCount = Product::whereProductStatus(1)->where('subCategory_id', $this->currentCat->id)->count();
+            $this->products = Product::whereProductStatus(1)->where('subCategory_id', $this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->where('subCategory_id', $this->currentObj->id)->count();
         }
         if (isset($this->subSubCategory)) {
-            $this->products = Product::whereProductStatus(1)->where('subSubCategory_id', $this->currentCat->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
-            $this->productsCount = Product::whereProductStatus(1)->where('subSubCategory_id', $this->currentCat->id)->count();
+            $this->products = Product::whereProductStatus(1)->where('subSubCategory_id', $this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->where('subSubCategory_id', $this->currentObj->id)->count();
+        }
+        if (isset($this->vendor)) {
+            $this->products = Product::whereProductStatus(1)->where('vendor_id', $this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->where('vendor_id', $this->currentObj->id)->count();
         }
         //get products by tags
         if (isset($this->byTag)) {

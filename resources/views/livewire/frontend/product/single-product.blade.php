@@ -250,10 +250,16 @@ $relatedTags = $product->tags()->get();
                                         @if ($product->vendor_status == 1)
                                         <div class="tab-pane fade" id="Vendor-info">
                                             <div class="vendor-logo d-flex mb-30">
-                                                <img src="assets/imgs/vendor/vendor-18.svg" alt="" />
+                                                <img src="{{asset('storage/frontend/vendors/'.$product->productVendor->logo)}}"
+                                                    alt="" />
                                                 <div class="vendor-name ml-15">
                                                     <h6>
-                                                        <a href="vendor-details-2.html">Noodles Co.</a>
+                                                        <a href="{{route('byVendor', $product->productVendor->slug)}}">
+                                                            @if ($langAr)
+                                                            {{$product->productVendor->name_ar}}
+                                                            @else
+                                                            {{$product->productVendor->name_en}}
+                                                            @endif</a>
                                                     </h6>
                                                     <div class="product-rate-cover text-end">
                                                         <div class="product-rate d-inline-block">
