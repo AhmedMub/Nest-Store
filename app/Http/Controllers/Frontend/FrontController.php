@@ -27,7 +27,7 @@ class FrontController extends Controller
         $remaining = $count - $skip;
 
         //get remaining categories
-        $catsRemainingRecords = Category::skip($skip)->take($remaining)->get();
+        $catsRemainingRecords = Category::whereStatus(1)->where('featured_category', 0)->skip($skip)->take($remaining)->get();
 
         //Slider
         $sliders = Slider::whereStatus(1)->latest()->get();
@@ -74,6 +74,6 @@ class FrontController extends Controller
 
     public function contactUs()
     {
-        //
+        return view('frontend.pages.contact');
     }
 }
