@@ -1,6 +1,12 @@
 @php
 //related product tags
 $relatedTags = $product->tags()->get();
+$headerName;
+if($langAr) {
+$headerName = $product->name_ar;
+}else {
+$headerName = $product->name_en;
+}
 @endphp
 <main class="main">
     <div class="page-header breadcrumb-wrap">
@@ -452,6 +458,11 @@ $relatedTags = $product->tags()->get();
                                             <!--comment form-->
                                             <div class="comment-form">
                                                 <h4 class="mb-15">Add a review</h4>
+                                                @guest
+                                                <div class="h5"><a href="{{route('login')}}">Login</a> to add review
+                                                </div>
+                                                @endguest
+                                                @auth
                                                 <div class="product-rate d-inline-block mb-30"></div>
                                                 <div class="row">
                                                     <div class="col-lg-8 col-md-12">
@@ -495,6 +506,7 @@ $relatedTags = $product->tags()->get();
                                                         </form>
                                                     </div>
                                                 </div>
+                                                @endauth
                                             </div>
                                         </div>
                                         @endif
@@ -508,166 +520,14 @@ $relatedTags = $product->tags()->get();
                                 </div>
                                 <div class="col-12">
                                     <div class="row related-products">
+                                        @if (count($relatedProduct) > 0)
+                                        @foreach ($relatedProduct as $product)
                                         <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                            <div class="product-cart-wrap hover-up">
-                                                <div class="product-img-action-wrap">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.html" tabindex="0">
-                                                            <img class="default-img"
-                                                                src="assets/imgs/shop/product-2-1.jpg" alt="" />
-                                                            <img class="hover-img"
-                                                                src="assets/imgs/shop/product-2-2.jpg" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up"
-                                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                                class="fi-rs-search"></i></a>
-                                                        <a aria-label="Add To Wishlist"
-                                                            class="action-btn small hover-up" href="shop-wishlist.html"
-                                                            tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                        <a aria-label="Compare" class="action-btn small hover-up"
-                                                            href="shop-compare.html" tabindex="0"><i
-                                                                class="fi-rs-shuffle"></i></a>
-                                                    </div>
-                                                    <div
-                                                        class="product-badges product-badges-position product-badges-mrg">
-                                                        <span class="hot">Hot</span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                    <h2><a href="shop-product-right.html" tabindex="0">Ulstra Bass
-                                                            Headphone</a></h2>
-                                                    <div class="rating-result" title="90%">
-                                                        <span> </span>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>$238.85 </span>
-                                                        <span class="old-price">$245.8</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <x-frontend.products.single-product-view :langAr="$langAr" :user="$user"
+                                                :headerName="$headerName" :product="$product" />
                                         </div>
-                                        <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                            <div class="product-cart-wrap hover-up">
-                                                <div class="product-img-action-wrap">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.html" tabindex="0">
-                                                            <img class="default-img"
-                                                                src="assets/imgs/shop/product-3-1.jpg" alt="" />
-                                                            <img class="hover-img"
-                                                                src="assets/imgs/shop/product-4-2.jpg" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up"
-                                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                                class="fi-rs-search"></i></a>
-                                                        <a aria-label="Add To Wishlist"
-                                                            class="action-btn small hover-up" href="shop-wishlist.html"
-                                                            tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                        <a aria-label="Compare" class="action-btn small hover-up"
-                                                            href="shop-compare.html" tabindex="0"><i
-                                                                class="fi-rs-shuffle"></i></a>
-                                                    </div>
-                                                    <div
-                                                        class="product-badges product-badges-position product-badges-mrg">
-                                                        <span class="sale">-12%</span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                    <h2><a href="shop-product-right.html" tabindex="0">Smart Bluetooth
-                                                            Speaker</a></h2>
-                                                    <div class="rating-result" title="90%">
-                                                        <span> </span>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>$138.85 </span>
-                                                        <span class="old-price">$145.8</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                            <div class="product-cart-wrap hover-up">
-                                                <div class="product-img-action-wrap">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.html" tabindex="0">
-                                                            <img class="default-img"
-                                                                src="assets/imgs/shop/product-4-1.jpg" alt="" />
-                                                            <img class="hover-img"
-                                                                src="assets/imgs/shop/product-4-2.jpg" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up"
-                                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                                class="fi-rs-search"></i></a>
-                                                        <a aria-label="Add To Wishlist"
-                                                            class="action-btn small hover-up" href="shop-wishlist.html"
-                                                            tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                        <a aria-label="Compare" class="action-btn small hover-up"
-                                                            href="shop-compare.html" tabindex="0"><i
-                                                                class="fi-rs-shuffle"></i></a>
-                                                    </div>
-                                                    <div
-                                                        class="product-badges product-badges-position product-badges-mrg">
-                                                        <span class="new">New</span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                    <h2><a href="shop-product-right.html" tabindex="0">HomeSpeak 12UEA
-                                                            Goole</a></h2>
-                                                    <div class="rating-result" title="90%">
-                                                        <span> </span>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>$738.85 </span>
-                                                        <span class="old-price">$1245.8</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-4 col-12 col-sm-6 d-lg-block d-none">
-                                            <div class="product-cart-wrap hover-up mb-0">
-                                                <div class="product-img-action-wrap">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.html" tabindex="0">
-                                                            <img class="default-img"
-                                                                src="assets/imgs/shop/product-5-1.jpg" alt="" />
-                                                            <img class="hover-img"
-                                                                src="assets/imgs/shop/product-3-2.jpg" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up"
-                                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                                class="fi-rs-search"></i></a>
-                                                        <a aria-label="Add To Wishlist"
-                                                            class="action-btn small hover-up" href="shop-wishlist.html"
-                                                            tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                        <a aria-label="Compare" class="action-btn small hover-up"
-                                                            href="shop-compare.html" tabindex="0"><i
-                                                                class="fi-rs-shuffle"></i></a>
-                                                    </div>
-                                                    <div
-                                                        class="product-badges product-badges-position product-badges-mrg">
-                                                        <span class="hot">Hot</span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                    <h2><a href="shop-product-right.html" tabindex="0">Dadua Camera 4K
-                                                            2021EF</a></h2>
-                                                    <div class="rating-result" title="90%">
-                                                        <span> </span>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>$89.8 </span>
-                                                        <span class="old-price">$98.8</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -675,12 +535,16 @@ $relatedTags = $product->tags()->get();
                     </div>
                     <div class="col-xl-3 primary-sidebar sticky-sidebar mt-30">
                         <div class="sidebar-widget widget-vendor mb-30 bg-grey-9 box-shadow-none">
-                            <h5 class="section-title style-3 mb-20">Vendor</h5>
+                            <h5 class="section-title style-3 mb-20">{{__('frontend/singleProduct.Vendor')}}</h5>
                             <div class="vendor-logo d-flex mb-30">
-                                <img src="assets/imgs/vendor/vendor-18.svg" alt="" />
+                                <img src="{{$product->productVendor->getFirstMediaUrl('vendorLogo','thumb')}}" alt="" />
                                 <div class="vendor-name ml-15">
                                     <h6>
-                                        <a href="vendor-details-2.html">Noodles Co.</a>
+                                        <a href="vendor-details-2.html">@if ($langAr)
+                                            {{$product->productVendor->name_ar}}
+                                            @else
+                                            {{$product->productVendor->name_en}}
+                                            @endif</a>
                                     </h6>
                                     <div class="product-rate-cover text-end">
                                         <div class="product-rate d-inline-block">
@@ -691,96 +555,71 @@ $relatedTags = $product->tags()->get();
                                 </div>
                             </div>
                             <ul class="contact-infor">
-                                <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address:
-                                    </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span>
+                                <li><img src="{{asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}"
+                                        alt="" /><strong>{{__('frontend/singleProduct.Address')}}:
+                                    </strong> <span>{{$product->productVendor->address}}</span>
                                 </li>
-                                <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Contact
-                                        Seller:</strong><span>(+91) - 540-025-553</span></li>
+                                <li><img src="{{asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}"
+                                        alt="" /><strong>
+                                        {{__('frontend/singleProduct.Contact Seller')}}:</strong><span>
+                                        {{$product->productVendor->phone}}</span></li>
                                 <li class="hr"><span></span></li>
                             </ul>
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="text-brand font-xs">Rating</p>
+                            <div class="d-flex justify-content-center">
+                                <div class="mx-3">
+                                    <p class="text-brand font-xs">{{__('frontend/singleProduct.Rating')}}</p>
                                     <h4 class="mb-0">92%</h4>
                                 </div>
-                                <div>
-                                    <p class="text-brand font-xs">Ship on time</p>
+                                <div class="mx-3">
+                                    <p class="text-brand font-xs">{{__("frontend/singleProduct.Ship on time")}}</p>
                                     <h4 class="mb-0">100%</h4>
                                 </div>
-                                <div>
-                                    <p class="text-brand font-xs">Chat response</p>
-                                    <h4 class="mb-0">89%</h4>
-                                </div>
                             </div>
-                            <ul>
-                                <li class="hr"><span></span></li>
-                            </ul>
-                            <p>Become a Vendor? <a href="page-register.html"> Register now</a></p>
                         </div>
                         <div class="sidebar-widget widget-category-2 mb-30">
-                            <h5 class="section-title style-1 mb-30">Category</h5>
+                            <h5 class="section-title style-1 mb-30">{{__('frontend/singleProduct.Category')}}</h5>
                             <ul>
+                                @if (count($categories) > 0)
+                                @foreach ($categories as $cat)
                                 <li>
-                                    <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-1.svg"
-                                            alt="" />Milks & Dairies</a><span class="count">30</span>
+                                    <a href="shop-grid-right.html">
+                                        @if ($cat->icon != null && $cat->default_icon_status == 0)
+                                        <img src="{{asset('storage/frontend/categories/'.$cat->icon)}}" alt="" />
+                                        @endif
+                                        @if ($cat->default_icon == 1)
+                                        <img src="{{asset('storage/default_images/'.$cat->default_icon)}}" alt="icon">
+                                        @endif
+                                        @if ($langAr)
+                                        {{$cat->name_ar}}
+                                        @else
+                                        {{$cat->name_en}}
+                                        @endif</a><span class="count"> {{$cat->productMainCat->count()}} </span>
                                 </li>
-                                <li>
-                                    <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-2.svg"
-                                            alt="" />Clothing</a><span class="count">35</span>
-                                </li>
-                                <li>
-                                    <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-3.svg"
-                                            alt="" />Pet Foods </a><span class="count">42</span>
-                                </li>
-                                <li>
-                                    <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-4.svg"
-                                            alt="" />Baking material</a><span class="count">68</span>
-                                </li>
-                                <li>
-                                    <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-5.svg"
-                                            alt="" />Fresh Fruit</a><span class="count">87</span>
-                                </li>
+                                @endforeach
+                                @endif
                             </ul>
                         </div>
                         <!-- Product sidebar Widget -->
                         <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
-                            <h5 class="section-title style-1 mb-30">New products</h5>
+                            <h5 class="section-title style-1 mb-30">{{__('frontend/singleProduct.New products')}}</h5>
+                            @foreach ($latestProducts as $item)
                             <div class="single-post clearfix">
                                 <div class="image">
-                                    <img src="assets/imgs/shop/thumbnail-3.jpg" alt="#" />
+                                    <img src="{{$item->getFirstMediaUrl('mainImage')}}" alt="#" />
                                 </div>
                                 <div class="content pt-10">
-                                    <h5><a href="shop-product-detail.html">Chen Cardigan</a></h5>
-                                    <p class="price mb-0 mt-5">$99.50</p>
+                                    <h5><a href="{{route('show.product', $item->slug)}}">@if ($langAr)
+                                            {{$item->name_ar}}
+                                            @else
+                                            {{$item->name_en}}
+                                            @endif</a></h5>
+                                    <p class="price mb-0 mt-5">{{$item->price}}</p>
                                     <div class="product-rate">
                                         <div class="product-rating" style="width: 90%"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-post clearfix">
-                                <div class="image">
-                                    <img src="assets/imgs/shop/thumbnail-4.jpg" alt="#" />
-                                </div>
-                                <div class="content pt-10">
-                                    <h6><a href="shop-product-detail.html">Chen Sweater</a></h6>
-                                    <p class="price mb-0 mt-5">$89.50</p>
-                                    <div class="product-rate">
-                                        <div class="product-rating" style="width: 80%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-post clearfix">
-                                <div class="image">
-                                    <img src="assets/imgs/shop/thumbnail-5.jpg" alt="#" />
-                                </div>
-                                <div class="content pt-10">
-                                    <h6><a href="shop-product-detail.html">Colorful Jacket</a></h6>
-                                    <p class="price mb-0 mt-5">$25</p>
-                                    <div class="product-rate">
-                                        <div class="product-rating" style="width: 60%"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
                             <img src="{{asset('frontend/assets/defaultImages/banner-11.png')}}" alt="banner" />

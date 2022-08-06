@@ -23,6 +23,7 @@ return [
     'Contact Seller' => 'Contact Seller',
     'Rating' => 'Rating',
     'Ship on time' => 'Ship on time',
-
+    'Category' => 'Category',
+    'New products' => 'New products',
 
 ];

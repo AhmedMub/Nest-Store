@@ -1,9 +1,6 @@
 @php
 $langAr = str_contains(url()->current(), 'ar');
-$test="";
-if(isset($products)) {
-$test = $products;
-}
+
 @endphp
 @extends('frontend.layouts.master')
 @section('content')
