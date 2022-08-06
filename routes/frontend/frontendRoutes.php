@@ -30,15 +30,24 @@ Route::group([
     });
 
     /** ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
-    Route::get('/', [FrontController::class, 'index'])->name('home');
 
-    Route::get('shop', [FrontController::class, 'shop'])->name('shop');
+    Route::controller(FrontController::class)->group(function () {
 
-    //contact us page
-    Route::get('contact-us', [FrontController::class, 'contactUs'])->name('contact');
+        //home page
+        Route::get('/', 'index')->name('home');
+
+        //product shop
+        Route::get('shop', 'shop')->name('shop');
+
+        //about us page
+        Route::get('about-us', 'aboutUs')->name('about');
+
+        //contact us page
+        Route::get('contact-us', 'contactUs')->name('contact');
+    });
 
     //
-    Route::get('order-by-tag/{id}', [FrontController::class, 'orderByTag'])->name('reOrder');
+    //Route::get('order-by-tag/{id}', [FrontController::class, 'orderByTag'])->name('reOrder');
 
     //*Auth Routes
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -64,7 +73,7 @@ Route::group([
     //products by tags
     Route::get('by-Tag/{id}', [ProductsByTagController::class, 'getProducts'])->name('byTag');
 
-    //products by tags
+    //products by vendors
     Route::get('by-vendor/{slug}', [ProductsByVendorController::class, 'getProducts'])->name('byVendor');
 });
 

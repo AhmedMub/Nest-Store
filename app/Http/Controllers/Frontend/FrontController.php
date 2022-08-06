@@ -67,6 +67,11 @@ class FrontController extends Controller
         //
     }
 
+    public function aboutUs()
+    {
+        return view('frontend.pages.about');
+    }
+
     public function contactUs()
     {
         //

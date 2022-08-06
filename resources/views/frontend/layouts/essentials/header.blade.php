@@ -22,7 +22,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-                            <li><a href="#">{{__('frontend/header.About Us')}}</a></li>
+                            <li><a href="{{route('about')}}">{{__('frontend/header.About Us')}}</a></li>
                             <li><a href="{{route('user.profile')}}">{{__('frontend/header.My Account')}}</a></li>
                             {{-- /-//TODO must get be crtead to user --}}
                             <li><a href="{{route('products.wishList')}}">{{__('frontend/header.Wishlist')}}</a></li>
@@ -354,10 +354,10 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                 </li>
                                 @endforeach
                                 <li>
-                                    <a href="javascript:void(0)">About Us</a>
+                                    <a href="{{route('about')}}">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)">Contact</a>
+                                    <a href="{{route('contact')}}">Contact</a>
                                 </li>
                             </ul>
                         </nav>
