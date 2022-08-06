@@ -31,9 +31,7 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="logo">vendor logo</label>
-                        <input type="file" wire:model.defer='logo' id="logo" class="form-control" />
-                        <x-defaults.input-error for="logo" />
+                        <x-admin.partials.spatie-image forError="logo" wire:model='logo' title="vendor logo" />
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -141,10 +139,17 @@
 @push('child-styles')
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
+@once
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+@endonce
 @endpush
 @push('child-scripts')
 <script>
     flatpickr('#start_date', {});
 </script>
+@once
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+@endonce
 @endpush

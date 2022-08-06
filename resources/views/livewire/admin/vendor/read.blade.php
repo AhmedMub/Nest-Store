@@ -80,14 +80,10 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                             <input wire:model='selectedVendors' value="{{$vendor->id}}" type="checkbox">
                         </td>
                         <td>
-                            @if ($vendor->logo)
                             <div class="text-center">
-                                <img src="{{asset('storage/frontend/vendors/'.$vendor->logo)}}" alt="logo"
+                                <img src="{{$vendor->getFirstMediaUrl('vendorLogo', 'thumb')}}" alt="logo"
                                     class="cart-img">
                             </div>
-                            @else
-                            <span class="badge rounded-pill bg-warning-gradient badge-sm me-1 mb-1 mt-1">Not Set</span>
-                            @endif
                         </td>
                         <td> {{$vendor->name_en}} </td>
                         <td> {{$vendor->name_ar}} </td>

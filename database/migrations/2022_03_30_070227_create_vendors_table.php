@@ -23,7 +23,6 @@ class CreateVendorsTable extends Migration
             $table->string('start_date');
             $table->text('description_en');
             $table->text('description_ar');
-            $table->string('logo')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();

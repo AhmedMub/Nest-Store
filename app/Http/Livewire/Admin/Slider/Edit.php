@@ -16,7 +16,6 @@ class Edit extends Component
         'editSlider',
     ];
 
-    //protected $rules=[] not working with if $this->subCatId passed
     protected function rules()
     {
         return [

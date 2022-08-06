@@ -65,6 +65,12 @@ return [
             'url' => env('APP_URL') . '/storage/frontend/slider',
             'visibility' => 'public',
         ],
+        'vendors' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/frontend/vendors'),
+            'url' => env('APP_URL') . '/storage/frontend/vendors',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

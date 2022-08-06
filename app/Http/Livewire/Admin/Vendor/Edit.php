@@ -6,13 +6,13 @@ use App\Models\Vendor;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Intervention\Image\Facades\Image;
 
 class Edit extends Component
 {
     use WithFileUploads;
 
-    public $vendorId, $name_en, $name_ar, $logo, $address, $phone, $description_en, $description_ar, $facebook, $instagram, $twitter, $start_date;
+    public $vendorId, $name_en, $name_ar, $address, $phone, $description_en, $description_ar, $facebook, $instagram, $twitter, $start_date;
+    public $logo;
 
     protected $listeners = [
         'editVendor',
@@ -24,7 +24,6 @@ class Edit extends Component
         return [
             'name_en' => ['required', 'string', "unique:vendors,name_en,$this->vendorId"],
             'name_ar' => ['required', 'string', "unique:vendors,name_ar,$this->vendorId"],
-            'logo' => ['nullable', 'image', 'max:500', 'mimes:jpeg,png,jpg,svg'],
             'address' => ['required', 'string'],
             'phone' => ['required', 'integer'],
             'description_en' => ['required', 'string'],
@@ -33,6 +32,8 @@ class Edit extends Component
             'instagram' => ['nullable', 'string'],
             'facebook' => ['nullable', 'string'],
             'start_date' => ['required'],
+            //logo nullable because user may not want to update logo on update info
+            'logo' => ['nullable', 'image', 'max:10000'],
         ];
     }
 
@@ -50,7 +51,7 @@ class Edit extends Component
     public function editVendor($id)
     {
         $vendor = Vendor::findOrFail($id);
-        $this->vendorId = $vendor->id;
+        $this->vendorId = $id;
         $this->name_en = $vendor->name_en;
         $this->name_ar = $vendor->name_ar;
         $this->address = $vendor->address;
@@ -65,23 +66,13 @@ class Edit extends Component
 
     public function update()
     {
-        $this->validate();
+        $validate = $this->validate();
 
-        $vendorLogo = $this->uploadImage();
+        $vendor = Vendor::findOrFail($this->vendorId);
 
-        Vendor::whereId($this->vendorId)->update([
-            'name_en' => $this->name_en,
-            'name_ar' => $this->name_ar,
-            'address' => $this->address,
-            'phone' => $this->phone,
-            'logo' => $vendorLogo,
-            'description_en' => $this->description_en,
-            'description_ar' => $this->description_ar,
-            'twitter' => $this->twitter,
-            'instagram' => $this->instagram,
-            'facebook' => $this->facebook,
-            'start_date' => $this->start_date,
-        ]);
+        $vendor->update($validate);
+
+        $this->uploadImage($vendor);
 
         $this->emit('vendorUpdated');
 
@@ -91,31 +82,17 @@ class Edit extends Component
         ]);
     }
 
-    public function uploadImage()
+    public function uploadImage($vendor)
     {
-        if ($this->logo) {
-
-            $oldImage = Vendor::findOrFail($this->vendorId)->logo;
-
-            //check if logo field not null
-            if ($oldImage !== null) {
-                Storage::delete('public/frontend/vendors/' . $oldImage);
-            }
-
-            $image = $this->logo;
-
-            $imageName = $image->hashName();
-
-            $img = Image::make($image->getRealPath())->resize(136, 150, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-
-            $img->stream();
-            Storage::disk('frontend')->put('vendors' . '/' . $imageName, $img);
+        //to add the slider Image if slider updated the old image will be replaced with the updated
+        if (isset($this->logo)) {
+            $vendor->addMedia($this->logo->getRealPath())
+                ->withResponsiveImages()
+                ->toMediaCollection('vendorLogo');
         }
 
-        return $imageName;
+        //to reset main img field
+        $this->dispatchBrowserEvent('ResetImage');
     }
 
     public function render()

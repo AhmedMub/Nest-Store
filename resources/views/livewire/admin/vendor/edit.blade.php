@@ -34,10 +34,9 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="text-capitalize form-label mt-0" for="logo">vendor logo</label>
-                                <input type="file" wire:model.defer='logo' id="logo" class="form-control" />
-                                <x-defaults.input-error for="logo" />
+                                <x-admin.partials.spatie-image forError='logo' wire:model='logo' title="vendor logo" />
                             </div>
+
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">

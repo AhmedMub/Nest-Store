@@ -250,7 +250,7 @@ $relatedTags = $product->tags()->get();
                                         @if ($product->vendor_status == 1)
                                         <div class="tab-pane fade" id="Vendor-info">
                                             <div class="vendor-logo d-flex mb-30">
-                                                <img src="{{asset('storage/frontend/vendors/'.$product->productVendor->logo)}}"
+                                                <img src="{{$product->productVendor->getFirstMediaUrl('vendorLogo', 'thumb')}}"
                                                     alt="" />
                                                 <div class="vendor-name ml-15">
                                                     <h6>
@@ -270,34 +270,32 @@ $relatedTags = $product->tags()->get();
                                                 </div>
                                             </div>
                                             <ul class="contact-infor mb-50">
-                                                <li><img src="assets/imgs/theme/icons/icon-location.svg"
-                                                        alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave
-                                                        undefined Kent, Utah 53127 United States</span></li>
-                                                <li><img src="assets/imgs/theme/icons/icon-contact.svg"
-                                                        alt="" /><strong>Contact Seller:</strong><span>(+91) -
-                                                        540-025-553</span></li>
+                                                <li><img src="{{asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}"
+                                                        alt="" /><strong>
+                                                        {{__('frontend/singleProduct.Address')}}:
+                                                    </strong> <span>{{$product->productVendor->address}}</span></li>
+                                                <li><img src="{{asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}"
+                                                        alt="" /><strong>
+                                                        {{__('frontend/singleProduct.Contact Seller')}}:</strong><span>
+                                                        {{$product->productVendor->phone}}</span></li>
                                             </ul>
                                             <div class="d-flex mb-55">
                                                 <div class="mr-30">
-                                                    <p class="text-brand font-xs">Rating</p>
+                                                    <p class="text-brand font-xs">
+                                                        {{__('frontend/singleProduct.Rating')}}</p>
                                                     <h4 class="mb-0">92%</h4>
                                                 </div>
                                                 <div class="mr-30">
-                                                    <p class="text-brand font-xs">Ship on time</p>
+                                                    <p class="text-brand font-xs">
+                                                        {{__('frontend/singleProduct.Ship on time')}}</p>
                                                     <h4 class="mb-0">100%</h4>
                                                 </div>
-                                                <div>
-                                                    <p class="text-brand font-xs">Chat response</p>
-                                                    <h4 class="mb-0">89%</h4>
-                                                </div>
                                             </div>
-                                            <p>Noodles & Company is an American fast-casual restaurant that offers
-                                                international and American noodle dishes and pasta in addition to soups
-                                                and salads. Noodles & Company was founded in 1995 by Aaron Kennedy and
-                                                is headquartered in Broomfield, Colorado. The company went public in
-                                                2013 and recorded a $457 million revenue in 2017.In late 2018, there
-                                                were 460 Noodles & Company locations across 29 states and Washington,
-                                                D.C.</p>
+                                            <p>@if ($langAr)
+                                                {{$product->productVendor->description_ar}}
+                                                @else
+                                                {{$product->productVendor->description_en}}
+                                                @endif</p>
                                         </div>
                                         @endif
                                         @if ($product->reviews_status == 1)

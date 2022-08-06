@@ -29,6 +29,10 @@
 @endsection
 @push('child-styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+@once
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+@endonce
 @endpush
 @push('child-scripts')
 <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
@@ -39,4 +43,8 @@
         format: 'D MMM YYYY',
         });
 </script>
+@once
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+@endonce
 @endpush

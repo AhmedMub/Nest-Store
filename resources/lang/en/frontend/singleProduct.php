@@ -18,6 +18,11 @@ return [
     'Frame' => 'Frame',
     'Color' => 'Color',
     'Size' => 'Size',
+    'Address' => 'Address',
+    'Contact Seller' => 'Contact Seller',
+    'Contact Seller' => 'Contact Seller',
+    'Rating' => 'Rating',
+    'Ship on time' => 'Ship on time',
 
 
 ];

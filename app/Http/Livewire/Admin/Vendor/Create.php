@@ -3,10 +3,8 @@
 namespace App\Http\Livewire\Admin\Vendor;
 
 use App\Models\Vendor;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Intervention\Image\Facades\Image;
 
 class Create extends Component
 {
@@ -18,7 +16,7 @@ class Create extends Component
     protected $rules = [
         'name_en' => ['required', 'string', 'unique:categories'],
         'name_ar' => ['required', 'string', 'unique:categories'],
-        'logo' => ['nullable', 'image', 'max:500', 'mimes:jpeg,png,jpg,svg'],
+        'logo' => ['required', 'image', 'max:10000'],
         'address' => ['required', 'string'],
         'phone' => ['required', 'integer'],
         'description_en' => ['required', 'string'],
@@ -33,6 +31,7 @@ class Create extends Component
         'name_en.required' => 'The English Name field is required',
         'name_ar.required' => 'The English Name field is required',
         'address.required' => 'The Address field is required',
+        'logo.required' => 'The Logo field is required',
         'phone.required' => 'The Phone field is required',
         'description_en.required' => 'The English Description field is required',
         'description_ar.required' => 'The Arabic Description field is required',
@@ -43,52 +42,17 @@ class Create extends Component
     public function create()
     {
 
-        $newVendor = $this->validate();
+        $validate = $this->validate();
 
-        //save and resize Image if exists
-        if ($this->logo) {
-            $newVendor;
-            $image = $this->uploadImage();
-            Vendor::create([
-                'name_en' => $this->name_en,
-                'name_ar' => $this->name_ar,
-                'logo' => $image,
-                'address' => $this->address,
-                'phone' => $this->phone,
-                'description_en' => $this->description_en,
-                'description_ar' => $this->description_ar,
-                'twitter' => $this->twitter,
-                'instagram' => $this->instagram,
-                'facebook' => $this->facebook,
-                'start_date' => $this->start_date,
-            ]);
-            $this->vendorAdded();
-        } else {
-            Vendor::create($newVendor);
-            $this->vendorAdded();
-        }
-    }
+        $vendor = Vendor::create($validate);
+        //to add the Image
+        $vendor->addMedia($this->logo->getRealPath())
+            ->withResponsiveImages()
+            ->toMediaCollection('vendorLogo');
 
-    public function uploadImage()
-    {
-        $image = $this->logo;
-
-        $logoName = $image->hashName();
-
-        $img = Image::make($image->getRealPath())->resize(136, 150, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
-
-        $img->stream();
-        Storage::disk('frontend')->put('vendors' . '/' . $logoName, $img);
-
-        return $logoName;
-    }
-
-    public function vendorAdded()
-    {
         $this->reset();
+
+        $this->dispatchBrowserEvent('ResetImage');
 
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',
