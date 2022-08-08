@@ -89,10 +89,6 @@ $sortByField = array('featured', 'price low to high', 'price high to low', 'rele
                             </div>
                             <div class="sort-by-dropdown">
                                 <ul>
-                                    {{--
-                                    -//FIXME fix "Uncaught ReferenceError: void is not defined"caused by
-                                    javascript:void(0)"
-                                    --}}
                                     @foreach ($sortByField as $key => $item)
                                     <li><a wire:click="sortBySelectedField({{$key}}, '{{$item}}')"
                                             class="text-capitalize @if ($activeClass == $key) active @endif"

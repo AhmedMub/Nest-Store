@@ -17,14 +17,16 @@ class Wishlist extends Component
 
     public function wishList($user, $product)
     {
+        //check user auth, if user = 0 means user not auth
         if ($user == 0) {
             redirect()->route('login');
             return null;
         }
 
+
         $getUser = User::findOrFail($user);
 
-        //check if user already has the selected product to his wishList
+        //check if use has duplicate products if user already has the selected product to his wishList
         if ($getUser->addToWishes->contains($product)) {
             $this->dispatchBrowserEvent('alert', [
                 'type'      => 'warning',

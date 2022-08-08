@@ -14,7 +14,8 @@
                     <button wire:click="orderByCategory({{$cat->id}})"
                         class="nav-link @if ($activeCat == $cat->id) active @endif" id=" nav-tab-one"
                         data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one"
-                        aria-selected="true">@if ($langAr)
+                        aria-selected="true">
+                        @if ($langAr)
                         {{$cat->name_ar}}
                         @else
                         {{$cat->name_en}}
@@ -30,6 +31,7 @@
                 <div class="row product-grid-4">
                     @foreach ($getLatestTenProducts as $product)
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+
                         <x-frontend.products.single-product-view :user="$user" :headerName="$headerName"
                             :product="$product" :langAr="$langAr" />
                     </div>
@@ -39,6 +41,5 @@
             </div>
             {{--End tab-content--}}
         </div>
-        {{-- /- this to file an emit event for backend component --}}
-        <livewire:frontend.product.wishlist />
+    </div>
 </section>

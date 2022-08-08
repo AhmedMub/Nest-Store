@@ -35,7 +35,6 @@
             {{--End Col-lg-9--}}
         </div>
     </div>
-    <livewire:frontend.product.wishlist />
 </section>
 
 @push('added-head')

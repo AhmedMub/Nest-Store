@@ -210,6 +210,7 @@ $langAr = str_contains(url()->current(), 'ar');
     {{-- popular products section --}}
     {{-- section 4 --}}
     <livewire:frontend.index.popular-products-section :user="$user" :getSixCats="$getSixCats" :langAr="$langAr" />
+
     {{--Products Tabs--}}
     {{-- section 5 --}}
     <section class="section-padding">
@@ -271,7 +272,6 @@ $langAr = str_contains(url()->current(), 'ar');
     {{--End 4 banners--}}
     <livewire:frontend.index.daily-best-sells :getFiveProducts="$getFiveProducts" :user="$user" :langAr="$langAr" />
     {{--End Best Sales--}}
-
     <section class="section-padding pb-5 mb-30">
         <div class="container">
             <div class="row">
@@ -311,6 +311,9 @@ $langAr = str_contains(url()->current(), 'ar');
         </div>
     </section>
     {{--End 4 columns--}}
+
+    {{-- //* this to file an emit event for backend wishlist component --}}
+    <livewire:frontend.product.wishlist />
 </main>
 @endsection
 @push('added-head')
