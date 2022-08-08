@@ -31,6 +31,8 @@ return [
     'Categories' => 'Categories',
     'shop' => 'shop',
     'home' => 'home',
-
+    'My Wishlist' => 'My Wishlist',
+    'Setting' => 'Setting',
+    'Sign out' => 'Sign out'
 
 ];

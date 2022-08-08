@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserProfile extends Controller
 {
@@ -14,14 +16,22 @@ class UserProfile extends Controller
         return view('frontend.pages.profile');
     }
 
-    // products compare page:
-    public function productsCompare()
-    {
-        //
-    }
-
     // products wishlist page:
     public function wishList()
+    {
+        $user = Auth::user();
+
+        //many to many relation
+        $products = $user->addToWishes()->whereProductStatus(1)->latest()->get();
+
+        //check route AR
+        $langAr = str_contains(url()->current(), 'ar');
+
+        return view('frontend.pages.user-wishlist', compact('user', 'products', 'langAr'));
+    }
+
+    // products compare page:
+    public function productsCompare()
     {
         //
     }

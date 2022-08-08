@@ -177,29 +177,22 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                                 Account</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)"><i
-                                                    class="fi fi-rs-location-alt mr-10"></i>Order
-                                                Tracking</a>
+                                            <a href="{{route('products.wishList')}}"><i
+                                                    class="fi fi-rs-heart mr-10"></i>
+                                                {{__('frontend/header.My Wishlist')}}</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)"><i class="fi fi-rs-label mr-10"></i>My
-                                                Voucher</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)"><i class="fi fi-rs-heart mr-10"></i>My
-                                                Wishlist</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)"><i
-                                                    class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
+                                            <a href="{{route('user.profile')}}"><i
+                                                    class="fi fi-rs-settings-sliders mr-10"></i>
+                                                {{__(('frontend/header.Setting'))}}</a>
                                         </li>
                                         <li>
                                             <form method="POST" id="logoutForm" action="{{ route('logout') }}">
                                                 @csrf
                                                 <a href="javascript:void(0)"
                                                     onclick="document.getElementById('logoutForm').submit();"><i
-                                                        class="fi fi-rs-sign-out mr-10"></i>Sign
-                                                    out</a>
+                                                        class="fi fi-rs-sign-out mr-10"></i>
+                                                    {{__('frontend/header.Sign out')}}</a>
                                             </form>
                                         </li>
                                     </ul>

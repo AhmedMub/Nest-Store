@@ -51,14 +51,16 @@ Route::group([
 
     //*Auth Routes
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-        //user profile
-        Route::get('profile', [UserProfile::class, 'show'])->name('user.profile');
+        Route::controller(UserProfile::class)->group(function () {
+            //user profile
+            Route::get('profile', 'show')->name('user.profile');
 
-        //compare products page
-        Route::get('products-compare', [UserProfile::class, 'productsCompare'])->name('products.compare');
+            //compare products page
+            Route::get('products-compare', 'productsCompare')->name('products.compare');
 
-        //Wishlist products page
-        Route::get('products-wishlist', [UserProfile::class, 'wishList'])->name('products.wishList');
+            //Wishlist products page
+            Route::get('products-wishlist', 'wishList')->name('products.wishList');
+        });
     });
 
     //Product Route
