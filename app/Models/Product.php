@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Tags\HasTags;
 
 class Product extends Model implements HasMedia
@@ -62,12 +63,24 @@ class Product extends Model implements HasMedia
         $this
             ->addMediaCollection('mainImage')
             ->useDisk('products')
-            ->singleFile();
+            ->singleFile()
+            ->registerMediaConversions(function (Media $media) {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->width(600)
+                    ->height(600);
+            });
 
         $this
             ->addMediaCollection('multiImages')
             ->useDisk('products')
-            ->onlyKeepLatest(6);
+            ->onlyKeepLatest(6)
+            ->registerMediaConversions(function (Media $media) {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->width(600)
+                    ->height(600);
+            });
     }
 
     //Model RelationShips

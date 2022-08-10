@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Frontend\Product;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Wishlist extends Component
@@ -17,6 +18,18 @@ class Wishlist extends Component
 
     public function wishList($user, $product)
     {
+        //this is to validate incoming requests data to prevent any other time of data injections
+        $valid = [
+            'user' => $user,
+            'product' => $product,
+        ];
+        Validator::make(
+            $valid,
+            [
+                'user' => 'numeric|digits_between:1,7',
+                'product' => 'numeric|digits_between:1,7'
+            ]
+        )->validate();
         //check user auth, if user = 0 means user not auth
         if ($user == 0) {
             redirect()->route('login');

@@ -178,7 +178,11 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    {{-- /- //TODO must add this to all buttons --}}
+                    <button type="submit" class="btn btn-primary my-1" wire:loading.attr="disabled">
+                        <span wire:loading.class="spinner-border spinner-border-sm"></span>
+                        Save changes
+                    </button>
                     <a href="javascript:void(0)" class="btn btn-light text-capitalize" data-bs-dismiss="modal">close</a>
                 </div>
             </form>

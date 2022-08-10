@@ -2,29 +2,28 @@
 @section('title', 'Nest | wishlist')
 @section('content')
 <main class="main">
+    {{-- /-//TODO page-header should be dynamic slot --}}
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> Shop <span></span> Fillter
+                <a href="{{route('home')}}" rel="nofollow"><i class="fi-rs-home mr-5"></i>
+                    {{__('frontend/pageHeader.Home')}}</a>
+                <span></span> {{__('frontend/pageHeader.Shop')}} <span></span>
+                {{__('frontend/pageHeader.Fillter')}}
             </div>
         </div>
     </div>
     <div class="container mb-30 mt-50">
         <div class="row">
-            <div class="col-xl-10 col-lg-12 m-auto">
-                <div class="mb-50">
-                    <h1 class="heading-2 mb-10">Your Wishlist</h1>
-                    <h6 class="text-body">There are <span class="text-brand">5</span> products in this list</h6>
-                </div>
-                @if (count($products) > 0)
-                <livewire:frontend.product.user-wishlist-component :user="$user" :products="$products"
-                    :langAr="$langAr" />
-                @else
-                <h6 class="text-body">There are <span class="text-brand">0</span> products in this list</h6>
-                @endif
-
+            @if (count($products) > 0)
+            <livewire:frontend.product.user-wishlist-component :user="$user" :langAr="$langAr" />
+            @else
+            <div class="mb-50">
+                <h1 class="heading-2 mb-10">{{__('frontend/userWishlist.Your Wishlist')}}</h1>
+                <h6 class="text-body">{{__('frontend/userWishlist.There are')}} <span class="text-brand">0</span>
+                    {{__('frontend/userWishlist.products in your wishlist')}}</h6>
             </div>
+            @endif
         </div>
     </div>
 </main>

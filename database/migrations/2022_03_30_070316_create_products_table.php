@@ -43,7 +43,7 @@ class CreateProductsTable extends Migration
             //show description
             $table->integer('desc_status')->default(1);
 
-            //show Discount
+            //show Discounted price
             $table->integer('discount_status')->default(1);
 
             //show Additional Information

@@ -41,7 +41,7 @@ class Slider extends Model implements HasMedia
                     ->addMediaConversion('thumb')
                     ->width(200)
                     ->height(200);
-            });;
+            });
     }
 
     //to edit title
