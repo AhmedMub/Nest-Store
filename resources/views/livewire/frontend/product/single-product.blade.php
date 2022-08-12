@@ -119,9 +119,6 @@ $headerName = $product->name_en;
                                                 <a wire:click="$emit('addToWishList',{{$user}}, {{$product->id}})"
                                                     aria-label="Add To Wishlist" class="action-btn hover-up"
                                                     href="javascript:void(0)"><i class="fi-rs-heart"></i></a>
-                                                {{-- /-//TODO add product compare --}}
-                                                <a aria-label="Compare" class="action-btn hover-up"
-                                                    href="javscript:void(0)"><i class="fi-rs-shuffle"></i></a>
                                             </div>
                                         </div>
                                         <div class="font-xs">

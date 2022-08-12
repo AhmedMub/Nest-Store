@@ -9,6 +9,13 @@ $langAr = str_contains(url()->current(), 'ar');
 //navbar categories
 $navCategories = App\Models\Category::where('navbar_status', 1)->where('status', 1)->latest()->get();
 
+//wishlist number for user
+$countWishlistProducts;
+if(Auth::check()) {
+$countWishlistProducts = Auth::user()->addToWishes()->whereProductStatus(1)->count();
+}
+
+
 @endphp
 <header class="header-area header-style-1 header-style-5 header-height-2">
     <div class="mobile-promotion">
@@ -24,7 +31,6 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                         <ul>
                             <li><a href="{{route('about')}}">{{__('frontend/header.About Us')}}</a></li>
                             <li><a href="{{route('user.profile')}}">{{__('frontend/header.My Account')}}</a></li>
-                            {{-- /-//TODO must get be crtead to user --}}
                             <li><a href="{{route('products.wishList')}}">{{__('frontend/header.Wishlist')}}</a></li>
                         </ul>
                     </div>
@@ -99,22 +105,14 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                     <div class="header-action-right">
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
-                                <a href="{{route('products.compare')}}">
-                                    <img class="svgInject" alt="Nest"
-                                        src={{asset("frontend/assets/imgs/theme/icons/icon-compare.svg")}} />
-                                    {{-- -/This number will be dynamic --}}
-                                    <span class="pro-count blue">3</span>
-                                </a>
-                                <a href="{{route('products.compare')}}"><span
-                                        class="lable ml-0">{{__('frontend/header.Compare')}}</span></a>
-                            </div>
-                            <div class="header-action-icon-2">
-                                <a href="javascript:void(0)">
+                                <a href="{{route('products.wishList')}}">
                                     <img class="svgInject" alt="Nest"
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-heart.svg")}} />
-                                    <span class="pro-count blue">6</span>
+                                    @auth
+                                    <span class="pro-count blue">{{$countWishlistProducts}}</span>
+                                    @endauth
                                 </a>
-                                <a href="javascript:void(0)"><span
+                                <a href="{{route('products.wishList')}}"><span
                                         class="lable">{{__('frontend/header.Wishlist')}}</span></a>
                             </div>
                             <div class="header-action-icon-2">

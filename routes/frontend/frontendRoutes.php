@@ -56,7 +56,7 @@ Route::group([
             Route::get('profile', 'show')->name('user.profile');
 
             //compare products page
-            Route::get('products-compare', 'productsCompare')->name('products.compare');
+            //Route::get('products-compare', 'productsCompare')->name('products.compare');
 
             //Wishlist products page
             Route::get('products-wishlist', 'wishList')->name('products.wishList');
