@@ -107,20 +107,7 @@ $headerName = $product->name_en;
                                                 {{$product->productDescriptions->short_desc_en}}
                                                 @endif</p>
                                         </div>
-                                        <div class="detail-extralink mb-50">
-                                            <div class="detail-qty border radius">
-                                                <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                                <span class="qty-val">1</span>
-                                                <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                            </div>
-                                            <div class="product-extra-link2">
-                                                <button type="submit" class="button button-add-to-cart"><i
-                                                        class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                                <a wire:click="$emit('addToWishList',{{$user}}, {{$product->id}})"
-                                                    aria-label="Add To Wishlist" class="action-btn hover-up"
-                                                    href="javascript:void(0)"><i class="fi-rs-heart"></i></a>
-                                            </div>
-                                        </div>
+                                        <livewire:frontend.product.add-to-cart :user="$user" :product="$product" />
                                         <div class="font-xs">
                                             <ul class="mr-50 float-start">
                                                 <li class="mb-5">{{__('frontend/singleProduct.Type')}}: <span

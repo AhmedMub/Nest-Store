@@ -115,52 +115,10 @@ $countWishlistProducts = Auth::user()->addToWishes()->whereProductStatus(1)->cou
                                 <a href="{{route('products.wishList')}}"><span
                                         class="lable">{{__('frontend/header.Wishlist')}}</span></a>
                             </div>
-                            <div class="header-action-icon-2">
-                                <a class="javascript:void(0)" href="shop-cart.html">
-                                    <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-cart.svg")}} />
-                                    <span class="pro-count blue">2</span>
-                                </a>
-                                <a href="javascript:void(0)"><span class="lable">Cart</span></a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                    <ul>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="javascript:void(0)"><img alt="Nest"
-                                                        src={{asset("frontend/assets/imgs/shop/thumbnail-3.jpg")}} /></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="javascript:void(0)">Daisy Casual Bag</a></h4>
-                                                <h4><span>1 × </span>$800.00</h4>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="javascript:void(0)"><img alt="Nest"
-                                                        src={{asset("frontend/assets/imgs/shop/thumbnail-2.jpg")}} /></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="javascript:void(0)">Corduroy Shirts</a></h4>
-                                                <h4><span>1 × </span>$3200.00</h4>
-                                            </div>
-                                            <div class="javascript:void(0)">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="shopping-cart-footer">
-                                        <div class="shopping-cart-total">
-                                            <h4>Total <span>$4000.00</span></h4>
-                                        </div>
-                                        <div class="shopping-cart-button">
-                                            <a href="javascript:void(0)" class="outline">View cart</a>
-                                            <a href="javascript:void(0)">Checkout</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                            {{-- /-Count and show cart products --}}
+                            <livewire:frontend.product.count-cart-products />
+
                             <div class="header-action-icon-2">
                                 <a href="javascript:void(0)">
                                     <img class="svgInject" alt="Nest"
