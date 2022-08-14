@@ -1,6 +1,6 @@
 @php
 //check lang
-$langAr = str_contains(url()->current(), 'ar');
+$langAr = str_contains(url()->current(), '/ar');
 if(!isset($subCategory)) {
 $subCategory = null;
 }

@@ -1,14 +1,12 @@
 <div class="header-action-icon-2">
     <a class="javascript:void(0)" href="shop-cart.html">
         <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-cart.svg")}} />
-        @isset($count)
+        @if ($count > 0)
         <span class="pro-count blue">{{$count}}</span>
-        @endisset
-
+        @endif
     </a>
     <a href="javascript:void(0)"><span class="lable">Cart</span></a>
-
-    @isset($products)
+    @if (count($products) > 0)
     <div class="cart-dropdown-wrap cart-dropdown-hm2">
         <ul>
             @foreach ($products as $key => $product)
@@ -30,13 +28,13 @@
         </ul>
         <div class="shopping-cart-footer">
             <div class="shopping-cart-total">
-                <h4>Total <span>$4000.00</span></h4>
+                <h4>Total <span>${{$totalPrice}}</span></h4>
             </div>
             <div class="shopping-cart-button">
-                <a href="javascript:void(0)" class="outline">View cart</a>
-                <a href="javascript:void(0)">Checkout</a>
+                <a href="{{route('cart')}}" class="outline">View cart</a>
+                <a href="{{route('checkout')}}">Checkout</a>
             </div>
         </div>
     </div>
-    @endisset
+    @endif
 </div>

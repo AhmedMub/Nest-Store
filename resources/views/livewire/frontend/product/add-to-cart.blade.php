@@ -13,7 +13,7 @@
 
         <div class="product-extra-link2">
             <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>
-                {{__('frontend/essentials.Add to cart')}}</button>{{$count}}
+                {{__('frontend/essentials.Add to cart')}}</button>
             <a wire:click="$emit('addToWishList',{{$user}}, {{$product->id}})" aria-label="Add To Wishlist"
                 class="action-btn hover-up" href="javascript:void(0)"><i class="fi-rs-heart"></i></a>
         </div>

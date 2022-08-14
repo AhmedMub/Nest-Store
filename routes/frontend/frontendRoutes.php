@@ -44,6 +44,12 @@ Route::group([
 
         //contact us page
         Route::get('contact-us', 'contactUs')->name('contact');
+
+        //cart page
+        Route::get('show-cart', 'cartPage')->name('cart');
+
+        //checkout page
+        Route::get('products-checkout', 'checkoutPage')->name('checkout');
     });
 
     //

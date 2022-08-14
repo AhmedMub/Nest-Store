@@ -52,10 +52,8 @@
                 <span>${{$product->price}}</span>
                 @endif
             </div>
-            <div class="add-cart">
-                <a class="add" href=""><i class="fi-rs-shopping-cart mr-5"></i>Add
-                </a>
-            </div>
+            {{-- /- add to cart componenet --}}
+            <livewire:frontend.product.add-to-cart-for-single-view :product="$product->id" />
         </div>
     </div>
 </div>

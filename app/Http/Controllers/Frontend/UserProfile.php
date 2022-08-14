@@ -25,7 +25,7 @@ class UserProfile extends Controller
         $products = $user->addToWishes()->whereProductStatus(1)->latest()->get();
 
         //check route AR
-        $langAr = str_contains(url()->current(), 'ar');
+        $langAr = str_contains(url()->current(), '/ar');
 
         return view('frontend.pages.user-wishlist', compact('user', 'products', 'langAr'));
     }

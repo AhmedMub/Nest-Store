@@ -1,5 +1,5 @@
 @php
-$langAr = str_contains(url()->current(), 'ar');
+$langAr = str_contains(url()->current(), '/ar');
 @endphp
 {{-- Vendor JS --}}
 <script src="{{asset('frontend/js/vendor/modernizr-3.6.0.min.js')}}"></script>

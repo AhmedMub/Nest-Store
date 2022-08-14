@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 @php
-$langAr = str_contains(url()->current(), 'ar');
+$langAr = str_contains(url()->current(), '/ar');
 $bodySingleProduct = str_contains(url()->current(), 'show-product');
 @endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if ($langAr) dir="rtl" class="rtl" @endif>

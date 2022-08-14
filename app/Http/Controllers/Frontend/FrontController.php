@@ -76,4 +76,13 @@ class FrontController extends Controller
     {
         return view('frontend.pages.contact');
     }
+
+    public function cartPage()
+    {
+        return view('frontend.pages.cart');
+    }
+    public function checkoutPage()
+    {
+        return view('frontend.pages.checkout');
+    }
 }

@@ -1,5 +1,5 @@
 @php
-$langAr = str_contains(url()->current(), 'ar');
+$langAr = str_contains(url()->current(), '/ar');
 @endphp
 <title>@yield('title', 'Nest')</title>
 

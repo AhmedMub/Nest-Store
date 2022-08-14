@@ -4,7 +4,7 @@ $categories = App\Models\Category::where('status', 1)->where('featured_category'
 $chunks = $categories->chunk(5);
 
 //check lang
-$langAr = str_contains(url()->current(), 'ar');
+$langAr = str_contains(url()->current(), '/ar');
 
 //navbar categories
 $navCategories = App\Models\Category::where('navbar_status', 1)->where('status', 1)->latest()->get();
