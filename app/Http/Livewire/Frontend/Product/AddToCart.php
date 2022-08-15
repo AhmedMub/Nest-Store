@@ -69,9 +69,18 @@ class AddToCart extends Component
         //must check if the product already exists in cart should update the qty
         if (isset($this->existingProduct)) {
             Cart::update($this->existingProduct, $this->qty[$id]);
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'warning',
+                'message' => 'Product Updated Successfully'
+            ]);
         } else {
             //if item not exist in cart will be added to cart
-            Cart::add($getProduct->id, $getProduct->name_en, $this->qty[$id], $this->price, 0, ['options' => $getProduct->getFirstMediaUrl('mainImage')]);
+            Cart::add($getProduct->id, $getProduct->name_en, $this->qty[$id], $this->price, 0, ['options' => $getProduct->getFirstMediaUrl('mainImage'), 'slug' => $getProduct->slug]);
+
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'success',
+                'message' => 'Product Add To Cart Successfully'
+            ]);
         }
 
         $this->emit('refreshCart');

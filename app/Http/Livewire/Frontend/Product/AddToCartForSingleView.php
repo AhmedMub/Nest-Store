@@ -62,7 +62,7 @@ class AddToCartForSingleView extends Component
             ]);
         } else {
             //if item not exist in cart will be added to cart
-            Cart::add($getProduct->id, $getProduct->name_en, $this->qty[$this->product], $this->price, 0, ['options' => $getProduct->getFirstMediaUrl('mainImage')]);
+            Cart::add($getProduct->id, $getProduct->name_en, $this->qty[$this->product], $this->price, 0, ['options' => $getProduct->getFirstMediaUrl('mainImage'), 'slug' => $getProduct->slug]);
 
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'success',

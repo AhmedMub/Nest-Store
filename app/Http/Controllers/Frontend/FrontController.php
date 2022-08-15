@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slider;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Tags\Tag;
 
@@ -79,7 +80,10 @@ class FrontController extends Controller
 
     public function cartPage()
     {
-        return view('frontend.pages.cart');
+        //to check if cart has products
+        $cartContent = Cart::content();
+
+        return view('frontend.pages.cart', compact('cartContent'));
     }
     public function checkoutPage()
     {

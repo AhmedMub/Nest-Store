@@ -21,7 +21,7 @@
                 @foreach ($products as $product)
                 <tr class="pt-30">
 
-                    <td class="image product-thumbnail pl-30 pt-40"><img
+                    <td class="image product-thumbnail pl-30 pt-40 fix-width"><img
                             src="{{$product->getFirstMediaUrl('mainImage', 'thumb')}}" alt="#" />
                     </td>
                     <td class="product-des product-name">

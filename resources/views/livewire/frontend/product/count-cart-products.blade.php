@@ -16,7 +16,7 @@
                             src="{{$product->options['options']}}" /></a>
                 </div>
                 <div class="shopping-cart-title">
-                    <h4><a href="javascript:void(0)">{{$product->name}}</a></h4>
+                    <h4><a href="{{route('show.product', $product->options['slug'])}}">{{$product->name}}</a></h4>
                     <h4><span>{{$product->qty}} × </span>{{$product->price}}</h4>
                 </div>
                 <div class="shopping-cart-delete">
