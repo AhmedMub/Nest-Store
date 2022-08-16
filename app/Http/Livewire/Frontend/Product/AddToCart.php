@@ -70,7 +70,7 @@ class AddToCart extends Component
         if (isset($this->existingProduct)) {
             Cart::update($this->existingProduct, $this->qty[$id]);
             $this->dispatchBrowserEvent('alert', [
-                'type' => 'warning',
+                'type' => 'success',
                 'message' => 'Product Updated Successfully'
             ]);
         } else {

@@ -19,7 +19,8 @@
                             {{$cartContent}}
                             @endif
                         </span>{{__('frontend/cart.products in your cart')}}</h6>
-                    <h6 class="text-body"><a href="#" class="text-muted"><i class="fi-rs-trash mr-5"></i>
+                    <h6 class="text-body"><a wire:click="clearCart" href="javascript:void(0)" class="text-muted"><i
+                                class="fi-rs-trash mr-5"></i>
                             {{__('frontend/cart.Clear Cart')}}</a>
                     </h6>
                 </div>
@@ -56,9 +57,18 @@
                                 <td class="text-center detail-info" data-title="Stock">
                                     <div class="detail-extralink mr-15">
                                         <div class="detail-qty border radius">
-                                            <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                            <span class="qty-val">1</span>
-                                            <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                            <a @if ($product->qty > 1)
+                                                wire:click="minus('{{$key}}', {{$product->id}}, {{$product->qty}})"
+                                                @else
+                                                {{$count}}
+                                                @endif
+                                                wire:loading.class="pe-none"
+                                                href="javascript:void(0)"
+                                                class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                            <span class="qty-val">{{$product->qty}}</span>
+                                            <a wire:click="plus('{{$key}}', {{$product->id}}, {{$product->qty}})"
+                                                wire:loading.class="pe-none" href="javascript:void(0)" class="qty-up"><i
+                                                    class=" fi-rs-angle-small-up"></i></a>
                                         </div>
                                     </div>
                                 </td>
@@ -76,7 +86,7 @@
                 </div>
                 <div class="divider-2 mb-30"></div>
                 <div class="cart-action d-flex justify-content-between">
-                    <a class="btn "><i class="fi-rs-arrow-left mr-10"></i>
+                    <a href="{{route('shop')}}" class="btn "><i class="fi-rs-arrow-left mr-10"></i>
                         {{__('frontend/cart.Continue Shopping')}}</a>
                 </div>
 
@@ -91,7 +101,7 @@
                                         <h6 class="text-muted">Subtotal</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">$12.31</h4>
+                                        <h4 class="text-brand text-end">${{$subtotal}}</h4>
                                     </td>
                                 </tr>
                                 <tr>
@@ -130,9 +140,18 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href="#" class="btn mb-20 w-100">Proceed To CheckOut<i class="fi-rs-sign-out ml-15"></i></a>
+                    <a href="{{route('checkout')}}" class="btn mb-20 w-100">Proceed To CheckOut<i
+                            class="fi-rs-sign-out ml-15"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </main>
+@push('added-head')
+
+<style>
+    .pe-none {
+        cursor: not-allowed !important;
+    }
+</style>
+@endpush

@@ -37,6 +37,7 @@ class AddToCartForSingleView extends Component
                 }
             }
         }
+
         //find the product
         $getProduct = Product::findOrFail($this->product);
 
@@ -55,10 +56,9 @@ class AddToCartForSingleView extends Component
 
         //must check if the product already exists in cart should update the qty
         if (isset($this->existingProduct)) {
-            Cart::update($this->existingProduct, $this->qty[$this->product]);
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'warning',
-                'message' => 'Product Updated Successfully'
+                'message' => 'Product Already Exists In Cart'
             ]);
         } else {
             //if item not exist in cart will be added to cart

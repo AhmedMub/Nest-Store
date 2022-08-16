@@ -19,6 +19,7 @@ class CountCartProducts extends Component
         if (isset($id)) {
             Cart::remove($id);
         }
+        $this->emit('refreshCart');
     }
 
     public function render()

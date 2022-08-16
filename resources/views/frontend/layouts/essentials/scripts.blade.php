@@ -42,12 +42,12 @@ $langAr = str_contains(url()->current(), '/ar');
     window.addEventListener('alert', event => {
                 toastr.options = {
                         "closeButton": true,
-                        "progressBar": false,
+                        "progressBar": true,
                         "positionClass": "toast-bottom-right",
                         "onclick": null,
                         "fadeIn": 300,
                         "fadeOut": 1000,
-                        "timeOut": 1500,
+                        "timeOut": 3000,
                         "extendedTimeOut": 500
                     },
                  toastr[event.detail.type](event.detail.message,
