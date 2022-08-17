@@ -6,5 +6,6 @@ return [
     'Home' => 'Home',
     'Shop' => 'Shop',
     'Cart' => 'Cart',
-    'Not Available' => 'Not Available'
+    'Not Available' => 'Not Available',
+    'Checkout' => 'Checkout',
 ];
