@@ -1,5 +1,5 @@
 <div class="header-action-icon-2">
-    <a class="javascript:void(0)" href="shop-cart.html">
+    <a class="mini-cart-icon" href="javascript:void(0)">
         <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-cart.svg")}} />
         @if ($count > 0)
         <span class="pro-count blue">{{$count}}</span>

@@ -18,7 +18,9 @@ class Wishlist extends Component
 
     public function wishList($user, $product)
     {
-        //this is to validate incoming requests data to prevent any other time of data injections
+        /*
+            /-//NOTE no need for such validation because livewire make a post requeste with its validations
+        */
         $valid = [
             'user' => $user,
             'product' => $product,
@@ -50,6 +52,8 @@ class Wishlist extends Component
 
         //add product To user's wishlist
         $getUser->addToWishes()->attach($product);
+
+        $this->emit('newWishlistItem');
 
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',

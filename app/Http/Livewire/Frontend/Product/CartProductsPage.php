@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Frontend\Product;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CartProductsPage extends Component
@@ -22,13 +23,22 @@ class CartProductsPage extends Component
     public array $qty = [];
     public $cartContent;
     public $subtotal;
+    public $shippingFees;
+    public $fees = 0.10;
+    public $total;
+
+
 
     protected $listeners = ['refreshCart' => '$refresh'];
 
     public function mount()
     {
-        //FIXME need to fixed
         $this->subtotal = Cart::subtotal();
+        //shipping fees
+        $this->shippingFees = number_format($this->subtotal * $this->fees, 2);
+
+        //total items in cart
+        $this->total = number_format(Cart::subtotal() + $this->shippingFees, 2);
     }
 
     public function minus($rowId, $productId, $prQty)
@@ -39,12 +49,7 @@ class CartProductsPage extends Component
         //change quantity
         $this->qty[$productId] = $prQty;
 
-        //update cart with new quantity
-        Cart::update($rowId, $this->qty[$productId]);
-
-
-        //refresh header cart counter
-        $this->emitTo('frontend.product.count-cart-products', 'refreshCart');
+        $this->updateCart($rowId, $productId);
     }
 
     public function plus($rowId, $productId, $prQty)
@@ -56,12 +61,42 @@ class CartProductsPage extends Component
         //change quantity
         $this->qty[$productId] = $prQty;
 
+
+        $this->updateCart($rowId, $productId);
+    }
+
+    public function updateCart($rowId, $productId)
+    {
         //update cart with new quantity
-        //TODO this codes should not be repetted make them inside funciton with params
         Cart::update($rowId, $this->qty[$productId]);
+
+        //update subtotal
+        $this->toUpdateTotals();
 
         //refresh header cart counter
         $this->emitTo('frontend.product.count-cart-products', 'refreshCart');
+    }
+
+    public function removeItem($id)
+    {
+        Cart::remove($id);
+
+        //update subtotal
+        $this->toUpdateTotals();
+
+        //to update the count for cart in header
+        $this->emitTo('frontend.product.count-cart-products', 'refreshCart');
+    }
+
+    //update totals function
+    public function toUpdateTotals()
+    {
+        $this->subtotal = Cart::subtotal();
+
+        $this->shippingFees = number_format($this->subtotal * $this->fees, 2);
+
+        //total items in cart
+        $this->total = number_format(Cart::subtotal() + $this->shippingFees, 2);
     }
 
     public function clearCart()
@@ -73,27 +108,11 @@ class CartProductsPage extends Component
         redirect()->route('shop');
     }
 
-    public function removeItem($id)
-    {
-        Cart::remove($id);
-
-        //to update the count for cart in header
-        $this->emitTo('frontend.product.count-cart-products', 'refreshCart');
-    }
-
-    public function dehydrate()
-    {
-        //FIXME
-        $this->subtotal = Cart::subtotal();
-    }
-
 
     public function render()
     {
-
         $this->products = Cart::content();
         $this->cartContent = $this->products->count();
-
 
         return view('livewire.frontend.product.cart-products-page', [
             'products' => $this->products

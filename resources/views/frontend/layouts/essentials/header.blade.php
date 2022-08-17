@@ -9,11 +9,7 @@ $langAr = str_contains(url()->current(), '/ar');
 //navbar categories
 $navCategories = App\Models\Category::where('navbar_status', 1)->where('status', 1)->latest()->get();
 
-//wishlist number for user
-$countWishlistProducts;
-if(Auth::check()) {
-$countWishlistProducts = Auth::user()->addToWishes()->whereProductStatus(1)->count();
-}
+
 
 
 @endphp
@@ -104,17 +100,7 @@ $countWishlistProducts = Auth::user()->addToWishes()->whereProductStatus(1)->cou
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
-                            <div class="header-action-icon-2">
-                                <a href="{{route('products.wishList')}}">
-                                    <img class="svgInject" alt="Nest"
-                                        src={{asset("frontend/assets/imgs/theme/icons/icon-heart.svg")}} />
-                                    @auth
-                                    <span class="pro-count blue">{{$countWishlistProducts}}</span>
-                                    @endauth
-                                </a>
-                                <a href="{{route('products.wishList')}}"><span
-                                        class="lable">{{__('frontend/header.Wishlist')}}</span></a>
-                            </div>
+                            <livewire:frontend.product.count-wishlist />
 
                             {{-- /-Count and show cart products --}}
                             <livewire:frontend.product.count-cart-products />
@@ -225,7 +211,7 @@ $countWishlistProducts = Auth::user()->addToWishes()->whereProductStatus(1)->cou
                             <ul>
                                 <li class="hot-deals"><img
                                         src={{asset("frontend/assets/imgs/theme/icons/icon-hot-white.svg")}}
-                                        alt="hot deals" /><a href="javascript:void(0)">
+                                        alt="hot deals" /><a href="{{route('shop')}}">
                                         {{__('frontend/header.hot deals')}}</a></li>
                                 <li>
                                     <a href="{{route('home')}}"

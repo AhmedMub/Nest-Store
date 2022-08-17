@@ -45,6 +45,9 @@ class UserWishlistComponent extends Component
         //remove product To user's wishlist
         $this->user->addToWishes()->detach($productId);
 
+        //update header counter for wishlist
+        $this->emit('newWishlistItem');
+
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'warning',
             'message'   => 'Product Removed Successfully'

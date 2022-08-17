@@ -57,13 +57,8 @@
                                 <td class="text-center detail-info" data-title="Stock">
                                     <div class="detail-extralink mr-15">
                                         <div class="detail-qty border radius">
-                                            <a @if ($product->qty > 1)
-                                                wire:click="minus('{{$key}}', {{$product->id}}, {{$product->qty}})"
-                                                @else
-                                                {{$count}}
-                                                @endif
-                                                wire:loading.class="pe-none"
-                                                href="javascript:void(0)"
+                                            <a wire:click="minus('{{$key}}', {{$product->id}}, {{$product->qty}})"
+                                                wire:loading.class="pe-none" href="javascript:void(0)"
                                                 class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
                                             <span class="qty-val">{{$product->qty}}</span>
                                             <a wire:click="plus('{{$key}}', {{$product->id}}, {{$product->qty}})"
@@ -115,14 +110,21 @@
                                         </h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h5 class="text-heading text-end">Free</h4< /td>
+                                        <h5 class="text-heading text-end">${{$shippingFees}}</h4< /td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">
                                         <h6 class="text-muted">Estimate for</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h5 class="text-heading text-end">United Kingdom</h4< /td>
+                                        <h5 class="text-heading text-end">
+                                            {{-- /if user auth and address not null --}}
+                                            @if (Auth::check() && isset(Auth::user()->address))
+                                            {{Auth::user()->address}}
+                                            @else
+                                            Address not set
+                                            @endif
+                                            </h4< /td>
                                 </tr>
                                 <tr>
                                     <td scope="col" colspan="2">
@@ -134,7 +136,7 @@
                                         <h6 class="text-muted">Total</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">$12.31</h4>
+                                        <h4 class="text-brand text-end">${{$total}}</h4>
                                     </td>
                                 </tr>
                             </tbody>
