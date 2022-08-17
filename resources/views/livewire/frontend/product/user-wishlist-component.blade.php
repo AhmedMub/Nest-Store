@@ -57,9 +57,18 @@
                         @endif
 
                     </td>
+                    @if ($product->qty >= 1)
                     <td class="text-right" data-title="Cart">
-                        <button class="btn btn-sm">{{__('frontend/essentials.Add to cart')}}</button>
+                        <button wire:click="$emit('addFromWishlist',{{$product->id}})" class="btn btn-sm">
+                            {{__('frontend/essentials.Add to cart')}}
+                        </button>
                     </td>
+                    @else
+                    <td class="text-right" data-title="Cart">
+                        <button disabled class="btn btn-sm">{{__('frontend/essentials.Not Available')}}</button>
+                    </td>
+                    @endif
+
                     <td class="action text-center" data-title="Remove">
                         <a wire:click="removeFromWishlist({{$product->id}})" href="javascript:void(0)"
                             class="text-body"><i class="fi-rs-trash"></i></a>
@@ -69,4 +78,6 @@
             </tbody>
         </table>
     </div>
+    {{-- /this in order to use add to cart function --}}
+    <livewire:frontend.product.add-to-cart-for-single-view :product="0" classes="d-none" />
 </div>

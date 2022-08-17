@@ -11,6 +11,8 @@ class AddToCartForSingleView extends Component
     //this the product id
     public $product;
 
+    public $classes;
+
     public $existingProduct;
 
     //initial values
@@ -19,30 +21,31 @@ class AddToCartForSingleView extends Component
 
     public array $qty = [];
 
+    protected $listeners = ['addFromWishlist' => 'addToCart'];
+
     public function mount($product)
     {
         $this->product = $product;
     }
 
-    public function addToCart()
+    public function addToCart($productId)
     {
         $cart = Cart::content();
-
         //check the cart has items
         if (count($cart) > 0) {
             //this is to get the rowId and save it to $existingProduct to update item qty
             foreach ($cart as $key => $item) {
-                if ($item->id  == $this->product) {
+                if ($item->id  == $productId) {
                     $this->existingProduct = $key;
                 }
             }
         }
 
         //find the product
-        $getProduct = Product::findOrFail($this->product);
+        $getProduct = Product::findOrFail($productId);
 
         //to attache item id as a key and qty as value for "Cart::", this is updated variable by "minus & plus"
-        $this->qty[$this->product] = $this->count;
+        $this->qty[$productId] = $this->count;
 
         //check if there is a discounted price
         if (
@@ -58,11 +61,11 @@ class AddToCartForSingleView extends Component
         if (isset($this->existingProduct)) {
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'warning',
-                'message' => 'Product Already Exists In Cart'
+                'message' => 'Product Already Exists In Cart Or Refresh The Page'
             ]);
         } else {
             //if item not exist in cart will be added to cart
-            Cart::add($getProduct->id, $getProduct->name_en, $this->qty[$this->product], $this->price, 0, ['options' => $getProduct->getFirstMediaUrl('mainImage'), 'slug' => $getProduct->slug]);
+            Cart::add($getProduct->id, $getProduct->name_en, $this->qty[$productId], $this->price, 0, ['options' => $getProduct->getFirstMediaUrl('mainImage'), 'slug' => $getProduct->slug]);
 
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'success',

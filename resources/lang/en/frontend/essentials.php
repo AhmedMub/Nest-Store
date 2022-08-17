@@ -6,4 +6,5 @@ return [
     'Home' => 'Home',
     'Shop' => 'Shop',
     'Cart' => 'Cart',
+    'Not Available' => 'Not Available'
 ];

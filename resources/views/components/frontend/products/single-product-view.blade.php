@@ -53,7 +53,7 @@
                 @endif
             </div>
             {{-- /- add to cart componenet --}}
-            <livewire:frontend.product.add-to-cart-for-single-view :product="$product->id" />
+            <livewire:frontend.product.add-to-cart-for-single-view :product="$product->id" classes="" />
         </div>
     </div>
 </div>
