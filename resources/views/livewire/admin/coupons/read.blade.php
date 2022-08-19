@@ -1,14 +1,8 @@
-{{-- this is to resolve Vendor model in order to use since(fn)... Reference:
-https://laravel.com/docs/8.x/blade#service-injection --}}
-@inject('sinceDate', 'App\Models\Vendor')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Product List</h3>
+        <h3 class="card-title">Coupons List</h3>
     </div>
     <div class="card-body">
-        <a href=" {{route('product.add')}} " id="table2-new-row-button" class="btn btn-primary mb-4 text-capitalize">
-            Add
-            New product</a>
         <div class="table-responsive">
             <table class="table table-bordered border text-nowrap mb-0" id="basic-edit">
                 <div class="row justify-content-between m-0">
@@ -32,7 +26,7 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                     <div class="col-sm-12 col-md-4 align-self-center">
                         <div class="main-header-center ms-3 d-none d-lg-block">
                             <input wire:model.debounce.300ms='search' class="form-control w-100"
-                                placeholder="Search by name, Category, sku, ..." type="search">
+                                placeholder="Search for name, disoucnt number" type="search">
                             <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
                         </div>
                     </div>
@@ -42,8 +36,8 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         <th class="wd-15p border-bottom-0 text-capitalize">
                             <input wire:model='selectAll' type="checkbox"> select all
                         </th>
-                        <th wire:click="sortBy('name_en')"
-                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">english name
+                        <th wire:click="sortBy('name')" class="cursor-pointer wd-15p border-bottom-0 text-capitalize">
+                            name
                             {{-- change Icone --}}
                             @if ($sortBy !== $field)
                             <i class="bi bi-arrow-down"></i>
@@ -53,8 +47,10 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                             <i class="bi bi-arrow-down"></i>
                             @endif
                         </th>
-                        <th wire:click="sortBy('createdBy_adminID')" class="wd-15p border-bottom-0 text-capitalize">
-                            created by
+                        <th wire:click="sortBy('discount')"
+                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">
+                            discount
+                            {{-- change Icone --}}
                             @if ($sortBy !== $field)
                             <i class="bi bi-arrow-down"></i>
                             @elseif($sortDirection == 'asc')
@@ -63,56 +59,51 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                             <i class="bi bi-arrow-down"></i>
                             @endif
                         </th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">updated by</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">main category</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">subcategory</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">sku</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">quantity</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">price</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">valid from</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">valid to</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">validity days</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">status</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">created at</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">updated at</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $product)
+                    @foreach ($coupons as $coupon)
                     <tr class="text-center">
+                        <td><input wire:model='selectedCheckboxes' value="{{$coupon->id}}" type="checkbox"></td>
+                        <td>{{$coupon->name}}</td>
+                        <td>%{{$coupon->discount}}</td>
+                        <td>{{$coupon->valid_from}}</td>
+                        <td>{{$coupon->valid_to}}</td>
                         <td>
-                            <input wire:model='selectedCheckboxes' value="{{$product->id}}" type="checkbox">
-                        </td>
-                        <td> {{$product->name_en}} </td>
-                        <td> {{$product->admin->getFullName()}} </td>
-                        <td> {{$product->updatedByAdmin->getFullName()}} </td>
-                        <td>{{$product->productMainCat->name_en}}</td>
-                        <td>
-                            @if (!is_null($product->subCategory_id))
-                            {{$product->productSubCat->name_en}}
+                            @if ($coupon->validityDays($coupon->valid_from, $coupon->valid_to) == 1)
+                            <span class="badge bg-warning fs-6">{{$coupon->validityDays($coupon->valid_from,
+                                $coupon->valid_to)}} Day</span>
+
+                            @elseif ($coupon->validityDays($coupon->valid_from, $coupon->valid_to) > 1)
+                            <span class="badge bg-info fs-6">{{$coupon->validityDays($coupon->valid_from,
+                                $coupon->valid_to)}} Days</span>
+
                             @else
-                            <span class="badge bg-warning-gradient badge-sm fx-5 me-1 mb-1 mt-1">No Date</span>
+                            <span class="badge bg-danger fs-6">Expired</span>
                             @endif
                         </td>
-                        <td>{{$product->sku}}</td>
-                        <td>{{$product->qty}}</td>
-                        <td>{{"$".$product->price}}</td>
-                        <td>{{$product->created_at->diffForHumans();}}</td>
-                        <td>{{$product->updated_at->diffForHumans();}}</td>
+                        <td>
+                            <livewire:admin.coupons.status :coupon="$coupon" :name="'status'"
+                                :key="'status'.$coupon->id" />
+                        </td>
+                        <td> {{$coupon->created_at->diffForHumans()}} </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
-                                <a wire:click="$emit('editProduct',{{$product->id}})"
+                                <a wire:click="$emit('editCoupon',{{$coupon->id}})"
                                     class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
-                                    data-bs-original-title="Edit" href="#extralargemodal">
+                                    data-bs-original-title="Edit" href="#modaldemo8">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
-                                <a wire:click="$emit('editProductTags',{{$product->id}})"
-                                    class="modal-effect btn text-primary bg-primary-transparent btn-icon py-1 me-2"
-                                    data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
-                                    data-bs-original-title="Edit" href="#modaldemo88">
-                                    <span class="bi bi-eye-fill fs-16"></span>
-                                </a>
-                                <a wire:click="$emit('deleteProduct',{{$product->id}})"
+                                <a wire:click="$emit('deleteSlider',{{$coupon->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
-                                    data-bs-target="#modaldemo50" data-bs-toggle="modal"
+                                    data-bs-target="#smallmodalDelete" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
                             </div>
                         </td>
@@ -122,18 +113,18 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
             </table>
             <div>
                 <p>
-                    {{-- NOTE when you use pagination you will have access to all below methods --}}
-                    showing {{$products->firstItem()}} to {{$products->lastItem()}} out of {{$products->total()}}
+                    {{-- -//NOTE when you use pagination you will have access to all below methods --}}
+                    showing {{$coupons->firstItem()}} to {{$coupons->lastItem()}} out of
+                    {{$coupons->total()}}
                 </p>
                 <p>
                     {{-- this is to declare the pagenation --}}
-                    {{$products->links()}}
+                    {{$coupons->links()}}
                 </p>
             </div>
         </div>
     </div>
 
-    {{-- Bulk Delete --}}
     <div wire:ignore.self class="modal fade" id="modaldemo5">
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content tx-size-sm">
@@ -152,10 +143,10 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         <span class="alert-inner--text text-uppercase"><strong>be careful!</strong>
                             @if ($selectAll)
                             this action will
-                            delete all products with releted records
+                            delete all coupons.
                             @else
                             this action will
-                            delete Selected products with any releted records
+                            delete Selected coupon.
                             @endif
                         </span>
                     </div>

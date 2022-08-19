@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SubSubcategoryController;
 use App\Http\Controllers\Admin\Testing;
 use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Admin\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,5 +121,11 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
     Route::prefix('components/')->group(function () {
         //Slider
         Route::get('edit-slider', [FrontSiteController::class, 'editSlider'])->name('slider');
+    });
+
+    //Adding Coupon Discounts
+    Route::prefix('coupons/')->group(function () {
+        //Slider
+        Route::get('manage-coupons', [CouponController::class, 'manageCoupons'])->name('coupon');
     });
 });

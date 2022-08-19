@@ -87,8 +87,8 @@
                             "onclick": null,
                             "fadeIn": 300,
                             "fadeOut": 2000,
-                            "timeOut": 2000,
-                            "extendedTimeOut": 1000
+                            "timeOut": 3000,
+                            "extendedTimeOut": 500
                         },
                      toastr[event.detail.type](event.detail.message,
                      event.detail.title ?? '')

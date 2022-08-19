@@ -10,7 +10,7 @@
         @else
         <div class="card">
             <div class="card-body text-center">
-                <img class="fixWidth" src="{{asset('backend/default-images/default_icons/categories.png')}}" alt="">
+                <img class="fixWidth" src="{{asset('storage/default_images/default_icons/categories.png')}}" alt="">
                 <h6 class="mt-4 mb-2 text-capitalize">subcategories added</h6>
                 <h2 class="h2 mb-2 number-font">0</h2>
                 <p class="text-muted text-capitalize">Please add new subcategories <i

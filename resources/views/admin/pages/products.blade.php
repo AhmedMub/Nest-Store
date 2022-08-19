@@ -9,7 +9,7 @@
     @else
     <div class="card">
         <div class="card-body text-center">
-            <img class="fixWidth" src="{{asset('backend/default-images/default_icons/categories.png')}}" alt="">
+            <img class="fixWidth" src="{{asset('storage/default_images/default_icons/categories.png')}}" alt="">
             <h6 class="mt-4 mb-2 text-capitalize">products added</h6>
             <h2 class="h2 mb-2 number-font">0</h2>
             <a href=" {{route('product.add')}} " id="table2-new-row-button"
@@ -34,6 +34,7 @@
 @push('child-styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 @endpush
+{{-- /-//FIXME pikaday should be removed --}}
 @push('child-scripts')
 <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 

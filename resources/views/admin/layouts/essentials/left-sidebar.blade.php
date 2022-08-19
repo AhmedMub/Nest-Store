@@ -10,6 +10,7 @@ $manageTags = route('product.tags');
 $manageDiscount = route('product.discount');
 $manageSlider = route('slider');
 $productExpire = route('product.expire');
+$manageCoupons = route('coupon');
 @endphp
 <div class="sticky">
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
@@ -115,6 +116,19 @@ $productExpire = route('product.expire');
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon fe fe-slack"></i>
+                        <span class="side-menu__label">Coupons</span>
+                        <i class="angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li><a href=" {{$manageCoupons}} "
+                                class=" @if ($currentRoute == $manageCoupons) active @endif slide-item text-capitalize">manage
+                                coupons</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide is-expanded">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                        <i class="side-menu__icon fe fe-slack"></i>
                         <span class="side-menu__label">Webiste Components</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -125,7 +139,6 @@ $productExpire = route('product.expire');
                         </li>
                     </ul>
                 </li>
-
             </ul>
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24"
                     height="24" viewBox="0 0 24 24">
