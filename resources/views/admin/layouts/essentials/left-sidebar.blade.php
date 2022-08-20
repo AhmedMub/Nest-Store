@@ -11,6 +11,8 @@ $manageDiscount = route('product.discount');
 $manageSlider = route('slider');
 $productExpire = route('product.expire');
 $manageCoupons = route('coupon');
+$countryShip = route('countryShip');
+$districtShip = route('districtShip');
 @endphp
 <div class="sticky">
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
@@ -123,6 +125,23 @@ $manageCoupons = route('coupon');
                         <li><a href=" {{$manageCoupons}} "
                                 class=" @if ($currentRoute == $manageCoupons) active @endif slide-item text-capitalize">manage
                                 coupons</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide is-expanded">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                        <i class="side-menu__icon fe fe-slack"></i>
+                        <span class="side-menu__label">Shipping Area</span>
+                        <i class="angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li><a href=" {{$countryShip}} "
+                                class=" @if ($currentRoute == $countryShip) active @endif slide-item text-capitalize">manage
+                                countries</a>
+                        </li>
+                        <li><a href=" {{$districtShip}} "
+                                class=" @if ($currentRoute == $districtShip) active @endif slide-item text-capitalize">manage
+                                districts</a>
                         </li>
                     </ul>
                 </li>

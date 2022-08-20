@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\SubSubcategoryController;
 use App\Http\Controllers\Admin\Testing;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\ShippingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,7 +126,16 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
 
     //Adding Coupon Discounts
     Route::prefix('coupons/')->group(function () {
-        //Slider
+        //coupons
         Route::get('manage-coupons', [CouponController::class, 'manageCoupons'])->name('coupon');
+    });
+
+    //Adding shipping country
+    Route::controller(ShippingController::class)->group(function () {
+        //country
+        Route::get('manage-shipping/country', 'countryShipping')->name('countryShip');
+
+        //district
+        Route::get('manage-shipping/districts', 'districtShipping')->name('districtShip');
     });
 });
