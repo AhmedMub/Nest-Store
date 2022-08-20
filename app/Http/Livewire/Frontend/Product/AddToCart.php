@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Frontend\Product;
 
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class AddToCart extends Component
@@ -15,6 +16,7 @@ class AddToCart extends Component
     public array $qty = [];
     public $cartContent;
     public $existingProduct;
+    public $productQty;
 
     public function mount($product, $user)
     {
@@ -33,7 +35,15 @@ class AddToCart extends Component
     }
     public function plus()
     {
-        $this->count++;
+        if ($this->count == $this->product->qty) {
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'warning',
+                'message' => 'Product quantity not available'
+            ]);
+            return null;
+        } else {
+            $this->count++;
+        }
     }
 
     public function addToCart($id)
@@ -84,6 +94,10 @@ class AddToCart extends Component
         }
 
         $this->emit('refreshCart');
+        //if any of the cart items changed session will be removed
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
     }
 
     public function render()

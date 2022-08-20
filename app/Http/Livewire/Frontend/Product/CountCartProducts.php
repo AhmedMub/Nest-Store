@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Frontend\Product;
 
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class CountCartProducts extends Component
@@ -18,6 +19,11 @@ class CountCartProducts extends Component
     {
         if (isset($id)) {
             Cart::remove($id);
+        }
+
+        //if any of the cart items changed session will be removed
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
         }
     }
 

@@ -102,8 +102,11 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                         <div class="header-action-2">
                             <livewire:frontend.product.count-wishlist />
 
+                            {{-- / if user in ckecout page will be prevented from modefing cart items --}}
+                            @if (url()->current() != route('checkout'))
                             {{-- /-Count and show cart products --}}
                             <livewire:frontend.product.count-cart-products />
+                            @endif
 
                             <div class="header-action-icon-2">
                                 <a href="javascript:void(0)">

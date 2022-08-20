@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Slider;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Spatie\Tags\Tag;
 
 class FrontController extends Controller
@@ -87,6 +88,19 @@ class FrontController extends Controller
     }
     public function checkoutPage()
     {
-        return view('frontend.pages.checkout');
+        //get cart items
+        $cartContent = Cart::content();
+
+        return view('frontend.pages.checkout', compact('cartContent'));
+    }
+
+    public function placeOrder(Request $request)
+    {
+        $test = '1025.00';
+        $test2 = $test;
+        if (str_contains($test2, ',')) {
+            $test = str_replace(',', '', $test2);
+        }
+        dd(str_replace(',', '', 'test'));
     }
 }

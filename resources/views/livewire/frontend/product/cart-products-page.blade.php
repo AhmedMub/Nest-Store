@@ -106,7 +106,7 @@
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Shipping fees: <strong class="text-brand">5%</strong>
+                                        <h6 class="text-muted">Shipping fees: <strong class="text-brand">10%</strong>
                                         </h6>
                                     </td>
                                     <td class="cart_total_amount">

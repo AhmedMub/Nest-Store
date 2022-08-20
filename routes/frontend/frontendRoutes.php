@@ -50,6 +50,9 @@ Route::group([
 
         //checkout page
         Route::get('products-checkout', 'checkoutPage')->name('checkout');
+
+        //place an order
+        Route::post('place-order', 'placeOrder')->name('placeAnOrder');
     });
 
     //
