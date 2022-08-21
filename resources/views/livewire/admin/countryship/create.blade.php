@@ -7,9 +7,9 @@
         </div>
         <div class="card-body py-2">
             <div wire:ignore class="form-group">
-                <label class="text-capitalize form-label mt-0" for="country">country name</label>
-                <select autocomplete="off" class="form-select select-active" id="country">
-                    <option>Select an option...</option>
+                <label class="text-capitalize form-label mt-0" for="createCountry">country name</label>
+                <select autocomplete="off" class="form-select" id="createCountry">
+                    <option selected>Select an option...</option>
                     <option value="United States">United States</option>
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="Afghanistan">Afghanistan</option>
@@ -254,18 +254,18 @@
                     <option value="Zambia">Zambia</option>
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
-                <x-defaults.input-error for="country" />
             </div>
-            {{-- <div class="form-group col-lg-6">
-                <div class="custom_select">
-
-                </div>
-            </div> --}}
+            <div class="form-group">
+                <label class="text-capitalize form-label mt-0" for="district">add district</label>
+                <input wire:model.defer='district' id="district" type="text"
+                    class="form-control {{$errors->has('district')?'is-invalid':''}}"
+                    placeholder="Add Country District" />
+                <x-defaults.input-error for="district" />
+            </div>
         </div>
         <div class="card-footer">
             <div class="btn-list">
-                <button data-clear class="test btn btn-success float-sm-end" type="submit">Add<i
-                        class="fa fa-plus ms-1"></i></button>
+                <button class="btn btn-success float-sm-end" type="submit">Add<i class="fa fa-plus ms-1"></i></button>
             </div>
         </div>
     </form>
@@ -274,11 +274,18 @@
 @push('child-scripts')
 <script>
     $(document).ready(function () {
-        $('.select-active').select2();
-        $('.select-active').on('change', function (e) {
-            var data = $('.select-active').select2("val");
+
+        $('#createCountry').select2();
+        $('#createCountry').on('change', function (e) {
+            var data = $('#createCountry').select2("val");
             @this.set('country', data);
         });
     });
+
+    window.addEventListener('resetSelect', event => {
+        var selected =  $('#createCountry option:first').attr('selected','selected').val();
+        //resetSelect evenet will set value to first option
+        $('#createCountry').val(selected).trigger('change');
+    })
 </script>
 @endpush
