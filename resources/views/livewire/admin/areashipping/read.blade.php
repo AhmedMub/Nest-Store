@@ -26,7 +26,7 @@
                     <div class="col-sm-12 col-md-4 align-self-center">
                         <div class="main-header-center ms-3 d-none d-lg-block">
                             <input wire:model.debounce.300ms='search' class="form-control w-100"
-                                placeholder="Search for country name" type="search">
+                                placeholder="Search for country, district name" type="search">
                             <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
                         </div>
                     </div>
@@ -48,40 +48,46 @@
                             <i class="bi bi-arrow-down"></i>
                             @endif
                         </th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">country status</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">district</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">district status</th>
+                        <th wire:click="sortBy('district')"
+                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">
+                            district name
+                            {{-- change Icone --}}
+                            @if ($sortBy !== $field)
+                            <i class="bi bi-arrow-down"></i>
+                            @elseif($sortDirection == 'asc')
+                            <i class="bi bi-arrow-up"></i>
+                            @else
+                            <i class="bi bi-arrow-down"></i>
+                            @endif
+                        </th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">status</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">created at</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Updated at</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($countries as $country)
-                    @foreach ($country->countryShipping as $district)
+                    @foreach ($areas as $area)
                     <tr class="text-center">
-                        <td><input wire:model='selectedCheckboxes' value="{{$country->id}}" type="checkbox"></td>
-                        <td>{{$country->country}}</td>
+                        <td><input wire:model='selectedCheckboxes' value="{{$area->id}}" type="checkbox"></td>
+                        <td>{{$area->country}}</td>
+                        <td>{{$area->district}}</td>
                         <td>
-                            <livewire:admin.countryship.country-status :country="$country" :name="'status'"
-                                :key="'status'.$country->id" />
+                            <livewire:admin.areashipping.status :area="$area" :name="'status'"
+                                :key="'status'.$area->id" />
                         </td>
-                        <td>{{$district->district}}</td>
-                        <td>
-                            <livewire:admin.countryship.district-status :district="$district" :name="'status'"
-                                :key="'status'.$district->id" />
-                        </td>
-                        <td> {{$country->created_at->diffForHumans()}} </td>
-                        <td> {{$country->updated_at->diffForHumans()}} </td>
+
+                        <td> {{$area->created_at->diffForHumans()}} </td>
+                        <td> {{$area->updated_at->diffForHumans()}} </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
-                                <a wire:click="$emit('editCoupon',{{$country->id}})"
+                                <a wire:click="$emit('editCoupon',{{$area->id}})"
                                     class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
                                     data-bs-original-title="Edit" href="#modaldemo8">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
-                                <a wire:click="$emit('deleteSlider',{{$country->id}})"
+                                <a wire:click="$emit('deleteSlider',{{$area->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
                                     data-bs-target="#smallmodalDelete" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
@@ -89,18 +95,17 @@
                         </td>
                     </tr>
                     @endforeach
-                    @endforeach
                 </tbody>
             </table>
             <div>
                 <p>
                     {{-- -//NOTE when you use pagination you will have access to all below methods --}}
-                    showing {{$countries->firstItem()}} to {{$countries->lastItem()}} out of
-                    {{$countries->total()}}
+                    showing {{$areas->firstItem()}} to {{$areas->lastItem()}} out of
+                    {{$areas->total()}}
                 </p>
                 <p>
                     {{-- this is to declare the pagenation --}}
-                    {{$countries->links()}}
+                    {{$areas->links()}}
                 </p>
             </div>
         </div>
@@ -124,10 +129,10 @@
                         <span class="alert-inner--text text-uppercase"><strong>be careful!</strong>
                             @if ($selectAll)
                             this action will
-                            delete all Countires.
+                            delete all areas.
                             @else
                             this action will
-                            delete Selected country.
+                            delete Selected area.
                             @endif
                         </span>
                     </div>

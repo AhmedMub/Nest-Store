@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Countryship;
+namespace App\Http\Livewire\Admin\Areashipping;
 
-use App\Models\CountryShip;
-use App\Models\DistrictShip;
+use App\Models\AreaShipping;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -29,7 +28,7 @@ class Read extends Component
     public $bulkDisabled = true;
 
     protected $listeners = [
-        'newCountryAdded' => '$refresh',
+        'newShippingAreaAdded' => '$refresh',
         '' => '$refresh',
         '' => '$refresh',
     ];
@@ -56,10 +55,7 @@ class Read extends Component
     {
         if (count($this->selectedCheckboxes) > 0) {
             foreach ($this->selectedCheckboxes as $model) {
-                foreach ($model->countryShipping as $attachedModel) {
-                    CountryShip::findOrFail($model)->delete();
-                    DistrictShip::findOrFail($attachedModel)->delete();
-                }
+                AreaShipping::findOrFail($model)->delete();
             }
         }
         $this->selectedCheckboxes = [];
@@ -71,8 +67,8 @@ class Read extends Component
         ]);
 
         //if admin deleted all should refresh page
-        if (CountryShip::count() == 0) {
-            redirect()->route('countryShip');
+        if (AreaShipping::count() == 0) {
+            redirect()->route('shippingArea');
         }
     }
 
@@ -80,7 +76,7 @@ class Read extends Component
     public function updatedSelectAll($val)
     {
         if ($val) {
-            $this->selectedCheckboxes = CountryShip::pluck('id');
+            $this->selectedCheckboxes = AreaShipping::pluck('id');
         } else {
             $this->selectedCheckboxes = [];
         }
@@ -90,8 +86,8 @@ class Read extends Component
     {
         $this->bulkDisabled = count($this->selectedCheckboxes) < 1;
 
-        $countries = CountryShip::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+        $areas = AreaShipping::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
 
-        return view('livewire.admin.countryship.read', compact('countries'));
+        return view('livewire.admin.areashipping.read', compact('areas'));
     }
 }

@@ -5,23 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CountryShip extends Model
+class AreaShipping extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'country'
+        'country', 'district',
     ];
 
 
     public function scopeSearch($query, $val)
     {
         return $query
-            ->where('country', 'like', '%' . $val . '%');
-    }
-
-    public function countryShipping()
-    {
-        return $this->belongsToMany(DistrictShip::class, 'country_districts', 'country_id', 'district_id');
+            ->where('country', 'like', '%' . $val . '%')
+            ->OrWhere('district', 'like', '%' . $val . '%');
     }
 }

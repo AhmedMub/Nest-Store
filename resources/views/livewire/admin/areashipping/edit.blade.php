@@ -279,8 +279,9 @@
 
 @push('child-scripts')
 <script>
-    (document).ready(function () {
-            $('#editCountry').select2();
+    $(function() {
+
+        $('#editCountry').select2();
             $('#editCountry').on('change', function (e) {
                 var data = $('#editCountry').select2("val");
                 @this.set('country', data);
@@ -291,6 +292,6 @@
         var selected =  $('#editCountry option:first').attr('selected','selected').val();
         //resetSelect evenet will set value to first option
         $('#editCountry').val(selected).trigger('change');
-    })
+    });
 </script>
 @endpush

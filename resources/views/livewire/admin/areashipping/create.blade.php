@@ -3,7 +3,7 @@
     <form autocomplete="off" method="POST" wire:submit.prevent='create'>
         @csrf
         <div class="card-header">
-            <div class="card-title text-capitalize">choose country</div>
+            <div class="card-title text-capitalize">add new area</div>
         </div>
         <div class="card-body py-2">
             <div wire:ignore class="form-group">
@@ -273,8 +273,7 @@
 
 @push('child-scripts')
 <script>
-    $(document).ready(function () {
-
+    $(function() {
         $('#createCountry').select2();
         $('#createCountry').on('change', function (e) {
             var data = $('#createCountry').select2("val");
@@ -286,6 +285,6 @@
         var selected =  $('#createCountry option:first').attr('selected','selected').val();
         //resetSelect evenet will set value to first option
         $('#createCountry').val(selected).trigger('change');
-    })
+    });
 </script>
 @endpush

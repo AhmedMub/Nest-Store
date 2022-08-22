@@ -2,23 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\CountryShip;
-use App\Models\DistrictShip;
-use Illuminate\Http\Request;
+use App\Models\AreaShipping;
 use Illuminate\Routing\Controller;
 
 class ShippingController extends Controller
 {
 
-    public function countryShipping()
+    public function areaShipping()
     {
-        $count = CountryShip::count();
-        return view('admin.pages.country-ship', compact('count'));
-    }
-
-    public function districtShipping()
-    {
-        $count = DistrictShip::count();
-        return view('admin.pages.districts-ship', compact('count'));
+        $count = AreaShipping::count();
+        return view('admin.pages.shipping', compact('count'));
     }
 }
