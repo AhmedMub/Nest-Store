@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AreaShipping;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slider;
@@ -90,17 +91,27 @@ class FrontController extends Controller
     {
         //get cart items
         $cartContent = Cart::content();
+        $shippingAreas = AreaShipping::whereStatus(1)->pluck('id', 'country')->toArray();
 
-        return view('frontend.pages.checkout', compact('cartContent'));
+        $collection = collect();
+
+        $getTest = AreaShipping::whereCountry('United States')->get();
+
+
+        $collection->push(AreaShipping::whereCountry('United States')->get())->all();
+
+        // $tstss = [];
+        // foreach ($collection->toArray()[0] as $tee) {
+        //     $tstss[] = $tee['country'];
+        // }
+        // dd($tstss);
+
+
+        return view('frontend.pages.checkout', compact('cartContent', 'shippingAreas'));
     }
 
     public function placeOrder(Request $request)
     {
-        $test = '1025.00';
-        $test2 = $test;
-        if (str_contains($test2, ',')) {
-            $test = str_replace(',', '', $test2);
-        }
-        dd(str_replace(',', '', 'test'));
+        //
     }
 }

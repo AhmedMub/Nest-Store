@@ -30,6 +30,15 @@
             <div class="col-lg-7">
                 <div class="row mb-50">
                     <div class="col-lg-6 mb-sm-15 mb-lg-0 mb-md-3">
+                        @auth
+                        <div class="toggle_info">
+                            <span><i class="fi-rs-user mr-10"></i><span class="text-muted font-lg">
+                                    {{__('frontend/checkout.Change Billing Details?')}}</span> <a href="#updateDetails"
+                                    data-bs-toggle="collapse" class="collapsed font-lg" aria-expanded="false">
+                                    {{__('frontend/checkout.Click here to Update')}}
+                                </a></span>
+                        </div>
+                        @endauth
                         @guest
                         <div class="toggle_info">
                             <span><i class="fi-rs-user mr-10"></i><span class="text-muted font-lg">
@@ -38,7 +47,6 @@
                                     {{__('frontend/checkout.Click here to login')}}
                                 </a></span>
                         </div>
-
                         <div class="panel-collapse collapse login_form" id="loginform">
                             <div class="panel-body">
                                 <p class="mb-30 font-sm">
@@ -89,6 +97,10 @@
                         @endif
                     </div>
                 </div>
+                @auth
+                <livewire:frontend.checkout.billing-details-for-auth :shippingAreas="$shippingAreas" />
+                @endauth
+                @guest
                 <div class="row">
                     <h4 class="mb-30">Billing Details</h4>
                     <form method="POST" action="{{route('placeAnOrder')}}">
@@ -415,6 +427,7 @@
                         </div>
                     </form>
                 </div>
+                @endguest
             </div>
             <div class="col-lg-5">
                 <div class="border p-40 cart-totals ml-30 mb-50">
@@ -451,7 +464,40 @@
                         <livewire:frontend.product.checkout-order-summary />
                     </div>
                 </div>
-
+                @auth
+                {{-- /-//NOTE this is for auth users only --}}
+                <div class="payment ml-30">
+                    <h4 class="mb-30">Payment</h4>
+                    <form action="">
+                        @csrf
+                        <div class="payment_option">
+                            <div class="custome-radio">
+                                <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios4"
+                                    checked="">
+                                <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse"
+                                    data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
+                            </div>
+                            <div class="custome-radio">
+                                <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios5"
+                                    checked="">
+                                <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse"
+                                    data-target="#paypal" aria-controls="paypal">Online Getway</label>
+                            </div>
+                        </div>
+                        <div class="payment-logo d-flex">
+                            <img class="mr-15" src="{{asset('frontend/assets/imgs/theme/icons/payment-paypal.svg')}}"
+                                alt="">
+                            <img class="mr-15" src="{{asset('frontend/assets/imgs/theme/icons/payment-visa.svg')}}"
+                                alt="">
+                            <img class="mr-15" src="{{asset('frontend/assets/imgs/theme/icons/payment-master.svg')}}"
+                                alt="">
+                            <img src="{{asset('frontend/assets/imgs/theme/icons/payment-zapper.svg')}}" alt="">
+                        </div>
+                        <button href="#" class="btn btn-fill-out btn-block mt-30">
+                            {{__('frontend/checkout.Place an Order')}}<i class="fi-rs-sign-out ml-15"></i></button>
+                    </form>
+                </div>
+                @endauth
             </div>
         </div>
     </div>
