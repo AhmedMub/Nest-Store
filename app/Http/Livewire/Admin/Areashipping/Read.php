@@ -29,8 +29,8 @@ class Read extends Component
 
     protected $listeners = [
         'newShippingAreaAdded' => '$refresh',
-        '' => '$refresh',
-        '' => '$refresh',
+        'shippingAreaUpdated' => '$refresh',
+        'shippingAreaDeleted' => '$refresh',
     ];
 
     public function sortBy($field)

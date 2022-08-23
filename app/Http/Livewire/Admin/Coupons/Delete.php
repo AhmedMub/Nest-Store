@@ -9,9 +9,9 @@ class Delete extends Component
 {
     public $coupon;
 
-    protected $listeners = ['deleteSlider'];
+    protected $listeners = ['deleteCoupon'];
 
-    public function deleteSlider($id)
+    public function deleteCoupon($id)
     {
         $this->coupon = $id;
     }

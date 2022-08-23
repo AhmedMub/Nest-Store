@@ -9,8 +9,6 @@ class Create extends Component
 {
     public $country;
     public $district;
-    public $countryId;
-    public $districtId;
 
     protected $rules = [
         'country' => ['required', 'string'],
@@ -25,7 +23,7 @@ class Create extends Component
         $checkDistrict = AreaShipping::where('district', '=', $this->district)->first();
 
         //check if the record already exists
-        if (isset($checkDistrict) && isset($checkDistrict) && $checkCountry->country == $this->country && $checkDistrict->district == $this->district) {
+        if (isset($checkDistrict) && isset($checkCountry) && $checkCountry->country == $this->country && $checkDistrict->district == $this->district) {
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'warning',
                 'message' => 'Added Record is Already Exists'

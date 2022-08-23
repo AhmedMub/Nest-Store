@@ -101,7 +101,7 @@
                                     data-bs-original-title="Edit" href="#modaldemo8">
                                     <span class="bi bi-pen fs-16"></span>
                                 </a>
-                                <a wire:click="$emit('deleteSlider',{{$coupon->id}})"
+                                <a wire:click="$emit('deleteCoupon',{{$coupon->id}})"
                                     class="btn text-danger bg-danger-transparent btn-icon py-1"
                                     data-bs-target="#smallmodalDelete" data-bs-toggle="modal"
                                     data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
