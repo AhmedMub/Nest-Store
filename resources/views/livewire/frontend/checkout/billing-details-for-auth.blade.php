@@ -24,10 +24,10 @@
                     <div class="form-group col-lg-6">
                         <div wire:ignore class="custom_select">
                             <select class="form-control select-active-auth">
-                                <option value="">Select an country...</option>
-                                @if (count($shippingAreas) > 0)
-                                @foreach ($shippingAreas as $area => $id)
-                                <option value="{{$id}}">{{$area}}</option>
+                                <option value="">Select country...</option>
+                                @if (count($countries) > 0)
+                                @foreach ($countries as $country)
+                                <option value="{{$country->id}}">{{$country->country}}</option>
                                 @endforeach
                                 @endif
                             </select>
@@ -35,16 +35,16 @@
                     </div>
                     <div class="form-group col-lg-6">
                         <div class="custom_select">
-                            <select wire:model="districtId" class="form-control">
-                                <option>Select an district...</option>
-                                @if (count($collDistricts) > 0)
-                                @foreach ($collDistricts as $district)
-                                @foreach ($district as $dist)
-                                <option value="{{$dist['id']}}">{{$dist['district']}}</option>
-                                @endforeach
-                                @endforeach
-                                @endif
-                            </select>
+                            <div class="custom_select">
+                                <select wire:model="district" class="form-control">
+                                    <option>Select district...</option>
+                                    @if (isset($districts))
+                                    @foreach ($districts as $district)
+                                    <option value="{{$district->id}}">{{$district->district}}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

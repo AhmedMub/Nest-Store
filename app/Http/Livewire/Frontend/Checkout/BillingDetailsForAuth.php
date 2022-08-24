@@ -2,40 +2,38 @@
 
 namespace App\Http\Livewire\Frontend\Checkout;
 
-use App\Models\AreaShipping;
+use App\Models\ShippingCountry;
+use App\Models\ShippingDistrict;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class BillingDetailsForAuth extends Component
 {
-    public $shippingAreas;
     public $user;
     public $country;
-    public $collDistricts;
-    public $districtId;
+    public $countries;
+    public $districts;
+    public $district;
 
-    public function mount($shippingAreas)
+    public function mount()
     {
-        $this->shippingAreas = $shippingAreas;
-
         //auth user
         $this->user = Auth::user();
 
-        $this->collDistricts = collect();
+        $this->countries = ShippingCountry::whereStatus(1)->latest()->get();
     }
 
     public function update()
     {
 
-        dd($this->districtId);
+        dd($this->district);
     }
 
     public function updatedCountry()
     {
-        //using laravel collection
-        $getCountry = AreaShipping::findOrFail($this->country)->country;
-
-        $this->collDistricts->push(AreaShipping::whereCountry($getCountry)->get())->all();
+        if (!empty($this->country)) {
+            $this->districts = ShippingDistrict::whereCountryId($this->country)->whereStatus(1)->latest()->get();
+        }
     }
 
     public function render()

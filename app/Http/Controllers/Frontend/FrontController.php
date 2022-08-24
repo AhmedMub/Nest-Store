@@ -91,23 +91,8 @@ class FrontController extends Controller
     {
         //get cart items
         $cartContent = Cart::content();
-        $shippingAreas = AreaShipping::whereStatus(1)->pluck('id', 'country')->toArray();
 
-        $collection = collect();
-
-        $getTest = AreaShipping::whereCountry('United States')->get();
-
-
-        $collection->push(AreaShipping::whereCountry('United States')->get())->all();
-
-        // $tstss = [];
-        // foreach ($collection->toArray()[0] as $tee) {
-        //     $tstss[] = $tee['country'];
-        // }
-        // dd($tstss);
-
-
-        return view('frontend.pages.checkout', compact('cartContent', 'shippingAreas'));
+        return view('frontend.pages.checkout', compact('cartContent'));
     }
 
     public function placeOrder(Request $request)

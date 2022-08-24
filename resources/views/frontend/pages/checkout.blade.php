@@ -35,7 +35,7 @@
                             <span><i class="fi-rs-user mr-10"></i><span class="text-muted font-lg">
                                     {{__('frontend/checkout.Change Billing Details?')}}</span> <a href="#updateDetails"
                                     data-bs-toggle="collapse" class="collapsed font-lg" aria-expanded="false">
-                                    {{__('frontend/checkout.Click here to Update')}}
+                                    {{__('frontend/checkout.Click here to Edit')}}
                                 </a></span>
                         </div>
                         @endauth
@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 @auth
-                <livewire:frontend.checkout.billing-details-for-auth :shippingAreas="$shippingAreas" />
+                <livewire:frontend.checkout.billing-details-for-auth />
                 @endauth
                 @guest
                 <div class="row">
