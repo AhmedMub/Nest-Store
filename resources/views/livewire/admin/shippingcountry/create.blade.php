@@ -3,12 +3,12 @@
     <form autocomplete="off" method="POST" wire:submit.prevent='create'>
         @csrf
         <div class="card-header">
-            <div class="card-title text-capitalize">add new area</div>
+            <div class="card-title text-capitalize">add new country</div>
         </div>
         <div class="card-body py-2">
             <div class="form-group">
                 <div wire:ignore>
-                    <label class="text-capitalize form-label mt-0" for="createCountry">country name</label>
+                    <label class="text-capitalize form-label mt-0" for="createCountry">choose country</label>
                     <select autocomplete="off" class="form-select" id="createCountry">
                         <option selected>Select an option...</option>
                         <option value="United States">United States</option>
@@ -261,13 +261,6 @@
                     </select>
                 </div>
                 <x-defaults.input-error for="country" />
-            </div>
-            <div class="form-group">
-                <label class="text-capitalize form-label mt-0" for="district">add district</label>
-                <input wire:model.defer='district' id="district" type="text"
-                    class="form-control {{$errors->has('district')?'is-invalid':''}}"
-                    placeholder="Add Country District" />
-                <x-defaults.input-error for="district" />
             </div>
         </div>
         <div class="card-footer">

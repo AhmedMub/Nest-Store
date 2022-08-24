@@ -269,13 +269,6 @@
                         </div>
                         <x-defaults.input-error for="country" />
                     </div>
-                    <div class="form-group">
-                        <label class="text-capitalize form-label mt-0" for="district">change district</label>
-                        <input wire:model.defer='district' id="district" type="text"
-                            class="form-control {{$errors->has('district')?'is-invalid':''}}"
-                            placeholder="Add Country District" />
-                        <x-defaults.input-error for="district" />
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save changes</button>
@@ -291,7 +284,8 @@
 <script>
     window.addEventListener('openEdit', event=> {
         $("#editCountry").select2({
-            dropdownParent: $("#modaldemo8")
+            dropdownParent: $("#modaldemo8"),
+            width: '100%'
         });
         $('#editCountry').on('change', function (e) {
                 var data = $('#editCountry').select2("val");

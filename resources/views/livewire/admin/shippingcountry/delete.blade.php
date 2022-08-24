@@ -11,7 +11,8 @@
                         <path fill="#e62a45" d="M12,14a1,1,0,0,1-1-1V9a1,1,0,0,1,2,0v4A1,1,0,0,1,12,14Z" />
                     </svg></span>
                 <h4 class="h4 mb-0 mt-3">Warning</h4>
-                <p class="card-text">Are you sure you want to delete this shipping Area</p>
+                <p class="card-text text-capitalize">deleting a country will delete any related districts. Are you sure
+                    you want to delete this shipping country?</p>
                 <form class="d-inline" method="POST" wire:submit.prevent='delete'>
                     @csrf
                     <button type="submit" aria-label="Close" class="btn btn-danger pd-x-25"

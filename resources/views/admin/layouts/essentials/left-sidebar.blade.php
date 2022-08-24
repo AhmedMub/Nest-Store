@@ -11,7 +11,8 @@ $manageDiscount = route('product.discount');
 $manageSlider = route('slider');
 $productExpire = route('product.expire');
 $manageCoupons = route('coupon');
-$shippingArea = route('shippingArea');
+$shippingCountry = route('shipping.country');
+$shippingDistrict = route('shipping.district');
 @endphp
 <div class="sticky">
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
@@ -134,9 +135,13 @@ $shippingArea = route('shippingArea');
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
                     <ul class="slide-menu">
-                        <li><a href=" {{$shippingArea}} "
-                                class=" @if ($currentRoute == $shippingArea) active @endif slide-item text-capitalize">manage
-                                areas</a>
+                        <li><a href=" {{$shippingCountry}} "
+                                class=" @if ($currentRoute == $shippingCountry) active @endif slide-item text-capitalize">manage
+                                shipping countries</a>
+                        </li>
+                        <li><a href=" {{$shippingDistrict}} "
+                                class=" @if ($currentRoute == $shippingDistrict) active @endif slide-item text-capitalize">manage
+                                shipping districts</a>
                         </li>
                     </ul>
                 </li>

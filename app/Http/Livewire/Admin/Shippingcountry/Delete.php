@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Areashipping;
+namespace App\Http\Livewire\Admin\Shippingcountry;
 
-use App\Models\AreaShipping;
+use App\Models\ShippingCountry;
 use Livewire\Component;
 
 class Delete extends Component
@@ -18,17 +18,17 @@ class Delete extends Component
 
     public function delete()
     {
-        AreaShipping::findOrFail($this->country)->delete();
+        ShippingCountry::findOrFail($this->country)->delete();
 
-        $this->emit('shippingAreaDeleted');
+        $this->emit('countryDeleted');
 
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',
-            'message'   => 'Area Deleted Successfully'
+            'message'   => 'Country Deleted Successfully'
         ]);
     }
     public function render()
     {
-        return view('livewire.admin.areashipping.delete');
+        return view('livewire.admin.shippingcountry.delete');
     }
 }

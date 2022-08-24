@@ -131,8 +131,11 @@ Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->g
     });
 
     //Adding shipping country
-    Route::controller(ShippingController::class)->group(function () {
+    Route::controller(ShippingController::class)->name('shipping.')->group(function () {
         //country
-        Route::get('manage-shipping/area', 'areaShipping')->name('shippingArea');
+        Route::get('manage-shipping/country', 'countryShipping')->name('country');
+
+        //district
+        Route::get('manage-shipping/district', 'districtShipping')->name('district');
     });
 });
