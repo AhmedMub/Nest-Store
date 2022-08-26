@@ -58,12 +58,13 @@ class CheckoutOrderSummary extends Component
                 4 => total price without discount
             ]
         */
-        Session::put('coupon');
-        Session::push('coupon.shippingFees', $this->fees);
-        Session::push('coupon.couponDiscount', $discount);
-        Session::push('coupon.amountDiscounted', $this->couponDiscount);
-        Session::push('coupon.totalDiscounted', $this->total);
-        Session::push('coupon.totalWithoutDiscount', $this->oldTotal);
+        Session::put('coupon', [
+            'shippingFees' => $this->fees,
+            'couponDiscount' => $discount,
+            'amountDiscounted' => $this->couponDiscount,
+            'totalDiscounted' => $this->total,
+            'totalWithoutDiscount' => $this->oldTotal
+        ]);
     }
 
     public function render()

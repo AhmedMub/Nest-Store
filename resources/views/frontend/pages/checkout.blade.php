@@ -506,3 +506,11 @@
 <x-frontend.page404 message="No Products Found" />
 @endif
 @endsection
+
+@push('added-head')
+<style>
+    .fix-height {
+        height: 64px !important;
+    }
+</style>
+@endpush

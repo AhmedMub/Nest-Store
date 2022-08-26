@@ -6,18 +6,23 @@
                 @csrf
                 <div class="row">
                     <div class="form-group col-lg-6">
-                        <input type="text" name="fname" placeholder="First name *">
+                        <input wire:model="first_name" class="{{$errors->has('first_name')?'is-invalid':''}}"
+                            type="text" placeholder="First name *">
+                        <x-defaults.input-error for="first_name" />
                     </div>
                     <div class="form-group col-lg-6">
-                        <input type="text" name="lname" placeholder="Last name *">
+                        <input wire:model="first_name" type="text" name="lname" placeholder="Last name *">
+                        <x-defaults.input-error for="first_name" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-lg-6">
                         <input type="text" name="billing_address" placeholder="Address *">
+                        <x-defaults.input-error for="first_name" />
                     </div>
                     <div class="form-group col-lg-6">
                         <input type="text" name="billing_address2" placeholder="Address line2">
+                        <x-defaults.input-error for="first_name" />
                     </div>
                 </div>
                 <div class="row shipping_calculator">
@@ -32,18 +37,22 @@
                                 @endif
                             </select>
                         </div>
+                        <x-defaults.input-error for="first_name" />
                     </div>
                     <div class="form-group col-lg-6">
                         <div class="custom_select">
                             <div class="custom_select">
-                                <select wire:model="district" class="form-control">
-                                    <option>Select district...</option>
+                                <select wire:model="district" class="form-control fix-height">
+                                    <option style="background-color:red;color:#4e46e5;">Select district...</option>
                                     @if (isset($districts))
                                     @foreach ($districts as $district)
-                                    <option value="{{$district->id}}">{{$district->district}}</option>
+                                    <option value="{{$district->id}}">
+                                        {{$district->district}}
+                                    </option>
                                     @endforeach
                                     @endif
                                 </select>
+                                <x-defaults.input-error for="first_name" />
                             </div>
                         </div>
                     </div>
@@ -51,13 +60,16 @@
                 <div class="row">
                     <div class="form-group col-lg-6">
                         <input type="text" name="zipcode" placeholder="Postcode / ZIP *">
+                        <x-defaults.input-error for="first_name" />
                     </div>
                     <div class="form-group col-lg-6">
                         <input type="text" name="phone" placeholder="Phone *">
+                        <x-defaults.input-error for="first_name" />
                     </div>
                 </div>
                 <div class="form-group mb-30">
                     <textarea rows="5" placeholder="Additional information"></textarea>
+                    <x-defaults.input-error for="first_name" />
                 </div>
                 <button type="submit" class="btn btn-fill-out btn-block">
                     {{__('frontend/checkout.Update Details')}}<i class="fa-solid fa-arrows-rotate ml-15"></i></button>
@@ -65,6 +77,7 @@
         </div>
     </div>
 </div>
+
 
 @push('added-scripts')
 <script>

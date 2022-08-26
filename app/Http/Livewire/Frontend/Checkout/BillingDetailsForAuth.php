@@ -9,7 +9,11 @@ use Livewire\Component;
 
 class BillingDetailsForAuth extends Component
 {
-    public $user;
+    //user info
+    public $userID;
+    public $first_name, $last_name, $address, $addressTwo, $shippingArea_id, $postalCode, $phone, $addInfo;
+
+
     public $country;
     public $countries;
     public $districts;
@@ -18,8 +22,13 @@ class BillingDetailsForAuth extends Component
     public function mount()
     {
         //auth user
-        $this->user = Auth::user();
+        // $user = Auth::user();
+        // $this->userID = $user->id;
+        // $this->first_name = $user->first_name;
+        // $this->last_name = $user->last_name;
 
+
+        //countries
         $this->countries = ShippingCountry::whereStatus(1)->latest()->get();
     }
 
@@ -33,6 +42,8 @@ class BillingDetailsForAuth extends Component
     {
         if (!empty($this->country)) {
             $this->districts = ShippingDistrict::whereCountryId($this->country)->whereStatus(1)->latest()->get();
+        } else {
+            $this->districts = null;
         }
     }
 
