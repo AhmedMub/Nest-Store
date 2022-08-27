@@ -3,10 +3,10 @@
 use App\Http\Controllers\Frontend\FrontController;
 use App\Http\Controllers\Frontend\GetProductController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PaymentsController;
 use App\Http\Controllers\Frontend\ProductsByTagController;
 use App\Http\Controllers\Frontend\ProductsByVendorController;
 use App\Http\Controllers\Frontend\UserProfile;
-use App\Http\Livewire\Frontend\Prodcut\ProductsByCategory;
 use Illuminate\Support\Facades\Route;
 use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -47,16 +47,7 @@ Route::group([
 
         //cart page
         Route::get('show-cart', 'cartPage')->name('cart');
-
-        //checkout page
-        Route::get('products-checkout', 'checkoutPage')->name('checkout');
-
-        //place an order
-        Route::post('place-order', 'placeOrder')->name('placeAnOrder');
     });
-
-    //
-    //Route::get('order-by-tag/{id}', [FrontController::class, 'orderByTag'])->name('reOrder');
 
     //*Auth Routes
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -64,11 +55,20 @@ Route::group([
             //user profile
             Route::get('profile', 'show')->name('user.profile');
 
-            //compare products page
+            //compare products page (feature to be added in future)
             //Route::get('products-compare', 'productsCompare')->name('products.compare');
 
             //Wishlist products page
             Route::get('products-wishlist', 'wishList')->name('products.wishList');
+        });
+
+        //for payments
+        Route::controller(PaymentsController::class)->group(function () {
+            //checkout page
+            Route::get('products-checkout', 'checkoutPage')->name('checkout');
+
+            //place an order
+            Route::any('place-order', 'placeOrder')->name('place.order');
         });
     });
 

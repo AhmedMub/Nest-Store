@@ -87,16 +87,4 @@ class FrontController extends Controller
 
         return view('frontend.pages.cart', compact('cartContent'));
     }
-    public function checkoutPage()
-    {
-        //get cart items
-        $cartContent = Cart::content();
-
-        return view('frontend.pages.checkout', compact('cartContent'));
-    }
-
-    public function placeOrder(Request $request)
-    {
-        //
-    }
 }

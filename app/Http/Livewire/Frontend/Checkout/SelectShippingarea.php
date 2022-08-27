@@ -4,38 +4,21 @@ namespace App\Http\Livewire\Frontend\Checkout;
 
 use App\Models\ShippingCountry;
 use App\Models\ShippingDistrict;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class BillingDetailsForAuth extends Component
+class SelectShippingarea extends Component
 {
-    //user info
-    public $userID;
-    public $first_name, $last_name, $address, $addressTwo, $shippingArea_id, $postalCode, $phone, $addInfo;
-
-
     public $country;
     public $countries;
     public $districts;
     public $district;
+    public $selectCountry;
+    public $selectDistrict;
 
     public function mount()
     {
-        //auth user
-        // $user = Auth::user();
-        // $this->userID = $user->id;
-        // $this->first_name = $user->first_name;
-        // $this->last_name = $user->last_name;
-
-
         //countries
         $this->countries = ShippingCountry::whereStatus(1)->latest()->get();
-    }
-
-    public function update()
-    {
-
-        dd($this->district);
     }
 
     public function updatedCountry()
@@ -49,6 +32,6 @@ class BillingDetailsForAuth extends Component
 
     public function render()
     {
-        return view('livewire.frontend.checkout.billing-details-for-auth');
+        return view('livewire.frontend.checkout.select-shippingarea');
     }
 }
