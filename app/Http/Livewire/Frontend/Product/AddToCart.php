@@ -17,6 +17,7 @@ class AddToCart extends Component
     public $cartContent;
     public $existingProduct;
     public $productQty;
+    public $basePrice;
 
     public function mount($product, $user)
     {
@@ -67,13 +68,16 @@ class AddToCart extends Component
         $this->qty[$id] = $this->count;
 
         //check if there is a discounted price
+        //*basePrice added to cart if the product as a discount, need the base price for order-items creation
         if (
             !empty($getProduct->productDiscount->discount_percent) &&
             $getProduct->discount_status == 1
         ) {
             $this->price = $getProduct->productDiscount->discounted_price;
+            $this->basePrice = $getProduct->price;
         } else {
             $this->price = $getProduct->price;
+            $this->basePrice = '';
         }
 
         //must check if the product already exists in cart should update the qty
@@ -85,7 +89,7 @@ class AddToCart extends Component
             ]);
         } else {
             //if item not exist in cart will be added to cart
-            Cart::add($getProduct->id, $getProduct->name_en, $this->qty[$id], $this->price, 0, ['options' => $getProduct->getFirstMediaUrl('mainImage'), 'slug' => $getProduct->slug]);
+            Cart::add($getProduct->id, $getProduct->name_en, $this->qty[$id], $this->price, 0, ['options' => $getProduct->getFirstMediaUrl('mainImage'), 'slug' => $getProduct->slug, 'basePrice' => $this->basePrice]);
 
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'success',

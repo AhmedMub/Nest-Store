@@ -57,7 +57,7 @@ Route::prefix('admin/')->middleware('admin:admin')->name('admin.')->group(functi
 });
 
 
-//Admin Routes ONLY
+//Auth Admin Routes ONLY
 Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->group(function () {
 
     //for Admin. routes

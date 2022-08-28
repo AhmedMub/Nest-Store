@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\ShippingCountry;
 use App\Models\ShippingDistrict;
 use App\Models\User;
@@ -12,15 +14,14 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 class PaymentsController extends Controller
 {
     public function checkoutPage()
     {
-
         //get cart items
         $cartContent = Cart::content();
-
         //user data
         $user = Auth::user();
 
@@ -87,9 +88,9 @@ class PaymentsController extends Controller
 
     public function cashPayment($request = [])
     {
-
-        $discountedTotal;
-        $couponPercent;
+        $user = Auth::user();
+        $discountedTotal = null;
+        $couponPercent = null;
         $totalAmount = Cart::total();
         $paymentOption;
         if ($request['payment_option'] == 'cash') {
@@ -109,16 +110,16 @@ class PaymentsController extends Controller
 
         //new order
         $newOrder = Order::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => $user->id,
             //NOTEstatus: 0: failed || 1: success
-            'status' => $paymentOption,
+            'status' => 1,
             'address' => $request['address'],
             'addressTwo' => $request['addressTwo'],
             'district' => $country,
             'area' => $district,
-            'fname' => Auth::user()->first_name,
-            'lname' => Auth::user()->second_name,
-            'email' => Auth::user()->email,
+            'fname' => $user->first_name,
+            'lname' => $user->second_name,
+            'email' => $user->email,
             'postal_code' => $request['postalCode'],
             'payment_method' => $paymentOption,
             'amount' => $totalAmount,
@@ -127,13 +128,14 @@ class PaymentsController extends Controller
             'currency' => 'usd',
             'shipping_date' => Carbon::now()->addDays(2)->format('Y-m-d'),
             'discounted_coupon' => $discountedTotal,
-            'phone' => Auth::user()->phone,
+            'phone' => $user->phone,
             'coupon_discount_percentage' => $couponPercent
         ]);
 
-        // Order Items
-
         if ($newOrder) {
+            // create Order Items
+            $this->createOrderItems($newOrder->id);
+
             return view('frontend.pages.order-success');
         } else {
             return view('frontend.pages.order-failed');
@@ -142,5 +144,25 @@ class PaymentsController extends Controller
 
     public function onlinePayment($request = [])
     {
+    }
+
+    public function createOrderItems($orderId)
+    {
+        $cartItems = Cart::content();
+
+        foreach ($cartItems as $item) {
+            if (!empty($item->options['basePrice'])) {
+                $discountedPrice = $item->options['basePrice'];
+            } else {
+                $discountedPrice = null;
+            }
+            OrderItem::create([
+                'order_id' => $orderId,
+                'product_id' => $item->id,
+                'price' => $item->price,
+                'qty' => $item->qty,
+                'discounted_price' => $discountedPrice
+            ]);
+        }
     }
 }
