@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.guestMaster')
 {{-- //TODO Laravel Authentication Log is a package which tracks your user's authentication information such as
 login/logout time, IP, Browser, Location, etc. as well as sends out notifications via mail, slack, or sms for new
 devices and failed logins. --}}

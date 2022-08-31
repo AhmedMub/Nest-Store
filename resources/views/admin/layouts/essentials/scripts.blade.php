@@ -69,8 +69,6 @@ inthe dashboard view and so on. This is to enhance performance and remove unrela
 
 {{-- SIDE-MENU JS--}}
 <script src="{{asset('backend/assets/plugins/sidemenu/sidemenu.js')}}"></script>
-
-
 @endauth
 
 {{-- Added scripts --}}

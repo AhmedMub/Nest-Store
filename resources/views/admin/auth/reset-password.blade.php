@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.guestMaster')
 @push('child-styles')
 <style>
     html,
