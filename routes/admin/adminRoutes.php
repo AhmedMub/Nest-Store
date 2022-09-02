@@ -32,7 +32,7 @@ Route::get('testing2', function () {
 Route::post('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
 
-Route::prefix('admin/')->middleware('admin:admin')->name('admin.')->group(function () {
+Route::middleware(['admin:admin'])->prefix('admin/')->name('admin.')->group(function () {
 
     Route::get('login', [AdminController::class, 'adminLogin'])->name('login');
 
@@ -58,7 +58,7 @@ Route::prefix('admin/')->middleware('admin:admin')->name('admin.')->group(functi
 
 
 //Auth Admin Routes ONLY
-Route::prefix('admin/')->middleware(['admin.auth:sanctum,admin', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum,admin', 'verified', 'auth:admin'])->prefix('admin/')->group(function () {
 
     //for Admin. routes
     Route::name('admin.')->group(function () {
