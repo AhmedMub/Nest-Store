@@ -57,7 +57,11 @@ Route::middleware(['admin:admin'])->prefix('admin/')->name('admin.')->group(func
 });
 
 
+<<<<<<< HEAD
 //Admin Routes ONLY
+=======
+//Auth Admin Routes ONLY
+>>>>>>> front-billing
 Route::middleware(['auth:sanctum,admin', 'verified', 'auth:admin'])->prefix('admin/')->group(function () {
 
     //for Admin. routes

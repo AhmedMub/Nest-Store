@@ -27,29 +27,14 @@
         <tr>
             <td class="cart_total_label">
                 <h6 class="text-muted text-danger">Coupon Discount: <strong
-                        class="text-brand text-danger">{{Session::get('coupon')['couponDiscount'][0]}}%</strong>
+                        class="text-brand text-danger">{{Session::get('coupon')['couponDiscount']}}%</strong>
                 </h6>
             </td>
             <td class="cart_total_amount">
-                <h5 class="text-heading text-end text-danger">(${{Session::get('coupon')['amountDiscounted'][0]}})</h5>
+                <h5 class="text-heading text-end text-danger">(${{Session::get('coupon')['amountDiscounted']}})</h5>
             </td>
         </tr>
         @endif
-        <tr>
-            <td class="cart_total_label">
-                <h6 class="text-muted">Estimate for</h6>
-            </td>
-            <td class="cart_total_amount">
-                <h4 class="text-heading text-end">
-                    {{-- /if user auth and address not null --}}
-                    @if (Auth::check() && isset(Auth::user()->address))
-                    {{Auth::user()->address}}
-                    @else
-                    Address not set
-                    @endif
-                </h4>
-            </td>
-        </tr>
         <tr>
             <td scope="col" colspan="2">
                 <div class="divider-2 mt-10 mb-10"></div>
@@ -62,14 +47,14 @@
             <td class="cart_total_amount text-end">
                 <h4 class="text-brand text-end d-inline-block">
                     @if (Session::has('coupon'))
-                    ${{Session::get('coupon')['totalDiscounted'][0]}}
+                    ${{Session::get('coupon')['totalDiscounted']}}
                     @else
                     ${{$total}}
                     @endif
                 </h4>
                 @if (Session::has('coupon'))
                 <h4 class="text-end  font-md ml-15 custom-old-price">
-                    ${{Session::get('coupon')['totalWithoutDiscount'][0]}}</h4>
+                    ${{Session::get('coupon')['totalWithoutDiscount']}}</h4>
                 @endif
             </td>
         </tr>
