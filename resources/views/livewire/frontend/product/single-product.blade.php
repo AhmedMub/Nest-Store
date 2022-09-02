@@ -566,7 +566,7 @@ $headerName = $product->name_en;
                                 @if (count($categories) > 0)
                                 @foreach ($categories as $cat)
                                 <li>
-                                    <a href="shop-grid-right.html">
+                                    <a href="{{route('byCat.main', $cat->slug)}}">
                                         @if ($cat->icon != null && $cat->default_icon_status == 0)
                                         <img src="{{asset('storage/frontend/categories/'.$cat->icon)}}" alt="" />
                                         @endif
