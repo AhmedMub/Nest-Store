@@ -92,7 +92,13 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                             @endif
                         </td>
                         <td>{{$product->sku}}</td>
-                        <td>{{$product->qty}}</td>
+                        <td>
+                            @if ($product->qty == 0)
+                            <span class="badge bg-danger-gradient fs-6  me-1 mb-1 mt-1">Update Quantity</span>
+                            @else
+                            {{$product->qty}}
+                            @endif
+                        </td>
                         <td>{{"$".$product->price}}</td>
                         <td>{{$product->created_at->diffForHumans();}}</td>
                         <td>{{$product->updated_at->diffForHumans();}}</td>

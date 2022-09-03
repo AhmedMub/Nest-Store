@@ -76,8 +76,12 @@
                         <td> {{$product->productMainCat->name_en}} </td>
                         <td> {{$product->sku}} </td>
                         <td>
+                            @if ($product->qty == 0)
+                            <span class="badge bg-danger-gradient fs-6  me-1 mb-1 mt-1">Inactive</span>
+                            @else
                             <livewire:admin.product.status :product="$product" :name="'product_status'"
                                 :key="'product_status'.$product->id" />
+                            @endif
                         </td>
                         <td>
                             <livewire:admin.product.hot-deals :product="$product" :name="'hot_deals'"
