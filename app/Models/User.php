@@ -67,4 +67,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Product::class, 'wish_lists', 'user_id', 'product_id');
     }
+
+    //Get Full user Name
+    public function getFullName()
+    {
+        return $this->first_name . " " . $this->second_name;
+    }
 }

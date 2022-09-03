@@ -17,7 +17,6 @@ use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 |
 */
-//TODO add route for the shop view
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -69,6 +68,8 @@ Route::group([
 
             //place an order
             Route::any('place-order', 'placeOrder')->name('place.order');
+
+            Route::any('order/invoice/{invoice}', 'userOrderInvoice')->name('invoice');
         });
     });
 
@@ -87,7 +88,3 @@ Route::group([
     //products by vendors
     Route::get('by-vendor/{slug}', [ProductsByVendorController::class, 'getProducts'])->name('byVendor');
 });
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');

@@ -29,6 +29,8 @@ class CreateOrdersTable extends Migration
             // if cash value will be 0 | if online value will be 1
             $table->smallInteger('payment_method');
             $table->float('amount', 8, 2);
+            $table->float('shipping_fees', 8, 2);
+            $table->float('subtotal', 8, 2);
             $table->text('additional_info')->nullable();
             $table->integer('transaction_id')->nullable();
             $table->text('invoice_no')->nullable();

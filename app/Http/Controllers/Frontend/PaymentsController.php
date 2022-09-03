@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Events\ZeroProductQuantity;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -26,28 +27,6 @@ class PaymentsController extends Controller
         $user = Auth::user();
 
         return view('frontend.pages.checkout', compact('cartContent', 'user'));
-    }
-
-    //to generate an invoice number
-    public function generateInvoiceNo()
-    {
-        //get last record
-        $record;
-        $expNum;
-        if (Order::latest()->first() !== null) {
-            $record = Order::latest()->first();
-            $expNum = explode('-', $record->invoice_no);
-        }
-
-        //check first day in a year
-        if (date('l', strtotime(date('Y-01-01')))) {
-            $nextInvoiceNumber = date('Y') . '-0001';
-        } else {
-            //increase 1 with last invoice number
-            $nextInvoiceNumber = $expNum[0] . '-' . $expNum[1] + 1;
-        }
-
-        return $nextInvoiceNumber;
     }
 
     public function placeOrder(Request $request)
@@ -91,6 +70,7 @@ class PaymentsController extends Controller
         $user = Auth::user();
         $discountedTotal = null;
         $couponPercent = null;
+        $shippingFees = 0.1;
         $totalAmount = Cart::total();
         $paymentOption;
         if ($request['payment_option'] == 'cash') {
@@ -104,7 +84,7 @@ class PaymentsController extends Controller
         $country = ShippingCountry::findOrFail($request['selectCountry'])->country;
 
         if (Session::has('coupon')) {
-            $discountedTotal = Session::get('coupon')['totalDiscounted'];
+            $discountedTotal = Session::get('coupon')['amountDiscounted'];
             $couponPercent = Session::get('coupon')['couponDiscount'];
         }
 
@@ -123,6 +103,8 @@ class PaymentsController extends Controller
             'postal_code' => $request['postalCode'],
             'payment_method' => $paymentOption,
             'amount' => $totalAmount,
+            'subtotal' => Cart::subtotal(),
+            'shipping_fees' => Cart::subtotal() * $shippingFees,
             'additional_info' => $request['additional_information'],
             'invoice_no' => $this->generateInvoiceNo(),
             'currency' => 'usd',
@@ -136,7 +118,7 @@ class PaymentsController extends Controller
             // create Order Items
             $this->createOrderItems($newOrder->id);
 
-            return view('frontend.pages.order-success');
+            return view('frontend.pages.order-success', ['invoice' => $newOrder->invoice_no]);
         } else {
             return view('frontend.pages.order-failed');
         }
@@ -144,6 +126,7 @@ class PaymentsController extends Controller
 
     public function onlinePayment($request = [])
     {
+        return view('frontend.pages.order-failed');
     }
 
     public function createOrderItems($orderId)
@@ -163,6 +146,64 @@ class PaymentsController extends Controller
                 'qty' => $item->qty,
                 'discounted_price' => $discountedPrice
             ]);
+
+            //find product
+            $prQty = Product::findOrFail($item->id);
+
+            //decrease product qty
+            $prQty->update(['qty' => $prQty->qty - $item->qty]);
+
+            if ($prQty->qty == 0) {
+
+                //this will fire an event for a listener to disable the product status
+                event(new ZeroProductQuantity($prQty->id));
+            }
+        }
+
+        //clear session and cart after the checkout
+        $this->clearSessionAndCart();
+    }
+
+    //to generate an invoice number
+    public function generateInvoiceNo()
+    {
+        //check if there is no orders invoice start from below number
+        if (Order::count() == 0) {
+            return date('Y') . '-0001';
+        }
+
+        //get last record
+        $record;
+        $expNum;
+        if (Order::latest()->first() !== null) {
+            $record = Order::latest()->first()->invoice_no;
+            $expNum = explode('-', $record);
+        }
+
+        //check first day in a year
+        if (date('z') === '0') {
+            $nextInvoiceNumber = date('Y') . '-0001';
+        } else {
+            //increase 1 with last invoice number and maintain the format
+            $nextInvoiceNumber = $expNum[0] . '-' . str_pad($expNum[1] + 1, 4, '0', STR_PAD_LEFT);
+        }
+
+        return $nextInvoiceNumber;
+    }
+
+    //generate order invoice
+    public function userOrderInvoice($invoice)
+    {
+        $order = Order::where('invoice_no', $invoice)->whereStatus(1)->first();
+
+        return view('frontend.pages.order-invoice', compact('order'));
+    }
+
+    public function clearSessionAndCart()
+    {
+        if (Session::has('coupon') || Cart::count() > 0) {
+            Cart::destroy();
+            Session::forget('coupon');
         }
     }
 }

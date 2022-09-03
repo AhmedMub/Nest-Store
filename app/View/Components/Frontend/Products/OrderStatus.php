@@ -9,16 +9,18 @@ class OrderStatus extends Component
     public $message;
     public $messageBody;
     public $image;
+    public $invoice;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($message, $messageBody, $image)
+    public function __construct($message, $messageBody, $image, $invoice)
     {
         $this->message = $message;
         $this->messageBody = $messageBody;
         $this->image = $image;
+        $this->invoice = $invoice;
     }
 
     /**

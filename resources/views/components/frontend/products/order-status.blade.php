@@ -9,8 +9,8 @@
                     <p class="font-lg text-grey-700 mb-30">
                         {{$messageBody}}
                     </p>
-                    <a class="btn btn-default submit-auto-width font-xs hover-up mt-30" href="{{route('home')}}"><i
-                            class="fi-rs-home mr-5"></i> Back To Home Page</a>
+                    <a class="btn btn-default submit-auto-width font-xs hover-up mt-30"
+                        href="{{route('invoice', $invoice)}}"><i class="fi-rs-download mr-5"></i>Show Order Invoice</a>
                 </div>
             </div>
         </div>
