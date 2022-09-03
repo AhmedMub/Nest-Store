@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -13,8 +14,10 @@ class UserProfile extends Controller
 
     public function show()
     {
+        //display orders for users
+        $orders = Order::whereUserId(Auth::user()->id)->latest()->get();
 
-        return view('frontend.pages.profile');
+        return view('frontend.pages.profile', compact('orders'));
     }
 
     // products wishlist page:
