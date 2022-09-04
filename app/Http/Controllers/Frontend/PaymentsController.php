@@ -92,7 +92,7 @@ class PaymentsController extends Controller
         $newOrder = Order::create([
             'user_id' => $user->id,
             //NOTEstatus: 0: failed || 1: success
-            'status' => 1,
+            'status' => 0,
             'address' => $request['address'],
             'addressTwo' => $request['addressTwo'],
             'district' => $country,

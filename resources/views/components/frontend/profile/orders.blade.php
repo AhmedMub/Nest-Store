@@ -17,11 +17,34 @@
                 <tbody>
                     @foreach ($orders as $order)
                     <tr>
-                        <td>#1357</td>
-                        <td>March 45, 2020</td>
-                        <td>Processing</td>
-                        <td>$125.00 for 2 item</td>
-                        <td><a href="#" class="btn-small d-block">View</a></td>
+                        <td>#{{$order->invoice_no}}</td>
+                        <td>{{$order->created_at->format('d-m-Y')}}</td>
+                        <td>
+                            @if ($order->status == 0)
+                            pending
+                            @elseif($order->status == 1)
+                            awaiting for shipping
+                            @elseif($order->status == 2)
+                            completed
+                            @elseif($order->status == 3)
+                            shipped
+                            @elseif($order->status == 4)
+                            cancelled
+                            @elseif($order->status == 5)
+                            declined
+                            @else
+                            refunded
+                            @endif
+                        </td>
+                        <td>
+                            @if ($order->discounted_coupon)
+                            ${{$order->amount - $order->discounted_coupon}}
+                            @else
+                            ${{$order->amount}}
+                            @endif
+                            for {{$order->orderItems->count();}} item
+                        </td>
+                        <td><a href="{{route('invoice', $order->invoice_no)}}" class="btn-small d-block">View</a></td>
                     </tr>
                     @endforeach
                 </tbody>

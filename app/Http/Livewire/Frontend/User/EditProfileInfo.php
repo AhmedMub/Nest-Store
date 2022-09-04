@@ -13,6 +13,7 @@ class EditProfileInfo extends Component
     public $first_name;
     public $second_name;
     public $address;
+    public $addressTwo;
     public $phone;
     public $email;
 
@@ -23,6 +24,7 @@ class EditProfileInfo extends Component
         $this->first_name = $this->user->first_name;
         $this->second_name = $this->user->second_name;
         $this->address = $this->user->address;
+        $this->addressTwo = $this->user->addressTwo;
         $this->phone = $this->user->phone;
         $this->email = $this->user->email;
     }
@@ -33,6 +35,7 @@ class EditProfileInfo extends Component
             'first_name' => ['required', 'string', 'max:15', 'min:3'],
             'second_name' => ['required', 'string', 'max:15', 'min:3'],
             'address' => ['required', 'string', 'max:60', 'min:3'],
+            'addressTwo' => ['nullable', 'string'],
             'email' => ['required', 'string', 'email', 'string', "unique:users,email,$this->userId"],
             'phone' => ['required', 'regex:/[0-9]{8}/'],
             //TODO add security regex
@@ -54,6 +57,7 @@ class EditProfileInfo extends Component
             'first_name' => $this->first_name,
             'second_name' => $this->second_name,
             'address' => $this->address,
+            'addressTwo' => $this->addressTwo,
             'email' => $this->email,
             'phone' => $this->phone,
         ]);

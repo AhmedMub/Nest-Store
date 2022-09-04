@@ -21,6 +21,12 @@
                 <x-defaults.input-error for="address" />
             </div>
             <div class="form-group col-md-12">
+                <label> {{__('Additional Address')}} </label>
+                <input class="form-control {{$errors->has('addressTwo')?'is-invalid':''}}" name="addressTwo" type="text"
+                    wire:model.defer='addressTwo' />
+                <x-defaults.input-error for="addressTwo" />
+            </div>
+            <div class="form-group col-md-12">
                 <label> {{__('Phone Number')}} <span class="required">*</span></label>
                 <input class="form-control {{$errors->has('phone')?'is-invalid':''}}" name="phone" type="text"
                     wire:model.defer='phone' />

@@ -36,9 +36,9 @@
                                             Your Order')}}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address"
-                                            role="tab" aria-controls="address" aria-selected="true"><i
-                                                class="fi-rs-marker mr-10"></i> {{__('My Address')}} </a>
+                                        <a class="nav-link" id="avatar-tab" data-bs-toggle="tab" href="#avatar"
+                                            role="tab" aria-controls="avatar" aria-selected="true"><i
+                                                class="fi-rs-user mr-10"></i> {{__('upload Avatar')}} </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab"
@@ -93,9 +93,10 @@
                                     aria-labelledby="track-orders-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h3 class="mb-0">Orders tracking</h3>
+                                            <h3 class="mb-0">Orders tracking are comming soon. <strong>Stay
+                                                    Tuned</strong></h3>
                                         </div>
-                                        <div class="card-body contact-from-area">
+                                        {{-- <div class="card-body contact-from-area">
                                             <p>To track your order please enter your OrderID in the box below and press
                                                 "Track" button. This was given to you on your receipt and in the
                                                 confirmation email you should have received.</p>
@@ -120,43 +121,11 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="card mb-3 mb-lg-0">
-                                                <div class="card-header">
-                                                    <h3 class="mb-0">Billing Address</h3>
-                                                </div>
-                                                <div class="card-body">
-                                                    <address>
-                                                        3522 Interstate<br />
-                                                        75 Business Spur,<br />
-                                                        Sault Ste. <br />Marie, MI 49783
-                                                    </address>
-                                                    <p>New York</p>
-                                                    <a href="#" class="btn-small">Edit</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h5 class="mb-0">Shipping Address</h5>
-                                                </div>
-                                                <div class="card-body">
-                                                    <address>
-                                                        4299 Express Lane<br />
-                                                        Sarasota, <br />FL 34249 USA <br />Phone: 1.941.227.4444
-                                                    </address>
-                                                    <p>Sarasota</p>
-                                                    <a href="#" class="btn-small">Edit</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="tab-pane fade" id="avatar" role="tabpanel" aria-labelledby="avatar-tab">
+                                    <livewire:frontend.profile.user-avatar />
                                 </div>
                                 <div class="tab-pane fade" id="account-detail" role="tabpanel"
                                     aria-labelledby="account-detail-tab">
