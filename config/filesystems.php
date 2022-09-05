@@ -71,6 +71,12 @@ return [
             'url' => env('APP_URL') . '/storage/frontend/vendors',
             'visibility' => 'public',
         ],
+        'userAvatar' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/frontend/userAvatar'),
+            'url' => env('APP_URL') . '/storage/frontend/userAvatar',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

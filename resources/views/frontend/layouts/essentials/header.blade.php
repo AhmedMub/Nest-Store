@@ -109,10 +109,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                             @endif
 
                             <div class="header-action-icon-2">
-                                <a href="javascript:void(0)">
-                                    <img class="svgInject" alt="Nest"
-                                        src={{asset("frontend/assets/imgs/theme/icons/icon-user.svg")}} />
-                                </a>
+                                <livewire:frontend.profile.header-avatar />
                                 @auth
                                 <livewire:frontend.user.header-user-name />
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
