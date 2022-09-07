@@ -43,18 +43,19 @@ class UserAvatar extends Component
     }
     public function removeAvatar()
     {
-        if ($this->user->getFirstMediaUrl('userAvatar')) {
+        if (!empty($this->user->getFirstMediaUrl('userAvatar'))) {
             $this->user->clearMediaCollection('userAvatar');
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'warning',
                 'message' => 'Avatar removed Successfully'
             ]);
             $this->emit('avatarGotRemoved');
+        } else {
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'error',
+                'message' => 'Profile Does not Have Avatar'
+            ]);
         }
-        $this->dispatchBrowserEvent('alert', [
-            'type' => 'error',
-            'message' => 'Profile Does not Have Avatar'
-        ]);
     }
     public function render()
     {

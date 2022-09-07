@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
     <div class="col-lg-6 col-md-6 mb-24">
         <div class="featured-card text-center">
-            <img class="default-img rounded-circle" src=" @if ($user->getFirstMediaUrl('userAvatar'))
+            <img class="default-img rounded-circle" src=" @if (!empty($user->getFirstMediaUrl('userAvatar')))
             {{$user->getFirstMediaUrl('userAvatar')}}
             @else
             {{asset('frontend/assets/defaultImages/defAvatar.png')}}
