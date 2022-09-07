@@ -24,7 +24,9 @@ class AddToCartForSingleView extends Component
 
     public array $qty = [];
 
-    protected $listeners = ['addFromWishlist' => 'addToCart'];
+    protected $listeners = [
+        'addFromWishlist' => 'addToCart',
+    ];
 
     public function mount($product)
     {

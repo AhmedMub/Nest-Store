@@ -35,9 +35,6 @@ Route::group([
         //home page
         Route::get('/', 'index')->name('home');
 
-        //product shop
-        Route::get('shop', 'shop')->name('shop');
-
         //about us page
         Route::get('about-us', 'aboutUs')->name('about');
 
@@ -73,14 +70,21 @@ Route::group([
         });
     });
 
-    //Product Route
+    //single Product Route
     Route::get('show-product/{slug}', [GetProductController::class, 'show'])->name('show.product');
 
-    Route::controller(HomeController::class)->name('byCat.')->group(function () {
-        Route::get('by-main-category/{slug}', 'productsByMainCategory')->name('main');
-        Route::get('by-subcategory/{slug}', 'productsBySubCategory')->name('subCat');
-        Route::get('by-sub-subcategory/{slug}', 'productsBySubSubCategory')->name('subSubcat');
+    Route::controller(HomeController::class)->group(function () {
+        //follow the name()
+        Route::name('byCat.')->group(function () {
+            Route::get('by-main-category/{slug}', 'productsByMainCategory')->name('main');
+            Route::get('by-subcategory/{slug}', 'productsBySubCategory')->name('subCat');
+            Route::get('by-sub-subcategory/{slug}', 'productsBySubSubCategory')->name('subSubcat');
+        });
+
+        //product shop
+        Route::get('products/shop', 'productsShop')->name('shop');
     });
+
 
     //products by tags
     Route::get('by-Tag/{id}', [ProductsByTagController::class, 'getProducts'])->name('byTag');

@@ -65,11 +65,6 @@ class FrontController extends Controller
         ));
     }
 
-    public function shop()
-    {
-        //
-    }
-
     public function aboutUs()
     {
         return view('frontend.pages.about');

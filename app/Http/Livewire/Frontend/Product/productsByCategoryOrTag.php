@@ -20,6 +20,7 @@ class productsByCategoryOrTag extends Component
     public $subSubCategory;
     public $currentObj;
     public $vendor;
+    public $getAllProducts;
 
     /*
     /--- //NOTE fix error:  properties in a livewire component can be only [numeric, string, array, null, boolean] for $products property
@@ -42,7 +43,7 @@ class productsByCategoryOrTag extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public function mount($tags, $user, $langAr, $category, $subCategory, $subSubCategory, $byTag, $vendor)
+    public function mount($tags, $user, $langAr, $category, $subCategory, $subSubCategory, $byTag, $vendor, $getAllProducts)
     {
         $this->category = $category;
         $this->subCategory = $subCategory;
@@ -52,6 +53,7 @@ class productsByCategoryOrTag extends Component
         $this->langAr = $langAr;
         $this->byTag = $byTag;
         $this->vendor = $vendor;
+        $this->getAllProducts = $getAllProducts;
         //
         if (isset($this->category)) {
             $this->currentObj = $this->category;
@@ -84,6 +86,7 @@ class productsByCategoryOrTag extends Component
     ///Sort products by Creation
     public function sortBySelectedField($key, $field)
     {
+
         if ($key == 0) {
             $this->sortDirection = 'desc';
             $this->sortBy = 'id';
@@ -123,6 +126,12 @@ class productsByCategoryOrTag extends Component
         if (isset($this->byTag)) {
             $this->products = Product::withAnyTagsOfAnyType($this->tagName)->where('product_status', 1)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
             $this->productsCount = Product::withAnyTagsOfAnyType($this->tagName)->count();
+        }
+
+        //to shop all products
+        if (isset($this->getAllProducts)) {
+            $this->products = Product::whereProductStatus(1)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->count();
         }
         return view('livewire.frontend.product.products-by-category-or-tag', [
             'products' => $this->products,
