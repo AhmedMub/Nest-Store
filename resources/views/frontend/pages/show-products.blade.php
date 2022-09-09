@@ -36,7 +36,14 @@ $getAllProducts = null;
 <livewire:frontend.product.products-by-category-or-tag :getAllProducts="$getAllProducts" :category="$category"
     :subCategory="$subCategory" :subSubCategory="$subSubCategory" :byTag="$byTag" :vendor="$vendor" :tags="$tags"
     :user="$user" :langAr="$langAr" />
+
 @else
 <x-frontend.page404 message="No Products Found" />
 @endif
 @endsection
+@push('added-head')
+<link rel="stylesheet" href="{{asset('frontend/css/plugins/slider-range.css')}}" />
+@endpush
+@push('added-scripts')
+<script src="{{asset('frontend/js/plugins/slider-range.js')}}"></script>
+@endpush

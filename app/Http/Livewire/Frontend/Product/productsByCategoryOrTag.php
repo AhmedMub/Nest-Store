@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Frontend\Product;
 
+use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,6 +22,9 @@ class productsByCategoryOrTag extends Component
     public $currentObj;
     public $vendor;
     public $getAllProducts;
+    public $categories;
+    public $minPrice;
+    public $maxPrice;
 
     /*
     /--- //NOTE fix error:  properties in a livewire component can be only [numeric, string, array, null, boolean] for $products property
@@ -45,6 +49,8 @@ class productsByCategoryOrTag extends Component
 
     public function mount($tags, $user, $langAr, $category, $subCategory, $subSubCategory, $byTag, $vendor, $getAllProducts)
     {
+        $this->minPrice = 0;
+        $this->maxPrice = 1000;
         $this->category = $category;
         $this->subCategory = $subCategory;
         $this->subSubCategory = $subSubCategory;
@@ -54,6 +60,7 @@ class productsByCategoryOrTag extends Component
         $this->byTag = $byTag;
         $this->vendor = $vendor;
         $this->getAllProducts = $getAllProducts;
+        $this->categories = Category::whereStatus(1)->where('featured_category', 0)->take(5)->get();
         //
         if (isset($this->category)) {
             $this->currentObj = $this->category;
