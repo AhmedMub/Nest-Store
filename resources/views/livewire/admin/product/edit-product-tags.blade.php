@@ -89,7 +89,7 @@
 
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary refresh">Save changes</button>
                         <a href="javascript:void(0)" class="btn btn-light text-capitalize"
                             data-bs-dismiss="modal">close</a>
                     </div>
@@ -101,6 +101,10 @@
 
 @push('child-scripts')
 <script>
-
+    $(function() {
+        $('.refresh')on('click', function () {
+            //
+         });
+    })
 </script>
 @endpush

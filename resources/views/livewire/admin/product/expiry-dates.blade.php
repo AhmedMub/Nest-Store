@@ -72,9 +72,12 @@
                         </td>
                         <td>
                             @if (!empty($date->mfg) && !empty($date->exp))
+                            @if ($date->remainingDays() != 0)
                             <span
                                 class="@if($date->remainingDays()<=8)badge bg-danger-gradient fs-6  me-1 mb-1 mt-1 @endif">{{$date->remainingDays()}}</span>
-
+                            @else
+                            <span class="badge bg-danger-gradient fs-6  me-1 mb-1 mt-1">Expired</span>
+                            @endif
                             @else
                             <span class="badge bg-warning-gradient badge-sm fx-5 me-1 mb-1 mt-1">Not Set</span>
                             @endif

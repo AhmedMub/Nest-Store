@@ -41,8 +41,8 @@ class EditProductTags extends Component
         $tag = Tag::findOrFail($id);
         $product = Product::findOrFail($this->productId);
         $product->detachTag($tag->name);
-        redirect()->route('product.manage');
-        $this->messageSuccess("Tag Detached Successfully");
+        $this->messageSuccess('success', "Tag Detached Successfully");
+        $this->savedTags = $product->tags()->get();
     }
 
     //search for Tags;
@@ -58,6 +58,9 @@ class EditProductTags extends Component
 
         //to prevent user from adding duplicate tags in the collection
         (!$this->addedTags->contains('name', $foundedTag->name)) ? $this->addedTags->push($foundedTag) : "";
+        //to clear the search after choosing tag
+        $this->getTags = new Collection();
+        $this->reset('queryTag');
     }
     //remove tag from collection
     public function removeFromCol($id)
@@ -73,6 +76,11 @@ class EditProductTags extends Component
 
     public function update()
     {
+        //check collection not empty
+        if (count($this->addedTags) == 0) {
+            $this->messageSuccess('warning', "Please select a tag first");
+            return null;
+        }
         $product = Product::findOrFail($this->productId);
         $selectedTags = [];
         if (count($this->addedTags) > 0) {
@@ -81,15 +89,17 @@ class EditProductTags extends Component
             }
         }
         $product->attachTags($selectedTags);
+        $this->addedTags = new Collection();
 
-        $this->messageSuccess("Tag Attached Successfully");
+        $this->messageSuccess('success', "Tag Attached Successfully");
+        $this->savedTags = $product->tags()->get();
     }
 
-    public function messageSuccess($custom)
+    public function messageSuccess($type, $message)
     {
         $this->dispatchBrowserEvent('alert', [
-            'type'      => 'success',
-            'message'   => $custom
+            'type'      => $type,
+            'message'   => $message
         ]);
     }
 

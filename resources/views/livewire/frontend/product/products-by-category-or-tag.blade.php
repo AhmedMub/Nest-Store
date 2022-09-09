@@ -184,7 +184,7 @@ $sortByField = array('featured', 'price low to high', 'price high to low', 'rele
                     {{$products->links()}}
                 </div>
             </div>
-            <div wire:ignore class="col-lg-1-5 primary-sidebar sticky-sidebar">
+            <div class="col-lg-1-5 primary-sidebar">
                 <div class="sidebar-widget widget-category-2 mb-30">
                     <h5 class="section-title style-1 mb-30">Category</h5>
                     <ul>
@@ -210,54 +210,21 @@ $sortByField = array('featured', 'price low to high', 'price high to low', 'rele
                 </div>
                 {{-- Fillter By Price --}}
                 <div class="sidebar-widget price_range range mb-30">
-                    <h5 class="section-title style-1 mb-30">Fill by price {{$minPrice}} | {{$maxPrice}}</h5>
+                    <h5 class="section-title style-1 mb-30">Fillter by price</h5>
                     <div class="price-filter">
                         <div class="price-filter-inner">
-                            <div id="slider-range" class="mb-20"></div>
+                            <div wire:ignore id="slider-range" class="mb-20"></div>
                             <div class="d-flex justify-content-between">
                                 <div class="caption">From: <strong id="slider-range-value1"
-                                        class="text-brand">{{$minPrice}}</strong>
+                                        class="text-brand">${{$minPrice}}</strong>
                                 </div>
-                                <div class="caption">To: <strong id="slider-range-value2" class="text-brand"></strong>
+                                <div class="caption">To: <strong id="slider-range-value2"
+                                        class="text-brand">${{$maxPrice}}</strong>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group">
-                        <div class="list-group-item mb-10 mt-10">
-                            <label class="fw-900">Color</label>
-                            <div class="custome-checkbox">
-                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1"
-                                    value="" />
-                                <label class="form-check-label" for="exampleCheckbox1"><span>Red (56)</span></label>
-                                <br />
-                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2"
-                                    value="" />
-                                <label class="form-check-label" for="exampleCheckbox2"><span>Green (78)</span></label>
-                                <br />
-                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3"
-                                    value="" />
-                                <label class="form-check-label" for="exampleCheckbox3"><span>Blue (54)</span></label>
-                            </div>
-                            <label class="fw-900 mt-15">Item Condition</label>
-                            <div class="custome-checkbox">
-                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11"
-                                    value="" />
-                                <label class="form-check-label" for="exampleCheckbox11"><span>New (1506)</span></label>
-                                <br />
-                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox21"
-                                    value="" />
-                                <label class="form-check-label" for="exampleCheckbox21"><span>Refurbished
-                                        (27)</span></label>
-                                <br />
-                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox31"
-                                    value="" />
-                                <label class="form-check-label" for="exampleCheckbox31"><span>Used (45)</span></label>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
-                        Fillter</a>
+
                 </div>
                 <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
                     <img src="{{asset('frontend/assets/defaultImages/banner-11.png')}}" alt="" />
@@ -286,31 +253,20 @@ $sortByField = array('featured', 'price low to high', 'price high to low', 'rele
             $(this).width(50);
         });
         var rangeSlider = document.getElementById("slider-range");
-        var moneyFormat = wNumb({
-            decimals: 0,
-            thousand: ",",
-            prefix: "$"
-        });
         noUiSlider.create(rangeSlider, {
-            start: [0, 1000],
+            start: [{{$minPrice}}, {{$maxPrice}}],
             step: 1,
             range: {
-                min: [0],
-                max: [1000]
+                min: [{{$minPrice}}],
+                max: [{{$maxPrice}}]
             },
-            format: moneyFormat,
             connect: true
         });
-
         // Set visual min and max values and also update value hidden form inputs
         rangeSlider.noUiSlider.on("update", function (values, handle) {
              @this.set('minPrice', values[0]);
-            document.getElementById("slider-range-value2").innerHTML = values[1];
-            document.getElementsByName("min-value").value = moneyFormat.from(values[0]);
-            document.getElementsByName("max-value").value = moneyFormat.from(values[1]);
+             @this.set('maxPrice', values[1]);
         });
-
-
     }
    })
 </script>

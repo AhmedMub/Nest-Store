@@ -26,7 +26,9 @@ class Create extends Component
     */
 
     //main to product model
-    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $subSubCategory_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $life, $manufacturing_date;
+    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $life, $manufacturing_date;
+
+    public $subSubCategory_id = null;
 
     public $getSubCats = "";
     public $getSubSubCats = "";
@@ -217,6 +219,9 @@ class Create extends Component
         //to reset multi images field
         $this->dispatchBrowserEvent('multiImagesReset');
 
+        //empty collection after create
+        $this->addedTags = new Collection();
+
         $this->dispatchBrowserEvent('alert', [
             'type'      => 'success',
             'message'   => 'New product Created Successfully'
@@ -267,10 +272,16 @@ class Create extends Component
     //add tags to the collection
     public function addTagToCol($id)
     {
+
         $foundedTag = Tag::findOrFail($id);
 
         //to prevent user from adding duplicate tags in the collection
-        (!$this->addedTags->contains('name', $foundedTag->name)) ? $this->addedTags->push($foundedTag) : "";
+        if (isset($this->addedTags) && !$this->addedTags->contains('name', $foundedTag->name)) {
+            $this->addedTags->push($foundedTag);
+            //to clear the search after choosing tag
+            $this->getTags = new Collection();
+            $this->reset('queryTag');
+        }
     }
     //remove tag from collection
     public function removeFromCol($id)
@@ -288,8 +299,10 @@ class Create extends Component
     {
         $product = Product::findOrFail($id);
         $selectedTags = [];
-        foreach ($this->addedTags as $tag) {
-            $selectedTags[] = $tag->name;
+        if (isset($this->addedTags)) {
+            foreach ($this->addedTags as $tag) {
+                $selectedTags[] = $tag->name;
+            }
         }
         $product->syncTags($selectedTags);
     }

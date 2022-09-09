@@ -23,8 +23,8 @@ class productsByCategoryOrTag extends Component
     public $vendor;
     public $getAllProducts;
     public $categories;
-    public $minPrice;
-    public $maxPrice;
+    public $minPrice = 1;
+    public $maxPrice = 1000;
 
     /*
     /--- //NOTE fix error:  properties in a livewire component can be only [numeric, string, array, null, boolean] for $products property
@@ -49,8 +49,6 @@ class productsByCategoryOrTag extends Component
 
     public function mount($tags, $user, $langAr, $category, $subCategory, $subSubCategory, $byTag, $vendor, $getAllProducts)
     {
-        $this->minPrice = 0;
-        $this->maxPrice = 1000;
         $this->category = $category;
         $this->subCategory = $subCategory;
         $this->subSubCategory = $subSubCategory;
@@ -114,31 +112,31 @@ class productsByCategoryOrTag extends Component
     public function render()
     {
         if (isset($this->category)) {
-            $this->products = Product::whereProductStatus(1)->whereCategoryId($this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
-            $this->productsCount = Product::whereProductStatus(1)->whereCategoryId($this->currentObj->id)->count();
+            $this->products = Product::whereProductStatus(1)->whereCategoryId($this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->whereBetween('price', [$this->minPrice, $this->maxPrice])->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->whereCategoryId($this->currentObj->id)->whereBetween('price', [$this->minPrice, $this->maxPrice])->count();
         }
         if (isset($this->subCategory)) {
-            $this->products = Product::whereProductStatus(1)->where('subCategory_id', $this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
-            $this->productsCount = Product::whereProductStatus(1)->where('subCategory_id', $this->currentObj->id)->count();
+            $this->products = Product::whereProductStatus(1)->where('subCategory_id', $this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->whereBetween('price', [$this->minPrice, $this->maxPrice])->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->where('subCategory_id', $this->currentObj->id)->whereBetween('price', [$this->minPrice, $this->maxPrice])->count();
         }
         if (isset($this->subSubCategory)) {
-            $this->products = Product::whereProductStatus(1)->where('subSubCategory_id', $this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
-            $this->productsCount = Product::whereProductStatus(1)->where('subSubCategory_id', $this->currentObj->id)->count();
+            $this->products = Product::whereProductStatus(1)->where('subSubCategory_id', $this->currentObj->id)->whereBetween('price', [$this->minPrice, $this->maxPrice])->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->where('subSubCategory_id', $this->currentObj->id)->whereBetween('price', [$this->minPrice, $this->maxPrice])->count();
         }
         if (isset($this->vendor)) {
-            $this->products = Product::whereProductStatus(1)->where('vendor_id', $this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
-            $this->productsCount = Product::whereProductStatus(1)->where('vendor_id', $this->currentObj->id)->count();
+            $this->products = Product::whereProductStatus(1)->where('vendor_id', $this->currentObj->id)->orderBy($this->sortBy, $this->sortDirection)->whereBetween('price', [$this->minPrice, $this->maxPrice])->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->where('vendor_id', $this->currentObj->id)->whereBetween('price', [$this->minPrice, $this->maxPrice])->count();
         }
         //get products by tags
         if (isset($this->byTag)) {
-            $this->products = Product::withAnyTagsOfAnyType($this->tagName)->where('product_status', 1)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
-            $this->productsCount = Product::withAnyTagsOfAnyType($this->tagName)->count();
+            $this->products = Product::withAnyTagsOfAnyType($this->tagName)->where('product_status', 1)->whereBetween('price', [$this->minPrice, $this->maxPrice])->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
+            $this->productsCount = Product::withAnyTagsOfAnyType($this->tagName)->whereBetween('price', [$this->minPrice, $this->maxPrice])->count();
         }
 
         //to shop all products
         if (isset($this->getAllProducts)) {
-            $this->products = Product::whereProductStatus(1)->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
-            $this->productsCount = Product::whereProductStatus(1)->count();
+            $this->products = Product::whereProductStatus(1)->whereBetween('price', [$this->minPrice, $this->maxPrice])->orderBy($this->sortBy, $this->sortDirection)->latest()->paginate($this->perPage);
+            $this->productsCount = Product::whereProductStatus(1)->whereBetween('price', [$this->minPrice, $this->maxPrice])->count();
         }
         return view('livewire.frontend.product.products-by-category-or-tag', [
             'products' => $this->products,

@@ -18,9 +18,9 @@ class Read extends Component
             @endforeach
     */
     //Sorting
-    public $sortBy = 'name_en';
+    public $sortBy = 'id';
     public $sortDirection = 'desc';
-    public $field = 'name_en';
+    public $field = 'id';
     public $perPage = 5;
     public $search = '';
 

@@ -23,8 +23,11 @@ class ProductExpiration extends Model
 
     public function remainingDays()
     {
-
-        return Carbon::parse($this->mfg)->diffInDays(Carbon::parse($this->exp), false);
+        if (!Carbon::parse($this->exp)->isPast()) {
+            return Carbon::parse($this->mfg)->diffInDays(Carbon::parse($this->exp), false);
+        } else {
+            return 0;
+        }
     }
 
     /*
