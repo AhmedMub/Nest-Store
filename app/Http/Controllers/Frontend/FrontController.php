@@ -30,7 +30,10 @@ class FrontController extends Controller
         $remaining = $count - $skip;
 
         //get remaining categories
-        $catsRemainingRecords = Category::whereStatus(1)->where('featured_category', 0)->skip($skip)->take($remaining)->get();
+        $catsRemainingRecords = [];
+        if (Category::count() > 10) {
+            $catsRemainingRecords = Category::whereStatus(1)->where('featured_category', 0)->skip($skip)->take($remaining)->get();
+        }
 
         //Slider
         $sliders = Slider::whereStatus(1)->latest()->get();

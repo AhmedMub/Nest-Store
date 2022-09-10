@@ -235,13 +235,9 @@
         </div>
         <div class="card-footer">
             <div class="btn-list">
-                <button class="btn btn-success float-sm-end" type="submit">Add<i class="fa fa-plus ms-1"></i></button>
+                <x-loading-button btn="add" class="btn btn-success float-sm-end" icon="fa fa-plus ms-1" />
             </div>
         </div>
-        <div wire:loading wire:target='create'>
-            <x-admin.partials.loader />
-        </div>
-
     </form>
 </div>
 @push('child-styles')

@@ -15,8 +15,8 @@ class Create extends Component
 
     //TODO must add more validation with more messages and regex validation
     protected $rules = [
-        'name_en' => ['required', 'string', 'unique:sub_categories'],
-        'name_ar' => ['required', 'string', 'unique:sub_categories'],
+        'name_en' => ['required', 'string', 'unique:sub_subcategories'],
+        'name_ar' => ['required', 'string', 'unique:sub_subcategories'],
         'subcategory_id' => ['required', 'integer'],
     ];
 
@@ -28,16 +28,15 @@ class Create extends Component
 
     public function create()
     {
-        $count = SubSubcategory::count();
 
-        $this->validate();
+        // $this->validate();
 
         SubSubcategory::create([
             'name_en' => $this->name_en,
             'name_ar' => $this->name_ar,
             'subcategory_id' => $this->subcategory_id,
         ]);
-
+        $count = SubSubcategory::count();
         if ($count < 1) {
 
             redirect()->route('sub.subcategory');
