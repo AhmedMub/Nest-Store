@@ -21,7 +21,7 @@
                                     <div class="heading_s1">
                                         <h1 class="mb-5"> {{__('Create an Account')}} </h1>
                                         <p class="mb-30"> {{__('Already have an account?')}} <a
-                                                href="{{route('register')}}"> {{__('Login')}} </a>
+                                                href="{{route('login')}}"> {{__('Login')}} </a>
                                         </p>
                                     </div>
                                     <form method="POST" action="{{ route('register') }}">

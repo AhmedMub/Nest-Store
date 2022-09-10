@@ -21,19 +21,15 @@
                         <td>{{$order->created_at->format('d-m-Y')}}</td>
                         <td>
                             @if ($order->status == 0)
-                            pending
+                            Pending
                             @elseif($order->status == 1)
-                            awaiting for shipping
+                            Order has been confirmed
                             @elseif($order->status == 2)
-                            completed
+                            Processing
                             @elseif($order->status == 3)
-                            shipped
+                            Shipped
                             @elseif($order->status == 4)
-                            cancelled
-                            @elseif($order->status == 5)
-                            declined
-                            @else
-                            refunded
+                            Delivered
                             @endif
                         </td>
                         <td>

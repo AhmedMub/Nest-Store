@@ -20,12 +20,11 @@ class CreateOrdersTable extends Migration
             /*
                 Status as follow:
                 0 => pending
-                1 => awaiting for shipping
-                2 => completed
-                3 => shipped
-                4 => cancelled
-                5 => declined
-                6 => refunded
+                1 => confirmed
+                2 => processing
+                3 => shipped orders
+                4 => delivered orders
+                5 => canceled orders
             */
             $table->integer('status');
             $table->text('address');
