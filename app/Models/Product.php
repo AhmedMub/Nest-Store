@@ -10,10 +10,11 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Tags\HasTags;
+use Laravel\Scout\Searchable;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, Sluggable, HasSku, InteractsWithMedia, HasTags;
+    use HasFactory, Sluggable, HasSku, InteractsWithMedia, HasTags, Searchable;
 
     protected $fillable = [
         'createdBy_adminID', 'updatedBy_adminID', 'product_status', 'subCategory_id', 'category_id', 'subSubCategory_id', 'vendor_id', 'slug', 'name_en', 'name_ar', 'sku', 'qty', 'price', 'size', 'hot_deals', 'new_deals', 'type', 'mfg', 'life', 'desc_status', 'discount_status', 'additionalInfo_status', 'vendor_status', 'reviews_status',
@@ -143,6 +144,14 @@ class Product extends Model implements HasMedia
     public function getPriceAttribute($val)
     {
         return number_format((float)round($val, 2, PHP_ROUND_HALF_DOWN), 2, '.', ',');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'name_en' => $this->name_en,
+            'name_ar' => $this->name_ar,
+        ];
     }
 
     //has many through to access sub-subcategory

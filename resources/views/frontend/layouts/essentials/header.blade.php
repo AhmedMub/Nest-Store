@@ -83,20 +83,8 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form action="#">
-                            <select class="select-active">
-                                @if (str_contains(url()->current(), 'ar'))
-                                @foreach ($categories as $cat)
-                                <option>{{$cat->name_ar}}</option>
-                                @endforeach
-                                @else
-                                @foreach ($categories as $cat)
-                                <option>{{$cat->name_en}}</option>
-                                @endforeach
-                                @endif
-                            </select>
-                            <input type="text" placeholder="{{__('frontend/header.Search for items...')}}" />
-                        </form>
+                        <livewire:frontend.product.header-search-for-products :langAr="$langAr"
+                            :categories="$categories" />
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">

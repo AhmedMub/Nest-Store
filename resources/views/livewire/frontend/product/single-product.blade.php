@@ -508,7 +508,7 @@ $headerName = $product->name_en;
                                         @foreach ($relatedProduct as $product)
                                         <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                             <x-frontend.products.single-product-view :langAr="$langAr" :user="$user"
-                                                :headerName="$headerName" :product="$product" />
+                                                :product="$product" />
                                         </div>
                                         @endforeach
                                         @endif

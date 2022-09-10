@@ -18,6 +18,7 @@ class FrontController extends Controller
 
     public function index()
     {
+        //dd(Product::whereHas('productMainCat', function($query) use)->search('product 4')->get());
         //get first records where are 10 records
         $catsFirstRecords = Category::select('*')->whereStatus(1)->where('featured_category', 0)->take(10)->get();
 

@@ -6,7 +6,6 @@ use Illuminate\View\Component;
 
 class SingleProductView extends Component
 {
-    public $headerName;
     public $product;
     public $user;
     public $langAr;
@@ -16,9 +15,8 @@ class SingleProductView extends Component
      *
      * @return void
      */
-    public function __construct($headerName, $product, $user, $langAr)
+    public function __construct($product, $user, $langAr)
     {
-        $this->headerName = $headerName;
         $this->product = $product;
         $this->user = $user;
         $this->langAr = $langAr;

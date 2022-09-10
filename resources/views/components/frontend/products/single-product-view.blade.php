@@ -1,3 +1,11 @@
+@php
+$headerName;
+if($langAr) {
+$headerName = $product->productMainCat->name_ar;
+} else {
+$headerName = $product->productMainCat->name_en;
+}
+@endphp
 <div class="product-cart-wrap mb-30">
     <div class="product-img-action-wrap">
         <div class="product-img product-img-zoom">

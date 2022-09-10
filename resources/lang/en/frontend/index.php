@@ -24,5 +24,6 @@ return [
     'vegetable and fruit' => 'vegetable and fruit',
     'Daily Best Sells' => 'Daily Best Sells',
     'Bring nature into your home' => 'Bring nature into your home',
+    'All Categories' => 'All Categories'
 
 ];
