@@ -41,8 +41,10 @@
                             for {{$order->orderItems->count();}} item
                         </td>
                         <td>
+                            @if ($order->status != 5)
                             <livewire:frontend.profile.delete-order :order="$order->id" />
                             <span> | </span>
+                            @endif
                             <a href="{{route('invoice', $order->invoice_no)}}" class="btn-small">View</a>
                         </td>
                     </tr>
