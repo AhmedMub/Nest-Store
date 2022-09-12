@@ -10,7 +10,9 @@ class UserOrders extends Component
 {
     public $orders;
 
-    protected $listeners = ['deleted' => '$refresh'];
+    protected $listeners = [
+        'refresh' => '$refresh'
+    ];
 
     public function render()
     {

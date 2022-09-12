@@ -8,40 +8,61 @@ use Livewire\Component;
 class DeleteOrder extends Component
 {
     public $order;
+    public $reason;
+    public $saveReason = null;
 
-    protected $listeners = ['delete'];
+    protected $rules = [
+        'reason' => ['required', 'string', "regex:/^[a-zA-Z0-9\s&._-]+$/i"]
+    ];
+    protected $messages = [
+        'reason.required' => 'Please provide a brief reason for the cancellation'
+    ];
 
-    public function mount($order)
+    protected $listeners = [
+        'delete' => 'sendDeleteRequest',
+        'cancelMyOrder' => 'defineOrderId'
+    ];
+
+    public function defineOrderId($id)
     {
-        $this->order = $order;
+        $this->order = $id;
     }
 
     public function confirm($id)
     {
+
+        $this->validate();
+
+        $this->saveReason = $this->reason;
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'warning',
             'title' => 'Are you sure?',
             'text' => 'You won\'t be able to revert this!',
             'id' => $id,
         ]);
+        $this->dispatchBrowserEvent('hideModal');
     }
 
-    public function delete($id)
+    public function sendDeleteRequest($id)
     {
         $getOrder = Order::findOrFail($id);
-
-        $getOrder->update(['status' => 5]);
-
-        $this->emitTo('frontend.profile.user-orders', 'deleted');
+        $getOrder->update([
+            'cancel_request' => 1,
+            'canceled_reason' => $this->saveReason
+        ]);
 
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'success',
-            'title' => 'Deleted!',
-            'text' => 'Your order has been deleted.',
+            'title' => 'Cancel request sent successfully!',
+            'text' => 'You will be notified by email cancel when request get approved',
         ]);
+
+        //after send the request return the def state
+        $this->saveReason = null;
+        $this->reset('reason');
+
+        $this->emitTo('frontend.profile.user-orders', 'refresh');
         //NOTE this action admin must be notified and customer email of cancellations
-
-
     }
 
 

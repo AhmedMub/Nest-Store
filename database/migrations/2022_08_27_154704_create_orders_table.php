@@ -27,6 +27,7 @@ class CreateOrdersTable extends Migration
                 5 => canceled orders
             */
             $table->integer('status');
+            $table->integer('cancel_request')->default(0);
             $table->text('address');
             $table->text('addressTwo')->nullable();
             $table->string('district');
