@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\SubSubcategoryController;
 use App\Http\Controllers\Admin\Testing;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\ManageOrdersController;
 use App\Http\Controllers\Admin\ShippingController;
 
 /*
@@ -137,5 +138,22 @@ Route::middleware(['auth:sanctum,admin', 'verified', 'auth:admin'])->prefix('adm
 
         //district
         Route::get('manage-shipping/district', 'districtShipping')->name('district');
+    });
+
+    //orders
+    Route::controller(ManageOrdersController::class)->prefix('manage-orders/')->name('orders.')->group(function () {
+        // confirmed
+        // processing
+        // shipped orders
+        // delivered orders
+        // canceled orders
+        //cancel requests
+        Route::get('pending', 'pendingOrders')->name('pending');
+        Route::get('confirmed', 'confirmedOrders')->name('confirmed');
+        Route::get('processing', 'processingOrders')->name('processing');
+        Route::get('shipped', 'shippedOrders')->name('shipped');
+        Route::get('delivered', 'deliveredOrders')->name('delivered');
+        Route::get('canceled', 'canceledOrders')->name('canceled');
+        Route::get('canceled/requests', 'canceledOrdersRequests')->name('canceled.requests');
     });
 });
