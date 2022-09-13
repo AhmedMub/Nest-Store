@@ -7,6 +7,16 @@
 <livewire:admin.orders.pending />
 @elseif ($countOrders > 0 && url()->current() == route('orders.confirmed'))
 <livewire:admin.orders.confirm />
+@elseif ($countOrders > 0 && url()->current() == route('orders.processing'))
+<livewire:admin.orders.processing />
+@elseif ($countOrders > 0 && url()->current() == route('orders.shipped'))
+<livewire:admin.orders.shipping />
+@elseif ($countOrders > 0 && url()->current() == route('orders.delivered'))
+<livewire:admin.orders.deliver />
+@elseif ($countOrders > 0 && url()->current() == route('orders.canceled'))
+<livewire:admin.orders.cancel-orders />
+@elseif ($countOrders > 0 && url()->current() == route('orders.canceled.requests'))
+<livewire:admin.orders.cancel-requests />
 @else
 <div class="card">
     <div class="card-body text-center">

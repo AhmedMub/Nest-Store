@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Order extends Model
 {
     use HasFactory;
@@ -17,5 +18,21 @@ class Order extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class, 'order_id');
+    }
+
+    public function userOrders()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeSearch($query, $val)
+    {
+        return $query
+            ->where('fname', 'like', '%' . $val . '%')
+            ->OrWhere('lname', 'like', '%' . $val . '%')
+            ->OrWhere('email', 'like', '%' . $val . '%')
+            ->OrWhere('amount', 'like', '%' . $val . '%')
+            ->OrWhere('invoice_no', 'like', '%' . $val . '%')
+            ->OrWhereDate('created_at', 'like', '%' . $val . '%');
     }
 }

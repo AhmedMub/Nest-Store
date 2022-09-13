@@ -10,29 +10,51 @@ class ManageOrdersController extends Controller
 {
     public function pendingOrders()
     {
-        $countOrders = Order::whereStatus(0)->count();
+        $orderType = 0;
+        $countOrders = Order::whereStatus($orderType)->count();
 
         return view('admin.pages.manage-orders', compact('countOrders'));
     }
     public function confirmedOrders()
     {
-        $countOrders = Order::whereStatus(1)->count();
+        $orderType = 1;
+        $countOrders = Order::whereStatus($orderType)->count();
 
         return view('admin.pages.manage-orders', compact('countOrders'));
     }
     public function processingOrders()
     {
+        $orderType = 2;
+        $countOrders = Order::whereStatus($orderType)->count();
+
+        return view('admin.pages.manage-orders', compact('countOrders'));
     }
     public function shippedOrders()
     {
+        $orderType = 3;
+        $countOrders = Order::whereStatus($orderType)->count();
+
+        return view('admin.pages.manage-orders', compact('countOrders'));
     }
     public function deliveredOrders()
     {
+        $orderType = 4;
+        $countOrders = Order::whereStatus($orderType)->count();
+
+        return view('admin.pages.manage-orders', compact('countOrders'));
     }
     public function canceledOrders()
     {
+        $orderType = 5;
+        $countOrders = Order::whereStatus($orderType)->count();
+
+        return view('admin.pages.manage-orders', compact('countOrders'));
     }
     public function canceledOrdersRequests()
     {
+        $orderType = 6;
+        $countOrders = Order::whereCancelRequest(1)->count();
+
+        return view('admin.pages.manage-orders', compact('countOrders'));
     }
 }
