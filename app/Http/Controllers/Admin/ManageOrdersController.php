@@ -58,4 +58,11 @@ class ManageOrdersController extends Controller
 
         return view('admin.pages.manage-orders', compact('countOrders'));
     }
+
+    public function showInvoice($id)
+    {
+        $order = Order::where('invoice_no', $id)->firstOrFail();
+
+        return view('frontend.pages.order-invoice', compact('order'));
+    }
 }

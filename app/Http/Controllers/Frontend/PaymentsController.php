@@ -193,7 +193,7 @@ class PaymentsController extends Controller
     //generate order invoice
     public function userOrderInvoice($invoice)
     {
-        $order = Order::where('invoice_no', "2022-0001")->firstOrFail();
+        $order = Order::where('invoice_no', $invoice)->firstOrFail();
 
         return view('frontend.pages.order-invoice', compact('order'));
     }

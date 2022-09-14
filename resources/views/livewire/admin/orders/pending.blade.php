@@ -85,6 +85,9 @@
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
+                                <a href="{{route('orders.show.invoice', $order->invoice_no)}}" target="_blank"
+                                    class="btn text-success bg-info-transparent btn-icon py-1 me-2"><span
+                                        class="bi bi-receipt fs-16"></span></a>
                                 <a wire:click="$emitTo('admin.orders.show-order-items','showOrderItems',{{$order->id}})"
                                     class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
