@@ -17,6 +17,7 @@
 <livewire:admin.orders.cancel-orders />
 @elseif ($countOrders > 0 && url()->current() == route('orders.canceled.requests'))
 <livewire:admin.orders.cancel-requests />
+
 @else
 <div class="card">
     <div class="card-body text-center">
@@ -25,4 +26,7 @@
     </div>
 </div>
 @endif
+
+{{-- /show order items --}}
+<livewire:admin.orders.show-order-items />
 @endsection

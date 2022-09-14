@@ -69,10 +69,23 @@ inthe dashboard view and so on. This is to enhance performance and remove unrela
 
 {{-- SIDE-MENU JS--}}
 <script src="{{asset('backend/assets/plugins/sidemenu/sidemenu.js')}}"></script>
+{{-- sweet alert --}}
+<!-- SWEET-ALERT JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script>
+    window.addEventListener('swal:modal', event => {
+            swal({
+                title: event.detail.title,
+                text: event.detail.text,
+                icon: event.detail.type
+            });
+        });
+</script>
 @endauth
 
 {{-- Added scripts --}}
 @stack('child-scripts')
+
 {{-- Color Theme js --}}
 <script src="{{asset('backend/js/themeColors.js')}}"></script>
 

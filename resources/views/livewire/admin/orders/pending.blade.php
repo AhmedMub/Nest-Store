@@ -85,16 +85,18 @@
                         </td>
                         <td>
                             <div class=" d-flex justify-content-center g-2">
-                                <a wire:click="$emit('showItems',{{$order->id}})"
+                                <a wire:click="$emitTo('admin.orders.show-order-items','showOrderItems',{{$order->id}})"
                                     class="modal-effect btn text-secondary bg-secondary-transparent btn-icon py-1 me-2"
                                     data-bs-effect="effect-super-scaled" data-bs-toggle="modal"
-                                    data-bs-original-title="showItems" href="#modaldemo8">
+                                    data-bs-original-title="showItems" href="#extralargemodal">
                                     <span class="bi bi-eye-fill fs-16"></span>
                                 </a>
-                                <a wire:click="$emit('delete',{{$order->id}})"
-                                    class="btn text-danger bg-danger-transparent btn-icon py-1"
-                                    data-bs-target="#smallmodalDelete" data-bs-toggle="modal"
-                                    data-bs-original-title="Delete"><span class="bi bi-trash fs-16"></span></a>
+                                <a wire:click="confirm({{$order->id}})"
+                                    class="btn text-success bg-success-transparent btn-icon py-1 me-2"><span
+                                        class="bi bi-check-circle fs-16"></span></a>
+                                <a wire:click="deleteItem({{$order->id}})"
+                                    class="btn text-danger bg-danger-transparent btn-icon py-1"><span
+                                        class="bi bi-trash fs-16"></span></a>
                             </div>
                         </td>
                     </tr>
@@ -132,3 +134,33 @@
         </div>
     </div>
 </div>
+@push('child-scripts')
+<script>
+    window.addEventListener('swal:confirm', event => {
+        swal({
+            title: event.detail.title,
+            text: event.detail.text,
+            icon: event.detail.type,
+            buttons: true,
+            dangerMode: true
+        }).then((confirmed)=> {
+            if(confirmed) {
+                Livewire.emit('confirmOrder', event.detail.id);
+            }
+        });
+    });
+    window.addEventListener('swal:confirmDelete', event => {
+        swal({
+            title: event.detail.title,
+            text: event.detail.text,
+            icon: event.detail.type,
+            buttons: true,
+            dangerMode: true
+        }).then((confirmed)=> {
+            if(confirmed) {
+                Livewire.emit('deletedConfirmed', event.detail.id);
+            }
+        });
+    });
+</script>
+@endpush
