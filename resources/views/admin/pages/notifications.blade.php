@@ -11,28 +11,35 @@
         @foreach ($notification[0] as $order)
         <li>
             <div class="notification-time">
-                <span class="date">Today</span>
-                <span class="time">02:31</span>
+                <span class="date">
+                    @if (Carbon\Carbon::parse($order->updated_at)->isToday())
+                    Today
+                    @elseif (Carbon\Carbon::parse($order->updated_at)->isYesterday())
+                    Yesterday
+                    @else
+                    {{$order->updated_at->format('d M')}}
+                    @endif
+                </span>
+                <span class="time">{{$order->updated_at->format('H:i')}}</span>
             </div>
             <div class="notification-icon">
-                <a href="javascript:void(0);"></a>
-            </div>
-            <div class="notification-time-date mb-2 d-block d-md-none">
-                <span class="date">Today</span>
-                <span class="time ms-2">02:31</span>
+                <a href="{{route('orders.canceled.requests')}}"></a>
             </div>
             <div class="notification-body">
                 <div class="media mt-0">
                     <div class="main-avatar avatar-md online">
-                        <img alt="avatar" class="br-7" src="../assets/images/users/1.jpg">
+                        <img alt="avatar" class="br-7" src="{{asset('backend/default-images/user.png')}}">
                     </div>
                     <div class="media-body ms-3 d-flex">
                         <div class="">
-                            <p class="fs-15 text-dark fw-bold mb-0">Dennis Trexy</p>
-                            <p class="mb-0 fs-13 text-dark">2 Members Accepted your Request.</p>
+                            <p class="fs-15 text-dark fw-bold mb-0">{{$order->userOrders->getFullName()}}</p>
+                            <p class="mb-0 fs-13 text-dark text-capitalize">{{$order->userOrders->getFullName()}}
+                                request
+                                to cancel order invoice No: {{$order->invoice_no}}
+                            </p>
                         </div>
                         <div class="notify-time">
-                            <p class="mb-0 text-muted fs-11">2 Hrs ago</p>
+                            <p class="mb-0 text-muted fs-11">{{$order->updated_at->diffForHumans()}}</p>
                         </div>
                     </div>
                 </div>
