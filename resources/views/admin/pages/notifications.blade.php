@@ -2,7 +2,7 @@
 @section('title', 'Notifications')
 @section('page-title','Notifications List')
 @section('content')
-@if (count($notifications) > 0)
+@if (count($notifications[0][0]) > 0)
 <div class="container">
     <ul class="notification">
         @foreach ($notifications as $notification)
@@ -50,6 +50,11 @@
     </ul>
 </div>
 @else
-
+<div class="card">
+    <div class="card-body text-center">
+        <img class="fixWidth" src="{{asset('storage/default_images/default_icons/categories.png')}}" alt="">
+        <h3 class="mt-4 mb-2 text-capitalize">no notificaitons found</h3>
+    </div>
+</div>
 @endif
 @endsection
