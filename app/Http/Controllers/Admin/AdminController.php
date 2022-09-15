@@ -54,7 +54,6 @@ class AdminController extends Controller
      */
     public function show()
     {
-
         return view('admin.pages.dashboard');
     }
 

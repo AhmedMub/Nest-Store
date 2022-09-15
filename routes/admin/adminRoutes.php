@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Testing;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ManageOrdersController;
+use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\ShippingController;
 
 /*
@@ -156,5 +157,11 @@ Route::middleware(['auth:sanctum,admin', 'verified', 'auth:admin'])->prefix('adm
         Route::get('canceled', 'canceledOrders')->name('canceled');
         Route::get('cancel/requests', 'canceledOrdersRequests')->name('canceled.requests');
         Route::any('order/invoice/{invoice}', 'showInvoice')->name('show.invoice');
+    });
+
+    //notifications
+    Route::controller(NotificationsController::class)->prefix('manage-notifications/')->name('notification.')->group(function () {
+        //show all list
+        Route::any('show/all', 'notificationsList')->name('show.all');
     });
 });
