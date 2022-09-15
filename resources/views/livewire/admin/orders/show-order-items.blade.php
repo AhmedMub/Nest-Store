@@ -7,6 +7,22 @@
                     class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body card-body py-2 bg-color">
+                @if (!empty($orderReason))
+                <div class="row justify-content-center">
+                    {{-- /cancel reason --}}
+                    <div class="col-md-12 col-xl-4">
+                        <div class="card text-danger bg-danger-transparent">
+                            <div class="card-body">
+                                <h4 class="card-title text-capitalize">cancel reason</h4>
+                                <p class="card-text">
+                                    {{$orderReason}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
                 <div class="row row-sm">
                     {{-- order details --}}
                     <div class="col-xl-6 col-lg-12 col-md-12">
@@ -164,7 +180,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-12">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Order Items</h3>

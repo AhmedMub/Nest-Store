@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Orders;
 
 use App\Models\Order;
+use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 
 class ShowOrderItems extends Component
@@ -10,8 +11,16 @@ class ShowOrderItems extends Component
     public $status, $address, $addressTwo, $district, $area, $fname, $lname, $email, $postal_code, $payment_method, $amount, $additional_info, $transaction_id, $invoice_no, $currency, $shipping_dated, $delivered_date, $canceled_date, $canceled_reason, $discounted_coupon, $phone, $coupon_discount_percentage, $shipping_fees, $subtotal, $cancel_request;
 
     public $items = [];
+    public $currentRoute;
+    public $orderReason = "";
 
     protected $listeners = ['showOrderItems' => 'showItems'];
+
+    public function mount()
+    {
+        // so i can use in the showItems()
+        $this->currentRoute = Route::currentRouteName();
+    }
 
     public function showItems($id)
     {
@@ -27,6 +36,9 @@ class ShowOrderItems extends Component
         $this->phone = $order->phone;
         $this->postal_code = $order->postal_code;
         $this->additional_info = $order->additional_info;
+        if ($this->currentRoute == "orders.canceled.requests") {
+            $this->orderReason = $order->canceled_reason;
+        }
         //....
         $this->payment_method = $order->payment_method;
         $this->amount = $order->amount;
