@@ -2,12 +2,157 @@
 
 namespace App\Http\Livewire\Admin\Orders;
 
+use App\Models\Order;
+use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Processing extends Component
 {
+    use WithPagination;
+    //Sorting
+    public $sortBy = 'id';
+    public $sortDirection = 'desc';
+    public $field = 'id';
+    public $perPage = 5;
+    public $search = '';
+
+    // 2 is orders processing
+    public $orderType = 2;
+    public $type;
+
+
+    protected $paginationTheme = 'bootstrap';
+    protected $listeners = [
+        'shippingOrders' => 'passedOrder',
+        'deletedShipped' => 'delete',
+    ];
+
+    //Bulk Delete
+    //this is an empty array property will be bind to all checkboxes it will grab all selected values ids
+    public $selectedCheckboxes = [];
+
+    //select all method below
+    public $selectAll = false;
+
+    public $bulkDisabled = true;
+
+    public function sortBy($field)
+    {
+        if ($this->sortDirection == 'desc') {
+
+            $this->sortDirection = 'asc';
+        } else {
+
+            $this->sortDirection = 'desc';
+        }
+        return $this->sortBy = $field;
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    //bulk delete: this is will be bind with delete button (wire:click.prevent='deleteSelected'), it will grab all ids from selectedCheckboxes array and will deleted, then return empty array as it was, then make sure that selectAll false
+    public function selectedOrders()
+    {
+        if (count($this->selectedCheckboxes) > 0) {
+            foreach ($this->selectedCheckboxes as $model) {
+                Order::findOrFail($model)->update(['status' => 3]);
+            }
+        }
+        $this->selectedCheckboxes = [];
+        $this->selectAll = false;
+
+        $this->dispatchBrowserEvent('alert', [
+            'type'      => 'success',
+            'message'   => 'selected orders are passed to shipping orders successfully!'
+        ]);
+
+        //if no pending orders left admin will be directed to confirmed orders
+        if (Order::whereStatus($this->orderType)->count() == 0) {
+            redirect()->route('orders.shipped');
+        }
+    }
+
+    //catch select all property from checkbox input: this will be model bind ( wire:model='selectAll') for checkbox input type, so if user checked 'select All' all checkboxes will be selected accordingly
+    public function updatedSelectAll($val)
+    {
+        if ($val) {
+            $this->selectedCheckboxes = Order::pluck('id');
+        } else {
+            $this->selectedCheckboxes = [];
+        }
+    }
+
+    public function confirm($id)
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'warning',
+            'title' => 'Are you sure want to ship this order?',
+            'text' => 'This action will ship the selected order so it will be removed from processing orders',
+            'id' => $id,
+        ]);
+    }
+    public function passedOrder($id)
+    {
+        $updateStatus = Order::findOrFail($id)->update(['status' => 3]);
+
+        if ($updateStatus) {
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'success',
+                'title' => 'Order has passed to shipping orders successfully!',
+                'text' => 'Find the order in shipping orders list',
+            ]);
+        }
+        //if no pending orders left admin will be directed to confirmed orders
+        if (Order::whereStatus($this->orderType)->count() == 0) {
+            redirect()->route('orders.shipped');
+        }
+    }
+    public function deleteItem($id)
+    {
+        $this->dispatchBrowserEvent('swal:confirmDelete', [
+            'type' => 'warning',
+            'title' => 'Are you sure want to delete this order?',
+            'text' => 'You won\'t be able to revert this!',
+            'id' => $id,
+        ]);
+    }
+    public function delete($id)
+    {
+        $getOrder = Order::findOrFail($id);
+        //increase the qty that has been deducted from order once its crated
+        foreach ($getOrder->orderItems as $order) {
+            $product = Product::findOrFail($order->orderProduct->id);
+            $product->update([
+                'qty' => $product->qty + $order->qty
+            ]);
+        }
+
+        $getOrder->update(['status' => 5]);
+
+        if ($getOrder) {
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'success',
+                'title' => 'Order deleted successfully!',
+                'text' => 'Find the order in deleted orders list',
+            ]);
+        }
+        //if no pending orders left admin will be directed to canceled orders
+        if (Order::whereStatus($this->orderType)->count() == 0) {
+            redirect()->route('orders.canceled');
+        }
+    }
+
+
     public function render()
     {
-        return view('livewire.admin.orders.processing');
+        $this->bulkDisabled = count($this->selectedCheckboxes) < 1;
+
+        $orders = Order::whereStatus($this->orderType)->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+
+        return view('livewire.admin.orders.processing', compact('orders'));
     }
 }

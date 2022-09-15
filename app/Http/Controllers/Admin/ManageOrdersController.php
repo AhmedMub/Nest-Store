@@ -53,8 +53,8 @@ class ManageOrdersController extends Controller
     }
     public function canceledOrdersRequests()
     {
-        $orderType = 6;
-        $countOrders = Order::whereCancelRequest(1)->count();
+        $orderType = 1;
+        $countOrders = Order::whereCancelRequest($orderType)->where('status', '!=', 5)->count();
 
         return view('admin.pages.manage-orders', compact('countOrders'));
     }

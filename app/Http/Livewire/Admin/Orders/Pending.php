@@ -23,7 +23,7 @@ class Pending extends Component
 
     protected $paginationTheme = 'bootstrap';
     protected $listeners = [
-        'confirmOrder',
+        'confirmOrder' => 'passedOrder',
         'deletedConfirmed' => 'delete'
     ];
 
@@ -68,6 +68,11 @@ class Pending extends Component
             'type'      => 'success',
             'message'   => 'Orders has been confirmed'
         ]);
+
+        //if no pending orders left admin will be directed to confirmed orders
+        if (Order::whereStatus(0)->count() == 0) {
+            redirect()->route('orders.confirmed');
+        }
     }
 
     //catch select all property from checkbox input: this will be model bind ( wire:model='selectAll') for checkbox input type, so if user checked 'select All' all checkboxes will be selected accordingly
@@ -89,7 +94,7 @@ class Pending extends Component
             'id' => $id,
         ]);
     }
-    public function confirmOrder($id)
+    public function passedOrder($id)
     {
         $updateStatus = Order::findOrFail($id)->update(['status' => 1]);
 
@@ -99,6 +104,10 @@ class Pending extends Component
                 'title' => 'Order confirmed successfully!',
                 'text' => 'Find the order in confirmed orders list',
             ]);
+        }
+        //if no pending orders left admin will be directed to confirmed orders
+        if (Order::whereStatus(0)->count() == 0) {
+            redirect()->route('orders.confirmed');
         }
     }
     public function deleteItem($id)
@@ -129,6 +138,10 @@ class Pending extends Component
                 'title' => 'Order deleted successfully!',
                 'text' => 'Find the order in deleted orders list',
             ]);
+        }
+        //if no pending orders left admin will be directed to canceled orders
+        if (Order::whereStatus(0)->count() == 0) {
+            redirect()->route('orders.canceled');
         }
     }
 

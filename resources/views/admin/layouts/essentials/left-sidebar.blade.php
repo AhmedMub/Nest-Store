@@ -181,7 +181,7 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                         </li>
                         <li>
                             <a href="{{$confirmOrders}}"
-                                class=" @if ($currentRoute == $confirmOrders) active @endif slide-item text-capitalize">confirm
+                                class=" @if ($currentRoute == $confirmOrders) active @endif slide-item text-capitalize">confirmed
                                 orders
                             </a>
                         </li>
@@ -199,13 +199,7 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                         </li>
                         <li>
                             <a href="{{$deliveredOrders}}"
-                                class=" @if ($currentRoute == $deliveredOrders) active @endif slide-item text-capitalize">deliver
-                                orders
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{$canceledOrders}}"
-                                class=" @if ($currentRoute == $canceledOrders) active @endif slide-item text-capitalize">cancel
+                                class=" @if ($currentRoute == $deliveredOrders) active @endif slide-item text-capitalize">delivered
                                 orders
                             </a>
                         </li>
@@ -213,6 +207,12 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                             <a href="{{$canceledOrdersRequests}}"
                                 class=" @if ($currentRoute == $canceledOrdersRequests) active @endif slide-item text-capitalize">cancel
                                 requests
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{$canceledOrders}}"
+                                class=" @if ($currentRoute == $canceledOrders) active @endif slide-item text-capitalize">canceled
+                                orders
                             </a>
                         </li>
                     </ul>

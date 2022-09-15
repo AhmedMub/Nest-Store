@@ -9,6 +9,8 @@ class ShowOrderItems extends Component
 {
     public $status, $address, $addressTwo, $district, $area, $fname, $lname, $email, $postal_code, $payment_method, $amount, $additional_info, $transaction_id, $invoice_no, $currency, $shipping_dated, $delivered_date, $canceled_date, $canceled_reason, $discounted_coupon, $phone, $coupon_discount_percentage, $shipping_fees, $subtotal, $cancel_request;
 
+    public $items = [];
+
     protected $listeners = ['showOrderItems' => 'showItems'];
 
     public function showItems($id)
@@ -41,6 +43,8 @@ class ShowOrderItems extends Component
         $this->shipping_fees = $order->shipping_fees;
         $this->subtotal = $order->subtotal;
         //$this->cancel_request = $order->cancel_request;
+
+        $this->items = $order->orderItems;
     }
 
     public function render()

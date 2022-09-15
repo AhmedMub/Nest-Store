@@ -154,7 +154,7 @@ Route::middleware(['auth:sanctum,admin', 'verified', 'auth:admin'])->prefix('adm
         Route::get('shipped', 'shippedOrders')->name('shipped');
         Route::get('delivered', 'deliveredOrders')->name('delivered');
         Route::get('canceled', 'canceledOrders')->name('canceled');
-        Route::get('canceled/requests', 'canceledOrdersRequests')->name('canceled.requests');
+        Route::get('cancel/requests', 'canceledOrdersRequests')->name('canceled.requests');
         Route::any('order/invoice/{invoice}', 'showInvoice')->name('show.invoice');
     });
 });

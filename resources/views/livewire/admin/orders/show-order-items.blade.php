@@ -8,10 +8,11 @@
             </div>
             <div class="modal-body card-body py-2 bg-color">
                 <div class="row row-sm">
+                    {{-- order details --}}
                     <div class="col-xl-6 col-lg-12 col-md-12">
                         <div class="card custom-card">
                             <div class="card-body">
-                                <h5 class="mb-3">customer details</h5>
+                                <h5 class="mb-3">Order details</h5>
                                 <div class="">
                                     <div class="row">
                                         <div class="col-xl-12">
@@ -55,7 +56,7 @@
                                                         </tr>
                                                         <tr>
                                                             <th class="text-capitalize">currency</th>
-                                                            <td class="text-capitalize">{{$currency}}</td>
+                                                            <td class="text-uppercase">{{$currency}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="text-capitalize">transaction id</th>
@@ -69,7 +70,7 @@
                                                         </tr>
                                                         <tr>
                                                             <th class="text-capitalize">payment method</th>
-                                                            <td class="text-capitalize">@if ($payment_method == 0)
+                                                            <td class="text-uppercase">@if ($payment_method == 0)
                                                                 cash
                                                                 @else
                                                                 online
@@ -93,6 +94,7 @@
                             </div>
                         </div>
                     </div>
+                    {{-- customer detials --}}
                     <div class="col-xl-6 col-lg-12 col-md-12">
                         <div class="card custom-card">
                             <div class="card-body">
@@ -172,37 +174,29 @@
                                     <table class="table border text-nowrap text-md-nowrap mb-0">
                                         <thead class="table-primary">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Salary</th>
+                                                <th>SKU</th>
+                                                <th class="text-capitalize">Name</th>
+                                                <th class="text-capitalize">Quantity</th>
+                                                <th class="text-capitalize">price</th>
+                                                <th class="text-capitalize">price before discounted</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($items as $item)
                                             <tr>
-                                                <td>1</td>
-                                                <td>Joan Powell</td>
-                                                <td>Associate Developer</td>
-                                                <td>$450,870</td>
+                                                <td class="text-capitalize">{{$item->orderProduct->sku}}</td>
+                                                <td class="text-capitalize">{{$item->orderProduct->name_en}}</td>
+                                                <td>{{$item->qty}}</td>
+                                                <td class="text-capitalize">{{$item->price}}</td>
+                                                <td class="text-capitalize">
+                                                    @if ($item->discounted_price)
+                                                    ${{$item->discounted_price}}
+                                                    @else
+                                                    <span class="badge bg-warning fs-6">N/A</span>
+                                                    @endif
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Gavin Gibson</td>
-                                                <td>Account manager</td>
-                                                <td>$230,540</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Julian Kerr</td>
-                                                <td>Senior Javascript Developer</td>
-                                                <td>$55,300</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Cedric Kelly</td>
-                                                <td>Accountant</td>
-                                                <td>$234,100</td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
