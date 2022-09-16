@@ -14,6 +14,16 @@ class Order extends Model
         'user_id', 'status', 'address', 'addressTwo', 'district', 'area', 'fname', 'lname', 'email', 'postal_code', 'payment_method', 'amount', 'additional_info', 'transaction_id', 'invoice_no', 'currency', 'shipping_date', 'delivered_date', 'canceled_date', 'canceled_reason', 'discounted_coupon', 'phone', 'coupon_discount_percentage', 'shipping_fees', 'subtotal', 'cancel_request'
     ];
 
+    /*
+        Status as follow:
+        0 => pending
+        1 => confirmed
+        2 => processing
+        3 => shipped orders
+        4 => delivered orders
+        5 => canceled orders
+    */
+
     //relation
     public function orderItems()
     {

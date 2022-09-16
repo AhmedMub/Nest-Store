@@ -1,5 +1,5 @@
 <div class="sidebar sidebar-right sidebar-animate">
-    <div class="panel panel-primary card mb-0 shadow-none border-0">
+    {{-- <div class="panel panel-primary card mb-0 shadow-none border-0">
         <div class="tab-menu-heading border-0 d-flex p-3">
             <div class="card-title mb-0"><i class="fe fe-bell me-2"></i><span class=" pulse"></span>Notifications</div>
             <div class="card-options ms-auto">
@@ -9,7 +9,6 @@
         </div>
         <div class="panel-body tabs-menu-body latest-tasks p-0 border-0">
             <div class="tabs-menu border-bottom">
-                {{-- Tabs --}}
                 <ul class="nav panel-tabs">
                     <li class=""><a href="#side1" class="active" data-bs-toggle="tab"><i
                                 class="fe fe-settings me-1"></i>Feeds</a></li>
@@ -483,5 +482,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>

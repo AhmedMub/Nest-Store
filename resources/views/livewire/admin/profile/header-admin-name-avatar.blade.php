@@ -6,19 +6,13 @@
         <div class="drop-heading">
             <div x-data="{name: '{{$name}}'}" class="text-center">
                 <h5 class="text-dark mb-0 fs-14 fw-semibold text-capitalize" x-text="name"></h5>
-                <small class="text-muted">Senior Admin</small>
+                {{-- / //TODO must add user rule --}}
+                <small class="text-muted">rule</small>
             </div>
         </div>
         <div class="dropdown-divider m-0"></div>
         <a class="dropdown-item" href=" {{route('admin.profile')}} ">
             <i class="dropdown-icon fe fe-user"></i> Profile
-        </a>
-        <a class="dropdown-item" href="email-inbox.html">
-            <i class="dropdown-icon fe fe-mail"></i> Inbox
-            <span class="badge bg-danger rounded-pill float-end">5</span>
-        </a>
-        <a class="dropdown-item" href="lockscreen.html">
-            <i class="dropdown-icon fe fe-lock"></i> Lockscreen
         </a>
         {!! Form::open(['id'=>'SignOutForm', 'route'=>['admin.logout']])
         !!}

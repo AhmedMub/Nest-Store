@@ -16,16 +16,6 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->references('id')->on('users')->onDelete('set null');
-
-            /*
-                Status as follow:
-                0 => pending
-                1 => confirmed
-                2 => processing
-                3 => shipped orders
-                4 => delivered orders
-                5 => canceled orders
-            */
             $table->integer('status');
             $table->integer('cancel_request')->default(0);
             $table->text('address');

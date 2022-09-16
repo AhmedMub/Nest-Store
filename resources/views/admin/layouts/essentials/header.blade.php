@@ -29,7 +29,6 @@ $notifications = App\Models\Order::whereCancelRequest(1)->where('status', '!=', 
                         </div>
                     </div>
                 </div>
-                {{-- SEARCH --}}
                 <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4"
                     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,14 +41,6 @@ $notifications = App\Models\Order::whereCancelRequest(1)->where('status', '!=', 
                                 <a href="javascript:void(0)" class="nav-link icon" data-bs-toggle="dropdown">
                                     <i class="fe fe-search"></i>
                                 </a>
-                                <div class="dropdown-menu header-search dropdown-menu-start">
-                                    <div class="input-group w-100 p-2">
-                                        <input type="text" class="form-control" placeholder="Search....">
-                                        <div class="input-group-text btn btn-primary">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             {{-- Theme-Layout --}}
@@ -97,90 +88,6 @@ $notifications = App\Models\Order::whereCancelRequest(1)->where('status', '!=', 
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            {{-- NOTIFICATIONS --}}
-                            <div class="dropdown  d-flex message">
-                                <a class="nav-link icon text-center" data-bs-toggle="dropdown">
-                                    <i class="fe fe-message-square"></i><span class="pulse-danger"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <div class="drop-heading border-bottom">
-                                        <div class="d-flex">
-                                            <h6 class="mt-1 mb-0 fs-16 fw-semibold text-dark">You have 5
-                                                Messages</h6>
-                                            <div class="ms-auto">
-                                                <a href="javascript:void(0)" class="text-muted p-0 fs-12">make all
-                                                    unread</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="message-menu">
-                                        <a class="dropdown-item d-flex" href="chat.html">
-                                            <span class="avatar avatar-md brround me-3 align-self-center cover-image"
-                                                data-bs-image-src="{{asset('backend/default-images/users/1.jpg')}}"></span>
-                                            <div class="wd-90p">
-                                                <div class="d-flex">
-                                                    <h5 class="mb-1">Peter Theil</h5>
-                                                    <small class="text-muted ms-auto text-end">
-                                                        6:45 am
-                                                    </small>
-                                                </div>
-                                                <span>Commented on file Guest list....</span>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item d-flex" href="chat.html">
-                                            <span class="avatar avatar-md brround me-3 align-self-center cover-image"
-                                                data-bs-image-src="{{asset('backend/default-images/users/15.jpg')}}"></span>
-                                            <div class="wd-90p">
-                                                <div class="d-flex">
-                                                    <h5 class="mb-1">Abagael Luth</h5>
-                                                    <small class="text-muted ms-auto text-end">
-                                                        10:35 am
-                                                    </small>
-                                                </div>
-                                                <span>New Meetup Started......</span>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item d-flex" href="chat.html">
-                                            <span class="avatar avatar-md brround me-3 align-self-center cover-image"
-                                                data-bs-image-src="{{asset('backend/default-images/users/12.jpg')}}"></span>
-                                            <div class="wd-90p">
-                                                <div class="d-flex">
-                                                    <h5 class="mb-1">Brizid Dawson</h5>
-                                                    <small class="text-muted ms-auto text-end">
-                                                        2:17 pm
-                                                    </small>
-                                                </div>
-                                                <span>Brizid is in the Warehouse...</span>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item d-flex" href="chat.html">
-                                            <span class="avatar avatar-md brround me-3 align-self-center cover-image"
-                                                data-bs-image-src="{{asset('backend/default-images/users/4.jpg')}}"></span>
-                                            <div class="wd-90p">
-                                                <div class="d-flex">
-                                                    <h5 class="mb-1">Shannon Shaw</h5>
-                                                    <small class="text-muted ms-auto text-end">
-                                                        7:55 pm
-                                                    </small>
-                                                </div>
-                                                <span>New Product Realease......</span>
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                    <div class="dropdown-divider m-0"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item text-center p-3 text-muted">See
-                                        all
-                                        Messages</a>
-                                </div>
-                            </div>
-                            {{-- MESSAGE-BOX --}}
-                            <div class="dropdown d-flex header-settings">
-                                <a href="javascript:void(0);" class="nav-link icon" data-bs-toggle="sidebar-right"
-                                    data-target=".sidebar-right">
-                                    <i class="fe fe-align-right"></i>
-                                </a>
                             </div>
                             {{-- SIDE-MENU --}}
                             <livewire:admin.profile.header-admin-name-avatar :admin="Auth::user()" />
