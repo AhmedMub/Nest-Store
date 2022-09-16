@@ -76,21 +76,21 @@
                         <td>{{$coupon->valid_from}}</td>
                         <td>{{$coupon->valid_to}}</td>
                         <td>
-                            @if ($coupon->validityDays($coupon->valid_from, $coupon->valid_to) == 1)
-                            <span class="badge bg-warning fs-6">{{$coupon->validityDays($coupon->valid_from,
-                                $coupon->valid_to)}} Day</span>
-
-                            @elseif ($coupon->validityDays($coupon->valid_from, $coupon->valid_to) > 1)
+                            @if (Carbon\Carbon::parse($coupon->valid_to)->isPast())
+                            <span class="badge bg-danger fs-6">Expired</span>
+                            @else
                             <span class="badge bg-info fs-6">{{$coupon->validityDays($coupon->valid_from,
                                 $coupon->valid_to)}} Days</span>
-
-                            @else
-                            <span class="badge bg-danger fs-6">Expired</span>
                             @endif
                         </td>
                         <td>
+                            @if (Carbon\Carbon::parse($coupon->valid_to)->isPast())
+                            <span class="badge bg-danger-gradient fs-6  me-1 mb-1 mt-1">Inactive</span>
+                            @else
                             <livewire:admin.coupons.status :coupon="$coupon" :name="'status'"
                                 :key="'status'.$coupon->id" />
+                            @endif
+
                         </td>
                         <td> {{$coupon->created_at->diffForHumans()}} </td>
                         <td>
