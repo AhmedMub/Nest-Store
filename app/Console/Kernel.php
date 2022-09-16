@@ -15,7 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('check:productsexp')->everyMinute()->appendOutputTo('scheduler.log');
+        //check if the product date has expired will be disable
+        $schedule->command('check:productsexp')->daily()->appendOutputTo('scheduler.log');
+        //check if the coupons date has expired will be disable
+        $schedule->command('check:couponexp')->daily()->appendOutputTo('scheduler.log');
     }
 
     /**

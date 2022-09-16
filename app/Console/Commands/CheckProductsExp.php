@@ -45,12 +45,14 @@ class CheckProductsExp extends Command
     {
         $products = Product::whereProductStatus(1)->get();
         $checkProductsArr = [];
-        foreach ($products as $product) {
-            if (Carbon::parse($product->productDates->exp)->isPast()) {
-                $checkProductsArr[] = $product->sku;
-                $product->update([
-                    'product_status' => 0,
-                ]);
+        if (count($products) > 0) {
+            foreach ($products as $product) {
+                if (Carbon::parse($product->productDates->exp)->isPast()) {
+                    $checkProductsArr[] = $product->sku;
+                    $product->update([
+                        'product_status' => 0,
+                    ]);
+                }
             }
         }
         //if the checkProductsArr empty will send and email to admin that everything is fine
