@@ -22,7 +22,6 @@ use App\Http\Controllers\Admin\ShippingController;
 |--------------------------------------------------------------------------
 |
 */
-//TODO: must add forget-password functionality for Admin
 
 Route::get('testing', [Testing::class, 'testing']);
 
@@ -30,6 +29,12 @@ Route::get('testing2', function () {
 
     return view('testing2');
 });
+
+//if user try reset password with route get method
+Route::get('/admin/reset-password', function () {
+    return view('errors.admin404');
+});
+
 // Public Routes
 Route::post('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
