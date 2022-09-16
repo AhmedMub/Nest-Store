@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ManageOrdersController;
 use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\ShippingController;
+use App\Jobs\ProductExpiry;
+use App\Models\Product;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +28,7 @@ use App\Http\Controllers\Admin\ShippingController;
 
 Route::get('testing', [Testing::class, 'testing']);
 
-Route::get('testing2', function () {
-
-    return view('testing2');
+Route::get('testingQueues', function () {
 });
 
 //if user try reset password with route get method
