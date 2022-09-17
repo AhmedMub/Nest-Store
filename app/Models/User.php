@@ -71,6 +71,10 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsToMany(Product::class, 'wish_lists', 'user_id', 'product_id');
     }
+    public function userOrders()
+    {
+        return $this->hasMany(Order::class, 'order_id');
+    }
 
     //Get Full user Name
     public function getFullName()

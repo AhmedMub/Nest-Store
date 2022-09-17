@@ -57,7 +57,7 @@
                 <div wire:loading wire:target='create'>
                     <x-admin.partials.loader />
                 </div>
-            </form>>
+            </form>
         </div>
     </div>
 </div>

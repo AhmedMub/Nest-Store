@@ -7,13 +7,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 col-lg-10 col-md-12 m-auto text-center">
+                    <div class="heading_s1">
+                        <img class="border-radius-15"
+                            src="{{asset('storage/default_images/default_icons/forgot_password.svg')}}" alt="" />
+                        <h2 class="mb-15 mt-15">Forgot your password?</h2>
+                    </div>
                     @if (session('status'))
                     <div class="alert alert-success fix-alert-reset-pass" role="alert">
                         {{ session('status') }}
                     </div>
                     @endif
                     <p class="font-lg text-grey-700 mb-30 fix-font">
-                        {{ __('Forgot your password? No problem. Just let us know your email address and we will email
+                        {{ __('No problem. Just let us know your email address and we will email
                         you a
                         password reset link that will allow you to choose a new one.') }}
                     </p>

@@ -13,20 +13,28 @@ $productExpire = route('product.expire');
 $manageCoupons = route('coupon');
 $shippingCountry = route('shipping.country');
 $shippingDistrict = route('shipping.district');
+$pendingOrders = route('orders.pending');
+$confirmOrders = route('orders.confirmed');
+$processingOrders = route('orders.processing');
+$shippedOrders = route('orders.shipped');
+$deliveredOrders = route('orders.delivered');
+$canceledOrders = route('orders.canceled');
+$canceledOrdersRequests = route('orders.canceled.requests');
+
 @endphp
 <div class="sticky">
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
     <div class="app-sidebar">
         <div class="side-header">
-            <a class="header-brand1" href="index.html">
-                <img src="{{asset('backend/default-images/brand/logo.png')}}" class="header-brand-img desktop-logo"
+            <a class="header-brand1" href="{{route('admin.dashboard')}}">
+                <img src="{{asset('frontend/assets/imgs/theme/logo.svg')}}"
+                    class="header-brand-img desktop-logo fix-img-left" alt="logo">
+                <img src="{{asset('frontend/assets/imgs/theme/favicon.svg')}}" class="header-brand-img toggle-logo"
                     alt="logo">
-                <img src="{{asset('backend/default-images/brand/logo-1.png')}}" class="header-brand-img toggle-logo"
+                <img src="{{asset('frontend/assets/imgs/theme/favicon.svg')}}" class="header-brand-img light-logo"
                     alt="logo">
-                <img src="{{asset('backend/default-images/brand/logo-2.png')}}" class="header-brand-img light-logo"
-                    alt="logo">
-                <img src="{{asset('backend/default-images/brand/logo-3.png')}}" class="header-brand-img light-logo1"
-                    alt="logo">
+                <img src="{{asset('frontend/assets/imgs/theme/logo.svg')}}"
+                    class="header-brand-img light-logo1 fix-img-left" alt="logo">
             </a>
             {{-- LOGO --}}
         </div>
@@ -48,7 +56,7 @@ $shippingDistrict = route('shipping.district');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-people"></i>
                         <span class="side-menu__label">Vendor</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -65,7 +73,7 @@ $shippingDistrict = route('shipping.district');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-layout-wtf"></i>
                         <span class="side-menu__label">Category</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -84,7 +92,7 @@ $shippingDistrict = route('shipping.district');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon fe fe-package"></i>
                         <span class="side-menu__label">Product</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -117,7 +125,7 @@ $shippingDistrict = route('shipping.district');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-gift"></i>
                         <span class="side-menu__label">Coupons</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -130,7 +138,7 @@ $shippingDistrict = route('shipping.district');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-truck"></i>
                         <span class="side-menu__label">Shipping Area</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -147,7 +155,7 @@ $shippingDistrict = route('shipping.district');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-gear-wide-connected"></i>
                         <span class="side-menu__label">Webiste Components</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -155,6 +163,57 @@ $shippingDistrict = route('shipping.district');
                         <li><a href=" {{$manageSlider}} "
                                 class=" @if ($currentRoute == $manageSlider) active @endif slide-item text-capitalize">manage
                                 Slider</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="slide is-expanded">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                        <i class="side-menu__icon fe fe-layers"></i>
+                        <span class="side-menu__label">Manage Orders</span>
+                        <i class="angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a href="{{$pendingOrders}}"
+                                class=" @if ($currentRoute == $pendingOrders) active @endif slide-item text-capitalize">pending
+                                orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{$confirmOrders}}"
+                                class=" @if ($currentRoute == $confirmOrders) active @endif slide-item text-capitalize">confirmed
+                                orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{$processingOrders}}"
+                                class=" @if ($currentRoute == $processingOrders) active @endif slide-item text-capitalize">processing
+                                orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{$shippedOrders}}"
+                                class=" @if ($currentRoute == $shippedOrders) active @endif slide-item text-capitalize">shipping
+                                orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{$deliveredOrders}}"
+                                class=" @if ($currentRoute == $deliveredOrders) active @endif slide-item text-capitalize">delivered
+                                orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{$canceledOrdersRequests}}"
+                                class=" @if ($currentRoute == $canceledOrdersRequests) active @endif slide-item text-capitalize">cancel
+                                requests
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{$canceledOrders}}"
+                                class=" @if ($currentRoute == $canceledOrders) active @endif slide-item text-capitalize">canceled
+                                orders
+                            </a>
                         </li>
                     </ul>
                 </li>

@@ -15,7 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        //check if the product date has expired will be disable
+        $schedule->command('check:productsexp')->daily()->appendOutputTo('scheduler.log');
+        //check if the coupons date has expired will be disable
+        $schedule->command('check:couponexp')->daily()->appendOutputTo('scheduler.log');
     }
 
     /**
@@ -25,7 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

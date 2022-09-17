@@ -91,7 +91,6 @@ class PaymentsController extends Controller
         //new order
         $newOrder = Order::create([
             'user_id' => $user->id,
-            //NOTEstatus: 0: failed || 1: success
             'status' => 0,
             'address' => $request['address'],
             'addressTwo' => $request['addressTwo'],
@@ -110,7 +109,7 @@ class PaymentsController extends Controller
             'currency' => 'usd',
             'shipping_date' => Carbon::now()->addDays(2)->format('Y-m-d'),
             'discounted_coupon' => $discountedTotal,
-            'phone' => $user->phone,
+            'phone' => $request['phone'],
             'coupon_discount_percentage' => $couponPercent
         ]);
 
@@ -194,7 +193,7 @@ class PaymentsController extends Controller
     //generate order invoice
     public function userOrderInvoice($invoice)
     {
-        $order = Order::where('invoice_no', $invoice)->whereStatus(1)->first();
+        $order = Order::where('invoice_no', $invoice)->firstOrFail();
 
         return view('frontend.pages.order-invoice', compact('order'));
     }

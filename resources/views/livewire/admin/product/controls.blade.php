@@ -76,7 +76,7 @@
                         <td> {{$product->productMainCat->name_en}} </td>
                         <td> {{$product->sku}} </td>
                         <td>
-                            @if ($product->qty == 0)
+                            @if ($product->qty == 0 || Carbon\Carbon::parse($product->productDates->exp)->isPast())
                             <span class="badge bg-danger-gradient fs-6  me-1 mb-1 mt-1">Inactive</span>
                             @else
                             <livewire:admin.product.status :product="$product" :name="'product_status'"

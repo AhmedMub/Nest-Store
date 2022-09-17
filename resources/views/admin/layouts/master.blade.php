@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        {{-- Sidebar-right --}}
+        {{-- Sidebar-right //*disabled --}}
         @include('admin.layouts.essentials.right-sidebar')
 
         {{-- Essentials --}}

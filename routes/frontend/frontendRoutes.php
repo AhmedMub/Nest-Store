@@ -18,6 +18,11 @@ use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+//if user try reset password with route get method
+Route::get('/reset-password', function () {
+    return view('errors.404');
+});
+
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
@@ -25,7 +30,7 @@ Route::group([
 
     Route::get('debugging-front', function () {
 
-        return view('debugging-front');
+        //
     });
 
     /** ALL LOCALIZED ROUTES INSIDE THIS GROUP **/

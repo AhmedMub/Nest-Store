@@ -36,4 +36,10 @@ $langAr = str_contains(url()->current(), '/ar');
     .archive-header {
         background: url("{{asset('frontend/assets/imgs/blog/header-bg.png')}}") no-repeat center center;
     }
+
+    /* modify sweet alert css  */
+    .swal-text,
+    .swal-footer {
+        text-align: center;
+    }
 </style>

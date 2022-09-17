@@ -71,6 +71,7 @@
                                         <livewire:frontend.user.updated-name-profile>
                                             <div class="card-body">
                                                 <p class="fix-size">
+
                                                     From your account dashboard. you can easily check &amp; view your <a
                                                         href="#">recent orders</a>,<br />
                                                     manage your <a href="#">shipping and billing addresses</a> and <a
@@ -83,7 +84,7 @@
                                 {{-- /Order Tab --}}
                                 <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                                     @if (count($orders) > 0)
-                                    <x-frontend.profile.orders :orders="$orders" />
+                                    <livewire:frontend.profile.user-orders />
                                     @else
                                     <h3 class="mb-0 text-capitalize">There are no Orders.</h3>
                                     @endif
@@ -174,4 +175,29 @@
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 @endonce
+{{-- sweet alert --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script>
+    window.addEventListener('swal:modal', event => {
+        swal({
+            title: event.detail.title,
+            text: event.detail.text,
+            icon: event.detail.type
+        });
+    });
+
+    window.addEventListener('swal:confirm', event => {
+        swal({
+            title: event.detail.title,
+            text: event.detail.text,
+            icon: event.detail.type,
+            buttons: true,
+            dangerMode: true
+        }).then((confirmed)=> {
+            if(confirmed) {
+                Livewire.emit('delete', event.detail.id);
+            }
+        });
+    });
+</script>
 @endpush

@@ -12,7 +12,10 @@ use App\Http\Controllers\Admin\SubSubcategoryController;
 use App\Http\Controllers\Admin\Testing;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\ManageOrdersController;
+use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\ShippingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +23,17 @@ use App\Http\Controllers\Admin\ShippingController;
 |--------------------------------------------------------------------------
 |
 */
-//TODO: must add forget-password functionality for Admin
 
 Route::get('testing', [Testing::class, 'testing']);
 
-Route::get('testing2', function () {
-
-    return view('testing2');
+Route::get('testingQueues', function () {
 });
+
+//if user try reset password with route get method
+Route::get('/admin/reset-password', function () {
+    return view('errors.admin404');
+});
+
 // Public Routes
 Route::post('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
@@ -137,5 +143,29 @@ Route::middleware(['auth:sanctum,admin', 'verified', 'auth:admin'])->prefix('adm
 
         //district
         Route::get('manage-shipping/district', 'districtShipping')->name('district');
+    });
+
+    //orders
+    Route::controller(ManageOrdersController::class)->prefix('manage-orders/')->name('orders.')->group(function () {
+        // confirmed
+        // processing
+        // shipped orders
+        // delivered orders
+        // canceled orders
+        //cancel requests
+        Route::get('pending', 'pendingOrders')->name('pending');
+        Route::get('confirmed', 'confirmedOrders')->name('confirmed');
+        Route::get('processing', 'processingOrders')->name('processing');
+        Route::get('shipped', 'shippedOrders')->name('shipped');
+        Route::get('delivered', 'deliveredOrders')->name('delivered');
+        Route::get('canceled', 'canceledOrders')->name('canceled');
+        Route::get('cancel/requests', 'canceledOrdersRequests')->name('canceled.requests');
+        Route::any('order/invoice/{invoice}', 'showInvoice')->name('show.invoice');
+    });
+
+    //notifications
+    Route::controller(NotificationsController::class)->prefix('manage-notifications/')->name('notification.')->group(function () {
+        //show all list
+        Route::any('show/all', 'notificationsList')->name('show.all');
     });
 });

@@ -27,6 +27,16 @@ class Create extends Component
     {
         $this->validate();
 
+        if (!isset(explode(" ", $this->validity)[0]) || !isset(explode(" ", $this->validity)[2])) {
+            //to clear flatpicker dates
+            $this->dispatchBrowserEvent('clearDates');
+
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'error',
+                'message' => 'Dates are invalid'
+            ]);
+            return null;
+        }
         $validFrom = explode(" ", $this->validity)[0];
         $validTo = explode(" ", $this->validity)[2];
 

@@ -42,6 +42,9 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         <th class="wd-15p border-bottom-0 text-capitalize">
                             <input wire:model='selectAll' type="checkbox"> select all
                         </th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">
+                            Main Image
+                        </th>
                         <th wire:click="sortBy('name_en')"
                             class="cursor-pointer wd-15p border-bottom-0 text-capitalize">english name
                             {{-- change Icone --}}
@@ -80,6 +83,7 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         <td>
                             <input wire:model='selectedCheckboxes' value="{{$product->id}}" type="checkbox">
                         </td>
+                        <td><img class="br-7" src="{{$product->getFirstMediaUrl('mainImage')}}" alt=""></td>
                         <td> {{$product->name_en}} </td>
                         <td> {{$product->admin->getFullName()}} </td>
                         <td> {{$product->updatedByAdmin->getFullName()}} </td>

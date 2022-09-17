@@ -15,7 +15,7 @@ class UserProfile extends Controller
     public function show()
     {
         //display orders for users
-        $orders = Order::whereUserId(Auth::user()->id)->latest()->get();
+        $orders = Order::whereUserId(Auth::user()->id)->where('status', '!=', 5)->latest()->get();
 
         return view('frontend.pages.profile', compact('orders'));
     }

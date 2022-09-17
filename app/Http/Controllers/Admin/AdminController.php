@@ -13,6 +13,9 @@ use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
 use App\Actions\Fortify\AdminLogoutResponse;
 use App\Http\Responses\LoginResponse;
 use App\Models\Admin;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Features;
@@ -54,8 +57,44 @@ class AdminController extends Controller
      */
     public function show()
     {
+        //total users
+        $usersCount = User::count();
 
-        return view('admin.pages.dashboard');
+        //total revenue
+        $totalProfits = Order::whereStatus(4)->sum('amount');
+
+        //total orders;
+        $totalOrders = Order::count();
+
+        //total products
+        $totalProducts = Product::count();
+
+        //delivered orders
+        $deliveredOrders = Order::whereStatus(4)->count();
+
+        //canceled orders
+        $canceledOrders = Order::whereStatus(5)->count();
+
+        $getAllOrders = Order::all();
+
+        $getShippedOrders = Order::whereStatus(3)->latest()->get();
+
+        $getPendingOrders = Order::whereStatus(0)->latest()->get();
+
+        $getCanceledOrders = Order::whereStatus(5)->latest()->get();
+
+        return view('admin.pages.dashboard', compact(
+            'usersCount',
+            'totalProfits',
+            'totalOrders',
+            'totalProducts',
+            'deliveredOrders',
+            'canceledOrders',
+            'getAllOrders',
+            'getShippedOrders',
+            'getPendingOrders',
+            'getCanceledOrders',
+        ));
     }
 
 

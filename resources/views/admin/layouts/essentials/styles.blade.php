@@ -23,3 +23,16 @@
 <link rel="stylesheet" href=" {{asset('backend/css/toastr.min.css')}} ">
 
 <link href="{{asset('backend/css/override.css')}}" rel="stylesheet" />
+
+{{-- / modify sweet alert css --}}
+<style>
+    .swal-text,
+    .swal-footer {
+        text-align: center;
+    }
+
+    .fix-img-left {
+        width: 75%;
+        margin: 0 auto;
+    }
+</style>

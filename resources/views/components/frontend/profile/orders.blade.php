@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h3 class="mb-0">Your Orders</h3>
+        <h3 class="mb-0">Your Orders </h3>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -21,19 +21,15 @@
                         <td>{{$order->created_at->format('d-m-Y')}}</td>
                         <td>
                             @if ($order->status == 0)
-                            pending
+                            Pending
                             @elseif($order->status == 1)
-                            awaiting for shipping
+                            Order has been confirmed
                             @elseif($order->status == 2)
-                            completed
+                            Processing
                             @elseif($order->status == 3)
-                            shipped
+                            Shipped
                             @elseif($order->status == 4)
-                            cancelled
-                            @elseif($order->status == 5)
-                            declined
-                            @else
-                            refunded
+                            Delivered
                             @endif
                         </td>
                         <td>
@@ -44,7 +40,11 @@
                             @endif
                             for {{$order->orderItems->count();}} item
                         </td>
-                        <td><a href="{{route('invoice', $order->invoice_no)}}" class="btn-small d-block">View</a></td>
+                        <td>
+                            <livewire:frontend.profile.delete-order :order="$order->id" />
+                            <span> | </span>
+                            <a href="{{route('invoice', $order->invoice_no)}}" class="btn-small">View</a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
