@@ -27,14 +27,14 @@ $canceledOrdersRequests = route('orders.canceled.requests');
     <div class="app-sidebar">
         <div class="side-header">
             <a class="header-brand1" href="{{route('admin.dashboard')}}">
-                <img src="{{asset('backend/default-images/brand/logo.png')}}" class="header-brand-img desktop-logo"
+                <img src="{{asset('frontend/assets/imgs/theme/logo.svg')}}"
+                    class="header-brand-img desktop-logo fix-img-left" alt="logo">
+                <img src="{{asset('frontend/assets/imgs/theme/favicon.svg')}}" class="header-brand-img toggle-logo"
                     alt="logo">
-                <img src="{{asset('backend/default-images/brand/logo-1.png')}}" class="header-brand-img toggle-logo"
+                <img src="{{asset('frontend/assets/imgs/theme/favicon.svg')}}" class="header-brand-img light-logo"
                     alt="logo">
-                <img src="{{asset('backend/default-images/brand/logo-2.png')}}" class="header-brand-img light-logo"
-                    alt="logo">
-                <img src="{{asset('backend/default-images/brand/logo-3.png')}}" class="header-brand-img light-logo1"
-                    alt="logo">
+                <img src="{{asset('frontend/assets/imgs/theme/logo.svg')}}"
+                    class="header-brand-img light-logo1 fix-img-left" alt="logo">
             </a>
             {{-- LOGO --}}
         </div>
@@ -56,7 +56,7 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-people"></i>
                         <span class="side-menu__label">Vendor</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -73,7 +73,7 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-layout-wtf"></i>
                         <span class="side-menu__label">Category</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -92,7 +92,7 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon fe fe-package"></i>
                         <span class="side-menu__label">Product</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -125,7 +125,7 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-gift"></i>
                         <span class="side-menu__label">Coupons</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -138,7 +138,7 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-truck"></i>
                         <span class="side-menu__label">Shipping Area</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -155,7 +155,7 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon bi bi-gear-wide-connected"></i>
                         <span class="side-menu__label">Webiste Components</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -168,7 +168,7 @@ $canceledOrdersRequests = route('orders.canceled.requests');
                 </li>
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i>
+                        <i class="side-menu__icon fe fe-layers"></i>
                         <span class="side-menu__label">Manage Orders</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>

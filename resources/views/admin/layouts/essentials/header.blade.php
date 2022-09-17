@@ -9,9 +9,9 @@ $notifications = App\Models\Order::whereCancelRequest(1)->where('status', '!=', 
                 href="javascript:void(0)"></a>
             {{-- sidebar-toggle--}}
             <a class="logo-horizontal " href="index.html">
-                <img src="{{asset('backend/default-images/brand/logo.png')}}" class="header-brand-img desktop-logo"
+                <img src="{{asset('frontend/assets/imgs/theme/logo.svg')}}" class="header-brand-img desktop-logo"
                     alt="logo">
-                <img src="{{asset('backend/default-images/brand/logo-3.png')}}" class="header-brand-img light-logo1"
+                <img src="{{asset('frontend/assets/imgs/theme/logo.svg')}}" class="header-brand-img light-logo1"
                     alt="logo">
             </a>
             {{-- LOGO --}}

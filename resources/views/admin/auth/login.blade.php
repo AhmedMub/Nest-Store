@@ -32,8 +32,7 @@ devices and failed logins. --}}
             {{-- CONTAINER OPEN --}}
             <div class="col col-login mx-auto mt-7">
                 <div class="text-center">
-                    <img src=" {{asset('backend/default-images/brand/logo-white.png')}} " class="header-brand-img"
-                        alt="">
+                    <img src=" {{asset('frontend/assets/imgs/theme/logo.svg')}} " class="header-brand-img" alt="">
                 </div>
             </div>
 

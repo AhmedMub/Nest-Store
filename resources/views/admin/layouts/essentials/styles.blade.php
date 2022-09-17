@@ -30,4 +30,9 @@
     .swal-footer {
         text-align: center;
     }
+
+    .fix-img-left {
+        width: 75%;
+        margin: 0 auto;
+    }
 </style>

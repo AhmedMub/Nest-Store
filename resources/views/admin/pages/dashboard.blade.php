@@ -486,7 +486,150 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab5">
                                         <div class="table-responsive">
+                                            @if (count($getAllOrders) > 0)
                                             <table id="data-table" class="table table-bordered text-nowrap mb-0">
+                                                <thead class="border-top">
+                                                    <tr>
+                                                        <th class="bg-transparent border-bottom-0" style="width: 5%;">
+                                                            Tracking Id</th>
+                                                        <th class="bg-transparent border-bottom-0">
+                                                            Items</th>
+                                                        <th class="bg-transparent border-bottom-0">
+                                                            Customer</th>
+                                                        <th class="bg-transparent border-bottom-0">
+                                                            Date</th>
+                                                        <th class="bg-transparent border-bottom-0">
+                                                            Amount</th>
+                                                        <th class="bg-transparent border-bottom-0">
+                                                            Payment Mode</th>
+                                                        <th class="bg-transparent border-bottom-0" style="width: 10%;">
+                                                            Status</th>
+                                                        <th class="bg-transparent border-bottom-0" style="width: 5%;">
+                                                            Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($getAllOrders as $order)
+                                                    <tr class="border-bottom">
+                                                        <td class="text-center">
+                                                            <div class="mt-0 mt-sm-2 d-block">
+                                                                <h6 class="mb-0 fs-14 fw-semibold">
+                                                                    #{{$order->invoice_no}}</h6>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <div class="ms-3 mt-0 mt-sm-2 d-block">
+                                                                    <h6 class="mb-0 fs-14 fw-semibold">
+                                                                        {{$order->orderItems->count()}} Items</h6>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <div class="mt-0 mt-sm-3 d-block">
+                                                                    <h6 class="mb-0 fs-14 fw-semibold">
+                                                                        {{$order->fname . " " . $order->lname}}</h6>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td><span
+                                                                class="mt-sm-2 d-block">{{$order->created_at->format('d
+                                                                M Y')}}</span></td>
+                                                        <td><span
+                                                                class="fw-semibold mt-sm-2 d-block">${{$order->amount}}</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <div class="mt-0 mt-sm-3 d-block">
+                                                                    <h6 class="mb-0 fs-14 fw-semibold">
+                                                                        @if ($order->payment_method == 0)
+                                                                        Cash Payment
+                                                                        @else
+                                                                        Online Payment
+                                                                        @endif
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="mt-sm-1 d-block">
+                                                                @if ($order->status == 0)
+                                                                <span
+                                                                    class="badge bg-default rounded-pill text-default p-2 px-3">Pending</span>
+                                                                @elseif ($order->status == 1)
+                                                                <span
+                                                                    class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Confirmed</span>
+                                                                @elseif ($order->status == 2)
+                                                                <span
+                                                                    class="badge bg-info-transparent rounded-pill text-info p-2 px-3">Processing</span>
+                                                                @elseif ($order->status == 3)
+                                                                <span
+                                                                    class="badge bg-primary-transparent rounded-pill text-primary p-2 px-3">Shipped</span>
+                                                                @elseif ($order->status == 4)
+                                                                <span
+                                                                    class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Delivered</span>
+                                                                @else
+                                                                <span
+                                                                    class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Canceled</span>
+                                                                @endif
+
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="g-2">
+                                                                @if ($order->status == 0)
+                                                                <a href="{{route('orders.pending')}}"
+                                                                    class="btn text-primary btn-sm"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-original-title="show"><span
+                                                                        class="fe fe-eye fs-14"></span></a>
+                                                                @elseif ($order->status == 1)
+                                                                <a href="{{route('orders.confirmed')}}"
+                                                                    class="btn text-primary btn-sm"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-original-title="show"><span
+                                                                        class="fe fe-eye fs-14"></span></a>
+                                                                @elseif ($order->status == 2)
+                                                                <a href="{{route('orders.processing')}}"
+                                                                    class="btn text-primary btn-sm"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-original-title="show"><span
+                                                                        class="fe fe-eye fs-14"></span></a>
+                                                                @elseif ($order->status == 3)
+                                                                <a href="{{route('orders.shipped')}}"
+                                                                    class="btn text-primary btn-sm"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-original-title="show"><span
+                                                                        class="fe fe-eye fs-14"></span></a>
+                                                                @elseif ($order->status == 4)
+                                                                <a href="{{route('orders.delivered')}}"
+                                                                    class="btn text-primary btn-sm"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-original-title="show"><span
+                                                                        class="fe fe-eye fs-14"></span></a>
+                                                                @else
+                                                                <a href="{{route('orders.canceled')}}"
+                                                                    class="btn text-primary btn-sm"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-original-title="show"><span
+                                                                        class="fe fe-eye fs-14"></span></a>
+                                                                @endif
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                            @else
+                                            <h2>No Orders Yet</h2>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab6">
+                                        <div class="table-responsive">
+                                            @if (count($getShippedOrders) > 0)
+                                            <table class="table table-bordered text-nowrap mb-0">
                                                 <thead class="border-top">
                                                     <tr>
                                                         <th class="bg-transparent border-bottom-0" style="width: 5%;">
@@ -508,154 +651,76 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @if (count($getAllOrders))
-                                                    @foreach ($getAllOrders as $order)
+                                                    @foreach ($getShippedOrders as $order)
                                                     <tr class="border-bottom">
                                                         <td class="text-center">
                                                             <div class="mt-0 mt-sm-2 d-block">
                                                                 <h6 class="mb-0 fs-14 fw-semibold">
-                                                                    #98765490</h6>
+                                                                    #{{$order->invoice_no}}</h6>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <span class="avatar bradius"
-                                                                    style="background-image: url({{asset('backend/default-images/orders/10.jpg')}})"></span>
                                                                 <div class="ms-3 mt-0 mt-sm-2 d-block">
                                                                     <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Headsets</h6>
+                                                                        {{$order->orderItems->count()}} Items</h6>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <div class="mt-0 mt-sm-3 d-block">
-                                                                    <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Cherry Blossom</h6>
+                                                                    <h6 class="mb-0 fs-14 fw-semibold text-capitalize">
+                                                                        {{$order->fname . " " . $order->lname}}</h6>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td><span class="mt-sm-2 d-block">30 Aug
-                                                                2021</span></td>
-                                                        <td><span class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
+                                                        <td><span
+                                                                class="mt-sm-2 d-block">{{$order->created_at->format('d
+                                                                M Y')}}</span></td>
+                                                        <td><span
+                                                                class="fw-semibold mt-sm-2 d-block">${{$order->amount}}</span>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <div class="mt-0 mt-sm-3 d-block">
                                                                     <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Online Payment</h6>
+                                                                        @if ($order->payment_method == 0)
+                                                                        Cash Payment
+                                                                        @else
+                                                                        Online Payment
+                                                                        @endif
+                                                                    </h6>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="mt-sm-1 d-block">
                                                                 <span
-                                                                    class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
+                                                                    class="badge bg-primary-transparent rounded-pill text-primary p-2 px-3">Shipped</span>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="g-2">
-                                                                <a class="btn text-primary btn-sm"
+                                                                <a href="{{route('orders.shipped')}}"
+                                                                    class="btn text-primary btn-sm"
                                                                     data-bs-toggle="tooltip"
-                                                                    data-bs-original-title="Edit"><span
-                                                                        class="fe fe-edit fs-14"></span></a>
-                                                                <a class="btn text-danger btn-sm"
-                                                                    data-bs-toggle="tooltip"
-                                                                    data-bs-original-title="Delete"><span
-                                                                        class="fe fe-trash-2 fs-14"></span></a>
+                                                                    data-bs-original-title="show"><span
+                                                                        class="fe fe-eye fs-14"></span></a>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     @endforeach
-                                                    @endif
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab6">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered text-nowrap mb-0">
-                                                <thead class="border-top">
-                                                    <tr>
-                                                        <th class="bg-transparent border-bottom-0" style="width: 5%;">
-                                                            Tracking Id</th>
-                                                        <th class="bg-transparent border-bottom-0">
-                                                            Product</th>
-                                                        <th class="bg-transparent border-bottom-0">
-                                                            Customer</th>
-                                                        <th class="bg-transparent border-bottom-0">
-                                                            Date</th>
-                                                        <th class="bg-transparent border-bottom-0">
-                                                            Amount</th>
-                                                        <th class="bg-transparent border-bottom-0">
-                                                            Payment Mode</th>
-                                                        <th class="bg-transparent border-bottom-0" style="width: 10%;">
-                                                            Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="border-bottom">
-                                                        <td class="text-center">
-                                                            <div class="mt-0 mt-sm-2 d-block">
-                                                                <h6 class="mb-0 fs-14 fw-semibold">
-                                                                    #98765490</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <span class="avatar bradius"
-                                                                    style="background-image: url({{asset('backend/default-images/orders/10.jpg')}})"></span>
-                                                                <div class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                    <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Headsets</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <div class="mt-0 mt-sm-3 d-block">
-                                                                    <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Cherry Blossom</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="mt-sm-2 d-block">30 Aug
-                                                                2021</span></td>
-                                                        <td><span class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <div class="mt-0 mt-sm-3 d-block">
-                                                                    <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Online Payment</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="mt-sm-1 d-block">
-                                                                <span
-                                                                    class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="g-2">
-                                                                <a class="btn text-primary btn-sm"
-                                                                    data-bs-toggle="tooltip"
-                                                                    data-bs-original-title="Edit"><span
-                                                                        class="fe fe-edit fs-14"></span></a>
-                                                                <a class="btn text-danger btn-sm"
-                                                                    data-bs-toggle="tooltip"
-                                                                    data-bs-original-title="Delete"><span
-                                                                        class="fe fe-trash-2 fs-14"></span></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            @else
+                                            <h2>No Shipped Orders</h2>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab7">
                                         <div class="table-responsive">
+                                            @if (count($getPendingOrders) > 0)
                                             <table class="table table-bordered text-nowrap mb-0">
                                                 <thead class="border-top">
                                                     <tr>
@@ -673,71 +738,81 @@
                                                             Payment Mode</th>
                                                         <th class="bg-transparent border-bottom-0" style="width: 10%;">
                                                             Status</th>
+                                                        <th class="bg-transparent border-bottom-0" style="width: 5%;">
+                                                            Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($getPendingOrders as $order)
                                                     <tr class="border-bottom">
                                                         <td class="text-center">
                                                             <div class="mt-0 mt-sm-2 d-block">
                                                                 <h6 class="mb-0 fs-14 fw-semibold">
-                                                                    #98765490</h6>
+                                                                    #{{$order->invoice_no}}</h6>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <span class="avatar bradius"
-                                                                    style="background-image: url({{asset('backend/default-images/orders/10.jpg')}})"></span>
                                                                 <div class="ms-3 mt-0 mt-sm-2 d-block">
                                                                     <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Headsets</h6>
+                                                                        {{$order->orderItems->count()}} Items</h6>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <div class="mt-0 mt-sm-3 d-block">
-                                                                    <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Cherry Blossom</h6>
+                                                                    <h6 class="mb-0 fs-14 fw-semibold text-capitalize">
+                                                                        {{$order->fname . " " . $order->lname}}</h6>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td><span class="mt-sm-2 d-block">30 Aug
-                                                                2021</span></td>
-                                                        <td><span class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
+                                                        <td><span
+                                                                class="mt-sm-2 d-block">{{$order->created_at->format('d
+                                                                M Y')}}</span></td>
+                                                        <td><span
+                                                                class="fw-semibold mt-sm-2 d-block">${{$order->amount}}</span>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <div class="mt-0 mt-sm-3 d-block">
                                                                     <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Online Payment</h6>
+                                                                        @if ($order->payment_method == 0)
+                                                                        Cash Payment
+                                                                        @else
+                                                                        Online Payment
+                                                                        @endif
+                                                                    </h6>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="mt-sm-1 d-block">
                                                                 <span
-                                                                    class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
+                                                                    class="badge bg-default rounded-pill text-default p-2 px-3">Pending</span>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="g-2">
-                                                                <a class="btn text-primary btn-sm"
+                                                                <a href="{{route('orders.pending')}}"
+                                                                    class="btn text-primary btn-sm"
                                                                     data-bs-toggle="tooltip"
-                                                                    data-bs-original-title="Edit"><span
-                                                                        class="fe fe-edit fs-14"></span></a>
-                                                                <a class="btn text-danger btn-sm"
-                                                                    data-bs-toggle="tooltip"
-                                                                    data-bs-original-title="Delete"><span
-                                                                        class="fe fe-trash-2 fs-14"></span></a>
+                                                                    data-bs-original-title="show"><span
+                                                                        class="fe fe-eye fs-14"></span></a>
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
+                                            @else
+                                            <h2>No Pending Orders</h2>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab8">
                                         <div class="table-responsive">
+                                            @if (count($getCanceledOrders) > 0)
                                             <table class="table table-bordered text-nowrap mb-0">
                                                 <thead class="border-top">
                                                     <tr>
@@ -755,67 +830,76 @@
                                                             Payment Mode</th>
                                                         <th class="bg-transparent border-bottom-0" style="width: 10%;">
                                                             Status</th>
+                                                        <th class="bg-transparent border-bottom-0" style="width: 5%;">
+                                                            Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($getCanceledOrders as $order)
                                                     <tr class="border-bottom">
                                                         <td class="text-center">
                                                             <div class="mt-0 mt-sm-2 d-block">
                                                                 <h6 class="mb-0 fs-14 fw-semibold">
-                                                                    #98765490</h6>
+                                                                    #{{$order->invoice_no}}</h6>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <span class="avatar bradius"
-                                                                    style="background-image: url({{asset('backend/default-images/orders/10.jpg')}})"></span>
                                                                 <div class="ms-3 mt-0 mt-sm-2 d-block">
                                                                     <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Headsets</h6>
+                                                                        {{$order->orderItems->count()}} Items</h6>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <div class="mt-0 mt-sm-3 d-block">
-                                                                    <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Cherry Blossom</h6>
+                                                                    <h6 class="mb-0 fs-14 fw-semibold text-capitalize">
+                                                                        {{$order->fname . " " . $order->lname}}</h6>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td><span class="mt-sm-2 d-block">30 Aug
-                                                                2021</span></td>
-                                                        <td><span class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
+                                                        <td><span
+                                                                class="mt-sm-2 d-block">{{$order->created_at->format('d
+                                                                M Y')}}</span></td>
+                                                        <td><span
+                                                                class="fw-semibold mt-sm-2 d-block">${{$order->amount}}</span>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <div class="mt-0 mt-sm-3 d-block">
                                                                     <h6 class="mb-0 fs-14 fw-semibold">
-                                                                        Online Payment</h6>
+                                                                        @if ($order->payment_method == 0)
+                                                                        Cash Payment
+                                                                        @else
+                                                                        Online Payment
+                                                                        @endif
+                                                                    </h6>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="mt-sm-1 d-block">
                                                                 <span
-                                                                    class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
+                                                                    class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Canceled</span>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="g-2">
-                                                                <a class="btn text-primary btn-sm"
+                                                                <a href="{{route('orders.canceled')}}"
+                                                                    class="btn text-primary btn-sm"
                                                                     data-bs-toggle="tooltip"
-                                                                    data-bs-original-title="Edit"><span
-                                                                        class="fe fe-edit fs-14"></span></a>
-                                                                <a class="btn text-danger btn-sm"
-                                                                    data-bs-toggle="tooltip"
-                                                                    data-bs-original-title="Delete"><span
-                                                                        class="fe fe-trash-2 fs-14"></span></a>
+                                                                    data-bs-original-title="show"><span
+                                                                        class="fe fe-eye fs-14"></span></a>
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
+                                            @else
+                                            <h2>No Canceled Orders</h2>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
