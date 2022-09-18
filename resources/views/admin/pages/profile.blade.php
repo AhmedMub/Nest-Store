@@ -35,6 +35,7 @@
 @endpush
 
 @push('child-scripts')
+<script src="{{asset('backend/js/show-password.min.js')}}"></script>
 {{-- FILE UPLOADES JS --}}
 <script src=" {{asset('backend/assets/plugins/fileuploads/js/dropify.min.js')}} "></script>
 <script src="{{asset('backend/assets/plugins/fileuploads/js/file-upload.js')}}"></script>

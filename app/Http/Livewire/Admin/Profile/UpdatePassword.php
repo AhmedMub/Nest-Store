@@ -2,36 +2,47 @@
 
 namespace App\Http\Livewire\Admin\Profile;
 
-use Illuminate\Support\Arr;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 use Livewire\Component;
 
 class UpdatePassword extends Component
 {
-    public $admin = [];
+    public $current_password;
+    public $password;
+    public $password_confirmation;
 
     protected $rules = [
-        'admin.current_password' => ['required'],
-        'admin.password' => ['required'],
-        'admin.password_confirmation' => ['required'],
+        'current_password' => ['required'],
+        'password' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'password_confirmation' => ['required', 'same:password'],
     ];
 
-    public function mount()
+    public function changePassword()
     {
-        $this->admin = auth()->user();
-    }
 
-    //Change Password Functionality using Laravel Fortify Livewire
-    //NOTE UpdatesUserPasswords this is an class interface only implements what interface has as well as implements what App\Actions\Fortify\UpdateUserPassword class functionality
-    public function changePassword(UpdatesUserPasswords $updater)
-    {
-        $updater->update(auth()->user(), [
+        $admin = Auth::guard('admin')->user();
 
-            'current_password' => $this->admin['current_password'],
-            'password' => $this->admin['password'],
-            'password_confirmation' => $this->admin['password_confirmation']
+        //check old password
+        if (!Hash::check($this->current_password, $admin->password)) {
+            $this->addError('current_password', 'The provided password does not match your current password.');
+            return null;
+        }
+        $this->validate();
+
+        $admin->update([
+            'password' => Hash::make($this->password)
         ]);
-        return Redirect::route('admin.profile');
+
+        if ($admin) {
+            $this->reset();
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'success',
+                'message' => 'Password changed successfully'
+            ]);
+        }
     }
 
     public function render()

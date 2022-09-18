@@ -86,8 +86,8 @@
                             "positionClass": "toast-bottom-right",
                             "onclick": null,
                             "fadeIn": 300,
-                            "fadeOut": 2000,
-                            "timeOut": 3000,
+                            "fadeOut": 5000,
+                            "timeOut": 5000,
                             "extendedTimeOut": 500
                         },
                      toastr[event.detail.type](event.detail.message,

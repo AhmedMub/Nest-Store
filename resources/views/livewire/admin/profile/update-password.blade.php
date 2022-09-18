@@ -13,7 +13,7 @@
                 </a>
                 {!! Form::password('current_password',['class'=>($errors->has('current_password')?'input100
                 form-control is-invalid':'input100 form-control'),
-                'placeholder'=>'Current Password',"wire:model.defer='admin.current_password'"])
+                'placeholder'=>'Current Password',"wire:model.defer='current_password'"])
                 !!}
                 <x-defaults.input-error for="current_password" />
             </div>
@@ -26,7 +26,7 @@
                 </a>
                 {!! Form::password('password', ['class'=>($errors->has('password')?'input100 form-control
                 is-invalid':'input100 form-control'), 'placeholder'=>'New Password',
-                "wire:model.defer='admin.password'"])
+                "wire:model.defer='password'"])
                 !!}
                 <x-defaults.input-error for="password" />
             </div>
@@ -38,14 +38,14 @@
                     <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                 </a>
                 {!! Form::password('password_confirmation', ['class'=>'input100 form-control',
-                'placeholder'=>'Confirm Password', "wire:model.defer='admin.password_confirmation'"])
+                'placeholder'=>'Confirm Password', "wire:model.defer='password_confirmation'"])
                 !!}
 
             </div>
         </div>
     </div>
     <div class="card-footer text-end">
-        {!! Form::submit('Update', ['class'=>'btn btn-primary',"wire:loading.attr='disabled'"]) !!}
+        <x-loading-button btn="Update" class="btn btn-primary" icon="bi bi-box-arrow-in-up" />
     </div>
     {!! Form::close() !!}
 </div>

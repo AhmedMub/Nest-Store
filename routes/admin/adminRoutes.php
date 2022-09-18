@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Actions\Fortify\PasswordResetLinkController;
 use App\Actions\Fortify\NewPasswordController;
+use App\Http\Controllers\Admin\AdminRolesController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FrontSiteController;
 use App\Http\Controllers\Admin\ProductController;
@@ -15,7 +16,11 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ManageOrdersController;
 use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\ShippingController;
-
+use App\Models\Admin;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +29,22 @@ use App\Http\Controllers\Admin\ShippingController;
 |
 */
 
-Route::get('testing', [Testing::class, 'testing']);
-
-Route::get('testingQueues', function () {
+Route::get('testing', function () {
 });
+
+Route::middleware(['auth:admin', 'role:super_admin'])->group(function () {
+    Route::get('testrules', function () {
+
+        dd('testing');
+        //dd('this super admin');
+
+        // $rule = Role::findOrFail(1);
+
+        // $rule->givePermissionTo(Permission::findOrFail(1));
+    });
+});
+
+
 
 //if user try reset password with route get method
 Route::get('/admin/reset-password', function () {
@@ -167,5 +184,13 @@ Route::middleware(['auth:sanctum,admin', 'verified', 'auth:admin'])->prefix('adm
     Route::controller(NotificationsController::class)->prefix('manage-notifications/')->name('notification.')->group(function () {
         //show all list
         Route::any('show/all', 'notificationsList')->name('show.all');
+    });
+
+    //admin roles
+    Route::middleware(['role:super-admin'])->controller(AdminRolesController::class)->prefix('manage-roles/')->name('role.')->group(function () {
+        //show all list
+        Route::get('register/new-admin', 'adminRegistration')->name('new.admin');
+
+        Route::get('show/admins', 'show')->name('show.admins');
     });
 });

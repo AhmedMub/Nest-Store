@@ -11,6 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
@@ -20,6 +21,7 @@ class Admin extends Authenticatable
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -84,5 +86,17 @@ class Admin extends Authenticatable
     public function admin()
     {
         return $this->hasMany(Product::class, 'createdBy_adminID');
+    }
+
+    public function scopeSearch($query, $val)
+    {
+        return $query
+            ->where('first_name', 'like', '%' . $val . '%')
+            ->OrWhere('second_name', 'like', '%' . $val . '%')
+            ->OrWhere('email', 'like', '%' . $val . '%')
+            ->OrWhere('phone_number', 'like', '%' . $val . '%')
+            ->OrWhereHas('roles', function ($query) use ($val) {
+                $query->where('name', 'like', '%' . $val . '%');
+            });
     }
 }

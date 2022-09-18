@@ -61,6 +61,7 @@ $headerName = $product->productMainCat->name_en;
                 @endif
             </div>
             {{-- /- add to cart componenet --}}
+            {{-- / //FIXME something wrong with btn --}}
             <livewire:frontend.product.add-to-cart-for-single-view :product="$product->id" classes="">
         </div>
     </div>

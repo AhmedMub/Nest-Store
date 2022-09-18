@@ -6,8 +6,8 @@
         <div class="drop-heading">
             <div x-data="{name: '{{$name}}'}" class="text-center">
                 <h5 class="text-dark mb-0 fs-14 fw-semibold text-capitalize" x-text="name"></h5>
-                {{-- / //TODO must add user rule --}}
-                <small class="text-muted">rule</small>
+
+                <small class="text-muted">{{Auth::guard('admin')->user()->roles[0]['name']}}</small>
             </div>
         </div>
         <div class="dropdown-divider m-0"></div>
