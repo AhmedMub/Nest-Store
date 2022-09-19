@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Events\ZeroProductQuantity;
 use App\Http\Controllers\Controller;
+use App\Mail\SendOrderInvoice;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -14,6 +15,7 @@ use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
@@ -117,6 +119,9 @@ class PaymentsController extends Controller
             // create Order Items
             $this->createOrderItems($newOrder->id);
 
+            //send email to user
+            $this->sendInvoiceEmail($newOrder->id);
+
             return view('frontend.pages.order-success', ['invoice' => $newOrder->invoice_no]);
         } else {
             return view('frontend.pages.order-failed');
@@ -196,6 +201,14 @@ class PaymentsController extends Controller
         $order = Order::where('invoice_no', $invoice)->firstOrFail();
 
         return view('frontend.pages.order-invoice', compact('order'));
+    }
+
+    public function sendInvoiceEmail($id)
+    {
+        $order = Order::findOrFail($id);
+        $user = Auth::user();
+
+        Mail::to("$user->email")->send(new SendOrderInvoice($order));
     }
 
     public function clearSessionAndCart()

@@ -85,8 +85,20 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         </td>
                         <td><img class="br-7" src="{{$product->getFirstMediaUrl('mainImage')}}" alt=""></td>
                         <td> {{$product->name_en}} </td>
-                        <td> {{$product->admin->getFullName()}} </td>
-                        <td> {{$product->updatedByAdmin->getFullName()}} </td>
+                        <td>
+                            @if (isset($product->createdBy_adminID))
+                            {{$product->admin->getFullName()}}
+                            @else
+                            <span class="badge bg-danger-gradient fs-6  me-1 mb-1 mt-1">NoT Set</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if (isset($product->updatedBy_adminID))
+                            {{$product->updatedByAdmin->getFullName()}}
+                            @else
+                            <span class="badge bg-danger-gradient fs-6  me-1 mb-1 mt-1">NoT Set</span>
+                            @endif
+                        </td>
                         <td>{{$product->productMainCat->name_en}}</td>
                         <td>
                             @if (!is_null($product->subCategory_id))

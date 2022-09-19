@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\ManageOrdersController;
 use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\ShippingController;
 use App\Models\Admin;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
@@ -30,20 +32,9 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('testing', function () {
+    $order = Order::findOrFail(1);
+    return view('mail.frontend.invoice', compact('order'));
 });
-
-Route::middleware(['auth:admin', 'role:super_admin'])->group(function () {
-    Route::get('testrules', function () {
-
-        dd('testing');
-        //dd('this super admin');
-
-        // $rule = Role::findOrFail(1);
-
-        // $rule->givePermissionTo(Permission::findOrFail(1));
-    });
-});
-
 
 
 //if user try reset password with route get method
