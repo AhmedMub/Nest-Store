@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Mail\CouponExpired;
+use App\Models\Admin;
 use App\Models\Coupon;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -42,6 +43,8 @@ class CheckProductExp extends Command
     public function handle()
     {
         $coupons = Coupon::whereStatus(1)->get();
+        $admins = Admin::all();
+
         $checkCouponsArr = [];
         if (count($coupons) > 0) {
             foreach ($coupons as $coupon) {
@@ -54,8 +57,12 @@ class CheckProductExp extends Command
             }
         }
         if (count($checkCouponsArr) > 0) {
-            //TODO must get admin email from db after ruels and permission
-            Mail::to('a@a.com')->send(new CouponExpired($checkCouponsArr));
+
+            foreach ($admins as $admin) {
+                if ($admin->hasRole('super-admin|administrator')) {
+                    Mail::to("$admin->email")->send(new CouponExpired($checkCouponsArr));
+                }
+            }
         }
     }
 }

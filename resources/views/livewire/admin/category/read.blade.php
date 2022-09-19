@@ -29,7 +29,6 @@
                     <tr class="text-center">
                         <th class="wd-15p border-bottom-0 text-capitalize">default icon</th>
                         <th class="wd-15p border-bottom-0 text-capitalize">category icon</th>
-                        {{-- /-//FIXME sort by english category --}}
                         <th wire:click="sortBy('name_en')"
                             class="cursor-pointer wd-15p border-bottom-0 text-capitalize">category EN
                             {{-- change Icone --}}

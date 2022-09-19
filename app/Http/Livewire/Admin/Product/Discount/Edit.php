@@ -19,12 +19,11 @@ class Edit extends Component
 
     protected $listeners = ['editDiscount' => 'edit'];
 
-    //TODO must add more validation with more messages and regex validation
     protected function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'description' => ['nullable', 'string'],
+            'name' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'description' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
             'discount_percent' => ['required', 'integer'],
             'product_id' => ['required', 'integer', "unique:product_discounts,product_id,$this->discountId"],
         ];

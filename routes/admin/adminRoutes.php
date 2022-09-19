@@ -16,11 +16,13 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ManageOrdersController;
 use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\ShippingController;
+use App\Mail\SendEmailNoProductsExp;
 use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -32,8 +34,14 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('testing', function () {
-    $order = Order::findOrFail(1);
-    return view('mail.frontend.invoice', compact('order'));
+
+    $admins = Admin::all();
+    $test = [];
+    foreach ($admins as $admin) {
+        if ($admin->hasRole('author|administrator')) {
+            Mail::to("$admin->email")->send(new SendEmailNoProductsExp());
+        }
+    }
 });
 
 

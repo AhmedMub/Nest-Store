@@ -11,7 +11,7 @@
                 <input wire:model.defer='name' id="name" type="text"
                     class="form-control {{$errors->has('name')?'is-invalid':''}}"
                     placeholder="Add name for the discount" />
-                <x-defaults.input-error for="name" />
+                <x-defaults.input-error for="name" required />
             </div>
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="description">discount description</label>
@@ -25,12 +25,12 @@
                 <input wire:model.defer='discount_percent' id="discount_percent" type="text"
                     class="form-control {{$errors->has('discount_percent')?'is-invalid':''}}"
                     placeholder="Add Discount Examples: 10, 20, 30, etc.." />
-                <x-defaults.input-error for="discount_percent" />
+                <x-defaults.input-error for="discount_percent" required />
                 <p class="text-muted"><small>Discount numbers will be converted to percentage.</small></p>
             </div>
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="product_id">choose product</label>
-                <select autocomplete="off" class="form-select" wire:model.defer="product_id" id="product_id">
+                <select autocomplete="off" class="form-select" wire:model.defer="product_id" id="product_id" required>
                     <option selected class="text-uppercase" value="">--selecte product--</option>
                     @foreach ($products as $product)
                     <option value="{{$product->id}}"> {{$product->name_en}} | {{$product->sku}} </option>

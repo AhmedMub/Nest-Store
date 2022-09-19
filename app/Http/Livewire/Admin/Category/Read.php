@@ -10,9 +10,9 @@ class Read extends Component
 {
     use WithPagination;
     //Sorting
-    public $sortBy = 'name_en';
+    public $sortBy = 'id';
     public $sortDirection = 'desc';
-    public $field = 'name_en';
+    public $field = 'id';
     public $perPage = 5;
     public $search = '';
 
@@ -43,7 +43,6 @@ class Read extends Component
 
     public function render()
     {
-        //FIXME solve order by id or get the latest records
         $categories = Category::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
 
         return view('livewire.admin.category.read', [

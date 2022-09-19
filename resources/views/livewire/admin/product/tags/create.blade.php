@@ -8,14 +8,14 @@
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="nameEn">tag english name</label>
                 <input wire:model='name.en' type="text" class="form-control {{$errors->has('name')?'is-invalid':''}}"
-                    placeholder="Tag name" />
+                    placeholder="Tag name" required />
                 <x-defaults.input-error for="name.en" />
             </div>
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="nameEn">tag english name</label>
                 <input wire:model='name.ar' type="text" class="form-control {{$errors->has('name')?'is-invalid':''}}"
                     placeholder="Tag name" />
-                <x-defaults.input-error for="name.ar" />
+                <x-defaults.input-error for="name.ar" required />
             </div>
         </div>
         <div class="card-footer">

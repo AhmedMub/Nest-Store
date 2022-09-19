@@ -21,19 +21,16 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    /*
-     ///TODO hot and new deals only one can be selected + life should be calculated in days upon the mfg date
-    */
-
     //main to product model
-    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $hot_deals, $type, $life, $manufacturing_date;
+    public $createdBy_adminID, $updatedBy_adminID, $subCategory_id, $category_id, $vendor_id, $name_en, $name_ar, $qty, $price, $size, $type, $life, $manufacturing_date;
 
     public $subSubCategory_id = null;
 
     public $getSubCats = "";
     public $getSubSubCats = "";
 
-    public $new_deals = 0;
+    public $new_deals = false;
+    public $hot_deals = false;
 
     //Product Expiration table
     public $mfg;
@@ -57,23 +54,21 @@ class Create extends Component
     public $queryTag = '';
     public $getTags = [];
 
-
-    //TODO must add security regex && must add custom messages because in required it returnes field name which is risky
     protected $rules = [
         'category_id' => ['required', 'integer'],
         'subCategory_id' => ['required', 'integer'],
         'subSubCategory_id' => ['nullable', 'integer'],
         'vendor_id' => ['required', 'integer'],
-        'name_en' => ['required', 'string', 'unique:products'],
-        'name_ar' => ['required', 'string', 'unique:products'],
-        'qty' => ['required', 'integer'],
-        'price' => ['required', 'integer'],
-        'type' => ['required', 'string'],
-        'size' => ['nullable', 'integer'],
+        'name_en' => ['required', 'string', 'unique:products', 'regex:/^[a-z0-9\s]*$/i'],
+        'name_ar' => ['required', 'string', 'unique:products', 'regex:/^[a-z0-9\s]*$/i'],
+        'qty' => ['required', 'integer', 'regex:/^[0-9\s]*$/i'],
+        'price' => ['required', 'integer', 'regex:/^[0-9\s]*$/i'],
+        'type' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'size' => ['nullable', 'integer', 'regex:/^[0-9\s]*$/i'],
         'mfg' => ['required', 'date_format:Y-m-d'],
         'exp' => ['required', 'date_format:Y-m-d'],
-        'short_desc_en' => ['string'],
-        'short_desc_ar' => ['string'],
+        'short_desc_en' => ['string', 'regex:/^[a-z0-9\s]*$/i'],
+        'short_desc_ar' => ['string', 'regex:/^[a-z0-9\s]*$/i'],
         'long_desc_en' => ['nullable', 'string'],
         'long_desc_ar' => ['nullable', 'string'],
         // 'packaging_delivery_en' => ['nullable', 'string'],
@@ -84,15 +79,15 @@ class Create extends Component
         // 'other_ingredients_ar' => ['nullable', 'string'],
         // 'warnings_en' => ['nullable', 'string'],
         // 'warnings_ar' => ['nullable', 'string'],
-        'stand_up_en' => ['nullable', 'string'],
-        'stand_up_ar' => ['nullable', 'string'],
-        'folded_en' => ['nullable', 'string'],
-        'folded_ar' => ['nullable', 'string'],
-        'frame_en' => ['nullable', 'string'],
-        'frame_ar' => ['nullable', 'string'],
-        'color_en' => ['nullable', 'string'],
-        'color_ar' => ['nullable', 'string'],
-        'size_en' => ['nullable', 'string'],
+        'stand_up_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'stand_up_ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'folded_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'folded_ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'frame_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'frame_ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'color_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'color_ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'size_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
         'mainImage' => ['required', 'image', 'max:10000'],
         'multiImgs.*' => ['required', 'image', 'max:10000'],
 
@@ -158,10 +153,6 @@ class Create extends Component
             return null;
         }
 
-        //for validation
-        ($this->new_deals !== 1 ? $this->new_deals = 0 : "");
-        ($this->hot_deals !== 1 ? $this->hot_deals = 0 : "");
-
         /*
             - you must specify the guard admin from which auth faceds can get the auth user because Auth default is for users table NOT admins
 
@@ -182,9 +173,14 @@ class Create extends Component
             'price' => $this->price,
             'type' => $this->type,
             'size' => $this->size,
-            'hot_deals' => $this->hot_deals,
-            'new_deals' => $this->new_deals
         ]);
+
+        if ($this->hot_deals) {
+            $this->deals($product_id->id, 1, 0);
+        }
+        if ($this->new_deals) {
+            $this->deals($product_id->id, 0, 1);
+        }
 
         //to add the main Image
         $product_id->addMedia($this->mainImage->getRealPath())->withResponsiveImages()->toMediaCollection('mainImage');
@@ -228,6 +224,13 @@ class Create extends Component
         ]);
     }
 
+    public function deals($id, $hot, $new)
+    {
+        Product::findOrFail($id)->update([
+            'hot_deals' => $hot,
+            'new_deals' => $new
+        ]);
+    }
     public function productDesc($id)
     {
         ProductDescription::create([
@@ -314,6 +317,19 @@ class Create extends Component
             'mfg' => $this->mfg,
             'exp' => $this->exp,
         ]);
+    }
+
+    public function updatedNewDeals()
+    {
+        if ($this->new_deals) {
+            $this->hot_deals = false;
+        }
+    }
+    public function updatedHotDeals()
+    {
+        if ($this->hot_deals) {
+            $this->new_deals = false;
+        }
     }
 
     public function render()

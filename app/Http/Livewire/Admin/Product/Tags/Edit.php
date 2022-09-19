@@ -16,12 +16,11 @@ class Edit extends Component
         'editTag' => 'edit',
     ];
 
-    //TODO must put security regex validation && must edit error messages because like on required message it reveals field name used in database
     protected function rules()
     {
         return [
-            'name.en' => ['nullable', 'string'],
-            'name.ar' => ['nullable', 'string'],
+            'name.en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'name.ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
         ];
     }
 

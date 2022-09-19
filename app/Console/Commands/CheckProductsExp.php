@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 
 use App\Mail\SendEmailNoProductsExp;
 use App\Mail\SendEmailWithProductsExp;
+use App\Models\Admin;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -44,6 +45,7 @@ class CheckProductsExp extends Command
     public function handle()
     {
         $products = Product::whereProductStatus(1)->get();
+        $admins = Admin::all();
         $checkProductsArr = [];
         if (count($products) > 0) {
             foreach ($products as $product) {
@@ -57,10 +59,17 @@ class CheckProductsExp extends Command
         }
         //if the checkProductsArr empty will send and email to admin that everything is fine
         if (count($checkProductsArr) == 0) {
-            //TODO must get admin email from db after ruels and permission
-            Mail::to('a@a.com')->send(new SendEmailNoProductsExp());
+            foreach ($admins as $admin) {
+                if ($admin->hasRole('super-admin|administrator')) {
+                    Mail::to("$admin->email")->send(new SendEmailNoProductsExp());
+                }
+            }
         } else {
-            Mail::to('a@a.com')->send(new SendEmailWithProductsExp($checkProductsArr));
+            foreach ($admins as $admin) {
+                if ($admin->hasRole('super-admin|administrator')) {
+                    Mail::to("$admin->email")->send(new SendEmailWithProductsExp($checkProductsArr));
+                }
+            }
         }
     }
 }

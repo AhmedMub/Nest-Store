@@ -13,14 +13,15 @@
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0" for="name">name</label>
                         <input wire:model.defer='name' id="name" name="name" type="text"
-                            class="form-control {{$errors->has('name')?'is-invalid':''}}" placeholder="Discount Name" />
+                            class="form-control {{$errors->has('name')?'is-invalid':''}}" placeholder="Discount Name"
+                            required />
                         <x-defaults.input-error for="name" />
                     </div>
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0" for="nameAr">discount percentage</label>
                         <input wire:model.defer='discount_percent' id="discount_percent" name="discount_percent"
                             type="text" class="form-control {{$errors->has('discount_percent')?'is-invalid':''}}"
-                            placeholder="Category Arabic Name" />
+                            placeholder="Category Arabic Name" required />
                         <x-defaults.input-error for="discount_percent" />
                     </div>
                     <div class="form-group">
@@ -32,7 +33,7 @@
                     <div class="form-group">
                         <label class="text-capitalize form-label mt-0" for="selectProduct">change product</label>
                         <select id="selectProduct" autocomplete="off" class="form-select" wire:model.defer="product_id"
-                            name="product_id">
+                            name="product_id" required>
                             @foreach ($products as $product)
                             <option value="{{$product->id}}">{{$product->name_en}}</option>
                             @endforeach

@@ -14,10 +14,9 @@ class Create extends Component
     public $product_id;
     public $discounted_price;
 
-    //TODO must add more validation with more messages and regex validation
     protected $rules = [
-        'name' => ['required', 'string'],
-        'description' => ['nullable', 'string'],
+        'name' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'description' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
         'discount_percent' => ['required', 'integer'],
         'product_id' => ['required', 'integer', 'unique:product_discounts'],
     ];

@@ -9,10 +9,9 @@ class Create extends Component
 {
     public $name, $status;
 
-    //TODO must add security regex && must add custom messages because in required it returnes field name which is risky
     protected $rules = [
-        'name.en' => ['required', 'string'],
-        'name.ar' => ['required', 'string'],
+        'name.en' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'name.ar' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
     ];
 
     protected $messages = [

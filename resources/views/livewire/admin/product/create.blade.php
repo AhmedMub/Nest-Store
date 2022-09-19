@@ -14,7 +14,7 @@
                                 class="text-red">*</span></label>
                         <input wire:model.defer='name_en' id="nameEn" name="name_en" type="text"
                             class="form-control {{$errors->has('name_en')?'is-invalid':''}}"
-                            placeholder="Product English Name" />
+                            placeholder="Product English Name" required />
                         <x-defaults.input-error for="name_en" />
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                                 class="text-red">*</span></label>
                         <input wire:model.defer='name_ar' id="nameAr" type="text"
                             class="form-control {{$errors->has('name_ar')?'is-invalid':''}}"
-                            placeholder="Product Arabic Name" />
+                            placeholder="Product Arabic Name" required />
                         <x-defaults.input-error for="name_ar" />
                     </div>
                 </div>
@@ -33,8 +33,8 @@
                         <label class="text-capitalize form-label mt-0" for="qty">Quantity<span
                                 class="text-red">*</span></label>
                         <input wire:model.defer='qty' id="qty" type="text"
-                            class="form-control {{$errors->has('qty')?'is-invalid':''}}"
-                            placeholder="Product Quantity" />
+                            class="form-control {{$errors->has('qty')?'is-invalid':''}}" placeholder="Product Quantity"
+                            required />
                         <x-defaults.input-error for="qty" />
                     </div>
                 </div>
@@ -43,8 +43,8 @@
                         <label class="text-capitalize form-label mt-0" for="price">Price<span
                                 class="text-red">*</span></label>
                         <input wire:model.defer='price' id="price" type="text"
-                            class="form-control {{$errors->has('price')?'is-invalid':''}}"
-                            placeholder="Product Price" />
+                            class="form-control {{$errors->has('price')?'is-invalid':''}}" placeholder="Product Price"
+                            required />
                         <x-defaults.input-error for="price" />
                     </div>
                 </div>
@@ -53,7 +53,8 @@
                         <label class="text-capitalize form-label mt-0" for="type">Type<span
                                 class="text-red">*</span></label>
                         <input wire:model.defer='type' id="type" type="text"
-                            class="form-control {{$errors->has('type')?'is-invalid':''}}" placeholder="Product type" />
+                            class="form-control {{$errors->has('type')?'is-invalid':''}}" placeholder="Product type"
+                            required />
                         <x-defaults.input-error for="type" />
                     </div>
                 </div>
@@ -140,7 +141,8 @@
                         <label class="text-capitalize form-label mt-0" for="mfg">manufacturing date (MFG) <span
                                 class="text-red">*</span></label>
                         <input wire:model.defer='mfg' id="mfg" type="text"
-                            class="form-control {{$errors->has('mfg')?'is-invalid':''}}" placeholder="YYYY-MM-DD" />
+                            class="form-control {{$errors->has('mfg')?'is-invalid':''}}" placeholder="YYYY-MM-DD"
+                            required />
                         <x-defaults.input-error for="mfg" />
                     </div>
                 </div>
@@ -149,7 +151,8 @@
                         <label class="text-capitalize form-label mt-0" for="exp">Expiration date (EXP) <span
                                 class="text-red">*</span></label>
                         <input wire:model.defer='exp' id="exp" type="text"
-                            class="form-control {{$errors->has('exp')?'is-invalid':''}}" placeholder="YYYY-MM-DD" />
+                            class="form-control {{$errors->has('exp')?'is-invalid':''}}" placeholder="YYYY-MM-DD"
+                            required />
                         <x-defaults.input-error for="exp" />
                     </div>
                 </div>
@@ -214,7 +217,7 @@
                 <div class="col-12">
                     <div>
                         <label class="w-25 fix-lable-click custom-control custom-checkbox  col">
-                            <input wire:model.defer='hot_deals' id="hot_deals" value="1" type="checkbox"
+                            <input wire:model='hot_deals' id="hot_deals" type="checkbox"
                                 class="check-one custom-control-input check-one check-one2">
                             <span class="custom-control-label">
                                 Hot Deals
@@ -223,7 +226,7 @@
                     </div>
                     <div>
                         <label class="w-25 custom-control custom-checkbox  col">
-                            <input wire:model.defer='new_deals' id="new_deals" value="1" type="checkbox"
+                            <input wire:model='new_deals' id="new_deals" type="checkbox"
                                 class="check-one custom-control-input check-one check-one2">
                             <span class="custom-control-label">
                                 New Deals
