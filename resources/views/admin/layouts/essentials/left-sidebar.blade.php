@@ -56,6 +56,8 @@ $showAdmins = route('role.show.admins');
                 <li class="sub-category">
                     <h3 class="text-uppercase">essentials</h3>
                 </li>
+                @role('super-admin|administrator')
+                {{-- /vendors --}}
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon bi bi-people"></i>
@@ -73,6 +75,7 @@ $showAdmins = route('role.show.admins');
                         </li>
                     </ul>
                 </li>
+                {{-- /Categories --}}
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon bi bi-layout-wtf"></i>
@@ -92,6 +95,8 @@ $showAdmins = route('role.show.admins');
                         </li>
                     </ul>
                 </li>
+                @endrole
+                {{-- /Products --}}
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon fe fe-package"></i>
@@ -111,6 +116,7 @@ $showAdmins = route('role.show.admins');
                                 class="@if ($currentRoute == $addProduct) active @endif slide-item text-capitalize">add
                                 new product</a>
                         </li>
+                        @role('super-admin|administrator')
                         <li><a href=" {{$manageTags}} "
                                 class="@if ($currentRoute == $manageTags) active @endif slide-item text-capitalize">manage
                                 product tags</a>
@@ -119,12 +125,15 @@ $showAdmins = route('role.show.admins');
                                 class="@if ($currentRoute == $manageDiscount) active @endif slide-item text-capitalize">manage
                                 products discount</a>
                         </li>
+                        @endrole
                         <li><a href=" {{$productExpire}} "
                                 class="@if ($currentRoute == $productExpire) active @endif slide-item text-capitalize">Product
                                 Dates & Expiry</a>
                         </li>
                     </ul>
                 </li>
+                @role('super-admin|administrator')
+                {{-- /Coupons --}}
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon bi bi-gift"></i>
@@ -138,6 +147,7 @@ $showAdmins = route('role.show.admins');
                         </li>
                     </ul>
                 </li>
+                {{-- /Shipping Areas --}}
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon bi bi-truck"></i>
@@ -155,6 +165,7 @@ $showAdmins = route('role.show.admins');
                         </li>
                     </ul>
                 </li>
+                {{-- /Web components --}}
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon bi bi-gear-wide-connected"></i>
@@ -168,6 +179,7 @@ $showAdmins = route('role.show.admins');
                         </li>
                     </ul>
                 </li>
+                {{-- /Orders --}}
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon fe fe-layers"></i>
@@ -219,7 +231,9 @@ $showAdmins = route('role.show.admins');
                         </li>
                     </ul>
                 </li>
+                @endrole
                 @role('super-admin', 'admin')
+                {{-- /Admin Roles --}}
                 <li class="slide is-expanded">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
                         <i class="side-menu__icon bi bi-person-lines-fill"></i>

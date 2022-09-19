@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Product;
 
 use App\Models\Product;
 use App\Models\Vendor;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -90,8 +91,13 @@ class Read extends Component
     {
         $this->bulkDisabled = count($this->selectedCheckboxes) < 1;
 
-        $products = Product::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
-
+        //roles
+        $admin = Auth::guard('admin')->user();
+        if ($admin->hasRole('author')) {
+            $products = Product::query()->where('createdBy_adminID', $admin->id)->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+        } else {
+            $products = Product::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+        }
 
         return view('livewire.admin.product.read', [
 

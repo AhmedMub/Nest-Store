@@ -50,6 +50,7 @@ $notifications = App\Models\Order::whereCancelRequest(1)->where('status', '!=', 
                                 </a>
                             </div>
                             {{-- FULL-SCREEN --}}
+                            @role('super-admin|administrator')
                             <div class="dropdown  d-flex notifications">
                                 <a class="nav-link icon" data-bs-toggle="dropdown"><i class="fe fe-bell"></i>
                                     @if (count($notifications) > 0)
@@ -89,6 +90,7 @@ $notifications = App\Models\Order::whereCancelRequest(1)->where('status', '!=', 
                                     </div>
                                 </div>
                             </div>
+                            @endrole
                             {{-- SIDE-MENU --}}
                             <livewire:admin.profile.header-admin-name-avatar :admin="Auth::user()" />
                         </div>
