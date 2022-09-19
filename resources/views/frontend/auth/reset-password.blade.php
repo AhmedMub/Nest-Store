@@ -1,5 +1,4 @@
 @extends('frontend.layouts.master')
-{{-- //TODO must add required to all fields --}}
 @section('content')
 <main class="main page-404">
     <div class="page-content pt-150 pb-150">
@@ -19,19 +18,20 @@
                             <div class="form-group">
                                 <input placeholder="Write Your Email"
                                     class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email"
-                                    value=" {{old('email', $request->email)}} " autofocus />
+                                    value=" {{old('email', $request->email)}} " autofocus required />
                                 <x-defaults.input-error for="email" />
                             </div>
                             <div class="form-group">
                                 <input placeholder="Write New Password"
                                     class="{{ $errors->has('password') ? 'form-control is-invalid' : '' }}"
-                                    type="password" name="password" autocomplete="new-password" />
+                                    type="password" name="password" autocomplete="new-password" required />
                                 <x-defaults.input-error for="password" />
                             </div>
                             <div class="form-group">
                                 <input placeholder="Password Confirm"
                                     class="{{ $errors->has('password_confirmation') ? 'form-control is-invalid' : '' }}"
-                                    type="password" name="password_confirmation" required autocomplete="new-password" />
+                                    type="password" name="password_confirmation" required autocomplete="new-password"
+                                    required />
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-heading btn-block hover-up">{{__('Reset Password')

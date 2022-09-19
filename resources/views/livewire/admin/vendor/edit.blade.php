@@ -17,7 +17,7 @@
                                         class="text-red">*</span></label>
                                 <input wire:model.defer='name_en' id="nameEn" name="name_en" type="text"
                                     class="form-control {{$errors->has('name_en')?'is-invalid':''}}"
-                                    placeholder="Vendor English Name" />
+                                    placeholder="Vendor English Name" required />
                                 <x-defaults.input-error for="name_en" />
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                         class="text-red">*</span></label>
                                 <input wire:model.defer='name_ar' id="nameAr" type="text"
                                     class="form-control {{$errors->has('name_ar')?'is-invalid':''}}"
-                                    placeholder="Vendor Arabic Name" />
+                                    placeholder="Vendor Arabic Name" required />
                                 <x-defaults.input-error for="name_ar" />
                             </div>
                         </div>
@@ -44,7 +44,8 @@
                                         class="text-red">*</span></label>
                                 <input wire:model.defer='address' id="venAddress" type="text"
                                     class="form-control {{$errors->has('address')?'is-invalid':''}}"
-                                    placeholder="Vendor Address:5171 W Campbell Ave undefined, Utah 53127 United States" />
+                                    placeholder="Vendor Address:5171 W Campbell Ave undefined, Utah 53127 United States"
+                                    required />
                                 <x-defaults.input-error for="address" />
                             </div>
                         </div>
@@ -54,7 +55,7 @@
                                         class="text-red">*</span></label>
                                 <input wire:model.defer='phone' id="venPhone" type="text"
                                     class="form-control {{$errors->has('phone')?'is-invalid':''}}"
-                                    placeholder="Vendor Mobile Phone" />
+                                    placeholder="Vendor Mobile Phone" required />
                                 <x-defaults.input-error for="phone" />
                             </div>
                         </div>
@@ -64,7 +65,8 @@
                                         class="text-red">*</span></label>
                                 <textarea wire:model.defer='description_en' id="descEn"
                                     class="form-control {{$errors->has('description_en')?'is-invalid':''}}"
-                                    placeholder="Write a short English description" style="height: 100px"></textarea>
+                                    placeholder="Write a short English description" style="height: 100px"
+                                    required></textarea>
                                 <x-defaults.input-error for="description_en" />
                             </div>
                         </div>
@@ -74,7 +76,8 @@
                                         class="text-red">*</span></label>
                                 <textarea wire:model.defer='description_ar' id="descAr"
                                     class="form-control {{$errors->has('description_ar')?'is-invalid':''}}"
-                                    placeholder="Write a short Arabic description" style="height: 100px"></textarea>
+                                    placeholder="Write a short Arabic description" style="height: 100px"
+                                    required></textarea>
                                 <x-defaults.input-error for="description_ar" />
                             </div>
                         </div>
@@ -88,7 +91,7 @@
                                     </div>
                                     <input wire:model.lazy='start_date' id="start_date"
                                         class="form-control {{$errors->has('start_date')?'is-invalid':''}}"
-                                        placeholder="DD/MM/YYYY">
+                                        placeholder="DD/MM/YYYY" required>
                                 </div>
                                 <x-defaults.input-error for="start_date" />
                             </div>

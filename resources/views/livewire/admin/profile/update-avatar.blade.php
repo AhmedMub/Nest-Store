@@ -22,7 +22,7 @@
             @csrf
             <button class="btn btn-primary" type="submit">Save</button>
             <label class="custom-file-upload btn btn-primary">Select New Photo
-                <input type="file" id="profilePhoto" wire:model.defer='profile_photo_path' class="d-none">
+                <input type="file" id="profilePhoto" wire:model='profile_photo_path' class="d-none">
             </label>
         </form>
         <x-defaults.input-error for="profile_photo_path" />

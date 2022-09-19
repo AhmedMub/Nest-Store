@@ -1,4 +1,3 @@
-{{-- //TODO must add required for all inputs --}}
 <div class="card">
     <form autocomplete="off" method="POST" wire:submit.prevent='create'>
         @csrf
@@ -10,15 +9,15 @@
                 <label class="text-capitalize form-label mt-0" for="district">district name<span
                         class="text-red">*</span></label>
                 <input wire:model.defer='district' id="district" type="text"
-                    class="form-control {{$errors->has('district')?'is-invalid':''}}"
-                    placeholder="Write district name" />
+                    class="form-control {{$errors->has('district')?'is-invalid':''}}" placeholder="Write district name"
+                    required />
                 <x-defaults.input-error for="district" />
             </div>
             <div class="form-group">
                 <div wire:ignore>
                     <label class="text-capitalize form-label mt-0" for="chooseCountry">choose country<span
                             class="text-red">*</span></label>
-                    <select autocomplete="off" class="form-select" id="chooseCountry">
+                    <select autocomplete="off" class="form-select" id="chooseCountry" required>
                         <option selected>Select an option...</option>
                         @if (count($countries) > 0)
                         @foreach ($countries as $country)

@@ -32,27 +32,24 @@ class EditProfileInfo extends Component
     protected function rules()
     {
         return [
-            'first_name' => ['required', 'string', 'max:15', 'min:3'],
-            'second_name' => ['required', 'string', 'max:15', 'min:3'],
-            'address' => ['required', 'string', 'max:60', 'min:3'],
-            'addressTwo' => ['nullable', 'string'],
-            'email' => ['required', 'string', 'email', 'string', "unique:users,email,$this->userId"],
+            'first_name' => ['required', 'string', 'max:15', 'min:3', 'regex:/^[a-z0-9\s]*$/i'],
+            'second_name' => ['required', 'string', 'max:15', 'min:3', 'regex:/^[a-z0-9\s]*$/i'],
+            'address' => ['required', 'string', 'max:60', 'min:3', 'regex:/^[a-z0-9\s]*$/i'],
+            'addressTwo' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'email' => ['required', 'string', 'email', "unique:users,email,$this->userId"],
             'phone' => ['required', 'regex:/[0-9]{8}/'],
-            //TODO add security regex
         ];
     }
 
     protected $messages = [
-        'first_name.string' => 'Must Be Characters Only',
-        'second_name.string' => 'Must Be Characters Only',
-        'phone.regex' => 'Invalid Phone Number',
-        //TODO add more messages for above rules
-
+        'first_name.required' => 'First name field is required',
+        'second_name.required' => 'Second name field is required',
     ];
 
     public function update()
     {
         $this->validate();
+
         User::whereId($this->user->id)->update([
             'first_name' => $this->first_name,
             'second_name' => $this->second_name,

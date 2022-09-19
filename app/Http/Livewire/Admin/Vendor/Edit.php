@@ -18,20 +18,20 @@ class Edit extends Component
         'editVendor',
     ];
 
-    //TODO must add security regex && must add custom messages because in required it returnes field name which is risky
+
     protected function rules()
     {
         return [
-            'name_en' => ['required', 'string', "unique:vendors,name_en,$this->vendorId"],
-            'name_ar' => ['required', 'string', "unique:vendors,name_ar,$this->vendorId"],
-            'address' => ['required', 'string'],
+            'name_en' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i', "unique:vendors,name_en,$this->vendorId"],
+            'name_ar' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i', "unique:vendors,name_ar,$this->vendorId"],
+            'address' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
             'phone' => ['required', 'integer'],
-            'description_en' => ['required', 'string'],
-            'description_ar' => ['required', 'string'],
-            'twitter' => ['nullable', 'string'],
-            'instagram' => ['nullable', 'string'],
-            'facebook' => ['nullable', 'string'],
-            'start_date' => ['required'],
+            'description_en' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'description_ar' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'twitter' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'instagram' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'facebook' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'start_date' => ['required', 'date_format:Y-m-d'],
             //logo nullable because user may not want to update logo on update info
             'logo' => ['nullable', 'image', 'max:10000'],
         ];

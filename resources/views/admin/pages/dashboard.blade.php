@@ -914,6 +914,22 @@
 {{-- ROW-4 END --}}
 @auth
 @push('child-scripts')
+{{-- INTERNAL CHARTJS CHART JS--}}
+<script src="{{asset('backend/assets/plugins/chart/Chart.bundle.js')}}"></script>
+<script src="{{asset('backend/assets/plugins/chart/rounded-barchart.js')}}"></script>
+<script src="{{asset('backend/assets/plugins/chart/utils.js')}}"></script>
+
+{{-- INTERNAL APEXCHART JS --}}
+<script src="{{asset('backend/js/apexcharts.js')}}"></script>
+<script src="{{asset('backend/assets/plugins/apexchart/irregular-data-series.js')}}"></script>
+
+{{-- C3 CHART JS --}}
+<script src="{{asset('backend/assets/plugins/charts-c3/d3.v5.min.js')}}"></script>
+<script src="{{asset('backend/assets/plugins/charts-c3/c3-chart.js')}}"></script>
+
+{{-- CHART-DONUT JS --}}
+<script src="{{asset('backend/js/charts.js')}}"></script>
+
 {{-- INTERNAL INDEX JS --}}
 <script src="{{asset('backend/js/index1.js')}}"></script>
 @endpush

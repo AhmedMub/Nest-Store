@@ -6,7 +6,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-
+use PhpParser\Node\Expr\FuncCall;
 
 class UpdateAvatar extends Component
 {
@@ -44,7 +44,6 @@ class UpdateAvatar extends Component
         'profile_photo_path.dimensions' => 'File Must Be Height Between 100:550, Width Between 100:550',
     ];
 
-    //TODO use Intervention package for admin photo
     public function update()
     {
         $this->validate();
@@ -85,19 +84,19 @@ class UpdateAvatar extends Component
         ==> cleanupOldUploads <==
         /this will delete old avatar from livewire-tmp for each new image update
     */
-    protected function cleanupOldUploads()
-    {
-        $storage = Storage::disk('local');
+    // protected function cleanupOldUploads()
+    // {
+    //     $storage = Storage::disk('local');
 
-        foreach ($storage->allFiles('livewire-tmp') as $filePathname) {
-            if (!$storage->exists($filePathname)) continue;
+    //     foreach ($storage->allFiles('livewire-tmp') as $filePathname) {
+    //         if (!$storage->exists($filePathname)) continue;
 
-            $yesterdaysStamp = now()->subSeconds(2)->timestamp;
-            if ($yesterdaysStamp > $storage->lastModified($filePathname)) {
-                $storage->delete($filePathname);
-            }
-        }
-    }
+    //         $yesterdaysStamp = now()->subSeconds(2)->timestamp;
+    //         if ($yesterdaysStamp > $storage->lastModified($filePathname)) {
+    //             $storage->delete($filePathname);
+    //         }
+    //     }
+    // }
 
     public function removeAvatar()
     {
@@ -115,6 +114,11 @@ class UpdateAvatar extends Component
             'type'  => 'success',
             'message' => 'Photo deleted successfully',
         ]);
+    }
+
+    public function updatedProfilePhotoPath()
+    {
+        $this->avatarPath = $this->profile_photo_path->temporaryUrl();
     }
 
     public function render()

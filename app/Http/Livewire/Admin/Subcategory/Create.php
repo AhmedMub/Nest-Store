@@ -12,10 +12,9 @@ class Create extends Component
     public $name_en;
     public $category_id;
 
-    //TODO must add more validation with more messages and regex validation
     protected $rules = [
-        'name_en' => ['required', 'string', 'unique:sub_categories'],
-        'name_ar' => ['required', 'string', 'unique:sub_categories'],
+        'name_en' => ['required', 'string', 'unique:sub_categories', 'regex:/^[a-z0-9\s]*$/i'],
+        'name_ar' => ['required', 'string', 'unique:sub_categories', 'regex:/^[a-z0-9\s]*$/i'],
         'category_id' => ['required', 'integer'],
     ];
 

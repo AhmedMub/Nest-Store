@@ -11,7 +11,6 @@ class ExpiryDates extends Component
     use WithPagination;
 
     //Sorting
-    //FIXME sortBy
     public $sortBy = 'id';
     public $sortDirection = 'desc';
     public $field = 'id';
@@ -40,7 +39,7 @@ class ExpiryDates extends Component
     }
     public function render()
     {
-        $dates = ProductExpiration::search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+        $dates = ProductExpiration::query()->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
 
         return view('livewire.admin.product.expiry-dates', [
 

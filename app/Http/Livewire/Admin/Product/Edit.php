@@ -41,8 +41,6 @@ class Edit extends Component
 
     protected $listeners = ['editProduct' => 'edit'];
 
-    //TODO must put security regex validation && must edit error messages because like on required message it reveals field name used in database
-
     protected function rules()
     {
         return [
@@ -50,16 +48,16 @@ class Edit extends Component
             'subCategory_id' => ['nullable', 'integer'],
             'subSubCategory_id' => ['nullable', 'integer'],
             'vendor_id' => ['required', 'integer'],
-            'name_en' => ['required', 'string', "unique:products,name_en,$this->product_id"],
-            'name_ar' => ['required', 'string', "unique:products,name_ar,$this->product_id"],
+            'name_en' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i', "unique:products,name_en,$this->product_id"],
+            'name_ar' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i', "unique:products,name_ar,$this->product_id"],
             'qty' => ['required', 'integer'],
             'price' => ['required', 'between:0,99.99'],
             'type' => ['required', 'string'],
             'size' => ['nullable', 'integer'],
             'mfg' => ['required', 'date_format:Y-m-d'],
             'exp' => ['required', 'date_format:Y-m-d'],
-            'short_desc_en' => ['string'],
-            'short_desc_ar' => ['string'],
+            'short_desc_en' => ['string', 'regex:/^[a-z0-9\s]*$/i'],
+            'short_desc_ar' => ['string', 'regex:/^[a-z0-9\s]*$/i'],
             'long_desc_en' => ['nullable', 'string'],
             'long_desc_ar' => ['nullable', 'string'],
             // 'packaging_delivery_en' => ['nullable', 'string'],
@@ -70,15 +68,15 @@ class Edit extends Component
             // 'other_ingredients_ar' => ['nullable', 'string'],
             // 'warnings_en' => ['nullable', 'string'],
             // 'warnings_ar' => ['nullable', 'string'],
-            'stand_up_en' => ['nullable', 'string'],
-            'stand_up_ar' => ['nullable', 'string'],
-            'folded_en' => ['nullable', 'string'],
-            'folded_ar' => ['nullable', 'string'],
-            'frame_en' => ['nullable', 'string'],
-            'frame_ar' => ['nullable', 'string'],
-            'color_en' => ['nullable', 'string'],
-            'color_ar' => ['nullable', 'string'],
-            'size_en' => ['nullable', 'string'],
+            'stand_up_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'stand_up_ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'folded_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'folded_ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'frame_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'frame_ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'color_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'color_ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'size_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
         ];
     }
 

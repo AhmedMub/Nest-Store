@@ -15,7 +15,6 @@
 @endpush
 @section('guest-content')
 <div class="login-img">
-    {{-- //TODO must add required to all fields --}}
 
     {{-- GLOBAL-LOADER --}}
     <x-admin.layouts.global-loader />

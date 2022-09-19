@@ -1,4 +1,3 @@
-{{-- //TODO must add required for all inputs --}}
 <div class="card">
     <form autocomplete="off" method="POST" wire:submit.prevent='create'>
         @csrf

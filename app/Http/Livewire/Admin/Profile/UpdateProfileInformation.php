@@ -9,14 +9,16 @@ use Livewire\Component;
 
 class UpdateProfileInformation extends Component
 {
-    public $admin;
-    public  $first_name;
+    public $adminId;
+    public $first_name;
     public $second_name;
     public $email;
     public $phone_number;
 
-    public function mount($admin)
+    public function mount()
     {
+        $admin = Auth::guard('admin')->user();
+        $this->adminId = $admin->id;
         $this->first_name   = $admin->first_name;
         $this->second_name  = $admin->second_name;
         $this->email        = $admin->email;
@@ -25,28 +27,28 @@ class UpdateProfileInformation extends Component
 
 
     //form validation
-    protected $rules = [
-        'first_name' => ['required', 'string', 'max:15', 'min:3'],
-        'second_name' => ['required', 'string', 'max:15', 'min:3'],
-        'email' => ['required', 'string', 'email', 'string', 'unique:admins'],
-        'phone_number' => ['required', 'integer'],
-        //TODO add security regex
-    ];
+    protected function rules()
+    {
+        return [
+            'first_name' => ['required', 'string', 'max:15', 'min:3', 'regex:/^[a-z0-9\s]*$/i'],
+            'second_name' => ['required', 'string', 'max:15', 'min:3', 'regex:/^[a-z0-9\s]*$/i'],
+            'email' => ['required', 'string', 'email', "unique:admins,email,$this->adminId"],
+            'phone_number' => ['required', 'integer'],
+        ];
+    }
 
     protected $messages = [
-        'first_name.string' => 'Must Be Characters Only',
-        'second_name.string' => 'Must Be Characters Only',
-        'email.email' => 'Must Be Valid Email Address',
-        'phone_number.integer' => 'Must Be Integers Only',
-        //TODO add more messages for above rules
-
+        'first_name.required' => 'The First Name field is required',
+        'second_name.required' => 'The Second Name field is required',
+        'email.required' => 'The email field is required',
+        'phone_number.required' => 'The phone number field is required',
     ];
 
     public function update()
     {
-
         $this->validate();
-        Admin::whereId($this->admin->id)->update([
+
+        Admin::findOrFail($this->adminId)->update([
             'first_name' => $this->first_name,
             'second_name' => $this->second_name,
             'email' => $this->email,

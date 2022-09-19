@@ -1,4 +1,3 @@
-{{-- //TODO must add required for all inputs --}}
 <div class="card">
     <form autocomplete="off" method="POST" wire:submit.prevent='create'>
         @csrf
@@ -9,7 +8,7 @@
             <div class="form-group">
                 <div wire:ignore>
                     <label class="text-capitalize form-label mt-0" for="createCountry">choose country</label>
-                    <select autocomplete="off" class="form-select" id="createCountry">
+                    <select autocomplete="off" class="form-select" id="createCountry" required>
                         <option selected>Select an option...</option>
                         <option value="United States">United States</option>
                         <option value="United Kingdom">United Kingdom</option>

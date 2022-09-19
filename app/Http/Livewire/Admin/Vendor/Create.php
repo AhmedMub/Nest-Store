@@ -12,19 +12,19 @@ class Create extends Component
 
     public $name_en, $name_ar, $logo, $address, $phone, $description_en, $description_ar, $facebook, $instagram, $twitter, $start_date;
 
-    //TODO must add security regex && must add custom messages because in required it returnes field name which is risky
+
     protected $rules = [
-        'name_en' => ['required', 'string', 'unique:categories'],
-        'name_ar' => ['required', 'string', 'unique:categories'],
+        'name_en' => ['required', 'string', 'unique:categories', 'regex:/^[a-z0-9\s]*$/i'],
+        'name_ar' => ['required', 'string', 'unique:categories', 'regex:/^[a-z0-9\s]*$/i'],
         'logo' => ['required', 'image', 'max:10000'],
-        'address' => ['required', 'string'],
+        'address' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
         'phone' => ['required', 'integer'],
-        'description_en' => ['required', 'string'],
-        'description_ar' => ['required', 'string'],
-        'twitter' => ['nullable', 'string'],
-        'instagram' => ['nullable', 'string'],
-        'facebook' => ['nullable', 'string'],
-        'start_date' => ['required'],
+        'description_en' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'description_ar' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'twitter' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'instagram' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'facebook' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'start_date' => ['required', 'date_format:Y-m-d'],
     ];
 
     protected $messages = [

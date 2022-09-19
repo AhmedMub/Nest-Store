@@ -29,7 +29,6 @@ class User extends Authenticatable implements HasMedia
      *
      * @var string[]
      */
-    //TODO Remove profile_photo_path from the table because user has no avatar for frontend site
     protected $fillable = [
         'first_name', 'second_name', 'phone', 'email', 'password', 'address', 'addressTwo', 'district', 'area', 'postalCode'
     ];

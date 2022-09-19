@@ -20,8 +20,6 @@ class UserWishlistComponent extends Component
 
     public function removeFromWishlist($productId)
     {
-
-        //TODO must add this validation all livewire get methods
         //this is to validate incoming requests data to prevent any other time of data injections
         $validate = [
             'productId' => $productId,

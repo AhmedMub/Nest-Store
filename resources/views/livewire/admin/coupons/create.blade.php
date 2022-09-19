@@ -1,4 +1,3 @@
-{{-- //TODO must add required for all inputs --}}
 <div class="card">
     <form autocomplete="off" method="POST" wire:submit.prevent='create'>
         @csrf
@@ -10,21 +9,22 @@
                 <label class="text-capitalize form-label mt-0" for="name">coupon name</label>
                 <input wire:model.defer='name' id="name" type="text"
                     class="form-control {{$errors->has('name')?'is-invalid':''}}"
-                    placeholder="Add name for the discount" />
+                    placeholder="Add name for the discount" required />
                 <x-defaults.input-error for="name" />
             </div>
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="discount">coupon discount</label>
                 <input wire:model.defer='discount' id="discount" type="text"
                     class="form-control {{$errors->has('discount')?'is-invalid':''}}"
-                    placeholder="Add Discount Examples: 10, 20, 30, etc.." />
+                    placeholder="Add Discount Examples: 10, 20, 30, etc.." required />
                 <x-defaults.input-error for="discount" />
                 <p class="text-muted"><small>Note: Discount numbers will be converted to percentage.</small></p>
             </div>
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="validity">choose coupon dates </label>
                 <input wire:model.defer='validity' id="validity" type="text"
-                    class="form-control {{$errors->has('validity')?'is-invalid':''}}" placeholder="YYYY-MM-DD" />
+                    class="form-control {{$errors->has('validity')?'is-invalid':''}}" placeholder="YYYY-MM-DD"
+                    required />
                 <x-defaults.input-error for="validity" />
             </div>
         </div>

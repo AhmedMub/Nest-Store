@@ -2,7 +2,6 @@
 
 @section('content')
 
-{{-- //TODO you need to make user sessions works --}}
 <main class="main pages">
     <div class="page-header breadcrumb-wrap">
         <div class="container">

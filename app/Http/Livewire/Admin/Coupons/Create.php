@@ -13,9 +13,9 @@ class Create extends Component
     public $carbonDate;
 
     protected $rules = [
-        'name' => ['required', 'string', 'unique:coupons'],
+        'name' => ['required', 'string', 'unique:coupons', 'regex:/^[a-z0-9\s]*$/i'],
         'discount' => ['required', 'integer'],
-        'validity' => ['required', 'string',],
+        'validity' => ['required', 'string'],
     ];
 
     public function mount($carbonDate)

@@ -1,6 +1,3 @@
-{{-- //TODO must remove below scripts and put it in the views that only related to like peity chart, I need this only
-inthe dashboard view and so on. This is to enhance performance and remove unrelated scripts from rending at all views
---}}
 {{-- JQUERY JS --}}
 <script src="{{asset('backend/js/jquery.min.js')}}"></script>
 
@@ -33,11 +30,6 @@ inthe dashboard view and so on. This is to enhance performance and remove unrela
 <script src="{{asset('backend/assets/plugins/p-scroll/pscroll.js')}}"></script>
 <script src="{{asset('backend/assets/plugins/p-scroll/pscroll-1.js')}}"></script>
 
-{{-- INTERNAL CHARTJS CHART JS--}}
-<script src="{{asset('backend/assets/plugins/chart/Chart.bundle.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/chart/rounded-barchart.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/chart/utils.js')}}"></script>
-
 {{-- INTERNAL SELECT2 JS --}}
 <script src="{{asset('backend/assets/plugins/select2/select2.full.min.js')}}"></script>
 
@@ -45,17 +37,6 @@ inthe dashboard view and so on. This is to enhance performance and remove unrela
 <script src="{{asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('backend/assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
 <script src="{{asset('backend/assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
-
-{{-- INTERNAL APEXCHART JS --}}
-<script src="{{asset('backend/js/apexcharts.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/apexchart/irregular-data-series.js')}}"></script>
-
-{{-- C3 CHART JS --}}
-<script src="{{asset('backend/assets/plugins/charts-c3/d3.v5.min.js')}}"></script>
-<script src="{{asset('backend/assets/plugins/charts-c3/c3-chart.js')}}"></script>
-
-{{-- CHART-DONUT JS --}}
-<script src="{{asset('backend/js/charts.js')}}"></script>
 
 {{-- INTERNAL Flot JS --}}
 <script src="{{asset('backend/assets/plugins/flot/jquery.flot.js')}}"></script>

@@ -30,18 +30,30 @@ class ProductExpiration extends Model
         }
     }
 
+
+    public function scopeSearch($query, $val)
+    {
+        return $query
+            ->where('mfg', 'like', '%' . $val . '%')
+            ->OrWhere('exp', 'like', '%' . $val . '%')
+            ->OrWhereHas('productDates', function ($query) use ($val) {
+                $query->where('name_en', 'like', '%' . $val . '%')
+                    ->OrWhere('sku', 'like', '%' . $val . '%');
+            });
+    }
+
     /*
         /-/for laravel scout to search in this field only
-        ///FIXME Warning: Do NOT Index Sensitive Data:
+        ///NOTE Warning: Do NOT Index Sensitive Data:
         Any sensitive data that requires extreme security should be encrypted in the database to begin with. However, there could be other data that you don’t want index or returned with search results. Even such things as addresses.
     *Visit Reference:https://serversideup.net/search-eloquent-relationships-with-laravel-scout-and-meilisearch/
     */
-    public function toSearchableArray()
-    {
-        $prExpiry = $this->with('productExpiry')
-            ->whereId($this->id)
-            ->first()
-            ->toArray();
-        return $prExpiry;
-    }
+    // public function toSearchableArray()
+    // {
+    //     $prExpiry = $this->with('productDates')
+    //         ->whereId($this->id)
+    //         ->first()
+    //         ->toArray();
+    //     return $prExpiry;
+    // }
 }

@@ -88,12 +88,11 @@ return [
     | You may wish for all e-mails sent by your application to be sent from
     | the same address. Here, you may specify a name and address that is
     | used globally for all e-mails that are sent by your application.
-    | //TODO add your custom message with logo and everything about nest
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'nest.com'),
+        'name' => env('MAIL_FROM_NAME', 'Nest'),
     ],
 
     /*

@@ -9,9 +9,6 @@ use Livewire\Component;
 
 class Wishlist extends Component
 {
-
-    //TODO must include remove from wish list
-
     protected $listeners = [
         'addToWishList' => 'wishList',
     ];
@@ -19,19 +16,19 @@ class Wishlist extends Component
     public function wishList($user, $product)
     {
         /*
-            /-//NOTE no need for such validation because livewire make a post requeste with its validations
+            /-//NOTE no need for such validation because livewire make a post request with its validations
         */
-        $valid = [
-            'user' => $user,
-            'product' => $product,
-        ];
-        Validator::make(
-            $valid,
-            [
-                'user' => 'numeric|digits_between:1,7',
-                'product' => 'numeric|digits_between:1,7'
-            ]
-        )->validate();
+        // $valid = [
+        //     'user' => $user,
+        //     'product' => $product,
+        // ];
+        // Validator::make(
+        //     $valid,
+        //     [
+        //         'user' => 'numeric|digits_between:1,7',
+        //         'product' => 'numeric|digits_between:1,7'
+        //     ]
+        // )->validate();
         //check user auth, if user = 0 means user not auth
         if ($user == 0) {
             redirect()->route('login');

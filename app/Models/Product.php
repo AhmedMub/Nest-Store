@@ -43,15 +43,15 @@ class Product extends Model implements HasMedia
             ->OrWhere('sku', 'like', '%' . $val . '%')
             ->OrWhereHas('productMainCat', function ($query) use ($val) {
                 $query->where('name_en', 'like', '%' . $val . '%')
-                    ->where('name_ar', 'like', '%' . $val . '%');
+                    ->OrWhere('name_ar', 'like', '%' . $val . '%');
             })
             ->OrWhereHas('productSubCat', function ($query) use ($val) {
                 $query->where('name_en', 'like', '%' . $val . '%')
-                    ->where('name_ar', 'like', '%' . $val . '%');
+                    ->OrWhere('name_ar', 'like', '%' . $val . '%');
             })
             ->OrWhereHas('productSubSubCat', function ($query) use ($val) {
                 $query->where('name_en', 'like', '%' . $val . '%')
-                    ->where('name_ar', 'like', '%' . $val . '%');
+                    ->OrWhere('name_ar', 'like', '%' . $val . '%');
             });
     }
 

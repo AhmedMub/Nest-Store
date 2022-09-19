@@ -33,10 +33,11 @@
                 </div>
                 <thead class="table-primary">
                     <tr class="text-center">
-                        <th wire:click="sortBy('name_en')"
-                            class="cursor-pointer wd-15p border-bottom-0 text-capitalize">product english name
+                        <th class="wd-15p border-bottom-0 text-capitalize">product english name</th>
+                        <th class="wd-15p border-bottom-0 text-capitalize">product SKU number</th>
+                        <th wire:click="sortBy('mfg')" class="cursor-pointer wd-15p border-bottom-0 text-capitalize">MFG
+                            date
                             {{-- change Icone --}}
-                            {{-- /-//FIXME not working well--}}
                             @if ($sortBy !== $field)
                             <i class="bi bi-arrow-down"></i>
                             @elseif($sortDirection == 'asc')
@@ -45,9 +46,17 @@
                             <i class="bi bi-arrow-down"></i>
                             @endif
                         </th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">product SKU number</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">MFG date</th>
-                        <th class="wd-15p border-bottom-0 text-capitalize">EXP date</th>
+                        <th wire:click="sortBy('exp')" class="cursor-pointer wd-15p border-bottom-0 text-capitalize">EXP
+                            date
+                            {{-- change Icone --}}
+                            @if ($sortBy !== $field)
+                            <i class="bi bi-arrow-down"></i>
+                            @elseif($sortDirection == 'asc')
+                            <i class="bi bi-arrow-up"></i>
+                            @else
+                            <i class="bi bi-arrow-down"></i>
+                            @endif
+                        </th>
                         <th class="wd-15p border-bottom-0 text-capitalize">Remaining Days</th>
                     </tr>
                 </thead>

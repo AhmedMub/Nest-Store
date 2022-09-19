@@ -20,6 +20,7 @@ use App\Mail\SendEmailNoProductsExp;
 use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductExpiration;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -35,13 +36,12 @@ use Spatie\Permission\Models\Role;
 
 Route::get('testing', function () {
 
-    $admins = Admin::all();
-    $test = [];
-    foreach ($admins as $admin) {
-        if ($admin->hasRole('author|administrator')) {
-            Mail::to("$admin->email")->send(new SendEmailNoProductsExp());
-        }
-    }
+    // $product = Product::all();
+    // $test = [];
+    // foreach ($product as $pr) {
+    //     $test[] = $pr->productDates->mfg;
+    // }
+    // dd($test);
 });
 
 

@@ -13,12 +13,11 @@ class Create extends Component
 
     public $title_en, $title_ar, $description_en, $description_ar, $sliderImage;
 
-    //TODO must add security regex && must add custom messages because in required it returnes field name which is risky
     protected $rules = [
-        'title_en' => ['required', 'string', 'unique:sliders'],
-        'title_ar' => ['required', 'string', 'unique:sliders'],
-        'description_en' => ['nullable', 'string'],
-        'description_ar' => ['nullable', 'string'],
+        'title_en' => ['required', 'string', 'unique:sliders', 'regex:/^[a-z0-9\s]*$/i'],
+        'title_ar' => ['required', 'string', 'unique:sliders', 'regex:/^[a-z0-9\s]*$/i'],
+        'description_en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'description_ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
         'sliderImage' => ['required', 'image', 'max:10000'],
     ];
 

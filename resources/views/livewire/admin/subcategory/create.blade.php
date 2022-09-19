@@ -8,15 +8,15 @@
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="nameEn">english name</label>
                 <input wire:model.defer='name_en' id="nameEn" name="name_en" type="text"
-                    class="form-control {{$errors->has('name_en')?'is-invalid':''}}"
-                    placeholder="Category English Name" />
+                    class="form-control {{$errors->has('name_en')?'is-invalid':''}}" placeholder="Category English Name"
+                    required />
                 <x-defaults.input-error for="name_en" />
             </div>
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="nameAr">arabic name</label>
                 <input wire:model.defer='name_ar' id="nameAr" name="name_ar" type="text"
-                    class="form-control {{$errors->has('name_ar')?'is-invalid':''}}"
-                    placeholder="Category Arabic Name" />
+                    class="form-control {{$errors->has('name_ar')?'is-invalid':''}}" placeholder="Category Arabic Name"
+                    required />
                 <x-defaults.input-error for="name_ar" />
             </div>
 

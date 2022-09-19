@@ -9,16 +9,16 @@
                 <label class="text-capitalize form-label mt-0" for="title_en">english title<span
                         class="text-red">*</span></label>
                 <input wire:model.defer='title_en' id="title_en" type="text"
-                    class="form-control {{$errors->has('title_en')?'is-invalid':''}}"
-                    placeholder="Slider English Title" />
+                    class="form-control {{$errors->has('title_en')?'is-invalid':''}}" placeholder="Slider English Title"
+                    required />
                 <x-defaults.input-error for="title_en" />
             </div>
             <div class="form-group">
                 <label class="text-capitalize form-label mt-0" for="title_ar">arabic title<span
                         class="text-red">*</span></label>
                 <input wire:model.defer='title_ar' id="title_ar" type="text"
-                    class="form-control {{$errors->has('title_ar')?'is-invalid':''}}"
-                    placeholder="Slider Arabic Title" />
+                    class="form-control {{$errors->has('title_ar')?'is-invalid':''}}" placeholder="Slider Arabic Title"
+                    required />
                 <x-defaults.input-error for="title_ar" />
             </div>
             <div class="form-group">
