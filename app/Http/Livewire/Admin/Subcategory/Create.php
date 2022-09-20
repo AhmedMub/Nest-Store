@@ -13,8 +13,8 @@ class Create extends Component
     public $category_id;
 
     protected $rules = [
-        'name_en' => ['required', 'string', 'unique:sub_categories', 'regex:/^[a-z0-9\s]*$/i'],
-        'name_ar' => ['required', 'string', 'unique:sub_categories', 'regex:/^[a-z0-9\s]*$/i'],
+        'name_en' => ['required', 'string', 'unique:sub_categories', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+        'name_ar' => ['required', 'string', 'unique:sub_categories', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
         'category_id' => ['required', 'integer'],
     ];
 

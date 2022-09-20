@@ -7,7 +7,9 @@
             <div x-data="{name: '{{$name}}'}" class="text-center">
                 <h5 class="text-dark mb-0 fs-14 fw-semibold text-capitalize" x-text="name"></h5>
 
-                <small class="text-muted">{{Auth::guard('admin')->user()->roles[0]['name']}}</small>
+                <small class="text-muted">@if ($roles > 0)
+                    {{Auth::guard('admin')->user()->roles[0]['name']}}
+                    @endif</small>
             </div>
         </div>
         <div class="dropdown-divider m-0"></div>

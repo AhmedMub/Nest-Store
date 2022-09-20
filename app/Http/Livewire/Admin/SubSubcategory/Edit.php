@@ -23,8 +23,8 @@ class Edit extends Component
     protected function rules()
     {
         return [
-            'name_en' => ['required', 'string', "unique:sub_categories,name_en,$this->subSubCatId"],
-            'name_ar' => ['required', 'string', "unique:sub_categories,name_ar,$this->subSubCatId"],
+            'name_en' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:sub_categories,name_en,$this->subSubCatId"],
+            'name_ar' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:sub_categories,name_ar,$this->subSubCatId"],
             'subcategory_id' => ['required', 'integer'],
         ];
     }

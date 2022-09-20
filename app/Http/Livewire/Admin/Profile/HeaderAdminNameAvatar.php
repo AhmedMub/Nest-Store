@@ -5,12 +5,14 @@ namespace App\Http\Livewire\Admin\Profile;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class HeaderAdminNameAvatar extends Component
 {
     public $admin;
     public $avatar;
     public $name;
+    public $roles;
 
     protected $listeners = [
         'profileInfoUpdated' => 'adminInfoChanged',
@@ -26,6 +28,8 @@ class HeaderAdminNameAvatar extends Component
         } else {
             $this->avatar = asset('storage/admin/' . $this->admin->profile_photo_path);
         }
+
+        $this->roles = Role::count();
     }
 
     public function adminInfoChanged()

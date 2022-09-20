@@ -22,15 +22,15 @@ class Edit extends Component
     protected function rules()
     {
         return [
-            'name_en' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i', "unique:vendors,name_en,$this->vendorId"],
-            'name_ar' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i', "unique:vendors,name_ar,$this->vendorId"],
-            'address' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'name_en' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:vendors,name_en,$this->vendorId"],
+            'name_ar' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:vendors,name_ar,$this->vendorId"],
+            'address' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
             'phone' => ['required', 'integer'],
-            'description_en' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-            'description_ar' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-            'twitter' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-            'instagram' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-            'facebook' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'description_en' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+            'description_ar' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+            'twitter' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+            'instagram' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+            'facebook' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
             'start_date' => ['required', 'date_format:Y-m-d'],
             //logo nullable because user may not want to update logo on update info
             'logo' => ['nullable', 'image', 'max:10000'],

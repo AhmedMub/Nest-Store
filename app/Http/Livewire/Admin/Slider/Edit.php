@@ -19,10 +19,10 @@ class Edit extends Component
     protected function rules()
     {
         return [
-            'title_en' => ['required', 'string', "unique:sliders,title_en,$this->slider_id"],
-            'title_ar' => ['required', 'string', "unique:sliders,title_ar,$this->slider_id"],
-            'description_en' => ['nullable', 'string'],
-            'description_ar' => ['nullable', 'string'],
+            'title_en' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:sliders,title_en,$this->slider_id"],
+            'title_ar' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:sliders,title_ar,$this->slider_id"],
+            'description_en' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+            'description_ar' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
             'sliderImage' => ['nullable', 'image', 'max:10000'],
         ];
     }

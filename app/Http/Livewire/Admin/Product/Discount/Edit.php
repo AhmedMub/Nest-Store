@@ -22,8 +22,8 @@ class Edit extends Component
     protected function rules()
     {
         return [
-            'name' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-            'description' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'name' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+            'description' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
             'discount_percent' => ['required', 'integer'],
             'product_id' => ['required', 'integer', "unique:product_discounts,product_id,$this->discountId"],
         ];

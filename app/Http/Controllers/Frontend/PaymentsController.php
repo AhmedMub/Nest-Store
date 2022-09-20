@@ -35,13 +35,13 @@ class PaymentsController extends Controller
     {
         //validate incoming request
         $validated = $request->validate([
-            'address' => ['required', 'string', "regex:/^[a-zA-Z0-9\s&._-]+$/i", 'between:1,50'],
-            'addressTwo' => ['nullable', 'string', "regex:/^[a-zA-Z0-9\s&._-]+$/i"],
+            'address' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', 'between:1,50'],
+            'addressTwo' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
             'selectCountry' => ['required', 'integer'],
             'selectDistrict' => ['required', 'integer'],
             'postalCode' => ['required', 'integer'],
-            'phone' => ['required', "regex:/[0-9]{11}/"],
-            'additional_information' => ['nullable', 'string', "regex:/^[a-zA-Z0-9\s&._-]+$/i"],
+            'phone' => ['required', "integer"],
+            'additional_information' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
             'payment_option' => ['required', 'string', "regex:/^[a-z]+$/i"]
         ]);
 
@@ -118,19 +118,15 @@ class PaymentsController extends Controller
         if ($newOrder) {
             // create Order Items
             $this->createOrderItems($newOrder->id);
-
-            //send email to user
-            $this->sendInvoiceEmail($newOrder->id);
-
             return view('frontend.pages.order-success', ['invoice' => $newOrder->invoice_no]);
         } else {
-            return view('frontend.pages.order-failed');
+            return view('frontend.pages.order-failed', ['invoice' => $newOrder->invoice_no]);
         }
     }
 
     public function onlinePayment($request = [])
     {
-        return view('frontend.pages.order-failed');
+        return view('frontend.pages.order-failed', ['invoice' => 'failed']);
     }
 
     public function createOrderItems($orderId)
@@ -163,6 +159,8 @@ class PaymentsController extends Controller
                 event(new ZeroProductQuantity($prQty->id));
             }
         }
+        //send email to user
+        $this->sendInvoiceEmail($orderId);
 
         //clear session and cart after the checkout
         $this->clearSessionAndCart();

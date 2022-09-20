@@ -35,13 +35,7 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('testing', function () {
-
-    // $product = Product::all();
-    // $test = [];
-    // foreach ($product as $pr) {
-    //     $test[] = $pr->productDates->mfg;
-    // }
-    // dd($test);
+    return view('frontend.pages.order-failed');
 });
 
 

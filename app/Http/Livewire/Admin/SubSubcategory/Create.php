@@ -14,8 +14,8 @@ class Create extends Component
     public $subcategory_id;
 
     protected $rules = [
-        'name_en' => ['required', 'string', 'unique:sub_subcategories', 'regex:/^[a-z0-9\s]*$/i'],
-        'name_ar' => ['required', 'string', 'unique:sub_subcategories', 'regex:/^[a-z0-9\s]*$/i'],
+        'name_en' => ['required', 'string', 'unique:sub_subcategories', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+        'name_ar' => ['required', 'string', 'unique:sub_subcategories', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
         'subcategory_id' => ['required', 'integer'],
     ];
 
@@ -28,7 +28,7 @@ class Create extends Component
     public function create()
     {
 
-        // $this->validate();
+        $this->validate();
 
         SubSubcategory::create([
             'name_en' => $this->name_en,

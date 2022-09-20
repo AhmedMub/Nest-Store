@@ -19,8 +19,8 @@ class Edit extends Component
     protected function rules()
     {
         return [
-            'name.en' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-            'name.ar' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+            'name.en' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+            'name.ar' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
         ];
     }
 

@@ -136,6 +136,7 @@ $langAr = str_contains(url()->current(), '/ar');
                 <div class="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow"
                     id="carausel-10-columns-arrows"></div>
             </div>
+
             <div class="carausel-10-columns-cover position-relative">
                 <div class="carausel-10-columns" id="carausel-10-columns">
                     @foreach ($featuredCats as $key => $category)

@@ -524,7 +524,7 @@ $headerName = $product->name_en;
                                 <img src="{{$product->productVendor->getFirstMediaUrl('vendorLogo','thumb')}}" alt="" />
                                 <div class="vendor-name ml-15">
                                     <h6>
-                                        <a href="vendor-details-2.html">@if ($langAr)
+                                        <a href="{{route('byVendor', $product->productVendor->slug)}}">@if ($langAr)
                                             {{$product->productVendor->name_ar}}
                                             @else
                                             {{$product->productVendor->name_en}}

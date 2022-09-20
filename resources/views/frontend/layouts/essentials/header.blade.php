@@ -250,7 +250,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                         <li class="sub-mega-menu sub-mega-menu-width-34">
                                             <div class="menu-banner-wrap">
                                                 <a href="javascript:void(0)"><img
-                                                        src={{asset("frontend/assets/imgs/banner/banner-menu.png")}}
+                                                        src={{asset("storage/default_images/banner-menu.png")}}
                                                         alt="Nest" /></a>
                                                 <div class="menu-banner-content">
                                                     <h4>Hot deals</h4>
@@ -262,7 +262,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                                                         <span class="new-price text-success">Save to 50%</span>
                                                     </div>
                                                     <div class="menu-banner-btn">
-                                                        <a href="javascript:void(0)">Shop now</a>
+                                                        <a href="{{route('shop')}}">Shop now</a>
                                                     </div>
                                                 </div>
                                                 <div class="menu-banner-discount">

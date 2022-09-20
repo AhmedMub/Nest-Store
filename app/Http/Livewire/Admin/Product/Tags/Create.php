@@ -10,8 +10,8 @@ class Create extends Component
     public $name, $status;
 
     protected $rules = [
-        'name.en' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-        'name.ar' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'name.en' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+        'name.ar' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
     ];
 
     protected $messages = [

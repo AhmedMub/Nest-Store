@@ -16,7 +16,7 @@ class UpdatePassword extends Component
 
     protected $rules = [
         'current_password' => ['required'],
-        'password' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'password' => ['required', 'string'],
         'password_confirmation' => ['required', 'same:password'],
     ];
 

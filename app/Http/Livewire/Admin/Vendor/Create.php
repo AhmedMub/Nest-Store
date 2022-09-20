@@ -14,16 +14,16 @@ class Create extends Component
 
 
     protected $rules = [
-        'name_en' => ['required', 'string', 'unique:categories', 'regex:/^[a-z0-9\s]*$/i'],
-        'name_ar' => ['required', 'string', 'unique:categories', 'regex:/^[a-z0-9\s]*$/i'],
+        'name_en' => ['required', 'string', 'unique:categories', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+        'name_ar' => ['required', 'string', 'unique:categories', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
         'logo' => ['required', 'image', 'max:10000'],
-        'address' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'address' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
         'phone' => ['required', 'integer'],
-        'description_en' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-        'description_ar' => ['required', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-        'twitter' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-        'instagram' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
-        'facebook' => ['nullable', 'string', 'regex:/^[a-z0-9\s]*$/i'],
+        'description_en' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+        'description_ar' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+        'twitter' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+        'instagram' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+        'facebook' => ['nullable', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
         'start_date' => ['required', 'date_format:Y-m-d'],
     ];
 
@@ -41,6 +41,13 @@ class Create extends Component
     //Create Category
     public function create()
     {
+        if (!isset($this->logo)) {
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'error',
+                'message' => 'Image did not upload successfully',
+            ]);
+            return null;
+        }
 
         $validate = $this->validate();
 

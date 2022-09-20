@@ -14,7 +14,7 @@ class Create extends Component
 
     protected $rules = [
         'country' => ['required', 'integer'],
-        'district' => ['required', 'string', 'unique:shipping_districts'],
+        'district' => ['required', 'string', 'unique:shipping_districts', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
     ];
 
     public function create()

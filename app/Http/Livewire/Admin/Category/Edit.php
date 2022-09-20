@@ -24,8 +24,8 @@ class Edit extends Component
     protected function rules()
     {
         return [
-            'name_en' => ['required', "string", 'regex:/^[a-z0-9\s]*$/i', "unique:categories,name_en,$this->catId"],
-            'name_ar' => ['required', "string", 'regex:/^[a-z0-9\s]*$/i', "unique:categories,name_ar,$this->catId"]
+            'name_en' => ['required', "string", 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:categories,name_en,$this->catId"],
+            'name_ar' => ['required', "string", 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:categories,name_ar,$this->catId"]
         ];
     }
     protected $messages = [

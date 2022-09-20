@@ -30,8 +30,8 @@ class UpdateProfileInformation extends Component
     protected function rules()
     {
         return [
-            'first_name' => ['required', 'string', 'max:15', 'min:3', 'regex:/^[a-z0-9\s]*$/i'],
-            'second_name' => ['required', 'string', 'max:15', 'min:3', 'regex:/^[a-z0-9\s]*$/i'],
+            'first_name' => ['required', 'string', 'max:15', 'min:3', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+            'second_name' => ['required', 'string', 'max:15', 'min:3', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
             'email' => ['required', 'string', 'email', "unique:admins,email,$this->adminId"],
             'phone_number' => ['required', 'integer'],
         ];

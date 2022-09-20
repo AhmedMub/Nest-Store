@@ -22,7 +22,7 @@ class Edit extends Component
     protected function rules()
     {
         return [
-            'name' => ['required', 'string', "unique:coupons,name,$this->couponId"],
+            'name' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:coupons,name,$this->couponId"],
             'discount' => ['required', 'integer'],
             'validity' => ['nullable', 'string',],
         ];

@@ -15,8 +15,8 @@ class Create extends Component
     public $name_en, $name_ar, $icon, $status, $slug, $default_icon, $default_icon_status;
 
     protected $rules = [
-        'name_en' => ['required', 'string', 'unique:categories', 'regex:/^[a-z0-9\s]*$/i'],
-        'name_ar' => ['required', 'string', 'unique:categories', 'regex:/^[a-z0-9\s]*$/i'],
+        'name_en' => ['required', 'string', 'unique:categories', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
+        'name_ar' => ['required', 'string', 'unique:categories', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
         'icon' => ['nullable', 'image', 'max:500', 'mimes:jpeg,png,jpg,svg'],
         'default_icon' => ['nullable'],
 
@@ -33,34 +33,34 @@ class Create extends Component
 
         $this->validate();
         //save and resize Image if exists
-        if (!$this->default_icon && $this->icon) {
-            $image = $this->uploadImage();
-            Category::create([
-                'name_en' => $this->name_en,
-                'name_ar' => $this->name_ar,
-                'icon' => $image,
-            ]);
-            $this->addedCategory();
-        } elseif (!$this->icon && $this->default_icon) {
-            Category::create([
-                'name_en' => $this->name_en,
-                'name_ar' => $this->name_ar,
-                'default_icon' => $this->default_icon,
-            ]);
-            $this->addedCategory();
-        } elseif ($this->icon && $this->default_icon) {
-            $this->dispatchBrowserEvent('alert', [
-                'type'      => 'error',
-                'message'   => 'Only Custom Icon Or Default Icon Should Be Added'
-            ]);
-            $this->reset('default_icon');
-        } else {
-            Category::create([
-                'name_en' => $this->name_en,
-                'name_ar' => $this->name_ar,
-            ]);
-            $this->addedCategory();
-        }
+        // if (!$this->default_icon && $this->icon) {
+        //     $image = $this->uploadImage();
+        //     Category::create([
+        //         'name_en' => $this->name_en,
+        //         'name_ar' => $this->name_ar,
+        //         'icon' => $image,
+        //     ]);
+        //     $this->addedCategory();
+        // } elseif (!$this->icon && $this->default_icon) {
+        //     Category::create([
+        //         'name_en' => $this->name_en,
+        //         'name_ar' => $this->name_ar,
+        //         'default_icon' => $this->default_icon,
+        //     ]);
+        //     $this->addedCategory();
+        // } elseif ($this->icon && $this->default_icon) {
+        //     $this->dispatchBrowserEvent('alert', [
+        //         'type'      => 'error',
+        //         'message'   => 'Only Custom Icon Or Default Icon Should Be Added'
+        //     ]);
+        //     $this->reset('default_icon');
+        // } else {
+        //     Category::create([
+        //         'name_en' => $this->name_en,
+        //         'name_ar' => $this->name_ar,
+        //     ]);
+        //     $this->addedCategory();
+        // }
     }
 
     public function uploadImage()

@@ -18,7 +18,7 @@ class Edit extends Component
     {
         return [
             'country' => ['nullable', 'integer'],
-            'district' => ['required', 'string', "unique:shipping_districts,district,$this->districtId"],
+            'district' => ['required', 'string', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i', "unique:shipping_districts,district,$this->districtId"],
         ];
     }
 

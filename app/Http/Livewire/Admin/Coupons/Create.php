@@ -13,7 +13,7 @@ class Create extends Component
     public $carbonDate;
 
     protected $rules = [
-        'name' => ['required', 'string', 'unique:coupons', 'regex:/^[a-z0-9\s]*$/i'],
+        'name' => ['required', 'string', 'unique:coupons', 'regex:/^[^<>()*?=%_${}#:;@![\]{}\/]+$/i'],
         'discount' => ['required', 'integer'],
         'validity' => ['required', 'string'],
     ];
