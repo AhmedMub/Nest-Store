@@ -79,7 +79,7 @@
                                                 <td class="text-right">${{$order->shipping_fees}}</td>
                                             </tr>
                                             <tr>
-                                                <td colspan="3" class="text-end f-w-600">Discounts</td>
+                                                <td colspan="3" class="text-end f-w-600">Coupon Discount</td>
                                                 <td class="text-right">
                                                     @if ($order->discounted_coupon)
                                                     (${{$order->discounted_coupon}})
