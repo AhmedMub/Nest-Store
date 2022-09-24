@@ -28,11 +28,6 @@ Route::group([
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
 
-    Route::get('debugging-front', function () {
-
-        //
-    });
-
     /** ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 
     Route::controller(FrontController::class)->group(function () {

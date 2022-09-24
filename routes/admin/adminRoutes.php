@@ -34,10 +34,6 @@ use Spatie\Permission\Models\Role;
 |
 */
 
-Route::get('testing', function () {
-    return view('frontend.pages.order-failed');
-});
-
 
 //if user try reset password with route get method
 Route::get('/admin/reset-password', function () {
