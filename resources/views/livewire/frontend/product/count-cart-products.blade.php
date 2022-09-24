@@ -12,7 +12,7 @@
             @foreach ($products as $key => $product)
             <li>
                 <div class="shopping-cart-img">
-                    <a href="{{route('show.product', $product->id)}}"><img alt="Nest"
+                    <a href="{{route('show.product', $product->options['slug'])}}"><img alt="Nest"
                             src="{{$product->options['options']}}" /></a>
                 </div>
                 <div class="shopping-cart-title">

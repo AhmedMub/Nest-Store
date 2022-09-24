@@ -45,6 +45,10 @@
             </div>
             <span class="font-xs text-heading"> Sold: 90/120</span>
         </div>
-        <a href="" class="btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+        {{-- /- add to cart componenet --}}
+        @php($key = rand(11111,99999))
+        @livewire('frontend.product.add-to-cart-for-single-view', ['product' =>
+        $product->id,
+        'classes' => "btn w-100 hover-up",'aClassess'=>"text-white"], key($key))
     </div>
 </div>

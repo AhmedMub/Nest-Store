@@ -18,6 +18,8 @@ class AddToCartForSingleView extends Component
 
     public $existingProduct;
 
+    public $aClassess = null;
+
     //initial values
     public $count = 1;
     public $price = 0;

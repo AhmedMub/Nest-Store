@@ -64,7 +64,7 @@ $headerName = $product->productMainCat->name_en;
             @php($key = rand(11111,99999))
             @livewire('frontend.product.add-to-cart-for-single-view', ['product' =>
             $product->id,
-            'classes' => ""], key($key))
+            'classes' => "",'aClasses'=>''], key($key))
             {{-- <livewire:frontend.product.add-to-cart-for-single-view :product="$product->id" classes=""> --}}
         </div>
     </div>
