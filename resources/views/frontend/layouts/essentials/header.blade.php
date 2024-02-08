@@ -295,57 +295,9 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
                 </div>
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
-                        <div class="header-action-icon-2">
-                            <a href="javascript:void(0)">
-                                <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-heart.svg")}} />
-                                <span class="pro-count white">4</span>
-                            </a>
-                        </div>
-                        <div class="header-action-icon-2">
-                            <a href="javascript:void(0)" class="mini-cart-icon">
-                                <img alt="Nest" src={{asset("frontend/assets/imgs/theme/icons/icon-cart.svg")}} />
-                                <span class="pro-count white">2</span>
-                            </a>
-                            <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                <ul>
-                                    <li>
-                                        <div class="shopping-cart-img">
-                                            <a href="javascript:void(0)"><img alt="Nest"
-                                                    src={{asset("frontend/assets/imgs/shop/thumbnail-3.jpg")}} /></a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h4><a href="javascript:void(0)">Plain Striola Shirts</a></h4>
-                                            <h3><span>1 × </span>$800.00</h3>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="javascript:void(0)"><i class="fi-rs-cross-small"></i></a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="shopping-cart-img">
-                                            <a href="javascript:void(0)"><img alt="Nest"
-                                                    src={{asset("frontend/assets/imgs/shop/thumbnail-4.jpg")}} /></a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h4><a href="javascript:void(0)">Macbook Pro 2022</a></h4>
-                                            <h3><span>1 × </span>$3500.00</h3>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="javascript:void(0)"><i class="fi-rs-cross-small"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="shopping-cart-footer">
-                                    <div class="shopping-cart-total">
-                                        <h4>Total <span>$383.00</span></h4>
-                                    </div>
-                                    <div class="shopping-cart-button">
-                                        <a href="javascript:void(0)">View cart</a>
-                                        <a href="javascript:void(0)">Checkout</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <livewire:frontend.product.count-wishlist />
+
+                        <livewire:frontend.product.count-cart-products />
                     </div>
                 </div>
             </div>
