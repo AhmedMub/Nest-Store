@@ -1,7 +1,7 @@
 <article class="row align-items-center hover-up">
     <figure class="col-md-4 mb-0">
         <a href="{{route('show.product', $product->slug)}}"><img class="default-img"
-                src="{{$product->getFirstMediaUrl('mainImage')}}" alt="" /></a>
+                src="{{$product->getFirstMediaUrl('mainImage','thumb')}}" alt="" /></a>
     </figure>
     <div class="col-md-8 mb-0">
         <h6>

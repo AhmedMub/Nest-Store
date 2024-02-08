@@ -64,24 +64,20 @@ class Product extends Model implements HasMedia
         $this
             ->addMediaCollection('mainImage')
             ->useDisk('products')
-            ->singleFile()
-            ->registerMediaConversions(function (Media $media) {
-                $this
-                    ->addMediaConversion('thumb')
-                    ->width(600)
-                    ->height(600);
-            });
+            ->singleFile();
 
         $this
             ->addMediaCollection('multiImages')
             ->useDisk('products')
-            ->onlyKeepLatest(6)
-            ->registerMediaConversions(function (Media $media) {
-                $this
-                    ->addMediaConversion('thumb')
-                    ->width(600)
-                    ->height(600);
-            });
+            ->onlyKeepLatest(6);
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(200)
+            ->height(200)
+            ->nonQueued();
     }
 
     //Model RelationShips

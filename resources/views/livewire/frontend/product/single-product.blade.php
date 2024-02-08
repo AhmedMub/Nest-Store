@@ -50,7 +50,7 @@ $headerName = $product->name_en;
                                         </div>
                                         <!-- THUMBNAILS -->
                                         <div class="slider-nav-thumbnails">
-                                            <div><img src="{{$product->getFirstMediaUrl('mainImage')}}"
+                                            <div><img src="{{$product->getFirstMediaUrl('mainImage','thumb')}}"
                                                     alt="product image" />
                                             </div>
                                             @foreach ($product->getMedia('multiImages') as $img)

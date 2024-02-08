@@ -108,10 +108,10 @@ $sortByField = array('featured', 'price low to high', 'price high to low', 'rele
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <a href="{{route('show.product',$product->slug)}}">
-                                        <img class="default-img" src="{{$product->getFirstMediaUrl('mainImage')}}"
-                                            alt="" />
-                                        <img class="hover-img" src="{{$product->getMedia('multiImages')[0]->getUrl()}}"
-                                            alt="" />
+                                        <img class="default-img"
+                                            src="{{$product->getFirstMediaUrl('mainImage','thumb')}}" alt="" />
+                                        <img class="hover-img"
+                                            src="{{$product->getMedia('multiImages')[0]->getUrl('thumb')}}" alt="" />
                                     </a>
                                 </div>
                                 <div class="product-action-1">

@@ -279,15 +279,15 @@ $langAr = str_contains(url()->current(), '/ar');
                 @if (count($trendingTags) > 0)
                 @foreach ($trendingTags as $key => $tag)
                 <div class=" col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 wow animate__animated animate__fadeInUp
-                @if ($key == 2 || $key == 3)
-                d-none
-                @endif
-                @if ($key == 3)
-                d-xl-block
-                @endif
-                @if ($key == 2)
-                d-lg-block
-                @endif " data-wow-delay=".{{$key}}s">
+                    @if ($key == 2 || $key == 3)
+                    d-none
+                    @endif
+                    @if ($key == 3)
+                    d-xl-block
+                    @endif
+                    @if ($key == 2)
+                    d-lg-block
+                    @endif " data-wow-delay=".{{$key}}s">
 
                     <h4 class="section-title style-1 mb-30 animated animated text-capitalize">
                         {{$tag->name}}

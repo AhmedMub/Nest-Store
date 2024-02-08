@@ -83,7 +83,7 @@ https://laravel.com/docs/8.x/blade#service-injection --}}
                         <td>
                             <input wire:model='selectedCheckboxes' value="{{$product->id}}" type="checkbox">
                         </td>
-                        <td><img class="br-7" src="{{$product->getFirstMediaUrl('mainImage')}}" alt=""></td>
+                        <td><img class="br-7" src="{{$product->getFirstMediaUrl('mainImage','thumb')}}" alt=""></td>
                         <td> {{$product->name_en}} </td>
                         <td>
                             @if (isset($product->createdBy_adminID))
