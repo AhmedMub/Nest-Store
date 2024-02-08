@@ -8,10 +8,6 @@ $langAr = str_contains(url()->current(), '/ar');
 
 //navbar categories
 $navCategories = App\Models\Category::where('navbar_status', 1)->where('status', 1)->latest()->get();
-
-
-
-
 @endphp
 <header class="header-area header-style-1 header-style-5 header-height-2">
     <div class="mobile-promotion">
@@ -155,7 +151,7 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="javascript:void(0)"><img src={{asset("frontend/assets/imgs/theme/logo.svg")}}
+                    <a href="{{ route('home') }}"><img src={{asset("frontend/assets/imgs/theme/logo.svg")}}
                             alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
@@ -357,26 +353,5 @@ $navCategories = App\Models\Category::where('navbar_status', 1)->where('status',
     </div>
 </header>
 
-@push('added-head')
-<style>
-    .search-style-2 form input {
-        background-image: url("{{asset('frontend/assets/imgs/theme/icons/search.png')}}");
-    }
-
-    .hero-slider-1 .slider-content form input {
-        background: url("{{asset('frontend/assets/imgs/theme/icons/icon-plane.png')}}") no-repeat 25px center;
-    }
-
-    .banner-img.style-2 {
-        background: url("{{asset('frontend/assets/imgs/banner/banner-4.png')}}") no-repeat center bottom;
-    }
-
-    .banner-img.style-3 {
-        background: url("{{asset('frontend/assets/imgs/banner/banner-11.png')}}") no-repeat center bottom;
-    }
-
-    .newsletter .newsletter-inner .newsletter-content form input {
-        background: url("{{asset('frontend/assets/imgs/theme/icons/icon-plane.png')}}") no-repeat 25px center;
-    }
-</style>
-@endpush
+{{-- MOBILE HEADER --}}
+@include('frontend.layouts.essentials.mobileHeader')

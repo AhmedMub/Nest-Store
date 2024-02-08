@@ -1,6 +1,6 @@
 <?php
 
-
+//TODO all content must be translated
 return [
 
     'Everyday Fresh' => 'Everyday Fresh',
@@ -24,6 +24,42 @@ return [
     'vegetable and fruit' => 'vegetable and fruit',
     'Daily Best Sells' => 'Daily Best Sells',
     'Bring nature into your home' => 'Bring nature into your home',
-    'All Categories' => 'All Categories'
-
+    'All Categories' => 'All Categories',
+    'Company' => 'Company',
+    'About Us' => 'About Us',
+    'Delivery Information' => 'Delivery Information',
+    'Privacy Policy' => 'Privacy Policy',
+    'Terms & Conditions' => 'Terms & Conditions',
+    'Contact Us' => 'Contact Us',
+    'Support Center' => 'Support Center',
+    'Careers' => 'Careers',
+    'Account' => 'Account',
+    'Sign In' => 'Sign In',
+    'View Cart' => 'View Cart',
+    'My Wishlist' => 'My Wishlist',
+    'Track My Order' => 'Track My Order',
+    'Help Ticket' => 'Help Ticket',
+    'Shipping Details' => 'Shipping Details',
+    'Compare products' => 'Compare products',
+    'Corporate' => 'Corporate',
+    'Become a Vendor' => 'Become a Vendor',
+    'Affiliate Program' => 'Affiliate Program',
+    'Farm Business' => 'Farm Business',
+    'Farm Careers' => 'Farm Careers',
+    'Our Suppliers' => 'Our Suppliers',
+    'Accessibility' => 'Accessibility',
+    'Promotions' => 'Promotions',
+    'Popular' => 'Popular',
+    'Milk & Flavoured Milk' => 'Milk & Flavoured Milk',
+    'Butter and Margarine' => 'Butter and Margarine',
+    'Eggs Substitutes' => 'Eggs Substitutes',
+    'Marmalades' => 'Marmalades',
+    'Sour Cream and Dips' => 'Sour Cream and Dips',
+    'Tea & Kombucha' => 'Tea & Kombucha',
+    'Cheese' => 'Cheese',
+    'Install App' => 'Install App',
+    'From App Store or Google Play' => 'From App Store or Google Play',
+    'Secured Payment Gateways' => 'Secured Payment Gateways',
+    'Log In' => 'Log In',
+    'Sign Up' => 'Sign Up'
 ];

@@ -133,8 +133,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s>
-                <h4 class=" widget-title">Company</h4>
+                <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                    <h4 class="widget-title">Company</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         <li><a href="javascript:void(0)">About Us</a></li>
                         <li><a href="javascript:void(0)">Delivery Information</a></li>

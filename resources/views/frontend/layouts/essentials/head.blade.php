@@ -1,4 +1,5 @@
 @php
+//BUG this is must be gobal var
 $langAr = str_contains(url()->current(), '/ar');
 @endphp
 <title>@yield('title', 'Nest')</title>
@@ -21,7 +22,6 @@ $langAr = str_contains(url()->current(), '/ar');
 <link rel="stylesheet" href=" {{asset('frontend/css/toastr.min.css')}} ">
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-
 <style>
     .newsletter .newsletter-inner {
         background: url("{{asset('frontend/assets/defaultImages/banner-10.png')}}") no-repeat center;
@@ -42,4 +42,32 @@ $langAr = str_contains(url()->current(), '/ar');
     .swal-footer {
         text-align: center;
     }
+
+
+    /* For header style */
+    .hero-slider-1 .slider-content form input {
+        background: url("{{asset('frontend/assets/imgs/theme/icons/icon-plane.png')}}") no-repeat 25px center;
+    }
+
+    .banner-img.style-2 {
+        background: url("{{asset('frontend/assets/imgs/banner/banner-4.png')}}") no-repeat center bottom;
+    }
+
+    .banner-img.style-3 {
+        background: url("{{asset('frontend/assets/imgs/banner/banner-11.png')}}") no-repeat center bottom;
+    }
+
+    .newsletter .newsletter-inner .newsletter-content form input {
+        background: url("{{asset('frontend/assets/imgs/theme/icons/icon-plane.png')}}") no-repeat 25px center;
+    }
+
+    .formsearch .searchIcon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        z-index: 9;
+    }
+
+    /* For header style */
 </style>

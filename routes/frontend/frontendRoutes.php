@@ -7,6 +7,8 @@ use App\Http\Controllers\Frontend\PaymentsController;
 use App\Http\Controllers\Frontend\ProductsByTagController;
 use App\Http\Controllers\Frontend\ProductsByVendorController;
 use App\Http\Controllers\Frontend\UserProfile;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -17,6 +19,10 @@ use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 |
 */
+
+Route::get('testing', function () {
+    dd(app()->getLocale());
+});
 
 //if user try reset password with route get method
 Route::get('/reset-password', function () {
@@ -92,3 +98,6 @@ Route::group([
     //products by vendors
     Route::get('by-vendor/{slug}', [ProductsByVendorController::class, 'getProducts'])->name('byVendor');
 });
+
+// Laravel Fortify Auth Routes
+require_once __DIR__ . '/fortifyRoutes.php';

@@ -1,38 +1,38 @@
-<div>
-    <form>
-        <div wire:ignore>
-            <select class="select-category">
-                <option value="0">All Categories</option>
-                @if (str_contains(url()->current(), '/ar'))
-                @foreach ($categories as $cat)
-                <option value="{{$cat->id}}">{{$cat->name_ar}}</option>
-                @endforeach
-                @else
-                @foreach ($categories as $cat)
-                <option value="{{$cat->id}}">{{$cat->name_en}}</option>
-                @endforeach
-                @endif
-            </select>
-        </div>
-
-        <div class="dropdown">
-            <input wire:model.debounce.300ms="queryProduct" class="form-control w-100"
-                placeholder="{{__('frontend/header.Search for items...')}}" type="search">
-            @if (!empty($queryProduct) && count($getProducts) > 0)
-            <ul class="dropdown-menu w-100 d-block">
-                @foreach ($getProducts as $item)
-                <li><a class="dropdown-item" href="{{route('show.product', $item->slug)}}">@if ($langAr)
-                        {{$item->name_ar}}
-                        @else
-                        {{$item->name_en}}
-                        @endif</a></li>
-                @endforeach
-            </ul>
+<form class="formsearch">
+    <span class="searchIcon"><img src="{{ asset('frontend/assets/imgs/theme/icons/search.png') }}" alt=""></span>
+    @if ($active !== 'mobile')
+    <div wire:ignore>
+        <select class="select-category">
+            <option value="0">All Categories</option>
+            @if (str_contains(url()->current(), '/ar'))
+            @foreach ($categories as $cat)
+            <option value="{{$cat->id}}">{{$cat->name_ar}}</option>
+            @endforeach
+            @else
+            @foreach ($categories as $cat)
+            <option value="{{$cat->id}}">{{$cat->name_en}}</option>
+            @endforeach
             @endif
-        </div>
-    </form>
+        </select>
+    </div>
+    @endif
 
-</div>
+    <div class="dropdown">
+        <input wire:model.debounce.300ms="queryProduct" class="form-control w-100 search-input"
+            placeholder="{{__('frontend/header.Search for items...')}}" type="search">
+        @if (!empty($queryProduct) && count($getProducts) > 0)
+        <ul class="dropdown-menu w-100 d-block">
+            @foreach ($getProducts as $item)
+            <li><a class="dropdown-item" href="{{route('show.product', $item->slug)}}">@if ($langAr)
+                    {{$item->name_ar}}
+                    @else
+                    {{$item->name_en}}
+                    @endif</a></li>
+            @endforeach
+        </ul>
+        @endif
+    </div>
+</form>
 @push('added-scripts')
 <script>
     $(function() {
@@ -40,7 +40,7 @@
             width: '100%'
         });
         $('.select-category').on('change', function (e) {
-            var data = $('.select-category').select2("val");
+            let data = $('.select-category').val();
             @this.set('category', data);
         });
     });

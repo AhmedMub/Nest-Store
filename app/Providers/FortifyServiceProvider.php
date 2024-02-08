@@ -26,6 +26,10 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //Disable the default Fortify routes by using ignoreRoutes() that is configured by vendor/Laravel\Fortify
+        Fortify::ignoreRoutes();
+
+        // Register admin auth routes
         $this->app->when([AdminController::class, AttemptToAuthenticate::class, RedirectIfTwoFactorAuthenticatable::class])
             ->needs(StatefulGuard::class)
             ->give(function () {

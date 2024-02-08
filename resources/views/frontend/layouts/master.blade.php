@@ -29,7 +29,6 @@ $bodySingleProduct = str_contains(url()->current(), 'show-product');
 
     {{-- Start Header --}}
     @include('frontend.layouts.essentials.header')
-    @include('frontend.layouts.essentials.mobileHeader')
     {{-- End Header --}}
 
     {{-- Start Main Content --}}
